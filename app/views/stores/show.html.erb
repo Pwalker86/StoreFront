@@ -1,7 +1,7 @@
 <div class="Store__container">
   <h1><%= @store.name %>
     Products</h1>
-  <% if @store.spotlight.attached? %>
+  <% if current_store_admin && @store.spotlight.attached? %>
     <div><%= image_tag @store.spotlight %></div>
     <%= button_to "Remove Image", store_remove_spotlight_path(@store), method: :post %>
   <% end %>

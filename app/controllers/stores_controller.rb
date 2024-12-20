@@ -1,5 +1,5 @@
 class StoresController < ApplicationController
-  before_action :authenticate_store_admin!, only: [ :new, :create, :edit, :update, :destroy ]
+  before_action :authenticate_store_admin!, except: [ :show ]
 
   def index
   end

@@ -1,6 +1,7 @@
-@use "components/index";
-@use "layouts/index" as index2;
+@use "components/index.scss";
+@use "layouts/index.scss" as index2;
 @use "utilities/index.scss" as index3;
+@use "actiontext.css";
 
 body {
   scrollbar-gutter: stable;

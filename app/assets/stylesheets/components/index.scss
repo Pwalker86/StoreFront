@@ -1,5 +1,5 @@
-@use 'orders/index' as ordersIndex;
-@use 'products/index' as productsIndex;
+@use 'orders/index.scss' as ordersIndex;
+@use 'products/index.scss' as productsIndex;
 @use 'stores/index.scss' as storesIdex;
-@use 'button';
-@use 'toast';
+@use 'button.scss';
+@use 'toast.scss';

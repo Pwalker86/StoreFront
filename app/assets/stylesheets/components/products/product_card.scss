@@ -1,4 +1,6 @@
 .Product__Card {
+  anchor-name:--productAnchor;
+  height: 425px;
   padding: 12px;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -8,6 +10,14 @@
 }
 
 .Product__Card__admin_links {
-  margin-top: 4px;
+  position: fixed;
+  position-anchor: --productAnchor;
+  bottom: anchor(bottom);
+  margin-bottom: 8px;
 }
 
+.Product__Card__description {
+  .trix-content {
+    height: 50px;
+  }
+}

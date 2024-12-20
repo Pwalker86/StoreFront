@@ -1,4 +1,10 @@
-<div class="Product__Card">
+<% if controller_name === 'products' && controller_action === 'show' %>
+  <% @class_modifier = "productsShow" %>
+<% else %>
+  <% @class_modifier = "storesShow" %>
+<% end %>
+
+<div class="Product__Card__<%=@class_modifier%>">
   <% if product.archived %>
     <span>Archived</span>
   <% end %>
@@ -14,7 +20,9 @@
 
   <p>
     <strong>Description:</strong>
-    <%= product.description %>
+    <div class="Product__Card__description">
+      <%= product.description %>
+    </div>
   </p>
 
   <% if @active_user && !current_store_admin %>
@@ -32,10 +40,10 @@
     class: "button-link" %>
   <% end %>
   <% if current_store_admin %>
-    <%= button_to "Archive",
-    store_product_archive_path(@store, product),
-    class: "button-link" %>
     <div class="Product__Card__admin_links">
+      <%= button_to "Archive",
+      store_product_archive_path(@store, product),
+      class: "button-link" %>
       <%= link_to "View", store_product_path(@store, product), class: "button-link" %>
       <%= link_to "Edit", edit_store_product_path(@store, product), class: "button-link" %>
     </div>
