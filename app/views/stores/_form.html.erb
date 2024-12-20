@@ -46,6 +46,6 @@
   <%= link_to "Cancel", stores_path, class: "btn btn--light" %>
 <% end %>
 <% if @store.spotlight.attached? %>
-  <div><%= image_tag @store.spotlight %></div>
+  <div><%= image_tag @store.spotlight.variant(:thumb) %></div>
   <%= button_to "Remove Image", store_remove_spotlight_path(@store), method: :post %>
 <% end %>

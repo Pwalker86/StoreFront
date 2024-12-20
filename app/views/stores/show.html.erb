@@ -2,7 +2,7 @@
   <h1><%= @store.name %>
     Products</h1>
   <% if current_store_admin && @store.spotlight.attached? %>
-    <div><%= image_tag @store.spotlight %></div>
+    <div><%= image_tag @store.spotlight.variant(:thumb) %></div>
     <%= button_to "Remove Image", store_remove_spotlight_path(@store), method: :post %>
   <% end %>
   <% if current_store_admin %>
@@ -12,7 +12,7 @@
 
   <div class="grid-container">
     <% @products.each do |product| %>
-      <%= render "products/product", product: product, store: @store %>
+      <%= render "products/product_card", product: product, store: @store %>
     <% end %>
   </div>
 </div>
