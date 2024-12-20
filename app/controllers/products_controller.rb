@@ -31,9 +31,8 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to store_product_url(@store, @product), notice: "Product was successfully created." }
+        format.html { redirect_to store_url(@store), notice: "Product was successfully created." }
         format.json { render :show, status: :created, location: @product }
-        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @product.errors, status: :unprocessable_entity }

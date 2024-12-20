@@ -11,7 +11,7 @@
       <% end %>
     </div>
     <div>
-      <% if current_store_admin && current_store_admin.store.present? %>
+      <% if current_store_admin && current_store_admin.store.persisted? %>
         <%= link_to "Edit Store", edit_store_path(current_store_admin.store.id) %>
       <% elsif current_store_admin && current_store_admin.store.nil? %>
         <%= link_to "New Store", new_store_path %>

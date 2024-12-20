@@ -10,10 +10,17 @@ class StoresController < ApplicationController
   end
 
   def new
-    @store = current_store_admin.store
+    @store = current_store_admin.build_store
   end
 
   def create
+    debugger
+    store = current_store_admin.build_store(store_params)
+    if store.save
+      redirect_to store, notice: "Your store has been created!"
+    else
+      redirect_to new_store_path, alert: "something went wrong"
+    end
   end
 
   def edit

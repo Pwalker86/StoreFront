@@ -1,20 +1,18 @@
-<h1><%= @store.name %>
-  Products</h1>
-<% if @store.spotlight.attached? %>
-  <div><%= image_tag @store.spotlight %></div>
-  <%= button_to "Remove Image", store_remove_spotlight_path(@store), method: :post %>
-<% end %>
-<% if current_store_admin %>
-  <%#= link_to "New Product", new_product_path, data: { turbo_frame: dom_id(Product.new) } %>
-  <%= link_to "New Product", new_store_product_path(@store) %>
-<% end %>
-
-<%#= turbo_frame_tag Product.new %>
-
-<%#= turbo_frame_tag Product.new, class: "grid-container" do %>
-<div class="grid-container">
-  <% @products.each do |product| %>
-    <%= render "products/product", product: product, store: @store %>
+<div class="Store__container">
+  <h1><%= @store.name %>
+    Products</h1>
+  <% if @store.spotlight.attached? %>
+    <div><%= image_tag @store.spotlight %></div>
+    <%= button_to "Remove Image", store_remove_spotlight_path(@store), method: :post %>
   <% end %>
+  <% if current_store_admin %>
+    <%#= link_to "New Product", new_product_path, data: { turbo_frame: dom_id(Product.new) } %>
+    <%= link_to "New Product", new_store_product_path(@store) %>
+  <% end %>
+
+  <div class="grid-container">
+    <% @products.each do |product| %>
+      <%= render "products/product", product: product, store: @store %>
+    <% end %>
+  </div>
 </div>
-<%# end %>
