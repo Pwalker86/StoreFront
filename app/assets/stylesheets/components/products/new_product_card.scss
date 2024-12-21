@@ -1,4 +1,4 @@
-/* From Uiverse.io by MuhammadHasann */ 
+/* From Uiverse.io by MuhammadHasann */
 .card {
   --bg-card: #27272a;
   --primary: #6d28d9;
@@ -169,3 +169,8 @@
   width: 1rem;
 }
 
+.trix-content {
+  pre {
+    color: black;
+  }
+}

@@ -3,44 +3,25 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--primary);
 }
 
 .Navbar__LoggedInAs {
   font-size: 1rem;
-  color: #333;
+  color: white;
 }
 
 .Navbar__Links {
   display: flex;
+  a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  display: flex;
   gap: 1rem; /* Adds spacing between the links */
-  align-items: center;
-}
-
-.Navbar__Links a {
-  text-decoration: none;
-  color: #007bff;
-  font-size: 1rem;
-}
-
-.Navbar__Links a:hover {
-  text-decoration: underline;
-}
-
-.Navbar__Links div {
-  font-size: 1rem;
-  color: #333;
-}
-
-.col-left {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.col-right {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
 }
