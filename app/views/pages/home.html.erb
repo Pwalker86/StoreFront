@@ -1,13 +1,26 @@
-<div data-controller="home">
-  <button data-action="home#toggleUserList">Toggle Users</button>
-  <%= render "user_list" %>
-</div>
+<%#<div data-controller="home"> %>
+<%#  <button data-action="home#toggleUserList">Toggle Users</button> %>
+<%#= render "user_list" %>
+<%#</div> %>
 <%# <% if admin_signed_in? || @active_user %1> %>
 <%#   <p> %>
 <%#     <%= link_to "View Products", store_products_path(@store) %1> %>
 <%#   </p> %>
 <%# <% end %1> %>
 
-<%= render "stores/store_featured_cards", stores: @stores %>
+<%#= render "stores/store_featured_cards", stores: @stores %>
 
 <%#<%= render "pages/sign_in_links" %>
+
+<main class="store-container">
+  <div class="card">
+    <img src="https://via.placeholder.com/300x200" alt="Gizmo">
+    <div class="card-content">
+      <h3 class="card-title">Gizmo</h3>
+      <p class="card-date">Dec 2024</p>
+      <p class="card-description">Your go-to for the latest tech gadgets that you never knew you needed.
+        Get ready to geek out!</p>
+      <a href="#" class="shop-button">Shop Now</a>
+    </div>
+  </div>
+</main>
