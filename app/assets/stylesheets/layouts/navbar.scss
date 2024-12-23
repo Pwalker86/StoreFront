@@ -1,27 +1,55 @@
-.Navbar__Container {
+.navbar {
   display: flex;
+  min-height: 70px;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: var(--primary);
+  background-color: var(--bg-secondary);
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.Navbar__LoggedInAs {
-  font-size: 1rem;
-  color: white;
+.navbar .brand {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
 }
 
-.Navbar__Links {
+.navbar .menu {
   display: flex;
-  a {
-    text-decoration: none;
-    color: white;
-    font-size: 1rem;
+  gap: 15px;
+  background-color: #d7bfa9;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-radius: 26px;
+}
 
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-  display: flex;
-  gap: 1rem; /* Adds spacing between the links */
+.navbar .menu a {
+  text-decoration: none;
+  color: #000;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: background 0.3s;
+}
+
+.navbar .menu a:hover {
+  background-color: #b39d86;
+}
+
+.navbar .cta {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+  background-color: #d7bfa9;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: background 0.3s;
+  height: 20px;
+  aspect-ratio: 1;
+}
+
+.navbar .cta:hover {
+  background-color: #b39d86;
 }

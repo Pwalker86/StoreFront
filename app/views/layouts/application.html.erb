@@ -17,10 +17,10 @@
   </head>
 
   <body>
-    <%= render "layouts/navbar" %>
-    <%= render "layouts/toast" %>
-    <p style="color: red" class="alert"><%= alert %></p>
     <div class="container">
+      <%= render "layouts/navbar" %>
+      <%= render "layouts/toast" %>
+      <p style="color: red" class="alert"><%= alert %></p>
       <%= yield %>
     </div>
     <%= render "layouts/footer" %>

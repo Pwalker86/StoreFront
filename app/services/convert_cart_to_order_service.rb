@@ -3,14 +3,13 @@
 # payment processing would be invoked here in the future.
 #
 class ConvertCartToOrderService
-  def initialize(cart, address_params, user)
+  def initialize(cart, order_params, user)
     @cart = cart
-    @address_params = address_params
-    @user = user
+    @order_params = order_params
+    @order = user.orders.new(email: @order_params[:email])
   end
 
   def process
-    @order = @user.orders.new(email: @address_params[:email])
     convert_cart_items
     set_guest_email
     update_status
@@ -34,6 +33,7 @@ class ConvertCartToOrderService
     @order.status = "pending"
   end
 
+  # TODO: This still needs to be re-implemented
   # # Sets the price of each order item to the price of the product at the time of sale.
   # def set_sales_prices
   #   @order.order_items.each do |item|
@@ -43,12 +43,14 @@ class ConvertCartToOrderService
 
   # Sets the shipping address for the order.
   def set_order_address
+    # TODO: Need to refactor order model to use normal string columns for each address value.
+    # That's how it's been accessed anyway and would reduce reliance on a jsonb datatype being available in the DB.
     @order.shipping_address = {
-      address1: @address_params[:address1],
-      address2: @address_params[:address2],
-      city: @address_params[:city],
-      state: @address_params[:state],
-      postal_code: @address_params[:postal_code]
+      address1: @order_params[:address1],
+      address2: @order_params[:address2],
+      city: @order_params[:city],
+      state: @order_params[:state],
+      postal_code: @order_params[:postal_code]
     }
   end
 
@@ -56,7 +58,7 @@ class ConvertCartToOrderService
   # with the provided email from the address parameters and saves the guest user.
   def set_guest_email
     if @order.orderable.is_a? Guest
-      @order.orderable.email = @address_params[:email]
+      @order.orderable.email = @order_params[:email]
       @order.orderable.save!
     end
   end

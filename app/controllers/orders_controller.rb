@@ -22,8 +22,7 @@ class OrdersController < ApplicationController
         redirect_to orders_path
       end
     rescue StandardError => e
-      puts "*****************Error*****************"
-      puts e
+      Rails.logger.error e.message
       redirect_to root_path, alert("something went wrong")
     end
   end
