@@ -6,43 +6,11 @@
     <% if current_user || current_store_admin %>
       <%= render "shared/#{user_type}_links", path: "orders_index" %>
     <% end %>
-    <a href="#">Deals</a>
     <%= render "shared/#{user_type}_links", path: "cart_show" %>
-    <a href="#">Contact</a>
   </div>
   <div class="menu">
     <%= link_to user_cart_path(@active_user), params: { user_entity: @active_user.class.name }, class: "account-icon" do %>
       <i class="fa-solid fa-user"></i>
-    <% end %>
-  </div>
-</div>
-<div class="Navbar__Container">
-  <div class="Navbar__Links col-left">
-    <div class="Navbar__LoggedInAs">
-      Logged in as:
-      <%= display_username %>
-    </div>
-    <div>
-      <% if current_user || current_store_admin %>
-        <%= render "shared/#{user_type}_links", path: "orders_index" %>
-      <% end %>
-    </div>
-    <div>
-      <% if current_store_admin && current_store_admin.store.persisted? %>
-        <%= link_to "Edit Store", edit_store_path(current_store_admin.store.id) %>
-      <% elsif current_store_admin && current_store_admin.store.nil? %>
-        <%= link_to "New Store", new_store_path %>
-      <% end %>
-      <% if current_store_admin && current_store_admin.store.present? %>
-        <%= link_to "View Store", current_store_admin.store %>
-      <% end %>
-    </div>
-  </div>
-  <div class="Navbar__Links col-right">
-    <%= link_to "Home", root_path %>
-    <%= render "shared/#{user_type}_links", path: "cart_show" %>
-    <% unless @active_user.is_a? Guest %>
-      <%= render "shared/#{user_type}_links", path: "log_out" %>
     <% end %>
   </div>
 </div>

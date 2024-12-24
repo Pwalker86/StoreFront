@@ -1,19 +1,12 @@
 <div class="card">
-  <% if @store.spotlight.attached? %>
-    <div class="image_container">
-      <%= image_tag @store.spotlight.variant(:thumb) %>
-    </div>
+  <% if store.spotlight.attached? %>
+    <%= image_tag store.spotlight.variant(:thumb) %>
+  <% else %>
+    <div class="img-placeholder"></div>
   <% end %>
-  <div class="title">
-    <span><%= product.name %></span>
-  </div>
-  <div class="size">
-    <span><%= product.description %></span>
-  </div>
-  <div class="action">
-    <div class="price">
-      <span><%= number_to_currency(product.price) %></span>
-    </div>
+  <div class="card-content">
+    <h3 class="card-title"><%= product.name %></h3>
+    <p class="card-description"><%= number_to_currency(product.price) %></p>
     <% if @active_user && !current_store_admin %>
       <%= button_to user_cart_path(@active_user), params: { user_entity: @active_user.class.name, product_id: product.id, quantity: 1, }, data: { turbo: false, }, method: :patch, class: 'cart-button' do %>
         <svg
