@@ -1,71 +1,9 @@
-// Variables
-$font-family: "Arial, sans-serif";
-$primary-color: #2a9d8f;
-$secondary-color: #264653;
-$light-color: #e9c46a;
-$dark-color: #1d3557;
-$text-color: #333;
-
-// Reset
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: $font-family;
-  color: $text-color;
+  font-family: var(--font-family);
+  color: var(--text-color);
   line-height: 1.6;
   background-color: #f4f4f9;
 }
-
-// Navbar
-// .navbar {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   background-color: $secondary-color;
-//   padding: 1rem 2rem;
-//   color: #fff;
-//
-//   .logo {
-//     font-size: 1.5rem;
-//     font-weight: bold;
-//   }
-//
-//   .nav-links {
-//     list-style: none;
-//     display: flex;
-//     gap: 1rem;
-//
-//     li a {
-//       color: #fff;
-//       text-decoration: none;
-//       font-size: 1rem;
-//       transition: color 0.3s;
-//
-//       &:hover {
-//         color: $light-color;
-//       }
-//     }
-//   }
-//
-//   .nav-icons {
-//     display: flex;
-//     gap: 1rem;
-//
-//     .icon {
-//       color: #fff;
-//       text-decoration: none;
-//       font-size: 1.2rem;
-//
-//       &:hover {
-//         color: $light-color;
-//       }
-//     }
-//   }
-// }
 
 // Main Content
 .store-container {
@@ -90,13 +28,13 @@ body {
 
   h2 {
     font-size: 1.5rem;
-    color: $primary-color;
+    color: var(--primary-color);
     margin: 1rem;
   }
 
   p {
     font-size: 1rem;
-    color: $text-color;
+    color: var(--text-color);
     margin: 0 1rem 1rem;
   }
 }
@@ -160,7 +98,7 @@ body {
 // Footer
 footer {
   text-align: center;
-  background-color: $dark-color;
+  background-color: var(--dark-color);
   color: #fff;
   padding: 1rem;
   margin-top: 2rem;

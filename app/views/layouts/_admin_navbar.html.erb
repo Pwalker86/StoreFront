@@ -1,0 +1,24 @@
+<% if current_store_admin %>
+  <div class="navbar">
+    <div class="brand">
+      <%= link_to "StoreFront", root_path %>
+    </div>
+    <div class="menu">
+      <%= render "shared/#{user_type}_links", path: "orders_index" %>
+      <%= render "shared/#{user_type}_links", path: "cart_show" %>
+      <% if current_store_admin && current_store_admin.store.persisted? %>
+        <%= render "shared/#{user_type}_links", path: "edit_store" %>
+      <% elsif current_store_admin && current_store_admin.store.nil? %>
+        <%= render "shared/#{user_type}_links", path: "new_store" %>
+      <% end %>
+      <% if current_store_admin && current_store_admin.store.present? %>
+        <%= render "shared/#{user_type}_links", path: "show_store" %>
+      <% end %>
+    </div>
+    <div class="menu">
+      <%= link_to root_path, class: "account-icon" do %>
+        <i class="fa-solid fa-user"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>

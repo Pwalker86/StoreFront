@@ -12,6 +12,12 @@
   font-size: 24px;
   font-weight: bold;
   color: #000;
+  a {
+    text-decoration: none;
+    &:visited {
+      color: #000;
+    }
+  }
 }
 
 .navbar .menu {
@@ -38,18 +44,28 @@
   background-color: #b39d86;
 }
 
-.navbar .cta {
+.navbar .cart-icon {
   text-decoration: none;
-  color: #fff;
+  color: #000;
   font-size: 16px;
   background-color: #d7bfa9;
-  padding: 8px 16px;
-  border-radius: 20px;
+  padding: 8px;
+  border-radius: 50%;
   transition: background 0.3s;
-  height: 20px;
   aspect-ratio: 1;
 }
 
-.navbar .cta:hover {
+.navbar .cart-icon:hover {
+  background-color: #b39d86;
+}
+
+.navbar .account-icon {
+  background-color: #d7bfa9;
+  border-radius: 50%;
+  transition: background 0.3s;
+  height: 48px;
+}
+
+.navbar .account-icon:hover {
   background-color: #b39d86;
 }

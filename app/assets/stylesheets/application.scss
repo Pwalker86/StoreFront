@@ -3,7 +3,14 @@
 @use "utilities/index.scss" as index3;
 @use "actiontext.css";
 
-body {
+// Variables
+* {
+  --font-family: "Arial, sans-serif";
+  --primary-color: #2a9d8f;
+  --secondary-color: #264653;
+  --light-color: #e9c46a;
+  --dark-color: #1d3557;
+  --text-color: #333;
   --bg-card: #27272a;
   --primary: #6d28d9;
   --primary-800: #4c1d95;
@@ -14,8 +21,15 @@ body {
   --bg-primary: #e8effa;
   --bg-secondary: #efeeec;
   --button-primary: #c6ac8f;
-  scrollbar-gutter: stable;
+}
+// Reset
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+body {
+  scrollbar-gutter: stable;
   background-color: var(--bg-primary);
 }

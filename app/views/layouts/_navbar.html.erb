@@ -1,18 +1,20 @@
 <div class="navbar">
-  <div class="brand">Shopzilla</div>
+  <div class="brand">
+    <%= link_to "StoreFront", root_path %>
+  </div>
   <div class="menu">
     <% if current_user || current_store_admin %>
       <%= render "shared/#{user_type}_links", path: "orders_index" %>
     <% end %>
     <a href="#">Deals</a>
-    <a href="#">Cart</a>
+    <%= render "shared/#{user_type}_links", path: "cart_show" %>
     <a href="#">Contact</a>
   </div>
-  <%#<a href="#" class="cta"> %>
-  <%= icon "cart", css: "cta" %>
-  <%#Logged in as: %>
-  <%#= display_username %>
-  <%#</a> %>
+  <div class="menu">
+    <%= link_to user_cart_path(@active_user), params: { user_entity: @active_user.class.name }, class: "account-icon" do %>
+      <i class="fa-solid fa-user"></i>
+    <% end %>
+  </div>
 </div>
 <div class="Navbar__Container">
   <div class="Navbar__Links col-left">

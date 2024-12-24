@@ -12,15 +12,20 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
+    <script src="https://kit.fontawesome.com/b333939790.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <div class="container">
+    <% if current_store_admin %>
+      <%= render "layouts/admin_navbar" %>
+    <% else %>
       <%= render "layouts/navbar" %>
-      <%= render "layouts/toast" %>
-      <p style="color: red" class="alert"><%= alert %></p>
+    <% end %>
+    <%= render "layouts/toast" %>
+    <p style="color: red" class="alert"><%= alert %></p>
+    <div class="container">
       <%= yield %>
     </div>
     <%= render "layouts/footer" %>

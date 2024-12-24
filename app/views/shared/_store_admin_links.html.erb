@@ -1,4 +1,16 @@
 <% if current_store_admin %>
+  <% if path === 'show_store' %>
+    <%= link_to "View Store", current_store_admin.store %>
+  <% end %>
+
+  <% if path === 'new_store' %>
+    <%= link_to "New Store", new_store_path %>
+  <% end %>
+
+  <% if path === 'edit_store' %>
+    <%= link_to "Edit Store", edit_store_path(current_store_admin.store.id) %>
+  <% end %>
+
   <% if path === 'orders_index' %>
     <%= link_to "View All Orders", store_admins_orders_path %>
   <% end %>

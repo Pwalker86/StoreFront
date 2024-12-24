@@ -5,12 +5,12 @@
   <% end %>
 
   <% if path === 'cart_show' %>
-    <%= link_to "My Cart: #{@cart.cart_item_totals}",
-    user_cart_path(@active_user),
-    params: {
-      user_entity: @active_user.class.name,
-    },
-    title: "View Order" %>
+    <%= link_to user_cart_path(@active_user), params: { user_entity: @active_user.class.name } do %>
+      <div>
+        <i class="fa-solid fa-cart-shopping cart-icon"></i>
+        <span><%= @cart.cart_item_totals %></span>
+      </div>
+    <% end %>
   <% end %>
 
   <% if path === 'log_out' %>
