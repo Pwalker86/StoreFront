@@ -26,5 +26,8 @@
         <span>Add to cart</span>
       <% end %>
     <% end %>
+    <% if current_store_admin %>
+      <%= link_to "Edit", edit_store_product_path(store, product), class: "button" %>
+    <% end %>
   </div>
 </div>

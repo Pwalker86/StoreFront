@@ -16,7 +16,7 @@ class ConvertCartToOrderService
     # set_sales_prices
     set_order_address
     if @order.save!
-      @user.cart.cart_items.destroy_all
+      @cart.cart_items.destroy_all
     end
   end
 

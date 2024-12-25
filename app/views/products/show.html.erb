@@ -1,4 +1,4 @@
-<%= render "products/product_card", product: @product %>
+<%= render "products/product_card", store: @product.store, product: @product %>
 
 <div>
   <%= link_to "Back to products", store_products_path(@product.store, @product) %>
