@@ -39,8 +39,8 @@ class OrdersController < ApplicationController
     end
   end
 
-  def confirmation
-    @order = OrderDecorator.decorate(Order.find(order_params[:order_id]))
+  def confirm
+    redirect_to order_path(params[:order_id])
   end
 
   def update
