@@ -1,15 +1,16 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["storeReviewForm", "reviewFormTrigger"];
+  static targets = ["reviewForm", "reviewFormTrigger"];
 
   toggleReviewForm() {
-    if (this.storeReviewFormTarget.classList.contains("hidden")) {
+    debugger;
+    if (this.reviewFormTarget.classList.contains("hidden")) {
       this.reviewFormTriggerTarget.innerText = "Close Form";
-      this.storeReviewFormTarget.classList.remove("hidden");
+      this.reviewFormTarget.classList.remove("hidden");
     } else {
       this.reviewFormTriggerTarget.innerText = "Add Your Review";
-      this.storeReviewFormTarget.classList.add("hidden");
+      this.reviewFormTarget.classList.add("hidden");
     }
   }
 }

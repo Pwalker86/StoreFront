@@ -13,7 +13,13 @@ class ReviewsController < ApplicationController
     review = reviewable.reviews.new(review_params)
     respond_to do |format|
       if review.save!
-        format.html { redirect_to reviewable, notice: "Your review has been created!" }
+        format.html {
+          if reviewable.is_a? Product
+            redirect_to store_product_path(reviewable.store, reviewable), notice: "Your review has been created!"
+          else
+            redirect_to reviewable, notice: "Your review has been created!"
+          end
+        }
       else
         format.html { redirect_to reviewable, alert: "Something went wrong with your review" }
       end

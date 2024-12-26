@@ -9,7 +9,7 @@
 <%# <%= turbo_frame_tag Product.new, class: "grid-container" do %1> %>
 <div class="grid-container">
   <% @products.each do |product| %>
-    <%= render product %>
+    <%= render "products/product_card" %>
   <% end %>
 </div>
 <%# <% end %1> %>

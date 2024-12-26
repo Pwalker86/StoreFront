@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_store_admin!, only: [ :new, :create, :edit, :update, :archive ]
-  before_action :set_product, only: %i[show edit update]
+  before_action :authenticate_store_admin!, except: [ :index, :show ]
 
   # GET /products or /products.json
   def index
@@ -10,6 +9,9 @@ class ProductsController < ApplicationController
 
   # GET /products/1 or /products/1.json
   def show
+    @store = Store.find params[:store_id]
+    @product = @store.products.find (params[:id])
+    @new_review = @product.reviews.new
   end
 
   # GET /products/new
@@ -66,12 +68,6 @@ class ProductsController < ApplicationController
   end
 
   private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_product
-    @product = current_store_admin.store.products.find (params[:id])
-    @store = current_store_admin.store
-  end
 
   # Only allow a list of trusted parameters through.
   def product_params
