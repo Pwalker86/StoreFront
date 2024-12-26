@@ -9,13 +9,13 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    store = Store.find review_params[:store_id]
-    review = store.reviews.new(review_params.except(:store_id))
+    reviewable = review_find_params[:reviewable_class].constantize.find(review_find_params[:reviewable_id])
+    review = reviewable.reviews.new(review_params)
     respond_to do |format|
       if review.save!
-        format.html { redirect_to store, notice: "Your review has been created!" }
+        format.html { redirect_to reviewable, notice: "Your review has been created!" }
       else
-        format.html { redirect_to store, alert: "Something went wrong with your review" }
+        format.html { redirect_to reviewable, alert: "Something went wrong with your review" }
       end
     end
   end
@@ -31,7 +31,12 @@ class ReviewsController < ApplicationController
 
   private
 
+  # separate param function so I don't have to exempt these when creating the review
+  def review_find_params
+    params.expect(review: [ :reviewable_id, :reviewable_class ])
+  end
+
   def review_params
-    params.expect(review: [ :title, :body, :rating, :store_id ])
+    params.expect(review: [ :title, :body, :rating ])
   end
 end

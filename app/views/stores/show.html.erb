@@ -21,7 +21,7 @@
     data-store-target="reviewFormTrigger"
   >Add Your Review</button>
 
-  <%= render "reviews/form", store: @store, review: @new_review %>
+  <%= render "reviews/form", reviewable: @store, review: @new_review %>
 
   <div class="Store__review-container">
     <% @store.reviews.each do |review| %>

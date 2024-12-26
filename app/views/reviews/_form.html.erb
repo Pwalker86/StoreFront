@@ -1,8 +1,9 @@
-<%# locals: {store, review} %>
+<%# locals: {reviewable, review} %>
 <div class="hidden" data-store-target="storeReviewForm">
   <h2>New Review</h2>
   <%= form_with model: review do |f| %>
-    <%= f.hidden_field :store_id, value: store.id %>
+    <%= f.hidden_field :reviewable_class, value: reviewable.class.name %>
+    <%= f.hidden_field :reviewable_id, value: reviewable.id %>
     <div>
       <%= f.label :title %>
       <%= f.text_field :title %>
