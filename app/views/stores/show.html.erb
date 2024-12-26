@@ -1,4 +1,4 @@
-<div class="Store__container">
+<div class="Store__container" data-controller="store">
   <h1><%= @store.name %>
     Products</h1>
   <% if current_store_admin && @store.spotlight.attached? %>
@@ -13,6 +13,19 @@
   <div class="grid-container">
     <% @products.each do |product| %>
       <%= render "products/product_card", product: product, store: @store %>
+    <% end %>
+  </div>
+
+  <button
+    data-action="store#toggleReviewForm"
+    data-store-target="reviewFormTrigger"
+  >Add Your Review</button>
+
+  <%= render "reviews/form", store: @store, review: @new_review %>
+
+  <div class="Store__review-container">
+    <% @store.reviews.each do |review| %>
+      <%= review.title %>
     <% end %>
   </div>
 </div>

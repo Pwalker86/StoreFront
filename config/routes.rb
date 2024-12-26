@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :users
+  devise_for :store_admins
+
   resources :orders, only: [ :index, :show, :create, :update ] do
     get "confirm", as: "confirm"
   end
+
+  resources :reviews
 
   resources :stores do
     post "remove_spotlight", as: "remove_spotlight"
@@ -9,9 +14,6 @@ Rails.application.routes.draw do
       post "archive", as: "archive"
     end
   end
-
-  devise_for :users
-  devise_for :store_admins
 
   namespace :store_admins do
     resources :orders

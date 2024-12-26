@@ -6,6 +6,7 @@ class StoresController < ApplicationController
 
   def show
     @store = Store.find(params[:id])
+    @new_review = @store.reviews.new
     @products = ProductDecorator.decorate_collection(@store.products.where(archived: false))
   end
 
@@ -14,7 +15,6 @@ class StoresController < ApplicationController
   end
 
   def create
-    debugger
     store = current_store_admin.build_store(store_params)
     if store.save
       redirect_to store, notice: "Your store has been created!"

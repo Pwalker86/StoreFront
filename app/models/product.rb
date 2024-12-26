@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
   belongs_to :store
+  has_many :reviews, as: :reviewable
   has_rich_text :description
   validates :name, presence: true
   validates :price, presence: true

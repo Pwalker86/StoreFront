@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_20_181310) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_25_221406) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -110,6 +110,17 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_20_181310) do
     t.bigint "store_id", null: false
     t.boolean "archived", default: false
     t.index ["store_id"], name: "index_products_on_store_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.float "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "reviewable_type"
+    t.bigint "reviewable_id"
+    t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable"
   end
 
   create_table "store_admins", force: :cascade do |t|
