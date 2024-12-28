@@ -1,4 +1,4 @@
-<%= form_with(model: store) do |form| %>
+<%= simple_form_for store do |form| %>
   <% if store.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(store.errors.count, "error") %>
@@ -10,41 +10,17 @@
     </div>
   <% end %>
 
+  <%= form.input :name %>
+  <%= form.input :phone_number %>
+  <%= form.input :location %>
+  <%= form.input :email %>
+  <%= form.input :mission_statement %>
+  <%= form.file_field :spotlight %>
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.button :submit, class: "btn btn-primary" %>
   </div>
-
-  <div>
-    <%= form.label :phone_number, style: "display: block" %>
-    <%= form.telephone_field :phone_number %>
-  </div>
-
-  <div>
-    <%= form.label :location, style: "display: block" %>
-    <%= form.text_field :location %>
-  </div>
-
-  <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.email_field :email %>
-  </div>
-
-  <div>
-    <%= form.label :mission_statement, style: "display: block" %>
-    <%= form.text_field :mission_statement %>
-  </div>
-
-  <div>
-    <% form.label :spotlight %>
-    <%= form.file_field :spotlight %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-  <%= link_to "Cancel", stores_path, class: "btn btn--light" %>
 <% end %>
+<%= link_to "Cancel", stores_path, class: "btn btn-secondary" %>
 <% if @store.spotlight.attached? %>
   <div><%= image_tag @store.spotlight.variant(:thumb) %></div>
   <%= button_to "Remove Image", store_remove_spotlight_path(@store), method: :post %>

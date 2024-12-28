@@ -6,4 +6,6 @@ class Store < ApplicationRecord
   has_one_attached :spotlight do |attachable|
     attachable.variant :thumb, resize_to_limit: [ 300, 200 ]
   end
+
+  validates :name, :phone_number, :email, presence: true
 end

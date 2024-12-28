@@ -72,6 +72,8 @@ end
 gem "devise", "~> 4.9"
 gem "sassc", "~> 2.4"
 gem "dartsass-rails", "~> 0.5.1"
+gem "bootstrap", "~> 5.3.3"
+gem "simple_form"
 gem "draper"
 gem "inline_svg"
 

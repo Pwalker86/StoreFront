@@ -44,6 +44,8 @@ class ProductsController < ApplicationController
 
   # PATCH/PUT /products/1 or /products/1.json
   def update
+    @store = current_store_admin.store
+    @product = @store.products.find(params[:id])
     respond_to do |format|
       if @product.update(product_params)
         format.html { redirect_to store_url(@store), notice: "Product was successfully updated." }
@@ -59,11 +61,11 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:product_id])
     store = @product.store
     respond_to do |format|
-    if @product.update(archived: true)
-      format.html { redirect_to store_url(store), notice: "Product has been archived" }
-    else
-      format.html { redirect_to store_product_url(store, @product), alert: "Something went wrong" }
-    end
+      if @product.update(archived: true)
+        format.html { redirect_to store_url(store), notice: "Product has been archived" }
+      else
+        format.html { redirect_to store_product_url(store, @product), alert: "Something went wrong" }
+      end
     end
   end
 

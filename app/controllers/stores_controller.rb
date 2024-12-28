@@ -19,7 +19,7 @@ class StoresController < ApplicationController
     if store.save
       redirect_to store, notice: "Your store has been created!"
     else
-      redirect_to new_store_path, alert: "something went wrong"
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -28,11 +28,11 @@ class StoresController < ApplicationController
   end
 
   def update
-    store = current_store_admin.store
-    if store.update(store_params)
-      redirect_to store_path(store), notice: "Store has been updated!"
+    @store = current_store_admin.store
+    if @store.update(store_params)
+      redirect_to store_path(@store), notice: "Store has been updated!"
     else
-      redirect_to edit_store_path store, alert: "Something went wrong"
+      render :edit, status: :unprocessable_entity
     end
   end
 
