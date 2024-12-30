@@ -1,15 +1,15 @@
-<div class="navbar">
-  <div class="brand">
+<div class="Navbar">
+  <div class="Navbar__brand">
     <%= link_to "StoreFront", root_path %>
   </div>
-  <div class="menu">
+  <div class="Navbar__menu">
     <% if current_user || current_store_admin %>
       <%= render "shared/#{user_type}_links", path: "orders_index" %>
     <% end %>
     <%= render "shared/#{user_type}_links", path: "cart_show" %>
   </div>
-  <div class="menu">
-    <%= link_to user_cart_path(@active_user), params: { user_entity: @active_user.class.name }, class: "account-icon" do %>
+  <div class="Navbar__menu">
+    <%= link_to user_cart_path(@active_user), params: { user_entity: @active_user.class.name }, class: "Navbar__item account-icon" do %>
       <i class="fa-solid fa-user"></i>
     <% end %>
   </div>

@@ -5,20 +5,6 @@ body {
   background-color: #f4f4f9;
 }
 
-// Main Content
-.store-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  padding: 2rem;
-}
-
-.img-placeholder {
-  width: 192px;
-  height: 140px;
-  background-color: lightgrey;
-}
-
 .store {
   background: #fff;
   border: 1px solid #ddd;
@@ -43,62 +29,6 @@ body {
     color: var(--text-color);
     margin: 0 1rem 1rem;
   }
-}
-
-.card {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.card img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-.card-content {
-  padding: 15px;
-}
-
-.card-title {
-  font-size: 18px;
-  font-weight: bold;
-  color: #5d4037;
-  margin: 0;
-}
-
-.card-date {
-  font-size: 14px;
-  color: #aaa;
-  margin: 5px 0;
-}
-
-.card-description {
-  font-size: 14px;
-  color: #333;
-  margin: 10px 0 20px;
-}
-
-.shop-button {
-  display: inline-block;
-  padding: 10px 20px;
-  background: #d7bfa9;
-  color: #fff;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: bold;
-  border-radius: 20px;
-  transition: background 0.3s;
-}
-
-.shop-button:hover {
-  background: #b39d86;
 }
 
 // Footer

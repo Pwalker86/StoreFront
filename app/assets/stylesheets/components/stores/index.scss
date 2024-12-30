@@ -1,1 +1,8 @@
-@use "store_show.scss"
+@use "store_show.scss";
+@use "store_card.scss";
+
+.store-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}

@@ -1,14 +1,12 @@
 <% stores.each do |store| %>
-  <div class="card">
-    <% if store.spotlight.attached? %>
-      <%= image_tag store.spotlight.variant(:thumb) %>
-    <% else %>
-      <div class="img-placeholder"></div>
-    <% end %>
-    <div class="card-content">
-      <h3 class="card-title"><%= store.name %></h3>
-      <p class="card-description"><%= store.mission_statement %></p>
-      <%= link_to "Shop Now", store_path(store), class: "shop-button" %>
+  <%= link_to store_path(store), class: 'StoreCard__link' do %>
+    <div class="StoreCard">
+      <%= image_tag store.spotlight.variant(:thumb), class: "StoreCard__image" %>
+      <div class="StoreCard__content">
+        <h3 class="StoreCard__title"><%= store.name %></h3>
+        <p class="StoreCard__description"><%= store.mission_statement %></p>
+        <button class="StoreCard__shop-button">Shop Now</button>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>

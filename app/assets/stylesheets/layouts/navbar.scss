@@ -1,4 +1,7 @@
-.navbar {
+@use "../mixins/media";
+@use "../variables";
+
+.Navbar {
   display: flex;
   min-height: 70px;
   justify-content: space-between;
@@ -8,7 +11,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.navbar .brand {
+.Navbar__brand {
   font-size: 24px;
   font-weight: bold;
   a {
@@ -20,7 +23,7 @@
   }
 }
 
-.navbar .menu {
+.Navbar__menu {
   display: flex;
   gap: 15px;
   background-color: #d7bfa9;
@@ -29,22 +32,25 @@
   padding-top: 6px;
   padding-bottom: 6px;
   border-radius: 26px;
+
+  a {
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background 0.3s;
+  }
+  a:hover {
+    background-color: #b39d86;
+  }
+
+  @include media.tabletAndUp {
+    // background-color: variables.$bg-color;
+  }
 }
 
-.navbar .menu a {
-  text-decoration: none;
-  color: #000;
-  font-size: 16px;
-  padding: 8px 16px;
-  border-radius: 20px;
-  transition: background 0.3s;
-}
-
-.navbar .menu a:hover {
-  background-color: #b39d86;
-}
-
-.navbar .cart-icon {
+.Navbar .cart-icon {
   text-decoration: none;
   color: #000;
   font-size: 16px;
@@ -53,19 +59,19 @@
   border-radius: 50%;
   transition: background 0.3s;
   aspect-ratio: 1;
+
+  &:hover {
+    background-color: #b39d86;
+  }
 }
 
-.navbar .cart-icon:hover {
-  background-color: #b39d86;
-}
-
-.navbar .account-icon {
+.Navbar__item .account-icon {
   background-color: #d7bfa9;
   border-radius: 50%;
   transition: background 0.3s;
   height: 48px;
-}
 
-.navbar .account-icon:hover {
-  background-color: #b39d86;
+  &:hover {
+    background-color: #b39d86;
+  }
 }
