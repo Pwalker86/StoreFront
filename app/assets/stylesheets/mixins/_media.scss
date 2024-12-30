@@ -9,3 +9,8 @@
   }
 }
 
+@mixin mobile {
+  @media (max-width: 50rem) {
+    @content;
+  }
+}

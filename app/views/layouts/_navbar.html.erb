@@ -1,16 +1,24 @@
-<div class="Navbar">
+<div class="Navbar" data-controller="tooltip">
   <div class="Navbar__brand">
     <%= link_to "StoreFront", root_path %>
   </div>
-  <div class="Navbar__menu">
-    <% if current_user || current_store_admin %>
-      <%= render "shared/#{user_type}_links", path: "orders_index" %>
-    <% end %>
-    <%= render "shared/#{user_type}_links", path: "cart_show" %>
-  </div>
-  <div class="Navbar__menu">
-    <%= link_to user_cart_path(@active_user), params: { user_entity: @active_user.class.name }, class: "Navbar__item account-icon" do %>
-      <i class="fa-solid fa-user"></i>
-    <% end %>
+  <div class="menu-container">
+    <div class="Navbar__menu">
+      <i
+        class="Navbar__mobile-menu fa fa-bars"
+        data-action="click->tooltip#toggleMenu"
+      ></i>
+    </div>
+    <div class="Navbar__menu MenuItems" data-tooltip-target="menuItems">
+      <% if current_user || current_store_admin %>
+        <%= render "shared/#{user_type}_links", path: "orders_index" %>
+      <% end %>
+      <%= render "shared/#{user_type}_links", path: "cart_show" %>
+    </div>
+    <div class="Navbar__menu">
+      <%= link_to user_cart_path(@active_user), params: { user_entity: @active_user.class.name }, class: "Navbar__item account-icon" do %>
+        <i class="fa-solid fa-user"></i>
+      <% end %>
+    </div>
   </div>
 </div>

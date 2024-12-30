@@ -9,6 +9,7 @@
   background-color: var(--bg-secondary);
   padding: 10px 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
 .Navbar__brand {
@@ -73,5 +74,24 @@
 
   &:hover {
     background-color: #b39d86;
+  }
+}
+
+.menu-container {
+  &_responsive {
+  }
+}
+
+.Navbar__mobile-menu {
+  display: none;
+  @include media.mobile {
+    display: block;
+  }
+}
+
+.MenuItems {
+  @include media.mobile {
+    display: flex;
+    flex-direction: column;
   }
 }
