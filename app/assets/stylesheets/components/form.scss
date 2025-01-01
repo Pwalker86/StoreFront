@@ -1,0 +1,51 @@
+.simple_form {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+
+  .input {
+    &.field_with_errors {
+      input {
+        border: 2px solid darkred;
+      }
+      span.error {
+        color: darkred;
+      }
+    }
+
+    &.field_without_errors {
+      input {
+        border: 2px solid darkgreen;
+      }
+    }
+
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-left: 4px;
+    }
+
+    input {
+      border-radius: 4px;
+      padding-left: 4px;
+      margin-left: 4px;
+      height: 2rem;
+    }
+  }
+
+  .simple_form_inputs > div:last-child {
+    input {
+      border: none;
+    }
+  }
+
+  .btn {
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    margin-left: 4px;
+    margin-top: 8px;
+  }
+}

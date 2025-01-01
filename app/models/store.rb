@@ -9,6 +9,10 @@ class Store < ApplicationRecord
 
   after_commit :add_default_spotlight, on: [ :create, :update ]
 
+  validates :name, :phone_number, :location, :email, presence: true
+  validates :email,
+    format: { with: URI::MailTo::EMAIL_REGEXP }
+
   private
   def add_default_spotlight
     unless spotlight.attached?

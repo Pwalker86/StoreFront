@@ -1,0 +1,20 @@
+.StoreEdit__container {
+  padding-top: 2rem;
+}
+.StoreEdit__spotlight-container {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+
+  .StoreEdit__spotlight-image {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  form {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

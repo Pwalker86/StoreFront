@@ -18,7 +18,9 @@
       class: "ProductCard__shop-button" %>
     <% end %>
     <% if current_store_admin %>
-      <%= link_to "Edit", edit_store_product_path(store, product), class: "button" %>
+      <%= link_to "Edit",
+      edit_store_product_path(store, product),
+      class: "ProductCard__shop-button" %>
     <% end %>
   </div>
 </div>

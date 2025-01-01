@@ -76,3 +76,4 @@ gem "draper"
 gem "inline_svg"
 
 gem "rails_icons", "~> 1.0"
+gem "simple_form"
