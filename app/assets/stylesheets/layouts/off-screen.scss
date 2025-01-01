@@ -1,0 +1,24 @@
+.navbar-top {
+  background: lightgray;
+  display: flex;
+}
+
+.hamburger-trigger {
+  margin-left: auto;
+  margin-right: 8px;
+}
+
+.off-screen-menu {
+  background-color: black;
+  color: white;
+  height: 100vh;
+  width: 250px;
+  position: absolute;
+  top: 25px;
+  right: -250px;
+  transition: 0.3 ease-in;
+
+  &.open {
+    right: 0;
+  }
+}
