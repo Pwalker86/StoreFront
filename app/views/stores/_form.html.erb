@@ -7,15 +7,15 @@
 
 <%= simple_form_for store do |form| %>
 
-  <div class="simple_form_inputs">
+  <div class="simple_form_inputs-50">
     <%= form.input :name %>
     <%= form.input :phone_number %>
     <%= form.input :location %>
     <%= form.input :email %>
     <%= form.input :mission_statement %>
     <%#= form.input :spotlight %>
-  </div>
 
-  <%= form.button :submit %>
-  <%= link_to "Cancel", store, class: "btn btn--light" %>
+    <%= form.button :submit %>
+    <%= link_to "Cancel", store, class: "btn btn--light" %>
+  </div>
 <% end %>

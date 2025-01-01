@@ -1,42 +1,13 @@
-<%= form_with(model: [store, product], html: { class: 'minus-form' }) do |form| %>
-  <% if product.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(product.errors.count, "error") %>
-        prohibited this product from being saved:</h2>
+<%= simple_form_for [store, product] do |form| %>
 
-      <div>
-        <%= product.errors.full_messages.to_sentence.capitalize %>
-      </div>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="simple_form_inputs">
+    <%= form.input :name %>
+    <%= form.input :price %>
+    <%= form.input :description, as: :rich_text_area %>
+    <%= form.input :out_of_stock, wrapper: :inline_checkbox %>
+    <%= form.input :archived, wrapper: :inline_checkbox %>
   </div>
 
-  <div>
-    <%= form.label :price, style: "display: block" %>
-    <%= form.text_field :price, default: 0.00 %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.rich_text_area :description %>
-  </div>
-
-  <div>
-    <%= form.label :out_of_stock, style: "display: block" %>
-    <%= form.check_box :out_of_stock %>
-  </div>
-
-  <div>
-    <%= form.label :archived, style: "display: block" %>
-    <%= form.check_box :archived %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= form.button :submit %>
   <%= link_to "Cancel", store, class: "btn btn--light" %>
 <% end %>

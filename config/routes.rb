@@ -10,9 +10,7 @@ Rails.application.routes.draw do
 
   resources :stores do
     post "remove_spotlight", as: "remove_spotlight"
-    resources :products do
-      post "archive", as: "archive"
-    end
+    resources :products
   end
 
   namespace :store_admins do
