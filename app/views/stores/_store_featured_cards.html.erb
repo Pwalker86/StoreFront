@@ -1,5 +1,5 @@
 <% stores.each do |store| %>
-  <%= link_to store_path(store), class: 'StoreCard__link' do %>
+  <%= link_to store, class: 'StoreCard__link' do %>
     <div class="StoreCard">
       <%= image_tag store.spotlight.variant(:thumb), class: "StoreCard__image" %>
       <div class="StoreCard__content">

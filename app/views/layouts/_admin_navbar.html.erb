@@ -1,9 +1,10 @@
+<%# TODO: need to give this a responsive menu or a redesign. Looks ugly on mobile, but i don't care right now as it's admin display %>
 <% if current_store_admin %>
-  <div class="navbar">
-    <div class="brand">
+  <div class="Navbar">
+    <div class="Navbar__brand">
       <%= link_to "StoreFront", root_path %>
     </div>
-    <div class="menu">
+    <div class="Navbar__menu">
       <%= render "shared/#{user_type}_links", path: "orders_index" %>
       <%= render "shared/#{user_type}_links", path: "cart_show" %>
       <% if current_store_admin && current_store_admin.store.persisted? %>
@@ -15,7 +16,7 @@
         <%= render "shared/#{user_type}_links", path: "show_store" %>
       <% end %>
     </div>
-    <div class="menu">
+    <div class="Navbar__menu account-icon">
       <%= link_to root_path, class: "account-icon" do %>
         <i class="fa-solid fa-user"></i>
       <% end %>

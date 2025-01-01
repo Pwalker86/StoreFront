@@ -1,15 +1,13 @@
 <% if @active_user %>
 
   <% if path === 'orders_index' %>
-    <%= link_to "View", orders_path %>
+    <%= link_to "View Orders", orders_path %>
   <% end %>
 
   <% if path === 'cart_show' %>
     <%= link_to user_cart_path(@active_user), params: { user_entity: @active_user.class.name } do %>
-      <div>
-        <i class="fa-solid fa-cart-shopping cart-icon"></i>
-        <span><%= @cart.cart_item_totals %></span>
-      </div>
+      <i class="fa-solid fa-cart-shopping cart-icon"></i>
+      <span><%= @cart.cart_item_totals %></span>
     <% end %>
   <% end %>
 

@@ -1,8 +1,8 @@
-.StoreCard__link {
+.ProductCard__link {
   text-decoration: none;
 }
 
-.StoreCard {
+.ProductCard {
   margin-top: 8px;
   margin-bottom: 8px;
   width: auto;
@@ -16,14 +16,15 @@
   flex-direction: column;
   justify-content: space-between;
 
-  &__title {
+  &__name {
     font-size: 18px;
     font-weight: bold;
     color: #5d4037;
     margin: 0;
   }
 
-  &__description {
+  &__description,
+  &__price {
     font-size: 14px;
     color: #333;
     margin: 10px 0 20px;
