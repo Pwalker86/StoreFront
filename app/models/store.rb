@@ -4,7 +4,7 @@ class Store < ApplicationRecord
   has_many :products
   has_many :orders
   has_one_attached :spotlight do |attachable|
-    attachable.variant :thumb, resize_to_limit: [ 250, nil ]
+    attachable.variant :thumb, resize_to_limit: [ 250, nil ], preprocessed: true
   end
 
   after_commit :add_default_spotlight, on: [ :create, :update ]
