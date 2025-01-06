@@ -7,7 +7,7 @@ class StoresController < ApplicationController
   def show
     @store = Store.find(params[:id])
     @new_review = @store.reviews.new
-    @products = ProductDecorator.decorate_collection(@store.products.where(archived: false))
+    @products = ProductDecorator.decorate_collection(@store.products.where(archived: false).order(:name))
   end
 
   def new
@@ -31,7 +31,7 @@ class StoresController < ApplicationController
     @store = current_store_admin.store
     respond_to do |format|
       if @store.update(store_params)
-        format.html { redirect_to @store, notice: "Store was successfully updated." }
+        format.html { redirect_to edit_store_path(@store), notice: "Store was successfully updated." }
         format.json { render :show, status: :ok, location: store }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -42,10 +42,10 @@ class StoresController < ApplicationController
 
   def remove_spotlight
     @store = current_store_admin.store
-    if @store.spotlight.purge
-      redirect_to store_path(@store), notice: "spotlight has been removed"
-    else
-      redirect_to @store, alert: "something didn't work"
+    @store.spotlight.purge_later
+    respond_to do |format|
+        format.html { redirect_to edit_store_path(@store), notice: "Image removed!" }
+        format.turbo_stream
     end
   end
 

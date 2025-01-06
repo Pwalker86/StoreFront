@@ -1,7 +1,9 @@
 <% stores.each do |store| %>
   <%= link_to store, class: 'StoreCard__link' do %>
     <div class="StoreCard">
-      <%= image_tag store.spotlight.variant(:thumb), class: "StoreCard__image" %>
+      <% if store.spotlight.attached? %>
+        <%= image_tag store.spotlight.variant(:thumb), class: "StoreCard__image" %>
+      <% end %>
       <div class="StoreCard__content">
         <h3 class="StoreCard__title"><%= store.name %></h3>
         <p class="StoreCard__description"><%= store.mission_statement %></p>

@@ -1,8 +1,10 @@
 <% if @store.spotlight.attached? %>
-  <div class="StoreEdit__spotlight-container">
-    <%= image_tag @store.spotlight.variant(:thumb), class: "StoreEdit__spotlight-image" %>
-    <%= button_to "Remove Image", store_remove_spotlight_path(@store), method: :post %>
-  </div>
+  <%= turbo_frame_tag "store_#{@store_id}_spotlight" do %>
+    <div class="StoreEdit__spotlight-container">
+      <%= image_tag @store.spotlight.variant(:thumb), class: "StoreEdit__spotlight-image" %>
+      <%= button_to "Remove Image", store_remove_spotlight_path(@store), method: :delete %>
+    </div>
+  <% end %>
 <% end %>
 
 <%= simple_form_for store do |form| %>
@@ -13,7 +15,7 @@
     <%= form.input :location %>
     <%= form.input :email %>
     <%= form.input :mission_statement %>
-    <%#= form.input :spotlight %>
+    <%= form.input :spotlight %>
 
     <%= form.button :submit %>
     <%= link_to "Cancel", store, class: "btn btn--light" %>

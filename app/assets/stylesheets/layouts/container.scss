@@ -9,6 +9,7 @@
   width: 300px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 100px;
 
   @include media(tabletAndUp) {
     width: initial;
