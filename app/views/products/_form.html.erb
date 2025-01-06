@@ -11,6 +11,10 @@
 <%= form_with model: [store, product] do |form| %>
   <%= form.label :name %>
   <%= form.text_field :name %>
+  <%# TODO: this isn't right %>
+  <% product.images do |image| %>
+    <%= form.file_field :images, multiple: true, value: image.signed_id %>
+  <% end %>
   <div data-controller="file">
     <%= form.file_field :images, multiple: true, data: { action: "file#addFile" } %>
     <div data-file-target="files"></div>

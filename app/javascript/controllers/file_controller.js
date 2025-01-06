@@ -10,7 +10,11 @@ export default class extends Controller {
     console.log("controller connected!");
   }
 
-  removeFile(event) {}
+  removeFile(event) {
+    let fileToRemove = event.target.parentNode
+    let fileContainer = fileToRemove.parentNode
+    fileContainer.removeChild(fileToRemove)
+  }
 
   addFile(event) {
     // Grab some references for later
@@ -21,6 +25,7 @@ export default class extends Controller {
     const selectedFile = document.createElement("div");
     selectedFile.className = "selected-file";
     selectedFile.append(originalInput);
+    selectedFile.dataset.fileTarget="fileToUpload"
 
     // Create label (the visible part of the new input element) with the name of
     // the selected file.
@@ -29,6 +34,11 @@ export default class extends Controller {
     labelNode.appendChild(textElement);
     selectedFile.appendChild(labelNode);
 
+    // Create button to remove an image before upload
+    const removeButton = document.createElement("div")
+    removeButton.textContent = "Remove Image"
+    removeButton.dataset.action = "click->file#removeFile"
+    selectedFile.appendChild(removeButton)
     // Add the selected file to the list of selected files
     this.filesTarget.append(selectedFile);
 
