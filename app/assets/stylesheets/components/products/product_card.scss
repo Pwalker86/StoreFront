@@ -32,7 +32,7 @@
   }
 
   &__image {
-    height: 200px;
+    width: 100%;
   }
 
   &__shop-button {
@@ -44,10 +44,9 @@
     text-decoration: none;
     font-size: 14px;
     font-weight: bold;
-    border-radius: 20px;
     transition: background 0.3s;
-    margin-bottom: 0.5rem;
     color: black;
+    width: 100%;
   }
 
   &__shop-button:hover {

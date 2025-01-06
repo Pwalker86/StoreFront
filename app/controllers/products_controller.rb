@@ -47,13 +47,25 @@ class ProductsController < ApplicationController
     @store = current_store_admin.store
     @product = @store.products.find(params[:id])
     respond_to do |format|
-      if @product.update(product_params)
+      if @product.update!(product_params)
         format.html { redirect_to store_url(@store), notice: "Product was successfully updated." }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def remove_image
+    @store = current_store_admin.store
+    @product = @store.products.find(params[:product_id])
+    image_to_remove = @product.images.find { |image| image.id == params[:image_id].to_i }
+    @image_id = image_to_remove.id
+    image_to_remove.purge_later
+    respond_to do |format|
+        format.html { redirect_to edit_store_path(@store), notice: "Image removed!" }
+        format.turbo_stream
     end
   end
 

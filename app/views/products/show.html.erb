@@ -1,9 +1,14 @@
 <%= render "products/product_card", store: @product.store, product: @product %>
 <div class="Product__image-container">
   <% @product.images.each do |image| %>
-    <div class="Product__image-card">
-      <%= image_tag image.variant(:thumb) %>
-    </div>
+    <%= turbo_frame_tag "product_image_#{image.id}" do %>
+      <div class="Product__image-card">
+        <%= image_tag image.variant(:thumb) %>
+        <%= button_to "Remove Image",
+        store_product_remove_image_path(@store, @product, { image_id: image.id }),
+        method: :delete %>
+      </div>
+    <% end %>
   <% end %>
 </div>
 

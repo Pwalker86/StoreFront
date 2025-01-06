@@ -22,7 +22,6 @@ export default class extends Controller {
     const originalParent = originalInput.parentNode;
 
     const files = originalInput.files;
-    debugger;
     for (const file of files) {
       // Create an element that contains our input element
       const selectedFile = document.createElement("div");

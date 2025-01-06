@@ -20,13 +20,6 @@
   <% product.images.each do |image| %>
     <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
   <% end %>
-  <div class="Product__image-container">
-    <% product.images.each do |image| %>
-      <div class="Product__image-card">
-        <%= image_tag image.variant(:thumb) %>
-      </div>
-    <% end %>
-  </div>
   <div data-controller="file">
     <%= form.file_field :images, multiple: true, data: { action: "file#addFile" } %>
     <div data-file-target="files"></div>

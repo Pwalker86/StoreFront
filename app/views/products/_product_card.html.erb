@@ -1,28 +1,30 @@
 <div class="ProductCard">
-  <% if product.images.any? %>
-    <%= image_tag product.images.first.variant(:thumb), class: "ProductCard__image" %>
+  <%= link_to [store, product],  class: "ProductCard__link" do %>
+    <div class="ProductCard__content">
+      <% if product.images.any? %>
+        <%= image_tag product.images.first.variant(:thumb), class: "ProductCard__image" %>
+      <% end %>
+      <h3 class="ProductCard__name"><%= product.name %></h3>
+      <p class="ProductCard__price"><%= number_to_currency(product.price) %></p>
+      <% if @active_user && !current_store_admin %>
+        <%= button_to "Add To Cart",
+        user_cart_path(@active_user),
+        params: {
+          user_entity: @active_user.class.name,
+          product_id: product.id,
+          quantity: 1,
+        },
+        data: {
+          turbo: false,
+        },
+        method: :patch,
+        class: "ProductCard__shop-button" %>
+      <% end %>
+    </div>
   <% end %>
-  <div class="ProductCard__content">
-    <h3 class="ProductCard__name"><%= product.name %></h3>
-    <p class="ProductCard__price"><%= number_to_currency(product.price) %></p>
-    <% if @active_user && !current_store_admin %>
-      <%= button_to "Add To Cart",
-      user_cart_path(@active_user),
-      params: {
-        user_entity: @active_user.class.name,
-        product_id: product.id,
-        quantity: 1,
-      },
-      data: {
-        turbo: false,
-      },
-      method: :patch,
-      class: "ProductCard__shop-button" %>
-    <% end %>
-    <% if current_store_admin %>
-      <%= link_to "Edit",
-      edit_store_product_path(store, product),
-      class: "ProductCard__shop-button" %>
-    <% end %>
-  </div>
+  <% if current_store_admin === store.store_admin %>
+    <%= link_to "Edit",
+    edit_store_product_path(store, product),
+    class: "ProductCard__shop-button" %>
+  <% end %>
 </div>
