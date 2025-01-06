@@ -1,4 +1,11 @@
 <%= render "products/product_card", store: @product.store, product: @product %>
+<div class="Product__image-container">
+  <% @product.images.each do |image| %>
+    <div class="Product__image-card">
+      <%= image_tag image.variant(:thumb) %>
+    </div>
+  <% end %>
+</div>
 
 <div data-controller="review">
   <button
