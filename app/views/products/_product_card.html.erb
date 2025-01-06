@@ -1,5 +1,7 @@
 <div class="ProductCard">
-  <%= image_tag store.spotlight.variant(:thumb), class: "StoreCard__image" %>
+  <% if product.images.any? %>
+    <%= image_tag product.images.first.variant(:thumb), class: "ProductCard__image" %>
+  <% end %>
   <div class="ProductCard__content">
     <h3 class="ProductCard__name"><%= product.name %></h3>
     <p class="ProductCard__price"><%= number_to_currency(product.price) %></p>

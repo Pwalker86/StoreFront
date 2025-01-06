@@ -35,3 +35,14 @@ body {
   scrollbar-gutter: stable;
   background-color: var(--bg-primary);
 }
+
+.selected-file {
+  background: #ddeeff;
+  border-radius: 0.2em;
+  margin-top: 1px;
+  padding: 0.2em;
+}
+
+.selected-file input[type="file"] {
+  display: none;
+}

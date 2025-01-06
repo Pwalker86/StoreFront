@@ -1,13 +1,25 @@
-<%= simple_form_for [store, product] do |form| %>
+<%#= simple_form_for [store, product] do |form| %>
 
-  <div class="simple_form_inputs">
-    <%= form.input :name %>
-    <%= form.input :price %>
-    <%= form.input :description, as: :rich_text_area %>
-    <%= form.input :out_of_stock, wrapper: :inline_checkbox %>
-    <%= form.input :archived, wrapper: :inline_checkbox %>
+<%#<div class="simple_form_inputs" data-controller="multiple-file-upload"> %>
+<%#= form.input :name %>
+<%#= form.input :price %>
+<%#= form.input :description, as: :rich_text_area %>
+<%#= form.input :out_of_stock, wrapper: :inline_checkbox %>
+<%#= form.input :archived, wrapper: :inline_checkbox %>
+<%#</div> %>
+
+<%= form_with model: [store, product] do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <div data-controller="file">
+    <%= form.file_field :images, multiple: true, data: { action: "file#addFile" } %>
+    <div data-file-target="files"></div>
   </div>
-
-  <%= form.button :submit %>
-  <%= link_to "Cancel", store, class: "btn btn--light" %>
+  <div>
+    <%= form.submit %>
+  </div>
 <% end %>
+
+<%#= form.button :submit %>
+<%= link_to "Cancel", store, class: "btn btn--light" %>
+<%# end %>
