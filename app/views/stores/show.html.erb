@@ -19,18 +19,17 @@
     <% end %>
   </div>
 
-  <div data-controller="review">
-    <button
-      data-action="review#toggleReviewForm"
-      data-review-target="reviewFormTrigger"
-    >Add Your Review</button>
+  <%= turbo_frame_tag @store.reviews.new do %>
+    <%= link_to "Add Your Review",
+    new_review_path(
+      { reviewable_class: @store.class.name, reviewable_id: @store.id },
+    ),
+    class: "button-link" %>
+  <% end %>
 
-    <%= render "reviews/form", reviewable: @store, review: @new_review %>
-
-    <div class="Store__review-container">
-      <% @store.reviews.each do |review| %>
-        <%= review.title %>
-      <% end %>
-    </div>
+  <div class="Store__review-container">
+    <% @store.reviews.each do |review| %>
+      <%= review.title %>
+    <% end %>
   </div>
 </div>

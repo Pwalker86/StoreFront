@@ -6,13 +6,13 @@ Rails.application.routes.draw do
     get "confirm", as: "confirm"
   end
 
-  resources :reviews
-
   resources :stores do
+    resources :reviews
     delete "remove_spotlight", as: "remove_spotlight"
     resources :products do
       delete "remove_image", as: "remove_image"
       resources :product_images
+      resources :reviews
     end
   end
 
