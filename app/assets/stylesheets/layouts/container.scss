@@ -1,8 +1,12 @@
-@mixin media($query) {
-  @if $query == tabletAndUp {
-    @media (min-width: 50rem) {
-      @content;
-    }
+@mixin tabletAndUp {
+  @media (min-width: 50rem) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: 50rem) {
+    @content;
   }
 }
 .container {
@@ -11,7 +15,7 @@
   margin-right: auto;
   margin-bottom: 100px;
 
-  @include media(tabletAndUp) {
+  @include tabletAndUp {
     width: initial;
     margin-left: 50px;
     margin-right: 50px;
