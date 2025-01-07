@@ -7,12 +7,12 @@ Rails.application.routes.draw do
   end
 
   resources :stores do
-    resources :reviews
+    resources :store_reviews, as: "reviews"
     delete "remove_spotlight", as: "remove_spotlight"
     resources :products do
       delete "remove_image", as: "remove_image"
       resources :product_images
-      resources :reviews
+      resources :product_reviews, as: "reviews"
     end
   end
 

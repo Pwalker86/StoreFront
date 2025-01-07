@@ -9,9 +9,13 @@
     width: 75%;
   }
 
-  input {
+  input, textarea {
     border-radius: 4px;
     padding-left: 4px;
     height: 2rem;
+  }
+  textarea {
+    padding-top: 4px;
+    height: 128px;
   }
 }

@@ -1,3 +1,4 @@
+<%= turbo_stream_from "store_reviews" %>
 <div class="Store__container">
   <h1><%= @store.name %>
     Products</h1>
@@ -19,17 +20,9 @@
     <% end %>
   </div>
 
-  <%= turbo_frame_tag @store.reviews.new do %>
-    <%= link_to "Add Your Review",
-    new_review_path(
-      { reviewable_class: @store.class.name, reviewable_id: @store.id },
-    ),
-    class: "button-link" %>
-  <% end %>
-
-  <div class="Store__review-container">
-    <% @store.reviews.each do |review| %>
-      <%= review.title %>
-    <% end %>
-  </div>
 </div>
+<%= render "store_reviews/add_review", store: @store %>
+
+<%= turbo_frame_tag "store_reviews" do %>
+  <%= render "store_reviews/reviews", reviews: @reviews %>
+<% end %>

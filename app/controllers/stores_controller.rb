@@ -6,7 +6,7 @@ class StoresController < ApplicationController
 
   def show
     @store = Store.find(params[:id])
-    @new_review = @store.reviews.new
+    @reviews = @store.reviews.ordered
     @products = ProductDecorator.decorate_collection(@store.products.where(archived: false).order(:name))
   end
 
