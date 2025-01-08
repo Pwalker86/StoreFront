@@ -1,13 +1,39 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+# == Schema Information
+#
+# Table name: products
+#
+#  id           :bigint           not null, primary key
+#  archived     :boolean          default(FALSE)
+#  description  :text
+#  name         :string           not null
+#  out_of_stock :boolean          default(FALSE)
+#  price        :decimal(10, 2)   not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  store_id     :bigint           not null
+#
+# Indexes
+#
+#  index_products_on_store_id  (store_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (store_id => stores.id)
+#
+product_one:
   name: MyString
   price: 9.99
   description: MyText
   out_of_stock: false
+  archived: false
+  store: store_one
 
-two:
+product_two:
   name: MyString
-  price: 9.99
+  price: 4.99
   description: MyText
   out_of_stock: false
+  archived: false
+  store: store_one

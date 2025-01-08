@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: orders
+#
+#  id               :bigint           not null, primary key
+#  email            :string
+#  orderable_type   :string
+#  shipping_address :jsonb
+#  status           :string           default("pending")
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  orderable_id     :bigint
+#
+# Indexes
+#
+#  index_orders_on_orderable  (orderable_type,orderable_id)
+#
 class Order < ApplicationRecord
   belongs_to :orderable, polymorphic: true
   has_many :order_items, dependent: :destroy

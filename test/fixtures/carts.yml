@@ -18,9 +18,3 @@
 #  fk_rails_...  (guest_id => guests.id)
 #  fk_rails_...  (user_id => users.id)
 #
-class Cart < ApplicationRecord
-  belongs_to :user, optional: true
-  belongs_to :guest, optional: true
-  has_many :cart_items, dependent: :destroy
-  has_many :products, through: :cart_items
-end
