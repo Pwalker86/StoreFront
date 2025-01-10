@@ -3,7 +3,7 @@ import Fuse from 'fuse.js'
 
 export default class extends Controller {
   static values = { url: String }
-  static targets = [ "productsContainer" ];
+  static targets = [ "searchInput" ];
 
   products = {};
 
@@ -22,5 +22,12 @@ export default class extends Controller {
 
   buildProductsContainer(){
 
+  }
+
+  search(){
+    const fuse = new Fuse(this.products, {
+      keys: ['name']
+    })
+    const result = fuse.search(this.searchInputTarget.value)
   }
 }

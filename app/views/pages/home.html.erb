@@ -1,8 +1,8 @@
 <%# If this was ready for production, move this /products.json to the store#show page or add some sort of scoping so the number of records that are retrieved aren't out of control %>
-<main
-  class="store-container"
-  data-controller="home"
-  data-home-url-value="/products.json"
->
-  <%= render "stores/store_featured_cards", stores: @stores %>
+<main data-controller="home" data-home-url-value="/products.json">
+  <input type="text" data-home-target="searchInput"/>
+  <button data-home-target="searchButton" data-action="home#search">Search</button>
+  <div class="store-container">
+    <%= render "stores/store_featured_cards", stores: @stores %>
+  </div>
 </main>
