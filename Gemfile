@@ -65,6 +65,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "mutex_m"
+  gem 'simplecov', require: false
 end
 
 gem "devise", "~> 4.9"

@@ -16,21 +16,10 @@
 #  index_orders_on_orderable  (orderable_type,orderable_id)
 #
 class Order < ApplicationRecord
+  before_destroy :do_not_destroy
   belongs_to :orderable, polymorphic: true
-  has_many :order_items, dependent: :destroy
+  has_many :order_items
   has_many :products, through: :order_items
-
-  def scoped_order_items(store_id)
-    self.order_items.find_all { |item| item.product.store_id === store_id }
-  end
-
-  def destroy
-    raise ActiveRecord::ReadOnlyRecord, "Orders cannot be destroyed"
-  end
-
-  def destroy!
-    raise ActiveRecord::ReadOnlyRecord, "Orders cannot be destroyed"
-  end
 
   ORDER_OPEN = "open"
   ORDER_PENDING = "pending"
@@ -57,5 +46,11 @@ class Order < ApplicationRecord
 
   def postal_code
     shipping_address["postal_code"]
+  end
+
+  private
+
+  def do_not_destroy
+    raise ActiveRecord::DeleteRestrictionError, "Orders cannot be destroyed"
   end
 end

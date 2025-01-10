@@ -18,6 +18,8 @@
 #  index_orders_on_orderable  (orderable_type,orderable_id)
 #
 order_one:
+  email: order1@email.com
+  orderable: user_one (User)
   status: pending
   shipping_address: {
     address1: '123 Main St',
@@ -27,5 +29,14 @@ order_one:
     postal_code: '12345'
   }
 
-order_two:
+open_order:
+  email: order1@email.com
+  orderable: user_one (User)
   status: open
+  shipping_address: {
+    address1: '123 Main St',
+    address2: 'Apt 1',
+    city: 'Anytown',
+    state: 'NY',
+    postal_code: '12345'
+  }
