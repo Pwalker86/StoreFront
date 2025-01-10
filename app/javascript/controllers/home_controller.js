@@ -1,9 +1,26 @@
 import { Controller } from "@hotwired/stimulus";
+import Fuse from 'fuse.js'
 
 export default class extends Controller {
-  static targets = ["userList"];
+  static values = { url: String }
+  static targets = [ "productsContainer" ];
 
-  toggleUserList() {
-    this.userListTarget.classList.toggle("hidden");
+  products = {};
+
+  connect(){
+    this.load();
+  }
+
+  load(){
+     fetch(this.urlValue)
+      .then(response => response.json())
+      .then(json => {
+        this.products = json
+        this.buildProductsContainer();
+      })
+  }
+
+  buildProductsContainer(){
+
   }
 }

@@ -5,4 +5,10 @@ class PagesController < ApplicationController
     @users = User.all
     @admins = StoreAdmin.all
   end
+
+  def products
+    respond_to do |format|
+      format.json { render json: Product.all }
+    end
+  end
 end
