@@ -18,3 +18,5 @@
 #  fk_rails_...  (guest_id => guests.id)
 #  fk_rails_...  (user_id => users.id)
 #
+guest_cart:
+  guest: guest_one

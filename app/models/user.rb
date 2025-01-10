@@ -21,4 +21,8 @@ class User < ApplicationRecord
     :recoverable, :rememberable, :validatable
   has_many :orders, as: :orderable
   has_one :cart, dependent: :destroy
+
+  def display_name
+    email
+  end
 end

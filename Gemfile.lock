@@ -211,6 +211,7 @@ GEM
       minitest (>= 5.0)
       ruby-progressbar
     msgpack (1.7.5)
+    mutex_m (0.2.0)
     net-imap (0.5.2)
       date
       net-protocol
@@ -446,6 +447,7 @@ DEPENDENCIES
   inline_svg
   jbuilder
   minitest-reporters
+  mutex_m
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 8.0.0)

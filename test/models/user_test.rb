@@ -19,7 +19,11 @@
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def setup
+    @user = users(:user_one)
+  end
+
+  test "display_name" do
+    assert @user.email, @user.display_name
+  end
 end

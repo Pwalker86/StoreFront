@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   # @return decorated [Cart]
   def ensure_cart
     return if current_store_admin
-    set_active_user if !@active_user
+    set_active_user unless @active_user
     cart = @active_user.cart || @active_user.create_cart!
     @cart = CartDecorator.decorate(cart)
   end

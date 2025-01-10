@@ -64,6 +64,7 @@ group :test do
   gem "database_cleaner-active_record"
   gem "capybara"
   gem "selenium-webdriver"
+  gem "mutex_m"
 end
 
 gem "devise", "~> 4.9"

@@ -7,15 +7,5 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-class Guest < ApplicationRecord
-  has_many :orders, as: :orderable
-  has_one :cart, dependent: :destroy
-
-  def email
-    ""
-  end
-
-  def display_name
-    "Guest - Not Logged In"
-  end
-end
+guest_one:
+  email: guest1@email.com
