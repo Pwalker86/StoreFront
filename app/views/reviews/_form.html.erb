@@ -11,22 +11,18 @@
     </ul>
   </div>
 <% end %>
-<div data-review-target="reviewForm">
-  <h2>New Review</h2>
-  <%= form_with model: review do |f| %>
-    <%= f.hidden_field :reviewable_class, value: reviewable.class.name %>
-    <%= f.hidden_field :reviewable_id, value: reviewable.id %>
-    <div>
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-    </div>
-    <div>
-      <%= f.label :body %>
-      <%= f.text_area :body %>
-    </div>
-    <div>
-      <%= f.submit "Submit Review" %>
-    </div>
+<h2>New Review</h2>
+<%= form_with model: review do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </div>
+  <div>
+    <%= f.submit "Submit Review" %>
+  </div>
 
-  <% end %>
-</div>
+<% end %>
