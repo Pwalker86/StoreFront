@@ -11,7 +11,6 @@ class CartUpdateService
   end
 
   def call
-    debugger
     cart = @user_entity_class.find(@user_id).cart
     product = Product.find(@product_id)
 

@@ -12,6 +12,12 @@
   <% end %>
 </div>
 
+<%= render "product_reviews/add_review", product: @product %>
+
+<%= turbo_frame_tag "product_reviews" do %>
+  <%= render "product_reviews/reviews", reviews: @product.reviews.ordered %>
+<% end %>
+
 <div>
   <%= link_to "Back to store", store_path(@product.store) %>
 </div>

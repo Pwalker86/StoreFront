@@ -1,0 +1,32 @@
+<% review = product.reviews.new %>
+<% if review.errors.any? %>
+  <div id="error_explanation">
+    <h6><%= pluralize(review.errors.count, "error") %>
+      prohibited this review from being saved:</h6>
+
+    <ul>
+      <% review.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<div>
+  <h2>New review for
+    <%= product.name.capitalize %></h2>
+  <%= form_with model: review, url: store_product_reviews_path, method: :post do |f| %>
+    <div class="form-input">
+      <%= f.label :title %>
+      <%= f.text_field :title, required: true %>
+    </div>
+    <div class="form-input">
+      <%= f.label :body %>
+      <%= f.text_area :body, required: true %>
+    </div>
+    <div class="mt-1">
+      <%= f.submit "Submit Review", class: "button-link" %>
+      <%= link_to "Cancel", [product.store, product] %>
+    </div>
+
+  <% end %>
+</div>

@@ -1,0 +1,5 @@
+<%= turbo_frame_tag product.reviews.new do %>
+  <%= link_to "Add Your Review",
+  new_store_product_review_path(product.store, product),
+  class: "button-link" %>
+<% end %>
