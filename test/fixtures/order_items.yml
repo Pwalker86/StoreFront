@@ -25,7 +25,14 @@
 order_item_one:
   order: order_one
   product: product_one
+  quantity: 1
 
 order_item_two:
   order: open_order
   product: product_two
+  quantity: 2
+
+order_item_three:
+  order: order_one
+  product: product_three
+  quantity: 3

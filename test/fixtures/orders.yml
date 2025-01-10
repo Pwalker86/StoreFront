@@ -29,6 +29,18 @@ order_one:
     postal_code: '12345'
   }
 
+order_two:
+  email: order1@email.com
+  orderable: user_two (User)
+  status: pending
+  shipping_address: {
+    address1: '123 Main St',
+    address2: 'Apt 1',
+    city: 'Anytown',
+    state: 'NY',
+    postal_code: '12345'
+  }
+
 open_order:
   email: order1@email.com
   orderable: user_one (User)
@@ -40,3 +52,6 @@ open_order:
     state: 'NY',
     postal_code: '12345'
   }
+
+guest_order:
+  orderable: guest_one (Guest)

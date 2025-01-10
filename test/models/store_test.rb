@@ -67,4 +67,10 @@ class StoreTest < ActiveSupport::TestCase
   test "should have a review" do
     assert_equal @store.reviews.first, reviews(:store_review)
   end
+
+  test "a spotlight is attached if there's not already one" do
+    assert_not @store.spotlight.attached?
+    @store.save
+    assert @store.spotlight.attached?
+  end
 end

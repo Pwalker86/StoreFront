@@ -23,7 +23,9 @@
 require "test_helper"
 
 class OrderItemTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "find the store the order_item came from" do
+    order = order_items(:order_item_one)
+    store = stores(:store_one)
+    assert_equal order.store, store
+  end
 end

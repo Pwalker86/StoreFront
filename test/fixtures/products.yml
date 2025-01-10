@@ -37,3 +37,11 @@ product_two:
   out_of_stock: false
   archived: false
   store: store_one
+
+product_three:
+  name: MyString
+  price: 4.99
+  description: MyText
+  out_of_stock: false
+  archived: false
+  store: store_two
