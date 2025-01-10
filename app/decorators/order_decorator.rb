@@ -1,5 +1,6 @@
 class OrderDecorator < Draper::Decorator
   delegate_all
+  decorates_associations :order_item
 
   # Returns the user entity associated with the order.
   # If the guest is nil, it returns the user.
@@ -12,6 +13,11 @@ class OrderDecorator < Draper::Decorator
     elsif object.user.nil?
       object.guest
     end
+  end
+
+  # @return [ActiveRecord::Relation][OrderItems]
+  def scoped_order_items(store_id)
+    object.order_items.find_all { |item| item.product.store_id === store_id }
   end
 
   # @return [ActiveRecord::Relation] the sorted order items
