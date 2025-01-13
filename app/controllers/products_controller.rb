@@ -45,6 +45,7 @@ class ProductsController < ApplicationController
   def update
     @store = current_store_admin.store
     @product = @store.products.find(params[:id])
+    debugger
     respond_to do |format|
       if @product.update!(product_params)
         format.html { redirect_to store_url(@store), notice: "Product was successfully updated." }
@@ -72,6 +73,6 @@ class ProductsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def product_params
-    params.require(:product).permit(:id, :name, :price, :description, :out_of_stock, :archived, images: [])
+    params.require(:product).permit(:id, :name, :price, :description, :out_of_stock, :archived, :tag_list, images: [])
   end
 end

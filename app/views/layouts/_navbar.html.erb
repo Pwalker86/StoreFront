@@ -1,16 +1,42 @@
-<div class="Navbar">
+<div class="Navbar Search__anchor">
   <div class="Navbar__brand">
     <%= link_to "StoreFront", root_path %>
+  </div>
+  <div class="flex-row" id="searchForm">
+    <div
+      data-controller="product-search"
+      data-product-search-url-value="/home_search.json"
+    >
+      <div
+        id="overlay"
+        data-product-search-target="overlay"
+        data-action="click->product-search#closeOverlay"
+        class="hidden w-100"
+      ></div>
+      <form class="Search__input--anchor">
+        <div class="form-input inline">
+          <input
+            type="text"
+            class="Search__input"
+            data-product-search-target="searchInput"
+            data-action="keyup->product-search#searchProducts"
+          />
+        </div>
+        <button
+          data-product-search-target="searchButton"
+          data-action="click->product-search#searchProducts"
+        >Search</button>
+      </form>
+      <div
+        class="Search__container"
+        data-product-search-target="searchOptionsContainer"
+      ></div>
+    </div>
   </div>
   <div class="Navbar__menu">
     <% if current_user || current_store_admin %>
       <%= render "shared/#{user_type}_links", path: "orders_index" %>
     <% end %>
     <%= render "shared/#{user_type}_links", path: "cart_show" %>
-  </div>
-  <div class="Navbar__menu account-icon">
-    <%= link_to user_cart_path(@active_user), params: { user_entity: @active_user.class.name }, class: "Navbar__account-icon", title: 'Account' do %>
-      <i class="fa-solid fa-user"></i>
-    <% end %>
   </div>
 </div>

@@ -11,6 +11,10 @@
     <%= form.label :description %>
     <%= form.rich_textarea :description %>
   </div>
+  <div class="form-input w-75">
+    <%= form.label :tag_list %>
+    <%= form.text_field :tag_list %>
+  </div>
   <div class="h-form-input">
     <%= form.checkbox :archived %>
     <%= form.label :archived, "Archive" %>
@@ -29,6 +33,4 @@
   </div>
 <% end %>
 
-<%#= form.button :submit %>
 <%= link_to "Cancel", store, class: "btn btn--light" %>
-<%# end %>

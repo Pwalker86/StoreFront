@@ -7,8 +7,9 @@ class PagesController < ApplicationController
   end
 
   def products
-    respond_to do |format|
-      format.json { render json: Product.all }
-    end
+    # tags = Product.tag_counts.pluck(:name)
+    # respond_to do |format|
+    #   format.json { render json: { tags: tags } }
+    # end
   end
 end

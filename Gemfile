@@ -65,7 +65,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "mutex_m"
-  gem 'simplecov', require: false
+  gem "simplecov", require: false
 end
 
 gem "devise", "~> 4.9"
@@ -76,3 +76,5 @@ gem "inline_svg"
 
 gem "rails_icons", "~> 1.0"
 gem "simple_form"
+gem "pg_search"
+gem "acts-as-taggable-on"

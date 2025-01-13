@@ -76,6 +76,9 @@ GEM
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
       uri (>= 0.13.1)
+    acts-as-taggable-on (12.0.0)
+      activerecord (>= 7.1, < 8.1)
+      zeitwerk (>= 2.4, < 3.0)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
     annotaterb (4.13.0)
@@ -241,6 +244,9 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.9)
+    pg_search (2.3.7)
+      activerecord (>= 6.1)
+      activesupport (>= 6.1)
     prettier_print (1.2.1)
     psych (5.2.2)
       date
@@ -436,6 +442,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  acts-as-taggable-on
   annotaterb
   bootsnap
   brakeman
@@ -456,6 +463,7 @@ DEPENDENCIES
   minitest-reporters
   mutex_m
   pg (~> 1.1)
+  pg_search
   puma (>= 5.0)
   rails (~> 8.0.0)
   rails_icons (~> 1.0)

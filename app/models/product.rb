@@ -21,12 +21,22 @@
 #  fk_rails_...  (store_id => stores.id)
 #
 class Product < ApplicationRecord
+  include PgSearch::Model
+  pg_search_scope :search_by,
+    against: :name,
+    using: {
+      tsearch: { prefix: true, any_word: true }
+    }
+
   belongs_to :store
   has_many :reviews, as: :reviewable
   has_rich_text :description
   has_many_attached :images do |attachable|
     attachable.variant :thumb, resize_to_limit: [ 250, nil ], preprocessed: true
   end
+
+  ActsAsTaggableOn.delimiter = " "
+  acts_as_taggable_on :tags
 
   validates :name, :price, presence: true
   validates_numericality_of :price, { greater_than_or_equal_to: 0 }
