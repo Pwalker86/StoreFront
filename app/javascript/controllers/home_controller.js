@@ -29,5 +29,6 @@ export default class extends Controller {
       keys: ['name']
     })
     const result = fuse.search(this.searchInputTarget.value)
+    console.log("Search Result: ", {q: this.searchInputTarget.value, r: result})
   }
 }
