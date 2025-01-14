@@ -1,5 +1,4 @@
 import { Controller } from "@hotwired/stimulus";
-// import Fuse from 'fuse.js'
 
 export default class extends Controller {
   static values = { url: String, productUrl: String }
@@ -51,17 +50,6 @@ export default class extends Controller {
     } else {
       this.products = jsonResponse;
     }
-    console.log("jsonResponse: ", this.products)
-    if (this.products.length > 0){
-      this.buildProductsList(this.products);
-    }
+    this.buildProductsList(this.products);
   }
-
-  // search(){
-  //   const fuse = new Fuse(this.products, {
-  //     keys: ['name']
-  //   })
-  //   const result = fuse.search(this.searchInputTarget.value)
-  //   console.log("Search Result: ", {q: this.searchInputTarget.value, r: result})
-  // }
 }
