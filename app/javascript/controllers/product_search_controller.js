@@ -7,6 +7,13 @@ export default class extends Controller {
 
   products = {};
 
+  submitForm(event) {
+    // TODO: get the submit to accept the query param and navigate to results page.
+      // See if there's a rails-y way to do this
+    event.preventDefault();
+    const data = Object.fromEntries(new FormData(event.target).entries())
+  }
+
   openOverlay(){
     this.overlayTarget.classList.remove("hidden") 
     this.searchOptionsContainerTarget.classList.remove("hidden")
@@ -34,7 +41,7 @@ export default class extends Controller {
     }
   }
 
-  async searchProducts(){
+  async search(){
     const queryString = new URLSearchParams({query: this.searchInputTarget.value}).toString();
     const searchUrl = `${this.urlValue}?${queryString}`
     const response = await fetch(searchUrl)

@@ -1,0 +1,35 @@
+<div class="flex-row" id="searchForm">
+  <div data-controller="product-search" data-product-search-url-value=<%= @url %>>
+    <div
+      id="overlay"
+      data-product-search-target="overlay"
+      data-action="click->product-search#closeOverlay"
+      class="hidden w-100"
+    ></div>
+    <form
+      class="Search__input--anchor"
+      action="<%= @url %>"
+      data-product-search-target="searchForm"
+      data-action="submit->product-search#submitForm"
+    >
+    <div class="form-input inline">
+      <input
+        name= "query"
+        type="text"
+        class="Search__input"
+        data-product-search-target="searchInput"
+        data-action="keyup->product-search#search"
+      />
+      </div>
+      <button
+        type="submit"
+        data-product-search-target="searchButton"
+        data-action="click->product-search#search"
+      >Search</button>
+    </form>
+    <div
+      class="Search__container"
+      data-product-search-target="searchOptionsContainer"
+    ></div>
+  </div>
+</div>
