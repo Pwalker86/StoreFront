@@ -11,21 +11,21 @@
       action="<%= @url %>"
       data-search-component-target="searchForm"
     >
-    <div class="form-input inline">
-      <input
-        name= "query"
-        type="text"
-        class="Search__input"
-        data-search-component-target="searchInput"
-        data-action="keyup->search-component#search keyup->search-component#updateLinkHref"
-      />
+      <div class="form-input inline">
+        <input
+          name= "query"
+          type="text"
+          class="Search__input"
+          data-search-component-target="searchInput"
+          data-action="keyup->search-component#search keyup->search-component#updateLinkHref keyup.enter->search-component#clickSearch"
+        />
       </div>
-      <%#<button%>
-      <%#  type="submit"%>
-      <%#  data-search-component-target="searchButton"%>
-      <%#  data-action="click->search-component#search"%>
-      <%#>Search</button>%>
-    <%= link_to "Search", "#{@url}?query=", data: {"search-component-target": "searchButton"} %>
+      <a
+        href=<%= @url %>
+        data-search-component-target="searchButton"
+      >
+        Search
+        </a>
     </form>
     <div
       class="Search__container"

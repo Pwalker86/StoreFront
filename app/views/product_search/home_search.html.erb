@@ -1,0 +1,9 @@
+<h1>Search Results!</h1>
+<ul>
+  <%= render(
+    ListItemComponent.with_collection(
+      @products,
+      spacer_component: SpacerComponent.new,
+    ),
+  ) %>
+</ul>
