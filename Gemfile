@@ -74,7 +74,7 @@ gem "dartsass-rails", "~> 0.5.1"
 gem "draper"
 gem "inline_svg"
 
-gem "rails_icons", "~> 1.0"
+gem "rails_icons", "~> 1.1"
 gem "simple_form"
 gem "pg_search"
 gem "acts-as-taggable-on"
