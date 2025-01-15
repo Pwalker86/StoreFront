@@ -2,15 +2,14 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   static values = { url: String, productUrl: String }
-  static targets = [ "searchInput", "searchOptionsContainer", "overlay"];
+  static targets = [ "searchInput", "searchOptionsContainer", "overlay", "searchButton"];
 
   products = {};
 
-  submitForm(event) {
-    // TODO: get the submit to accept the query param and navigate to results page.
-      // See if there's a rails-y way to do this
-    event.preventDefault();
-    const data = Object.fromEntries(new FormData(event.target).entries())
+  updateLinkHref(){
+    const input = this.searchInputTarget.value
+    const link = this.searchButtonTarget
+    link.href = this.urlValue + ".json" + `?query=${input}`
   }
 
   openOverlay(){

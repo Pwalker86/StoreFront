@@ -7,8 +7,8 @@ import { application } from "./application"
 import FileController from "./file_controller"
 application.register("file", FileController)
 
-import ProductSearchController from "./product_search_controller"
-application.register("product-search", ProductSearchController)
+import SearchComponentController from "./search_component_controller"
+application.register("search-component", SearchComponentController)
 
 import TooltipController from "./tooltip_controller"
 application.register("tooltip", TooltipController)

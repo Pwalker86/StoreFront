@@ -1,35 +1,35 @@
 <div class="flex-row" id="searchForm">
-  <div data-controller="product-search" data-product-search-url-value=<%= @url %>>
+  <div data-controller="search-component" data-search-component-url-value=<%= @url %>>
     <div
       id="overlay"
-      data-product-search-target="overlay"
-      data-action="click->product-search#closeOverlay"
+      data-search-component-target="overlay"
+      data-action="click->search-component#closeOverlay"
       class="hidden w-100"
     ></div>
     <form
       class="Search__input--anchor"
       action="<%= @url %>"
-      data-product-search-target="searchForm"
-      data-action="submit->product-search#submitForm"
+      data-search-component-target="searchForm"
     >
     <div class="form-input inline">
       <input
         name= "query"
         type="text"
         class="Search__input"
-        data-product-search-target="searchInput"
-        data-action="keyup->product-search#search"
+        data-search-component-target="searchInput"
+        data-action="keyup->search-component#search keyup->search-component#updateLinkHref"
       />
       </div>
-      <button
-        type="submit"
-        data-product-search-target="searchButton"
-        data-action="click->product-search#search"
-      >Search</button>
+      <%#<button%>
+      <%#  type="submit"%>
+      <%#  data-search-component-target="searchButton"%>
+      <%#  data-action="click->search-component#search"%>
+      <%#>Search</button>%>
+    <%= link_to "Search", "#{@url}?query=", data: {"search-component-target": "searchButton"} %>
     </form>
     <div
       class="Search__container"
-      data-product-search-target="searchOptionsContainer"
+      data-search-component-target="searchOptionsContainer"
     ></div>
   </div>
 </div>
