@@ -45,7 +45,6 @@ class ProductsController < ApplicationController
   def update
     @store = current_store_admin.store
     @product = @store.products.find(params[:id])
-    debugger
     respond_to do |format|
       if @product.update!(product_params)
         format.html { redirect_to store_url(@store), notice: "Product was successfully updated." }

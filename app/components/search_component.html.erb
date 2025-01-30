@@ -16,14 +16,14 @@
     >
       <div class="form-input inline">
         <%= text_field_tag :query,
-        nil,
-        autocomplete: "off",
-        id: "searchInput",
-        class: "Search__input",
-        data: {
-          search_component_target: "searchInput",
-          action:
-            "
+                           nil,
+                           autocomplete: "off",
+                           id: "searchInput",
+                           class: "Search__input",
+                           data: {
+                             search_component_target: "searchInput",
+                             action:
+                               "
                               keyup->search-component#search
                               keyup->search-component#updateLinkHref
                               keyup.enter->search-component#clickSearch
@@ -31,7 +31,7 @@
                               keydown.tab->search-component#handleSearchKeydown
                               keydown.up->search-component#handleSearchKeyup
                           ",
-        } %>
+                           } %>
       </div>
       <a href=<%= @url %> data-search-component-target="searchButton">
         Search
