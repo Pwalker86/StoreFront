@@ -8,7 +8,14 @@
   </div>
 <% end %>
 
-<%= render(CarouselComponent.new(images: @product.images)) %>
+<div data-controller="dialog" data-action="click->dialog#backdropClose">
+  <dialog data-dialog-target="dialog">
+    <%= render(CarouselComponent.new(images: @product.images)) %>
+    <button type="button" data-action="dialog#close" autofocus>Cancel</button>
+  </dialog>
+
+  <button type="button" data-action="dialog#open">Open modal</button>
+</div>
 
 <%= render "product_reviews/add_review", product: @product %>
 

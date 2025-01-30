@@ -2,7 +2,9 @@
   <div class="Navbar__brand">
     <%= link_to "StoreFront", root_path %>
   </div>
+
   <%= render(SearchComponent.new(url: "/product_search")) %>
+
   <div class="Navbar__menu">
     <% if current_user || current_store_admin %>
       <%= render "shared/#{user_type}_links", path: "orders_index" %>
