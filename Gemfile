@@ -77,3 +77,5 @@ gem "simple_form"
 gem "pg_search"
 gem "acts-as-taggable-on"
 gem "view_component"
+
+gem "bootstrap", "~> 5.3"

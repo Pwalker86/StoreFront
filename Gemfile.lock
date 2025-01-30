@@ -84,6 +84,8 @@ GEM
     annotaterb (4.13.0)
     ansi (1.5.0)
     ast (2.4.2)
+    autoprefixer-rails (10.4.19.0)
+      execjs (~> 2)
     base64 (0.2.0)
     bcrypt (3.1.20)
     benchmark (0.4.0)
@@ -91,6 +93,9 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
+    bootstrap (5.3.3)
+      autoprefixer-rails (>= 9.1.0)
+      popper_js (>= 2.11.8, < 3)
     brakeman (7.0.0)
       racc
     builder (3.3.0)
@@ -142,6 +147,7 @@ GEM
     erb-formatter (0.7.3)
       syntax_tree (~> 6.0)
     erubi (1.13.0)
+    execjs (2.10.0)
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
     ffi (1.17.0-aarch64-linux-gnu)
@@ -245,6 +251,7 @@ GEM
     pg_search (2.3.7)
       activerecord (>= 6.1)
       activesupport (>= 6.1)
+    popper_js (2.11.8)
     prettier_print (1.2.1)
     psych (5.2.2)
       date
@@ -444,6 +451,7 @@ DEPENDENCIES
   acts-as-taggable-on
   annotaterb
   bootsnap
+  bootstrap (~> 5.3)
   brakeman
   bullet (~> 8.0)
   capybara
