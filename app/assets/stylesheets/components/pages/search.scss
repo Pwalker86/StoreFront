@@ -1,4 +1,4 @@
-$option-hover: darken(white, 10%);
+@import "variables";
 
 .Search__anchor {
   anchor-name: --search-anchor;
@@ -12,7 +12,7 @@ $option-hover: darken(white, 10%);
   position: absolute;
   position-anchor: --search-input-anchor;
   justify-self: anchor-center;
-  border-radius: var(--border-radius);
+  border-radius: $border-radius;
   z-index: 999;
   &.displaying-results {
     height: 20px;
@@ -40,13 +40,13 @@ $option-hover: darken(white, 10%);
   border-bottom: 1px solid lightgrey;
   &:first-child {
     padding-top: 4px;
-    border-top-left-radius: var(--border-radius);
-    border-top-right-radius: var(--border-radius);
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
   }
   &:last-child {
     padding-bottom: 4px;
-    border-bottom-right-radius: var(--border-radius);
-    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
     border: none;
   }
   &:hover,

@@ -1,3 +1,5 @@
+@import "variables";
+
 @mixin tabletAndUp {
   @media (min-width: 50rem) {
     @content;
@@ -16,7 +18,7 @@
   }
 }
 .StoreReviews__review {
-  box-shadow: var(--box-shadow);
+  box-shadow: $box-shadow;
   background-color: white;
-  border-radius: var(--border-radius)
+  border-radius: $border-radius;
 }

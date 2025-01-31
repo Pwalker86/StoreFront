@@ -16,26 +16,24 @@
     >
       <div class="form-input inline">
         <%= text_field_tag :query,
-                           nil,
-                           autocomplete: "off",
-                           id: "searchInput",
-                           class: "Search__input",
-                           data: {
-                             search_component_target: "searchInput",
-                             action:
-                               "
-                              keyup->search-component#search
-                              keyup->search-component#updateLinkHref
-                              keyup.enter->search-component#clickSearch
-                              keydown.down->search-component#handleSearchKeydown
-                              keydown.tab->search-component#handleSearchKeydown
-                              keydown.up->search-component#handleSearchKeyup
-                          ",
-                           } %>
+        nil,
+        placeholder: "Search",
+        type: "search",
+        aria: {
+          label: "Search",
+        },
+        autocomplete: "off",
+        id: "searchInput",
+        class: "Search__input",
+        data: {
+          search_component_target: "searchInput",
+          action:
+            "keyup->search-component#search keyup->search-component#updateLinkHref keydown.down->search-component#handleSearchKeydown keydown.tab->search-component#handleSearchKeydown keydown.up->search-component#handleSearchKeyup ",
+        } %>
       </div>
-      <a href=<%= @url %> data-search-component-target="searchButton">
+      <button type="submit" data-search-component-target="searchButton">
         Search
-      </a>
+      </button>
     </form>
     <div
       id="searchOptionsContainer"

@@ -12,10 +12,6 @@ export default class extends Controller {
   noResults = [{ href: "#", name: "No Results" }];
   products = {};
 
-  clickSearch() {
-    this.searchButtonTarget.click();
-  }
-
   handleSearchKeyup(event) {
     event.preventDefault();
     const lastItem = this.searchOptionsContainerTarget.lastChild;
@@ -37,11 +33,7 @@ export default class extends Controller {
     const items = Array.from(this.searchOptionsContainerTarget.children);
     const currentIndex = items.indexOf(document.activeElement);
     const nextIndex = (currentIndex - 1 + items.length) % items.length;
-    if (nextIndex === 0 || currentIndex === 0) {
-      this.searchInputTarget.focus();
-    } else {
-      items[currentIndex - 1].focus();
-    }
+    items[nextIndex].focus();
   }
 
   handleNavigateDown(event) {
@@ -49,11 +41,7 @@ export default class extends Controller {
     const items = Array.from(this.searchOptionsContainerTarget.children);
     const currentIndex = items.indexOf(document.activeElement);
     const nextIndex = (currentIndex + 1) % items.length;
-    if (nextIndex === 0) {
-      this.searchInputTarget.focus();
-    } else {
-      items[currentIndex + 1].focus();
-    }
+    items[nextIndex].focus();
   }
 
   updateLinkHref() {
@@ -70,13 +58,17 @@ export default class extends Controller {
     this.searchOptionsContainerTarget.classList.add("hidden");
   }
 
+  focusOption(event) {
+    event.target.focus();
+  }
+
   buildDropdownEntry(option) {
     const optionLink = document.createElement("a");
     optionLink.classList.add("Search__option");
     optionLink.href = option.href;
     optionLink.innerText = option.name;
-    optionLink.dataset.action = "click->product-search#closeOverlay";
-
+    optionLink.dataset.action =
+      "click->search-component#closeOverlay mouseover->search-component#focusOption";
     return optionLink;
   }
 
@@ -99,7 +91,7 @@ export default class extends Controller {
     const searchUrl = `${this.urlValue}.json?${queryString}`;
     const response = await fetch(searchUrl);
     const jsonResponse = await response.json();
-    this.products = jsonResponse.length === 0 ? this.noResults : jsonResponse;
+    this.products = jsonResponse.length ? jsonResponse : this.noResults;
     this.buildProductsList(this.products);
   }
 }

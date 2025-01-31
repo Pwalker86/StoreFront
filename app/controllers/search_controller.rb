@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
-  def product_search
+  def index
     @products = Product.search_by(params[:query]).select(:id, :store_id, :name).map do |item|
       { href: "/stores/#{item.store_id}/products/#{item.id}", name: item.name }
     end
