@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   devise_for :store_admins
+  Rails.application.routes.draw do
+    if Rails.env.development?
+      mount Lookbook::Engine, at: "/lookbook"
+    end
+  end
 
   resources :orders, only: [ :index, :show, :create, :update ] do
     get "confirm", as: "confirm"
