@@ -1,3 +1,5 @@
+@import "variables";
+
 .StoreCard__link {
   text-decoration: none;
 }
@@ -19,13 +21,13 @@
   &__title {
     font-size: 18px;
     font-weight: bold;
-    color: #5d4037;
+    color: $text-color;
     margin: 0;
   }
 
   &__description {
     font-size: 14px;
-    color: #333;
+    color: $text-color;
     margin: 10px 0 20px;
     min-height: 1.5rem;
   }
@@ -41,6 +43,7 @@
     font-weight: bold;
     border-radius: 20px;
     transition: background 0.3s;
+    color: $text-color;
     margin-bottom: 0.5rem;
   }
 

@@ -17,7 +17,7 @@
       <div class="form-input inline">
         <%= text_field_tag :query,
         nil,
-        placeholder: "Search",
+        placeholder: @input_placeholder,
         type: "search",
         aria: {
           label: "Search",
@@ -31,7 +31,11 @@
             "keyup->search-component#search keyup->search-component#updateLinkHref keydown.down->search-component#handleSearchKeydown keydown.tab->search-component#handleSearchKeydown keydown.up->search-component#handleSearchKeyup ",
         } %>
       </div>
-      <button type="submit" data-search-component-target="searchButton">
+      <button
+        type="submit"
+        data-search-component-target="searchButton"
+        class="Search__button"
+      >
         Search
       </button>
     </form>

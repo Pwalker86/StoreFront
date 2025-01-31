@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static values = { url: String, productUrl: String };
+  static values = { url: String };
   static targets = [
     "searchInput",
     "searchOptionsContainer",
@@ -84,6 +84,7 @@ export default class extends Controller {
     }
   }
 
+  // TODO: refactor to watch searchInput value changed with an abort controller
   async search() {
     const queryString = new URLSearchParams({
       query: this.searchInputTarget.value,

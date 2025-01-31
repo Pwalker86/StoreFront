@@ -58,3 +58,7 @@
 .Search__input {
   width: 250px;
 }
+
+.Search__button:hover {
+  background-color: $option-hover;
+}

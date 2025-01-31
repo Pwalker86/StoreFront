@@ -3,7 +3,9 @@
     <%= link_to "StoreFront", root_path %>
   </div>
 
-  <%= render(SearchComponent.new(url: "/search")) %>
+  <%= render(
+    SearchComponent.new(url: "/search", input_placeholder: "Search Products..."),
+  ) %>
 
   <div class="Navbar__menu">
     <% if current_user || current_store_admin %>

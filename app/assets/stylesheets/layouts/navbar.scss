@@ -19,9 +19,9 @@ $hover-bg: #b39d86;
   a {
     text-decoration: none;
     background-color: $bg-secondary;
-    color: #000;
+    color: $text-color;
     &:visited {
-      color: #000;
+      color: $text-color;
     }
   }
 }
@@ -40,7 +40,7 @@ $hover-bg: #b39d86;
   a {
     text-decoration: none;
     background-color: #d7bfa9;
-    color: #000;
+    color: $text-color;
     font-size: 16px;
     padding: 4px 8px;
     border-radius: 20px;
@@ -58,34 +58,32 @@ $hover-bg: #b39d86;
 }
 
 .Navbar .cart-count {
-  background-color: #d7bfa9;
+  background-color: inherit;
   &:hover {
-    background-color: $hover-bg;
+    background-color: inherit;
   }
 }
 
 .Navbar .cart-icon {
   text-decoration: none;
-  background-color: #d7bfa9;
-  color: #000;
+  background-color: inherit;
+  color: $text-color;
   font-size: 16px;
   padding: 8px;
   border-radius: 50%;
-  transition: background 0.3s;
   aspect-ratio: 1;
 
   &:hover {
-    background-color: $hover-bg;
+    background-color: inherit;
   }
 }
 
 .Navbar__item .account-icon {
-  background-color: #d7bfa9;
+  background-color: inherit;
   border-radius: 50%;
-  transition: background 0.3s;
   height: 48px;
 
   &:hover {
-    background-color: #b39d86;
+    background-color: inherit;
   }
 }
