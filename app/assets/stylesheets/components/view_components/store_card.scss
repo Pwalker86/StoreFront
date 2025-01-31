@@ -1,22 +1,33 @@
 @import "variables";
+@import 'mixins/media';
 
 .StoreCard__link {
   text-decoration: none;
 }
 
 .StoreCard {
-  margin-top: 8px;
-  margin-bottom: 8px;
-  width: auto;
+  max-width: 100%;
+  border-radius: 8px;
+  // margin-top: 8px;
+  // margin-bottom: 8px;
   height: 350px;
   background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: $box-shadow;
   overflow: hidden;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @include tabletAndUp {
+    max-width: calc(50% - 20px);
+  }
+
+  &__content {
+    position: absolute;
+    width: -webkit-fill-available;
+    bottom: 100px;
+  }
 
   &__title {
     font-size: 18px;

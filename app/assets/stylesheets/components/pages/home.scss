@@ -1,42 +1,11 @@
 @import "variables";
 
-body {
-  color: $text-color;
-  line-height: 1.6;
-  background-color: #f4f4f9;
+.Home__hero__image{
+  width: 100%;
 }
 
-.store {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
-  img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    margin: 1rem;
-  }
-
-  p {
-    font-size: 1rem;
-    color: var(--text-color);
-    margin: 0 1rem 1rem;
-  }
-}
-
-// Footer
-footer {
-  text-align: center;
-  background-color: var(--dark-color);
-  color: #fff;
-  padding: 1rem;
-  margin-top: 2rem;
+.Home__featured__stores {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }

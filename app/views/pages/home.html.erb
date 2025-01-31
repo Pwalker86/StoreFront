@@ -1,5 +1,11 @@
 <main>
-  <div class="store-container">
-    <%= render "stores/store_featured_cards", stores: @stores %>
+  <div class="Home__hero__container">
+    <%= image_tag "concept_landing_hero", class: "Home__hero__image" %>
+  </div>
+  <div class="Home__featured__container container">
+    <h2 class="Home__featured__title">Featured Stores</h2>
+    <div class="Home__featured__stores">
+      <%= render "stores/store_featured_cards", stores: @stores %>
+    </div>
   </div>
 </main>
