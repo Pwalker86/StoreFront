@@ -3,7 +3,6 @@
 <%#= link_to "StoreFront", root_path %>
 <%#  </div> %>
 <%# %>
-<%#= render(SearchComponent.new(url: "/product_search")) %>
 <%# %>
 <%#  <div class="Navbar__menu"> %>
 <%# if current_user || current_store_admin %>
@@ -12,21 +11,24 @@
 <%#= render "shared/#{user_type}_links", path: "cart_show" %>
 <%#  </div> %>
 <%#</div> %>
-<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+<nav
+  class="Search__anchor navbar navbar-expand-sm bg-primary"
+  data-bs-theme="dark"
+>
   <div class="container-fluid">
     <button
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#navbarTogglerDemo01"
-      aria-controls="navbarTogglerDemo01"
+      data-bs-target="#navbarToggler"
+      aria-controls="navbarToggler"
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <a class="navbar-brand" href="#">Hidden brand</a>
+    <div class="collapse navbar-collapse" id="navbarToggler">
+      <%= link_to "StoreFront", root_path, class: "navbar-brand" %>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
@@ -38,15 +40,7 @@
           <a class="nav-link disabled" aria-disabled="true">Disabled</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        >
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <%= render(SearchComponent.new(url: "/product_search")) %>
     </div>
   </div>
 </nav>

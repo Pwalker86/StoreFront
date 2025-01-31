@@ -1,6 +1,7 @@
 $option-hover: darken(white, 10%);
 
 .Search__anchor {
+  position: relative;
   anchor-name: --search-anchor;
 }
 

@@ -1,6 +1,8 @@
 // override bootstrap variables before importing bootstrap
 // $primary: #ff4136;
 
-@import "bootstrap";
-// @use "actiontext.css";
-// @use "actiontext_custom.scss";
+@use "bootstrap";
+@use "components/index.scss" as componentsIndex;
+@use "utilities/index.scss" as utilitiesIndex;
+@use "actiontext.css";
+@use "actiontext_custom.scss";

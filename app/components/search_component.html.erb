@@ -10,29 +10,31 @@
       class="hidden w-100"
     ></div>
     <form
-      class="Search__input--anchor"
+      class="Search__input--anchor d-flex"
+      role="search"
       action="<%= @url %>"
       data-search-component-target="searchForm"
     >
-      <div class="form-input inline">
-        <%= text_field_tag :query,
-                           nil,
-                           autocomplete: "off",
-                           id: "searchInput",
-                           class: "Search__input",
-                           data: {
-                             search_component_target: "searchInput",
-                             action:
-                               "
-                              keyup->search-component#search
-                              keyup->search-component#updateLinkHref
-                              keyup.enter->search-component#clickSearch
-                              keydown.down->search-component#handleSearchKeydown
-                              keydown.tab->search-component#handleSearchKeydown
-                              keydown.up->search-component#handleSearchKeyup
-                          ",
-                           } %>
-      </div>
+      <%= text_field_tag :query,
+      nil,
+      autocomplete: "off",
+      id: "searchInput",
+      class: "Search__input",
+      type: "search",
+      placeholder: "Search",
+      aria_label: "Search",
+      data: {
+        search_component_target: "searchInput",
+        action:
+          "
+                                      keyup->search-component#search
+                                      keyup->search-component#updateLinkHref
+                                      keyup.enter->search-component#clickSearch
+                                      keydown.down->search-component#handleSearchKeydown
+                                      keydown.tab->search-component#handleSearchKeydown
+                                      keydown.up->search-component#handleSearchKeyup
+                                  ",
+      } %>
       <a href=<%= @url %> data-search-component-target="searchButton">
         Search
       </a>
