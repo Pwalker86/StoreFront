@@ -1,3 +1,6 @@
+.ml-025 {
+  margin-left: 0.25rem;
+}
 .ml-05 {
   margin-left: 0.5rem;
 }
@@ -9,6 +12,9 @@
 }
 .ml-2 {
   margin-left: 2rem;
+}
+.mr-025 {
+  margin-right: 0.25rem;
 }
 .mr-05 {
   margin-right: 0.5rem;
@@ -22,6 +28,9 @@
 .mr-2 {
   margin-right: 2rem;
 }
+.mt-025 {
+  margin-top: 0.25rem;
+}
 .mt-05 {
   margin-top: 0.5rem;
 }
@@ -34,6 +43,9 @@
 .mt-2 {
   margin-top: 2rem;
 }
+.mb-025 {
+  margin-bottom: 0.25rem;
+}
 .mb-05 {
   margin-bottom: 0.5rem;
 }
@@ -45,6 +57,10 @@
 }
 .mb-2 {
   margin-bottom: 2rem;
+}
+.my-025 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 .my-05 {
   margin-top: 0.5rem;
@@ -62,6 +78,10 @@
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+.mx-025 {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
 .mx-05 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -77,4 +97,10 @@
 .mx-2 {
   margin-left: 2rem;
   margin-right: 2rem;
+}
+
+.mx-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

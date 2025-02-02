@@ -2,16 +2,19 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application";
+import { application } from "./application"
 
-import CarouselController from "./carousel_controller";
-application.register("carousel", CarouselController);
+import CarouselController from "./carousel_controller"
+application.register("carousel", CarouselController)
 
-import FileController from "./file_controller";
-application.register("file", FileController);
+import FileController from "./file_controller"
+application.register("file", FileController)
 
-import SearchComponentController from "./search_component_controller";
-application.register("search-component", SearchComponentController);
+import JsSubmitController from "./js_submit_controller"
+application.register("js-submit", JsSubmitController)
 
-import TooltipController from "./tooltip_controller";
-application.register("tooltip", TooltipController);
+import SearchComponentController from "./search_component_controller"
+application.register("search-component", SearchComponentController)
+
+import TooltipController from "./tooltip_controller"
+application.register("tooltip", TooltipController)

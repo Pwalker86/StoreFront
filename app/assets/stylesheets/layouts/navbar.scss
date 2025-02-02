@@ -19,9 +19,9 @@ $hover-bg: #b39d86;
   a {
     text-decoration: none;
     background-color: $bg-secondary;
-    color: $text-color;
+    color: $text-color-dark;
     &:visited {
-      color: $text-color;
+      color: $text-color-dark;
     }
   }
 }
@@ -40,7 +40,7 @@ $hover-bg: #b39d86;
   a {
     text-decoration: none;
     background-color: #d7bfa9;
-    color: $text-color;
+    color: $text-color-dark;
     font-size: 16px;
     padding: 4px 8px;
     border-radius: 20px;
@@ -67,7 +67,7 @@ $hover-bg: #b39d86;
 .Navbar .cart-icon {
   text-decoration: none;
   background-color: inherit;
-  color: $text-color;
+  color: $text-color-dark;
   font-size: 16px;
   padding: 8px;
   border-radius: 50%;

@@ -7,17 +7,42 @@
   <% end %>
 <% end %>
 
-<%= simple_form_for store do |form| %>
+<div class="mx-center w-50" data-controller="js-submit">
+  <%= form_with model: store, data: {js_submit_target: 'form'} do |form| %>
+    <div class="form-input w-75">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
 
-  <div class="simple_form_inputs-50">
-    <%= form.input :name %>
-    <%= form.input :phone_number %>
-    <%= form.input :location %>
-    <%= form.input :email %>
-    <%= form.input :mission_statement %>
-    <%= form.input :spotlight %>
+    <div class="form-input w-75">
+      <%= form.label :phone_number %>
+      <%= form.telephone_field :phone_number %>
+    </div>
 
-    <%= form.button :submit %>
+    <div class="form-input w-75">
+      <%= form.label :location %>
+      <%= form.text_field :location %>
+    </div>
+
+    <div class="form-input w-75">
+      <%= form.label :email %>
+      <%= form.email_field :email %>
+    </div>
+
+    <div class="form-input w-75">
+      <%= form.label :mission_statement %>
+      <%= form.text_field :mission_statement %>
+    </div>
+
+    <div class="form-input">
+      <%= form.label :spotlight %>
+      <%= form.file_field :spotlight, data: { js_submit_target: "input" } %>
+    </div>
+
+    <div>
+      <%= form.button :submit, data: { action: "js-submit#jsSubmit" } %>
+    </div>
+
     <%= link_to "Cancel", store, class: "btn btn--light" %>
-  </div>
-<% end %>
+  <% end %>
+</div>

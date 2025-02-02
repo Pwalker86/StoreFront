@@ -5,7 +5,12 @@ class StoresController < ApplicationController
   end
 
   def show
-    @store = Store.find(params[:id])
+    begin
+      @store = Store.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_path, alert: "Store not found!" and return
+    end
+
     @reviews = @store.reviews.ordered
     @products = ProductDecorator.decorate_collection(@store.products.where(archived: false).order(:name))
   end

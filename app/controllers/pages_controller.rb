@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
   def home
-    @stores = StoreDecorator.decorate_collection Store.order("RANDOM()").limit(2)
+    @stores = Store.joins(:spotlight_attachment).where.not(spotlight_attachment: { id: nil }).limit(12)
   end
 end
