@@ -1,4 +1,4 @@
-@import "variables";
+@use "variables";
 
 .simple_form {
   width: 75%;
@@ -37,7 +37,7 @@
     }
 
     input {
-      border-radius: $border-radius;
+      border-radius: variables.$border-radius;
       padding-left: 4px;
       margin-left: 4px;
       height: 2rem;
@@ -51,7 +51,7 @@
   }
 
   .btn {
-    border-radius: $border-radius;
+    border-radius: variables.$border-radius;
     padding: 4px 8px;
     cursor: pointer;
     margin-left: 4px;

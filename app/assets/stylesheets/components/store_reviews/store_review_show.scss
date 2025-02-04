@@ -1,24 +1,13 @@
-@import "variables";
-
-@mixin tabletAndUp {
-  @media (min-width: 50rem) {
-    @content;
-  }
-}
-
-@mixin mobile {
-  @media (max-width: 50rem) {
-    @content;
-  }
-}
+@use "variables";
+@use "mixins/media" as mixins;
 
 .StoreReviews__container {
-  @include tabletAndUp {
+  @include mixins.tabletAndUp {
     width: 50%;
   }
 }
 .StoreReviews__review {
-  box-shadow: $box-shadow;
+  box-shadow: variables.$box-shadow;
   background-color: white;
-  border-radius: $border-radius;
+  border-radius: variables.$border-radius;
 }

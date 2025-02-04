@@ -1,3 +1,4 @@
+@use "sass:color";
 // .inter-<uniquifier> {
 //   font-family: "Inter", serif;
 //   font-optical-sizing: auto;
@@ -5,8 +6,8 @@
 //   font-style: normal;
 // }
 $font-family: "Nunito";
-$option-hover: darken(white, 10%);
-$primary-color: lighten(#264653, 20%);
+$option-hover: color.adjust(white, $lightness: -10%);
+$primary-color: color.adjust(#264653, $lightness: 20%);
 $text-color-dark: #2d3748;
 $bg-card: #27272a;
 $primary: #6d28d9;

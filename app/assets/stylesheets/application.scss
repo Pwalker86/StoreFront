@@ -5,7 +5,7 @@
 @use "actiontext_custom.scss";
 @use "mixins/media";
 
-@import "variables";
+@use "variables";
 
 * {
   margin: 0;
@@ -14,14 +14,14 @@
 }
 
 body {
-  color: $text-color-dark;
-  font-family: $font-family;
-  background-color: $bg-color;
+  color: variables.$text-color-dark;
+  font-family: variables.$font-family;
+  background-color: variables.$bg-color;
 }
 
 button {
   cursor: pointer;
-  border-radius: $border-radius;
+  border-radius: variables.$border-radius;
   height: 2rem;
   padding-left: 4px;
   padding-right: 4px;

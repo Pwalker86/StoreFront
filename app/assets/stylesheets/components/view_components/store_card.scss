@@ -1,5 +1,4 @@
-@import "variables";
-@import 'mixins/media';
+@use "variables";
 
 .StoreCard__link {
   text-decoration: none;
@@ -29,19 +28,19 @@
     width: -webkit-fill-available;
     bottom: 0;
     border-radius: 8px;
-    background-color: $primary-color;
+    background-color: variables.$primary-color;
     text-align: center;
   }
 
   &__title {
     font-size: 18px;
     font-weight: bold;
-    color: $text-color-dark;
+    color: variables.$text-color-dark;
   }
 
   &__description {
     font-size: 14px;
-    color: $text-color-dark;
+    color: variables.$text-color-dark;
     min-height: 1.5rem;
   }
 
@@ -56,7 +55,7 @@
     font-weight: bold;
     border-radius: 20px;
     transition: background 0.3s;
-    color: $text-color-dark;
+    color: variables.$text-color-dark;
   }
 
   &__shop-button:hover {

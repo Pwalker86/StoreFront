@@ -1,4 +1,4 @@
-@import "variables";
+@use "variables";
 
 .Search__anchor {
   anchor-name: --search-anchor;
@@ -12,7 +12,7 @@
   position: absolute;
   position-anchor: --search-input-anchor;
   justify-self: anchor-center;
-  border-radius: $border-radius;
+  border-radius: variables.$border-radius;
   z-index: 999;
   &.displaying-results {
     height: 20px;
@@ -40,18 +40,18 @@
   border-bottom: 1px solid lightgrey;
   &:first-child {
     padding-top: 4px;
-    border-top-left-radius: $border-radius;
-    border-top-right-radius: $border-radius;
+    border-top-left-radius: variables.$border-radius;
+    border-top-right-radius: variables.$border-radius;
   }
   &:last-child {
     padding-bottom: 4px;
-    border-bottom-right-radius: $border-radius;
-    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: variables.$border-radius;
+    border-bottom-left-radius: variables.$border-radius;
     border: none;
   }
   &:hover,
   &:focus {
-    background-color: $option-hover;
+    background-color: variables.$option-hover;
   }
 }
 
@@ -60,5 +60,5 @@
 }
 
 .Search__button:hover {
-  background-color: $option-hover;
+  background-color: variables.$option-hover;
 }
