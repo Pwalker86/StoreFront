@@ -1,5 +1,5 @@
-<div class="Store__container">
-  <h1><%= @store.name %>
+<div class="Store__container container">
+  <h1 class="Store__name center-text"><%= @store.name %>
     Products</h1>
   <% if current_store_admin && @store.spotlight.attached? %>
     <%= turbo_frame_tag "store_#{@store_id}_spotlight" do %>
@@ -22,6 +22,6 @@
 </div>
 <%= render "store_reviews/add_review", store: @store %>
 
-<%= turbo_frame_tag "store_reviews" do %>
+<%= turbo_frame_tag "store_reviews", class:"container" do %>
   <%= render "store_reviews/reviews", reviews: @reviews %>
 <% end %>
