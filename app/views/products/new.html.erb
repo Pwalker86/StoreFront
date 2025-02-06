@@ -1,6 +1,8 @@
 <h1>New product</h1>
 
-<%= render "form", product: @new_product, store: @store %>
+<%= turbo_frame_tag "product_frame" do %>
+  <%= render "form", product: @new_product, store: @store %>
+<% end %>
 
 <br>
 

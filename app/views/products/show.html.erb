@@ -6,8 +6,27 @@
   </div>
 <% end %>
 
-<%= render(CarouselComponent.new(images: @product.images)) %>
+<%= turbo_frame_tag "product_frame" do %>
+  <h1 class="Product__Header">
+    <%= @product.name %>
+  </h1>
+  <%= @product.price %>
+  <%= @product.archived? ? "Archived" : "Active" %>
+<% end %>
 
+<%= render(CarouselComponent.new(images: @product.images)) %>
+<%= link_to "Edit",
+edit_store_product_path(@product.store, @product),
+data: {
+  turbo_frame: "product_frame",
+} %>
+<%= link_to "Delete",
+store_product_path(@product.store, @product),
+method: :delete,
+data: {
+  turbo_confirm: "Are you sure?",
+} %>
+|
 <%= render "product_reviews/add_review", product: @product %>
 
 <%= turbo_frame_tag "product_reviews" do %>
