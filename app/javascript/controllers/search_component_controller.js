@@ -12,6 +12,10 @@ export default class extends Controller {
   noResults = [{ href: "#", name: "No Results" }];
   products = {};
 
+  connect() {
+    console.log("search-component controller connected!");
+  }
+
   handleSearchKeyup(event) {
     event.preventDefault();
     const lastItem = this.searchOptionsContainerTarget.lastChild;
