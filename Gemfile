@@ -72,7 +72,6 @@ gem "devise", "~> 4.9"
 gem "dartsass-rails", "~> 0.5.1"
 gem "draper"
 
-gem "simple_form"
 gem "pg_search"
 gem "acts-as-taggable-on"
 gem "view_component"
