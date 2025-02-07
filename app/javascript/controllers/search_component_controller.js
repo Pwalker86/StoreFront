@@ -78,7 +78,7 @@ export default class extends Controller {
 
   buildProductsList(products) {
     const target = this.searchOptionsContainerTarget;
-    target.classList.add("displaying-results", "w-50");
+    target.classList.add("displaying-results", "w-75");
     target.classList.remove("hidden");
     target.innerText = "";
     this.overlayTarget.classList.remove("hidden");
