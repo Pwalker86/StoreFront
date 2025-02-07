@@ -1,36 +1,28 @@
-<% if @product.tag_list.any? %>
-  <div class="Product__tags">
-    <% @product.tag_list.each do |tag| %>
-      <span class="Product__tag"><%= tag %></span>
-    <% end %>
-  </div>
-<% end %>
-
-<%= turbo_frame_tag "product_frame" do %>
+<%= turbo_frame_tag "product_#{@product.id}" do %>
   <h1 class="Product__Header">
     <%= @product.name %>
   </h1>
+  <%= link_to "Edit",
+  edit_store_product_path(@product.store, @product),
+  data: {
+    turbo_frame: "product_#{@product.id}",
+  } %>
   <%= @product.price %>
   <%= @product.archived? ? "Archived" : "Active" %>
+
+  <%= render(
+    ProductTagComponent.with_collection(@product.tag_list, product: @product),
+  ) %>
 <% end %>
 
 <%= render(CarouselComponent.new(images: @product.images)) %>
-<%= link_to "Edit",
-edit_store_product_path(@product.store, @product),
-data: {
-  turbo_frame: "product_frame",
-} %>
-<%= link_to "Delete",
-store_product_path(@product.store, @product),
-method: :delete,
-data: {
-  turbo_confirm: "Are you sure?",
-} %>
-|
-<%= render "product_reviews/add_review", product: @product %>
 
-<%= turbo_frame_tag "product_reviews" do %>
-  <%= render "product_reviews/reviews", reviews: @product.reviews.ordered %>
-<% end %>
+<div class="ProductReview__section">
+  <%= render "product_reviews/add_review", product: @product %>
+
+  <%= turbo_frame_tag "product_reviews" do %>
+    <%= render "product_reviews/reviews", reviews: @product.reviews.ordered %>
+  <% end %>
+</div>
 
 <%= tag.div link_to "Back to store", store_path(@product.store) %>

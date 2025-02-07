@@ -1,0 +1,8 @@
+<%= tag.div class: "ProductTag" do %>
+  <%= form_with model: @product, url: store_product_path(@product.store, @product), method: :patch, local: true do |form| %>
+    <%= @tag %>
+    <%= form.hidden_field :tag_list, value: @product.tag_list - [@tag] %>
+    <%= form.submit "x", class: "ProductTag__delete-button" %>
+  <% end %>
+
+<% end %>
