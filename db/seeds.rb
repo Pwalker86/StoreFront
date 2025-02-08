@@ -26,13 +26,10 @@ puts "******* Creating Admins *****"
     a.save!
     puts "******** Admin: #{a.email} created ********* "
     s = Store.new(name: "#{a.email} store", location: Faker::Address.city, phone_number: Faker::PhoneNumber.phone_number, email: Faker::Internet.email, store_admin_id: a.id)
-    image_uri = URI(Faker::LoremFlickr.image)
-    image = image_uri.open
-    s.spotlight.attach(io: image, filename: "#{store.name}_image.jpg")
     s.save!
     puts "******** Store: #{s.name} created *********"
       (5..20).to_a.sample.times do |i|
-      p = Product.new(name: Faker::Movie.title, price: 100, description: Faker::Lorem.paragraphs(number: (2..5).to_a.sample), store_id: s.id)
+        p = Product.new(name: Faker::Movie.title, price: 100, description: Faker::Lorem.paragraphs(number: (2..5).to_a.sample).join(" "), store_id: s.id)
       p.save!
       puts "*********** Product: #{ p.name} created **********"
     end
@@ -40,11 +37,34 @@ puts "******* Creating Admins *****"
     puts "Something went wrong in Admin creation: #{exception}"
   end
 
+  Store.all.each do |store|
+    puts "******* Creating #{store.name} spotlight Images *****"
+    begin
+    image_uri = URI(Faker::LoremFlickr.image)
+    image = image_uri.open
+    s.spotlight.attach(io: image, filename: "#{store.name}_image.jpg")
+    puts "*********** Image created **********"
+    rescue StandardError => exception
+      puts "Something went wrong in Store ID: #{store.id} Image creation: #{exception}"
+    end
+
+    puts "******* Creating #{store.name} Reviews *****"
+    begin
+      (10..30).to_a.sample.times do
+        store.reviews.new(title: Faker::Lorem.sentence(word_count: 5), body: Faker::Lorem.paragraphs(number: (1..2).to_a.sample).join(" "))
+      end
+      store.save!
+    puts "*********** Reviews created **********"
+    rescue StandardError => exception
+      puts "Something went wrong in Review creation: #{exception}"
+    end
+  end
+
   Product.all.each do |product|
     puts "******* Creating #{product.name} Reviews *****"
     begin
       (10..30).to_a.sample.times do
-        product.reviews.new(title: Faker::Lorem.sentence(word_count: 5), body: Faker::Lorem.paragraphs(number: (1..2).to_a.sample))
+        product.reviews.new(title: Faker::Lorem.sentence(word_count: 5), body: Faker::Lorem.paragraphs(number: (1..2).to_a.sample).join(" "))
       end
       product.save!
     puts "*********** Reviews created **********"
