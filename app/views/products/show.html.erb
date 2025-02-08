@@ -1,8 +1,9 @@
 <%= turbo_frame_tag "product_#{@product.id}" do %>
-  <%= render(ProductDetailsComponent.new(product: @product)) %>
+  <%= render ProductShowComponent.new(product: @product) do |component| %>
+    <%= component.with_image_carousel(images: @product.images) %>
+    <%= component.with_product_details(product: @product) %>
+  <% end %>
 <% end %>
-
-<%= render(CarouselComponent.new(images: @product.images)) %>
 
 <div class="ProductReview__section">
   <%= render "product_reviews/add_review", product: @product %>
@@ -11,5 +12,3 @@
     <%= render "product_reviews/reviews", reviews: @product.reviews.ordered %>
   <% end %>
 </div>
-
-<%= tag.div link_to "Back to store", store_path(@product.store) %>

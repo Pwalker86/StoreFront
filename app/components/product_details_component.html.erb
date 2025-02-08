@@ -1,6 +1,10 @@
 <div class="ProductDetails__container">
   <div class="ProductDetails__header">
-    <%= link_to @product.store.name.titleize, store_path(@product.store) %>
+    <%= link_to @product.store.name.titleize,
+    store_path(@product.store),
+    data: {
+      turbo_frame: "_top",
+    } %>
     <h1 class="ProductDetails__name"><%= @product.name %></h1>
     <% if helpers.current_store_admin %>
       <%= link_to "Edit",

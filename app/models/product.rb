@@ -35,7 +35,7 @@ class Product < ApplicationRecord
     attachable.variant :thumb, resize_to_limit: [ 250, nil ], preprocessed: true
   end
 
-  ActsAsTaggableOn.delimiter = " "
+  ActsAsTaggableOn.default_parser = " "
   acts_as_taggable_on :tags
 
   validates :name, :price, presence: true
