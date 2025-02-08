@@ -2,6 +2,13 @@
   <div class="ProductDetails__header">
     <%= link_to @product.store.name.titleize, store_path(@product.store) %>
     <h1 class="ProductDetails__name"><%= @product.name %></h1>
+    <% if helpers.current_store_admin %>
+      <%= link_to "Edit",
+      edit_store_product_path(@product.store, @product),
+      data: {
+        turbo_frame: "product_#{@product.id}",
+      } %>
+    <% end %>
   </div>
   <div class="ProductDetails__price">
     <%= tag.span number_to_currency(@product.price).split(".")[0],

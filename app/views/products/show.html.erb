@@ -1,22 +1,5 @@
 <%= turbo_frame_tag "product_#{@product.id}" do %>
-  <h1 class="Product__Header">
-    <%= @product.name %>
-  </h1>
-  <%= link_to "Edit",
-  edit_store_product_path(@product.store, @product),
-  data: {
-    turbo_frame: "product_#{@product.id}",
-  } %>
-  <p>Price:</p>
-  <%= @product.price %>
-  <p>Description:</p>
-  <%= @product.description %>
-  <%= @product.out_of_stock ? "Out of stock" : "In stock" %>
-  <%= @product.archived? ? "Archived" : "Active" %>
-
-  <%= render(
-    ProductTagComponent.with_collection(@product.tag_list, product: @product),
-  ) %>
+  <%= render(ProductDetailsComponent.new(product: @product)) %>
 <% end %>
 
 <%= render(CarouselComponent.new(images: @product.images)) %>

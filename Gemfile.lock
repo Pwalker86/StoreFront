@@ -176,6 +176,10 @@ GEM
     google-protobuf (4.29.2-x86_64-linux)
       bigdecimal
       rake (>= 13)
+    hotwire-spark (0.1.13)
+      listen
+      rails (>= 7.0.0)
+      zeitwerk
     htmlbeautifier (1.4.3)
     htmlentities (4.3.4)
     i18n (1.14.6)
@@ -475,6 +479,7 @@ DEPENDENCIES
   draper
   erb-formatter
   faker
+  hotwire-spark
   image_processing (~> 1.2)
   importmap-rails
   jbuilder

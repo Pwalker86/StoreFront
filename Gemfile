@@ -57,6 +57,7 @@ group :development do
   gem "annotaterb"
   gem "lookbook", ">= 2.3.4"
   gem "listen"
+  gem "hotwire-spark"
 end
 
 group :test do
