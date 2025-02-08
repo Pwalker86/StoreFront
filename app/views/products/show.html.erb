@@ -7,7 +7,11 @@
   data: {
     turbo_frame: "product_#{@product.id}",
   } %>
+  <p>Price:</p>
   <%= @product.price %>
+  <p>Description:</p>
+  <%= @product.description %>
+  <%= @product.out_of_stock ? "Out of stock" : "In stock" %>
   <%= @product.archived? ? "Archived" : "Active" %>
 
   <%= render(

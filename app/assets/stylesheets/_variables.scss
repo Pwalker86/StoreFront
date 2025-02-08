@@ -11,6 +11,9 @@ $primary-color: color.adjust(#264653, $lightness: 20%);
 $text-color-dark: #2d3748;
 $color-gray: #e2e8f0;
 $color-gray-dark: color.adjust($color-gray, $lightness: -30%);
+
+$color-error: color.adjust(#e53e3e, $lightness: -20%);
+
 $bg-card: #27272a;
 
 $button-primary: #c6ac8f;
