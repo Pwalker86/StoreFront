@@ -1,5 +1,4 @@
 <div class="StoreReviews__container container mt-1">
-  <% reviews.each do |review| %>
-    <%= render "store_reviews/review", review: review %>
-  <% end %>
+  <%= render ReviewComponent.with_collection(@reviews) %>
+  <%== pagy_nav(@pagy) %>
 </div>

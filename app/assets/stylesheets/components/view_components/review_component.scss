@@ -1,0 +1,7 @@
+@use "variables";
+
+.Review {
+  box-shadow: variables.$box-shadow;
+  background-color: white;
+  border-radius: variables.$border-radius;
+}

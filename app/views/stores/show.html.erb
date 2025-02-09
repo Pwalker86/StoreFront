@@ -20,8 +20,8 @@
   </div>
 
 </div>
-<%= render "store_reviews/add_review", store: @store %>
+<%= render "store_reviews/add_review_button", store: @store %>
 
-<%= turbo_frame_tag "store_reviews", class:"container" do %>
+<%= turbo_frame_tag "store_reviews", class:"container", data: {"turbo-action": "advance"} do %>
   <%= render "store_reviews/reviews", reviews: @reviews %>
 <% end %>
