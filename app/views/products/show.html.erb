@@ -8,7 +8,7 @@
 <div class="ProductReview__section">
   <%= render "product_reviews/add_review", product: @product %>
 
-  <%= turbo_frame_tag "product_reviews" do %>
-    <%= render "product_reviews/reviews", reviews: @product.reviews.ordered %>
+  <%= turbo_frame_tag "product_reviews", data: {"turbo-action": "advance"} do %>
+    <%= render "product_reviews/reviews", reviews: @reviews %>
   <% end %>
 </div>

@@ -1,7 +1,7 @@
 <%= turbo_stream.replace "product_reviews",
                      partial: "product_reviews/reviews",
                      locals: {
-                       reviews: @product.reviews.ordered,
+                       reviews: @reviews,
                      } %>
 <%= turbo_stream.replace @product.reviews.new,
                      partial: "product_reviews/add_review",

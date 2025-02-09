@@ -2,4 +2,5 @@
   <% reviews.each do |review| %>
     <%= render "product_reviews/review", review: review %>
   <% end %>
+  <%= paginate reviews, window: 2 %>
 </div>
