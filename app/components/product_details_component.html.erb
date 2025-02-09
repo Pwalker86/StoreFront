@@ -34,7 +34,8 @@
       <span class="ProductDetails__status--archived">Archived</span>
     <% end %>
   </div>
-  <div class="ProductDetails__tags">
+  <p class="secondary-text mt-1">Tags:</p>
+  <div class="ProductDetails__tags flex flex-wrap flex-gap-05 mt-025">
     <%= render(
       ProductTagComponent.with_collection(@product.tag_list, product: @product),
     ) %>
