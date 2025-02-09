@@ -1,4 +1,4 @@
-<%= turbo_stream.replace "product_reviews",
+<%= turbo_stream.update "product_reviews",
                      partial: "product_reviews/reviews",
                      locals: {
                        reviews: @reviews,
