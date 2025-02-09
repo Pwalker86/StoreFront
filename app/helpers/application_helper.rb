@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def display_username
     if store_admin_signed_in?
       current_store_admin.email

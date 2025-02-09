@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
   before_action :set_active_user
   before_action :ensure_cart
   protect_from_forgery with: :exception, prepend: true

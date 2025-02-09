@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
   def show
     @store = Store.find params[:store_id]
     @product = @store.products.find (params[:id])
-    @reviews = @product.reviews.ordered.page(params[:page])
+    @pagy, @reviews = pagy(@product.reviews.ordered)
   end
 
   # GET /products/new

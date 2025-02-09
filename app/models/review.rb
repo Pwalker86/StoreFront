@@ -17,7 +17,6 @@
 #
 class Review < ApplicationRecord
   belongs_to :reviewable, polymorphic: true
-  paginates_per 5
   validates :title, :body, presence: true
   scope :ordered, -> { order(created_at: :desc) }
 

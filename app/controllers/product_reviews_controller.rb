@@ -1,7 +1,7 @@
 class ProductReviewsController < ApplicationController
   def index
     @product = Product.find params[:product_id]
-    @reviews = @product.reviews.ordered.page(params[:page])
+    @pagy, @reviews = pagy(@product.reviews.ordered)
   end
 
   def show
@@ -15,7 +15,7 @@ class ProductReviewsController < ApplicationController
     @product = Product.find params[:product_id]
     @review = @product.reviews.new(review_params)
     if @review.save
-      @reviews = @product.reviews.ordered.page(params[:page])
+      @pagy, @reviews = pagy(@product.reviews.ordered)
       respond_to do |format|
         format.html { redirect_to [ @product.store, @product ], notice: "Your review has been created!" }
         format.turbo_stream
