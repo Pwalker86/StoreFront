@@ -1,10 +1,8 @@
-<% if review.persisted? %>
-  <div id="<%="review_#{review.id}"%>" class="StoreReviews__review p-05 mb-05">
-    <div>Title:
-      <%= review.title %></div>
+<div id="<%="review_#{review.id}"%>" class="StoreReviews__review p-05 mb-05">
+  <div>Title:
+    <%= review.title %></div>
 
-    <div>
-      <%= review.body %>
-    </div>
+  <div>
+    <%= review.body %>
   </div>
-<% end %>
+</div>
