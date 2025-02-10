@@ -10,6 +10,10 @@ export default class extends Controller {
   ];
 
   noResults = [{ href: "#", name: "No Results" }];
+  errorResponse = [
+    { href: "#", name: "Error fetching results. Site Admin has been notified" },
+  ];
+  seeMore = [{ href: "#", name: "See More Results..." }];
   products = {};
 
   connect() {
@@ -73,6 +77,9 @@ export default class extends Controller {
     optionLink.innerText = option.name;
     optionLink.dataset.action =
       "click->search-component#closeOverlay mouseover->search-component#focusOption";
+    if (option.name === "See More Results...") {
+      optionLink.classList.add("see-more");
+    }
     return optionLink;
   }
 
@@ -88,15 +95,35 @@ export default class extends Controller {
     }
   }
 
-  // TODO: refactor to watch searchInput value changed with an abort controller
   async search() {
     const queryString = new URLSearchParams({
       query: this.searchInputTarget.value,
     }).toString();
     const searchUrl = `${this.urlValue}.json?${queryString}`;
-    const response = await fetch(searchUrl);
-    const jsonResponse = await response.json();
-    this.products = jsonResponse.length ? jsonResponse : this.noResults;
+    try {
+      const response = await fetch(searchUrl);
+      const jsonResponse = await response.json();
+      this.handleSearchResponse(jsonResponse, queryString);
+    } catch (error) {
+      console.error(error);
+      this.handleSearchResponse(this.errorResponse, queryString);
+    }
+  }
+
+  handleSearchResponse(jsonResponse, queryString) {
+    if (jsonResponse.length === 0) {
+      this.products = this.noResults;
+    } else if (jsonResponse === this.errorResponse) {
+      this.products = jsonResponse;
+    } else {
+      this.products =
+        jsonResponse.length > 10
+          ? jsonResponse.slice(0, 10).concat(this.seeMore)
+          : jsonResponse;
+      if (jsonResponse.length > 10) {
+        this.seeMore[0].href = `${this.urlValue}?${queryString}`;
+      }
+    }
     this.buildProductsList(this.products);
   }
 }

@@ -49,6 +49,10 @@
     border-bottom-left-radius: variables.$border-radius;
     border: none;
   }
+  &.see-more {
+    text-decoration: underline;
+    color: blue;
+  }
   &:hover,
   &:focus {
     background-color: variables.$option-hover;
