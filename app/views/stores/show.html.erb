@@ -18,6 +18,7 @@
       <%= render "products/product_card", product: product, store: @store %>
     <% end %>
   </div>
+  <%== pagy_nav(@pagy_stores) %>
 
 </div>
 <%= render "store_reviews/add_review_button", store: @store %>
