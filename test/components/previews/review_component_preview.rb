@@ -2,6 +2,7 @@
 
 class ReviewComponentPreview < ViewComponent::Preview
   def default
-    render(ReviewComponent.new(review: "review"))
+    review = Review.first
+    render(ReviewComponent.with_collection([ review ]))
   end
 end

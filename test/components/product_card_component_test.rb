@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class CardComponentTest < ViewComponent::TestCase
+class ProductCardComponentTest < ViewComponent::TestCase
   def test_component_renders_something_useful
     # assert_equal(
     #   %(<span>Hello, components!</span>),
