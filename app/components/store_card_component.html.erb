@@ -1,0 +1,14 @@
+<%= link_to store_path(@store) do %>
+  <%= tag.div class:"StoreCard #{@wrapper_classes}" do %>
+    <% if @store.spotlight.attached? %>
+      <%= image_tag @store.spotlight.variant(:thumb), class: "StoreCard__image" %>
+    <% end %>
+    <div class="StoreCard__content">
+      <h3 class="StoreCard__title mt-025"><%= @store.name %></h3>
+      <%= button_to "Shop Now",
+      @store,
+      class: "StoreCard__shop-button mb-025",
+      method: :get %>
+    </div>
+  <% end %>
+<% end %>

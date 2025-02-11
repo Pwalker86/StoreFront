@@ -1,46 +1,89 @@
-.Navbar__Container {
+@use "variables";
+$hover-bg: #b39d86;
+
+.Navbar {
   display: flex;
+  min-height: 70px;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: variables.$bg-secondary;
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-.Navbar__LoggedInAs {
-  font-size: 1rem;
-  color: #333;
+.Navbar__brand {
+  font-size: 24px;
+  font-weight: bold;
+  background-color: variables.$bg-secondary;
+  a {
+    text-decoration: none;
+    background-color: variables.$bg-secondary;
+    color: variables.$text-color-dark;
+    &:visited {
+      color: variables.$text-color-dark;
+    }
+  }
 }
 
-.Navbar__Links {
+.Navbar__menu {
   display: flex;
-  gap: 1rem; /* Adds spacing between the links */
+  gap: 15px;
+  background-color: #d7bfa9;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-radius: 26px;
   align-items: center;
+
+  a {
+    text-decoration: none;
+    background-color: #d7bfa9;
+    color: variables.$text-color-dark;
+    font-size: 16px;
+    padding: 4px 8px;
+    border-radius: 20px;
+    transition: background 0.3s;
+  }
+  a:hover {
+    background-color: $hover-bg;
+  }
+
+  &.account-icon {
+    background-color: #d7bfa9;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
-.Navbar__Links a {
+.Navbar .cart-count {
+  background-color: inherit;
+  &:hover {
+    background-color: inherit;
+  }
+}
+
+.Navbar .cart-icon {
   text-decoration: none;
-  color: #007bff;
-  font-size: 1rem;
+  background-color: inherit;
+  color: variables.$text-color-dark;
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 50%;
+  aspect-ratio: 1;
+
+  &:hover {
+    background-color: inherit;
+  }
 }
 
-.Navbar__Links a:hover {
-  text-decoration: underline;
-}
+.Navbar__item .account-icon {
+  background-color: inherit;
+  border-radius: 50%;
+  height: 48px;
 
-.Navbar__Links div {
-  font-size: 1rem;
-  color: #333;
-}
-
-.col-left {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.col-right {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
+  &:hover {
+    background-color: inherit;
+  }
 }

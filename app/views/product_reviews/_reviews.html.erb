@@ -1,0 +1,4 @@
+<div class="StoreReviews__reviews mt-1">
+  <%= render ReviewComponent.with_collection(@reviews) %>
+  <%== pagy_nav(@pagy) %>
+</div>

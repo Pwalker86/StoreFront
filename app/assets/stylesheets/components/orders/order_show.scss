@@ -1,33 +1,33 @@
 .OrderShow__quantity-control {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .OrderShow__quantity-btn {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-size: 16px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 .OrderShow__quantity-btn:hover {
-    background-color: #e0e0e0;
+  background-color: #e0e0e0;
 }
 
 .OrderShow__quantity-display {
-    margin: 0 10px;
-    font-size: 16px;
-    min-width: 20px;
-    text-align: center;
+  margin: 0 10px;
+  font-size: 16px;
+  min-width: 20px;
+  text-align: center;
 }
 
-
 .OrderSummary {
+  background-color: var(--bg-secondary);
+  margin-top: 20px;
   padding: 20px;
-  background-color: #f9f9f9;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   &__title {
     font-size: 24px;

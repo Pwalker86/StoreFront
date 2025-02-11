@@ -1,0 +1,37 @@
+<div class="carousel" data-controller="carousel">
+  <% @images.each do |image| %>
+    <%= tag.div class: "carousel-item", data: { 'carousel-target': 'item' } do %>
+      <%= image_tag image.variant(:thumb) %>
+    <% end %>
+  <% end %>
+  <div class="carousel-actions">
+    <button
+      id="carousel-button-prev"
+      data-carousel-target='prevButton'
+      data-action="carousel#handleMoveToPrevSlide"
+      aria-label="Previous"
+    >
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <button
+      id="carousel-button-next"
+      data-carousel-target="nextButton"
+      data-action="carousel#handleMoveToNextSlide"
+      aria-label="Next"
+    >
+      <i class="fa-solid fa-arrow-right"></i>
+    </button>
+  </div>
+  <div class="carousel-dots" data-carousel-target="dots">
+    <% @images.each_with_index do |_image, index| %>
+      <%= tag.input class: "dot",
+                type: "radio",
+                name: "dot",
+                data: {
+                  "carousel-target": "dot",
+                  "carousel-dot-index-value": index,
+                  action: "click->carousel#handleDotClick",
+                } %>
+    <% end %>
+  </div>
+</div>

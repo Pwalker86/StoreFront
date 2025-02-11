@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
   before_action :set_active_user
   before_action :ensure_cart
   protect_from_forgery with: :exception, prepend: true
@@ -21,7 +22,7 @@ class ApplicationController < ActionController::Base
   # @return decorated [Cart]
   def ensure_cart
     return if current_store_admin
-    set_active_user if !@active_user
+    set_active_user unless @active_user
     cart = @active_user.cart || @active_user.create_cart!
     @cart = CartDecorator.decorate(cart)
   end

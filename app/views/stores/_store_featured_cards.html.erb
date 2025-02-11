@@ -1,9 +1,3 @@
 <% stores.each do |store| %>
-  <div class="Store__FeatureCard__container">
-    <div class="Store__FeatureCard__content">
-      <h3 class="Store__FeatureCard__title"><%= store.name %></h3>
-      <p class="Store__FeatureCard__description"><%= store.mission_statement %></p>
-      <%= link_to "Shop Now", store_path(store), class: "button" %>
-    </div>
-  </div>
+  <%= render(StoreCardComponent.new(store: store, wrapper_classes: "mt-1")) %>
 <% end %>

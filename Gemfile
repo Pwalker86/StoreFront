@@ -21,7 +21,7 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
-# gem "redis", ">= 4.0.1"
+gem "redis", "~> 5.3"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -45,31 +45,35 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop", require: false
   gem "rubocop-rails-omakase", require: false
-  gem "factory_bot_rails"
   gem "faker"
+  gem "minitest-reporters"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem "bullet", "~> 8.0"
-  # gem "solargraph"
-  # gem "solargraph-rails"
   gem "erb-formatter"
+  gem "annotaterb"
+  gem "lookbook", ">= 2.3.4"
+  gem "listen"
+  gem "hotwire-spark"
 end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "database_cleaner-active_record"
-  gem "next_rails"
-  gem "rspec-rails"
-  gem "rails-controller-testing"
   gem "capybara"
   gem "selenium-webdriver"
+  gem "mutex_m"
   gem "simplecov", require: false
 end
 
 gem "devise", "~> 4.9"
-gem "sassc", "~> 2.4"
 gem "dartsass-rails", "~> 0.5.1"
 gem "draper"
+
+gem "pg_search"
+gem "acts-as-taggable-on"
+gem "view_component"
+gem "pagy", "~> 9.3"

@@ -1,4 +1,11 @@
+@use "mixins/media" as mixins;
+
 .container {
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 24px;
+  margin-right: 24px;
+
+  @include mixins.tabletAndUp {
+    margin-left: 48px;
+    margin-right: 48px;
+  }
 }

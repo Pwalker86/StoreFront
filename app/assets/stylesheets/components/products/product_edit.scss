@@ -1,0 +1,18 @@
+.ProductEdit__Header {
+  text-align: center;
+}
+
+.ProductEdit__selected-file {
+  input[type="file"] {
+    display: none;
+  }
+  label {
+    margin-right: 0.5rem;
+  }
+}
+.ProductEdit__selected-file {
+  background: #ddeeff;
+  border-radius: 0.2em;
+  margin-top: 1px;
+  padding: 0.2em;
+}

@@ -1,11 +1,24 @@
+@use "variables";
+
 .Footer__Container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: variables.$primary-color;
   position: fixed;
   bottom: 0;
   width: 100%;
+
+  .Footer__Links {
+    display: flex;
+    gap: 16px;
+    a {
+      text-decoration: none;
+      color: variables.$text-color-dark;
+      font-size: 1rem;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }

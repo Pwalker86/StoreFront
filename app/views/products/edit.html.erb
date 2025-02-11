@@ -1,13 +1,7 @@
-<h1>Editing product</h1>
+<h1 class="ProductEdit__Header">
+  <%= @product.name %>
+</h1>
 
-<%# <%= turbo_frame_tag "edit_product_#{@product.id}" do %1> %>
-<%= render "form", product: @product, store: @store %>
-<%# <% end %1> %>
-
-<br>
-
-<div>
-  <%= link_to "Show this product", store_product_path(@store, @product) %>
-  |
-  <%= link_to "Back to products", store_products_path %>
-</div>
+<%= turbo_frame_tag "product_#{@product.id}" do %>
+  <%= render "form", product: @product, store: @store %>
+<% end %>

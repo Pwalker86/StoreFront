@@ -1,15 +1,18 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_store_admin!, only: [ :new, :create, :edit, :update, :archive ]
-  before_action :set_product, only: %i[show edit update]
+  before_action :authenticate_store_admin!, except: [ :index, :show ]
 
   # GET /products or /products.json
   def index
     @store = Store.find(params[:store_id])
-    @products = ProductDecorator.decorate_collection(@store.products)
+    @pagy_products, products = pagy(@store.products.where(archived: false).order(:name), limit: 6, page_param: :products_page)
+    @products = ProductDecorator.decorate_collection(products)
   end
 
   # GET /products/1 or /products/1.json
   def show
+    @store = Store.find params[:store_id]
+    @product = @store.products.find (params[:id])
+    @pagy, @reviews = pagy(@product.reviews.ordered)
   end
 
   # GET /products/new
@@ -31,9 +34,8 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to store_product_url(@store, @product), notice: "Product was successfully created." }
+        format.html { redirect_to store_url(@store), notice: "Product was successfully created." }
         format.json { render :show, status: :created, location: @product }
-        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @product.errors, status: :unprocessable_entity }
@@ -43,39 +45,33 @@ class ProductsController < ApplicationController
 
   # PATCH/PUT /products/1 or /products/1.json
   def update
+    @store = current_store_admin.store
+    @product = @store.products.find(params[:id])
     respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to store_product_url(@store, @product), notice: "Product was successfully updated." }
-        format.json { render :show, status: :ok, location: @product }
+      if @product.update!(product_params)
+        format.html { redirect_to store_product_url(@store, @product) }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  def archive
-    @product = Product.find(params[:product_id])
-    store = @product.store
+  def remove_image
+    @store = current_store_admin.store
+    @product = @store.products.find(params[:product_id])
+    image_to_remove = @product.images.find { |image| image.id == params[:image_id].to_i }
+    @image_id = image_to_remove.id
+    image_to_remove.purge_later
     respond_to do |format|
-    if @product.update(archived: true)
-      format.html { redirect_to store_url(store), notice: "Product has been archived" }
-    else
-      format.html { redirect_to store_product_url(store, @product), alert: "Something went wrong" }
-    end
+        format.html { redirect_to edit_store_path(@store), notice: "Image removed!" }
+        format.turbo_stream
     end
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_product
-    @product = current_store_admin.store.products.find (params[:id])
-    @store = current_store_admin.store
-  end
-
   # Only allow a list of trusted parameters through.
   def product_params
-    params.require(:product).permit(:id, :name, :price, :description, :out_of_stock, :archived)
+    params.require(:product).permit(:id, :name, :price, :description, :out_of_stock, :archived, :tag_list, images: [])
   end
 end

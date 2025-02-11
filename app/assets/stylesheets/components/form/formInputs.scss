@@ -1,0 +1,25 @@
+.form-input {
+  display: flex;
+  flex-direction: column;
+
+  &.w-50 {
+    width: 50%;
+  }
+  &.w-75 {
+    width: 75%;
+  }
+
+  input, textarea {
+    border-radius: 4px;
+    padding-left: 4px;
+    height: 2rem;
+  }
+  textarea {
+    padding-top: 4px;
+    height: 128px;
+  }
+
+  &.inline {
+    display: inline-block;
+  }
+}

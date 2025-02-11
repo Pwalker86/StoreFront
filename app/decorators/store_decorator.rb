@@ -10,4 +10,11 @@ class StoreDecorator < Draper::Decorator
   #     end
   #   end
 
+  def mission_statement
+    if object.mission_statement.present?
+     object.mission_statement.truncate(50, separator: " ", omission: "... (Read more)")
+    else
+      ""
+    end
+  end
 end

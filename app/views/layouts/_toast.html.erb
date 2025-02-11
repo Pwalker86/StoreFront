@@ -6,6 +6,7 @@
   <script>
       setTimeout(function() {
           const toast = document.getElementById('toast-notice');
+          if (!toast) return;
           toast.classList.add('fade-out');
           setTimeout(function() {
               toast.style.display = 'none';

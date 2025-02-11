@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: reviews
+#
+#  id              :bigint           not null, primary key
+#  body            :text
+#  rating          :float
+#  reviewable_type :string
+#  title           :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  reviewable_id   :bigint
+#
+# Indexes
+#
+#  index_reviews_on_reviewable  (reviewable_type,reviewable_id)
+#
+
+store_review:
+  body: this was great!
+  # syntax for a polymorphic relationship
+  reviewable: store_one (Store)
+  title: My Review

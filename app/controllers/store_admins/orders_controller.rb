@@ -7,7 +7,7 @@ module StoreAdmins
     end
 
     def show
-      @order = Order.find(params[:id])
+      @order = OrderDecorator.decorate(Order.find(params[:id]))
       @scoped_order_items = @order.scoped_order_items(current_store_admin.store.id)
     end
   end

@@ -1,0 +1,9 @@
+.ProductCard {
+  padding: 8px;
+  border: 1px solid lightgray;
+  width: 270px;
+  &__link {
+    text-decoration: none;
+    color: black;
+  }
+}

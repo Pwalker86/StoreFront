@@ -1,19 +1,30 @@
 class StoresController < ApplicationController
-  before_action :authenticate_store_admin!, only: [ :new, :create, :edit, :update, :destroy ]
+  before_action :authenticate_store_admin!, except: [ :show ]
 
   def index
   end
 
   def show
-    @store = Store.find(params[:id])
-    @products = ProductDecorator.decorate_collection(@store.products.where(archived: false))
+    begin
+      @store = Store.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_path, alert: "Store not found!" and return
+    end
+
+    @pagy, @reviews = pagy(@store.reviews.ordered, limt: 5, page_param: :reviews_page)
   end
 
   def new
-    @store = current_store_admin.store
+    @store = current_store_admin.build_store
   end
 
   def create
+    store = current_store_admin.build_store(store_params)
+    if store.save
+      redirect_to store, notice: "Your store has been created!"
+    else
+      redirect_to new_store_path, alert: "something went wrong"
+    end
   end
 
   def edit
@@ -21,20 +32,24 @@ class StoresController < ApplicationController
   end
 
   def update
-    store = current_store_admin.store
-    if store.update(store_params)
-      redirect_to store_path(store), notice: "Store has been updated!"
-    else
-      redirect_to edit_store_path store, alert: "Something went wrong"
+    @store = current_store_admin.store
+    respond_to do |format|
+      if @store.update(store_params)
+        format.html { redirect_to edit_store_path(@store), notice: "Store was successfully updated." }
+        format.json { render :show, status: :ok, location: store }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @store.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def remove_spotlight
     @store = current_store_admin.store
-    if @store.spotlight.purge
-      redirect_to store_path(@store), notice: "spotlight has been removed"
-    else
-      redirect_to @store, alert: "something didn't work"
+    @store.spotlight.purge_later
+    respond_to do |format|
+        format.html { redirect_to edit_store_path(@store), notice: "Image removed!" }
+        format.turbo_stream
     end
   end
 

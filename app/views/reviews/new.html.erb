@@ -1,0 +1,3 @@
+<%= turbo_frame_tag @reviewable.reviews.new do %>
+  <%= render "form", review: @reviewable.reviews.new, reviewable: @reviewable %>
+<% end %>

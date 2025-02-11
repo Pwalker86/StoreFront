@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  # @return [ActiveRecord::Relation<Order>]
+  # @return decorated collection of [Orders]
   def index
     if @active_user
       @orders = get_user_orders
@@ -22,26 +22,13 @@ class OrdersController < ApplicationController
         redirect_to orders_path
       end
     rescue StandardError => e
-      puts "*****************Error*****************"
-      puts e
+      Rails.logger.error e.message
       redirect_to root_path, alert("something went wrong")
     end
   end
 
-  def submit
-    @order = Order.find(order_submit_params[:order_id])
-    if OrderSubmitService.new(@order, order_params).submit
-      # Clear guest session. If the user needs to view their order,
-      # they'll see it on the confirmation page or from the order id we provide them in an email
-      session[:guest_id] = nil
-      redirect_to order_confirmation_path(@order), notice: "Order submitted successfully"
-    else
-      render @open_order, alert: "Order failed to submit"
-    end
-  end
-
-  def confirmation
-    @order = OrderDecorator.decorate(Order.find(order_params[:order_id]))
+  def confirm
+    redirect_to order_path(params[:order_id])
   end
 
   def update

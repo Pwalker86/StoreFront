@@ -1,13 +1,58 @@
-.Product__Card {
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  width: 200px;
-}
-
-.Product__Card__admin_links {
-  margin-top: 4px;
-}
-
+// .ProductCard__link {
+//   text-decoration: none;
+//   height: 100%;
+// }
+//
+// .ProductCard {
+//   margin-top: 8px;
+//   margin-bottom: 8px;
+//   margin-left: auto;
+//   margin-right: auto;
+//   width: 250px;
+//   height: 350px;
+//   background: #fff;
+//   border-radius: 8px;
+//   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+//   overflow: hidden;
+//   text-align: center;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//
+//   &__name {
+//     font-size: 18px;
+//     font-weight: bold;
+//     color: #5d4037;
+//     margin: 0;
+//   }
+//
+//   &__description,
+//   &__price {
+//     font-size: 14px;
+//     color: #333;
+//     margin: 10px 0 20px;
+//     min-height: 1.5rem;
+//   }
+//
+//   &__image {
+//     width: 100%;
+//   }
+//
+//   &__shop-button {
+//     cursor: pointer;
+//     border: none;
+//     display: inline-block;
+//     padding: 10px 20px;
+//     background: #d7bfa9;
+//     text-decoration: none;
+//     font-size: 14px;
+//     font-weight: bold;
+//     transition: background 0.3s;
+//     color: black;
+//     width: 100%;
+//   }
+//
+//   &__shop-button:hover {
+//     background: #b39d86;
+//   }
+// }
