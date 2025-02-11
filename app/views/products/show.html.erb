@@ -3,7 +3,7 @@
   <%= component.with_product_details(product: @product) %>
 <% end %>
 
-<div class="ProductReview__section">
+<div class="ProductReview__container container">
   <%= render "product_reviews/add_review_button", product: @product %>
 
   <%= turbo_frame_tag "product_reviews", data: {"turbo-action": "advance"} do %>

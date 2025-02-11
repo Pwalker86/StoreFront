@@ -3,7 +3,7 @@ module ApplicationHelper
   GSUB_OPTIONS = {
     product_reviews: "/product_reviews",
     store_reviews: "/store_reviews"
-  }
+  }.freeze
 
   def pagy_url_for(pagy, page, absolute: false)
     params = request.query_parameters.merge(pagy.vars[:page_param] => page, only_path: !absolute)
