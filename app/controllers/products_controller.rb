@@ -48,6 +48,7 @@ class ProductsController < ApplicationController
     @store = current_store_admin.store
     @product = @store.products.find(params[:id])
     respond_to do |format|
+      # TODO: extract tag_list. The old method of tag_list= is not available anymore and it's blowing up the update.
       if @product.update!(product_params)
         format.html { redirect_to store_product_url(@store, @product) }
       else
@@ -72,6 +73,6 @@ class ProductsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def product_params
-    params.require(:product).permit(:id, :name, :price, :description, :out_of_stock, :archived, :tag_list, images: [])
+    params.require(:product).permit(:id, :name, :price, :description, :out_of_stock, :archived,  images: [])
   end
 end
