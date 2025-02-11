@@ -2,7 +2,7 @@
 
   <h1 class="Store__name center-text"><%= @store.name %>
     Products</h1>
-  <% if current_store_admin && @store.spotlight.attached? %>
+  <% if current_store_admin == @store.store_admin && @store.spotlight.attached? %>
     <%= turbo_frame_tag "store_#{@store_id}_spotlight" do %>
       <div class="StoreEdit__spotlight-container">
         <%= image_tag @store.spotlight.variant(:thumb), class: "StoreEdit__spotlight-image" %>
@@ -11,7 +11,7 @@
     <% end %>
   <% end %>
 
-  <% if current_store_admin %>
+  <% if current_store_admin == @store.store_admin %>
     <%= link_to "New Product", new_store_product_path(@store) %>
   <% end %>
 

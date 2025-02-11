@@ -1,7 +1,7 @@
 <div class="container">
   <h1><%= product.new_record? ? "New" : "Edit" %>
     Product</h1>
-  <%= form_with model: [store, product] do |form| %>
+  <%= form_with model: [store, product], data: {turbo: false}  do |form| %>
     <div class="form-input w-50">
       <%= form.label :name %>
       <%= form.text_field :name %>

@@ -27,6 +27,9 @@
   <% if helpers.current_store_admin === @product.store.store_admin %>
     <%= link_to "Edit",
     edit_store_product_path(@product.store, @product),
+    data: {
+      turbo: false,
+    },
     class: "ProductCard__shop-button" %>
   <% end %>
 </div>
