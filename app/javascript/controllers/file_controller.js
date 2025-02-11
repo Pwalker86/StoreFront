@@ -7,7 +7,7 @@ export default class extends Controller {
   static targets = ["files"];
 
   connect() {
-    console.log("controller connected!");
+    console.log("file controller connected!");
   }
 
   removeFile(event) {

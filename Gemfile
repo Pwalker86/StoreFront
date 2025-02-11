@@ -53,10 +53,11 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem "bullet", "~> 8.0"
-  # gem "solargraph"
-  # gem "solargraph-rails"
   gem "erb-formatter"
   gem "annotaterb"
+  gem "lookbook", ">= 2.3.4"
+  gem "listen"
+  gem "hotwire-spark"
 end
 
 group :test do
@@ -69,11 +70,10 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
-gem "sassc", "~> 2.4"
 gem "dartsass-rails", "~> 0.5.1"
 gem "draper"
 
-gem "simple_form"
 gem "pg_search"
 gem "acts-as-taggable-on"
 gem "view_component"
+gem "pagy", "~> 9.3"

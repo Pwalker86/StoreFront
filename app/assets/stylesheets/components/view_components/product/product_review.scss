@@ -1,0 +1,17 @@
+@use "mixins/media" as mixins;
+
+.ProductReview__container {
+  margin-left: 24px;
+  margin-right: 24px;
+
+  @include mixins.tabletAndUp {
+    margin-left: 48px;
+    margin-right: 48px;
+  }
+}
+
+.ProductReview__form {
+  @include mixins.tabletAndUp {
+    width: 50%;
+  }
+}

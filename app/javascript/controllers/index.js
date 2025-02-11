@@ -10,6 +10,9 @@ application.register("carousel", CarouselController);
 import FileController from "./file_controller";
 application.register("file", FileController);
 
+import JsSubmitController from "./js_submit_controller";
+application.register("js-submit", JsSubmitController);
+
 import SearchComponentController from "./search_component_controller";
 application.register("search-component", SearchComponentController);
 

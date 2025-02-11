@@ -1,23 +1,11 @@
-@mixin tabletAndUp {
-  @media (min-width: 50rem) {
-    @content;
-  }
-}
+@use "mixins/media" as mixins;
 
-@mixin mobile {
-  @media (max-width: 50rem) {
-    @content;
-  }
-}
 .container {
-  width: 300px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 100px;
+  margin-left: 24px;
+  margin-right: 24px;
 
-  @include tabletAndUp {
-    width: initial;
-    margin-left: 50px;
-    margin-right: 50px;
+  @include mixins.tabletAndUp {
+    margin-left: 48px;
+    margin-right: 48px;
   }
 }

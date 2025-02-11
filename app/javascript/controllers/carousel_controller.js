@@ -14,6 +14,7 @@ export default class extends Controller {
    * Initializes the carousel by setting the number of items and showing the first slide.
    */
   connect() {
+    console.log("carousel controller connected!");
     this.numberOfItemsValue = this.itemTargets.length;
     this.showSlide(0);
   }
@@ -68,4 +69,3 @@ export default class extends Controller {
     this.showSlide(index);
   }
 }
-

@@ -28,7 +28,7 @@ class Store < ApplicationRecord
     attachable.variant :thumb, resize_to_limit: [ 250, nil ], preprocessed: true
   end
 
-  after_commit :add_default_spotlight, on: [ :create, :update ]
+  # after_commit :add_default_spotlight, on: [ :create, :update ]
 
   validates :name, :phone_number, :location, :email, presence: true
   validates :email,

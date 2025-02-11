@@ -1,10 +1,10 @@
-<%= turbo_stream.replace "product_reviews",
+<%= turbo_stream.update "product_reviews",
                      partial: "product_reviews/reviews",
                      locals: {
-                       reviews: @product.reviews.ordered,
+                       reviews: @reviews,
                      } %>
 <%= turbo_stream.replace @product.reviews.new,
-                     partial: "product_reviews/add_review",
+                     partial: "product_reviews/add_review_button",
                      locals: {
                        product: @product,
                      } %>

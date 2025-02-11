@@ -14,7 +14,7 @@
 <div>
   <h2>New review for
     <%= product.name.capitalize %></h2>
-  <%= form_with model: review, url: store_product_reviews_path, class: "w-50", method: :post do |f| %>
+  <%= form_with model: review, url: store_product_reviews_path,class: "ProductReview__form", method: :post do |f| %>
     <div class="form-input">
       <%= f.label :title %>
       <%= f.text_field :title, required: true %>

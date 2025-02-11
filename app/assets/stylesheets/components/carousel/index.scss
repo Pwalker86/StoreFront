@@ -1,5 +1,7 @@
+$mobile_width: 390px;
+
 .carousel {
-  max-width: 400px;
+  max-width: $mobile_width;
   position: relative;
   margin: 0 auto;
 }
@@ -15,8 +17,8 @@
 }
 
 .carousel .carousel-item img {
-  width: 400px;
-  aspect-ratio: 16/9;
+  width: $mobile_width;
+  aspect-ratio: 1;
   border-radius: 8px;
 }
 

@@ -1,0 +1,10 @@
+@use "mixins/media" as mixins;
+
+.ProductShow {
+  display: flex;
+  flex-direction: column;
+
+  @include mixins.tabletAndUp {
+    flex-direction: row;
+  }
+}

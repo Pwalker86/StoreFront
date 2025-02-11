@@ -1,1 +1,27 @@
-$bg-color: black;
+@use "sass:color";
+// .inter-<uniquifier> {
+//   font-family: "Inter", serif;
+//   font-optical-sizing: auto;
+//   font-weight: <weight>;
+//   font-style: normal;
+// }
+$font-family: "Nunito";
+$option-hover: color.adjust(white, $lightness: -10%);
+$primary-color: color.adjust(#264653, $lightness: 20%);
+$text-color-dark: #2d3748;
+$color-gray: #e2e8f0;
+$color-gray-dark: color.adjust($color-gray, $lightness: -30%);
+
+$color-error: color.adjust(#e53e3e, $lightness: -20%);
+
+$bg-card: #27272a;
+
+$button-primary: #c6ac8f;
+$button-hover: #b39d86;
+
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+$border-radius: 4px;
+
+// Background colors
+$bg-color: #f8f9fa;
+$bg-secondary: #efeeec;

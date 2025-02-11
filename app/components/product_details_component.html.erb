@@ -1,0 +1,47 @@
+<div class="ProductDetails__container">
+  <div class="ProductDetails__header">
+    <%= link_to @product.store.name.titleize,
+    store_path(@product.store),
+    data: {
+      turbo_frame: "_top",
+    } %>
+    <h1 class="ProductDetails__name"><%= @product.name %></h1>
+    <% if helpers.current_store_admin %>
+      <%= link_to "Edit",
+      edit_store_product_path(@product.store, @product),
+      data: {
+        turbo_frame: "product_#{@product.id}",
+      } %>
+    <% end %>
+  </div>
+  <div class="ProductDetails__price">
+    <%= tag.span number_to_currency(@product.price).split(".")[0],
+             class: "ProductDetails__price--dollars" %>
+    <%= tag.span number_to_currency(@product.price).split(".")[1],
+             class: "ProductDetails__price--cents" %>
+  </div>
+  <div class="ProductDetails__description">
+    <%= @product.description %>
+  </div>
+  <div class="ProductDetails__status">
+    <% if @product.out_of_stock %>
+      <p>
+        <span class="ProductDetails__status--out-of-stock-x">X</span>
+        Out of stock
+      </p>
+    <% end %>
+    <% if @product.archived %>
+      <span class="ProductDetails__status--archived">Archived</span>
+    <% end %>
+  </div>
+  <p class="secondary-text mt-1">Tags:</p>
+  <div class="ProductDetails__tags flex flex-wrap flex-gap-05 mt-025">
+    <%= render(
+      ProductTagComponent.with_collection(@product.tag_list, product: @product),
+    ) %>
+  </div>
+  <div class="ProductDetails__review-count">
+    <%= @product.reviews.count %>
+    reviews
+  </div>
+</div>

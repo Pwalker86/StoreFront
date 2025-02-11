@@ -1,12 +1,12 @@
-@use "../mixins/media";
-@use "../variables";
+@use "variables";
+$hover-bg: #b39d86;
 
 .Navbar {
   display: flex;
   min-height: 70px;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--bg-secondary);
+  background-color: variables.$bg-secondary;
   padding: 10px 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -15,11 +15,13 @@
 .Navbar__brand {
   font-size: 24px;
   font-weight: bold;
+  background-color: variables.$bg-secondary;
   a {
     text-decoration: none;
-    color: #000;
+    background-color: variables.$bg-secondary;
+    color: variables.$text-color-dark;
     &:visited {
-      color: #000;
+      color: variables.$text-color-dark;
     }
   }
 }
@@ -37,43 +39,51 @@
 
   a {
     text-decoration: none;
-    color: #000;
+    background-color: #d7bfa9;
+    color: variables.$text-color-dark;
     font-size: 16px;
     padding: 4px 8px;
     border-radius: 20px;
     transition: background 0.3s;
   }
   a:hover {
-    background-color: #b39d86;
+    background-color: $hover-bg;
   }
 
   &.account-icon {
+    background-color: #d7bfa9;
     padding-left: 10px;
     padding-right: 10px;
   }
 }
 
+.Navbar .cart-count {
+  background-color: inherit;
+  &:hover {
+    background-color: inherit;
+  }
+}
+
 .Navbar .cart-icon {
   text-decoration: none;
-  color: #000;
+  background-color: inherit;
+  color: variables.$text-color-dark;
   font-size: 16px;
   padding: 8px;
   border-radius: 50%;
-  transition: background 0.3s;
   aspect-ratio: 1;
 
   &:hover {
-    background-color: #b39d86;
+    background-color: inherit;
   }
 }
 
 .Navbar__item .account-icon {
-  background-color: #d7bfa9;
+  background-color: inherit;
   border-radius: 50%;
-  transition: background 0.3s;
   height: 48px;
 
   &:hover {
-    background-color: #b39d86;
+    background-color: inherit;
   }
 }

@@ -1,15 +1,11 @@
 <h1>Products</h1>
 <% if current_store_admin %>
-  <%# <%= link_to "New Product", new_product_path, data: { turbo_frame: dom_id(Product.new) } %1> %>
   <%= link_to "New Product", new_store_product_path(@store) %>
 <% end %>
 
-<%# <%= turbo_frame_tag Product.new %1> %>
-
-<%# <%= turbo_frame_tag Product.new, class: "grid-container" do %1> %>
-<div class="grid-container">
-  <% @products.each do |product| %>
-    <%= render "products/product_card" %>
-  <% end %>
-</div>
-<%# <% end %1> %>
+<%= turbo_frame_tag "store_products" do %>
+  <div class="Store__product_container mb-05">
+    <%= render(ProductCardComponent.with_collection(@products)) %>
+  </div>
+  <%== pagy_nav(@pagy_products) %>
+<% end %>

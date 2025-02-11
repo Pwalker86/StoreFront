@@ -1,26 +1,12 @@
-<%= render "products/product_card", store: @product.store, product: @product %>
-
-<% if @product.tag_list.any? %>
-  <div class="Product__tags">
-    <% @product.tag_list.each do |tag| %>
-      <span class="Product__tag"><%= tag %></span>
-    <% end %>
-  </div>
+<%= render ProductShowComponent.new(product: @product) do |component| %>
+  <%= component.with_image_carousel(images: @product.images) %>
+  <%= component.with_product_details(product: @product) %>
 <% end %>
 
-<div data-controller="dialog" data-action="click->dialog#backdropClose">
-  <dialog data-dialog-target="dialog">
-    <%= render(CarouselComponent.new(images: @product.images)) %>
-    <button type="button" data-action="dialog#close" autofocus>Cancel</button>
-  </dialog>
+<div class="ProductReview__container container">
+  <%= render "product_reviews/add_review_button", product: @product %>
 
-  <button type="button" data-action="dialog#open">Open modal</button>
+  <%= turbo_frame_tag "product_reviews", data: {"turbo-action": "advance"} do %>
+    <%= render "product_reviews/reviews", reviews: @reviews %>
+  <% end %>
 </div>
-
-<%= render "product_reviews/add_review", product: @product %>
-
-<%= turbo_frame_tag "product_reviews" do %>
-  <%= render "product_reviews/reviews", reviews: @product.reviews.ordered %>
-<% end %>
-
-<%= tag.div link_to "Back to store", store_path(@product.store) %>

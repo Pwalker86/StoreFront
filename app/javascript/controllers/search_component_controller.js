@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static values = { url: String, productUrl: String };
+  static values = { url: String };
   static targets = [
     "searchInput",
     "searchOptionsContainer",
@@ -10,10 +10,14 @@ export default class extends Controller {
   ];
 
   noResults = [{ href: "#", name: "No Results" }];
+  errorResponse = [
+    { href: "#", name: "Error fetching results. Site Admin has been notified" },
+  ];
+  seeMore = [{ href: "#", name: "See More Results..." }];
   products = {};
 
-  clickSearch() {
-    this.searchButtonTarget.click();
+  connect() {
+    console.log("search-component controller connected!");
   }
 
   handleSearchKeyup(event) {
@@ -37,11 +41,7 @@ export default class extends Controller {
     const items = Array.from(this.searchOptionsContainerTarget.children);
     const currentIndex = items.indexOf(document.activeElement);
     const nextIndex = (currentIndex - 1 + items.length) % items.length;
-    if (nextIndex === 0 || currentIndex === 0) {
-      this.searchInputTarget.focus();
-    } else {
-      items[currentIndex - 1].focus();
-    }
+    items[nextIndex].focus();
   }
 
   handleNavigateDown(event) {
@@ -49,11 +49,7 @@ export default class extends Controller {
     const items = Array.from(this.searchOptionsContainerTarget.children);
     const currentIndex = items.indexOf(document.activeElement);
     const nextIndex = (currentIndex + 1) % items.length;
-    if (nextIndex === 0) {
-      this.searchInputTarget.focus();
-    } else {
-      items[currentIndex + 1].focus();
-    }
+    items[nextIndex].focus();
   }
 
   updateLinkHref() {
@@ -70,19 +66,26 @@ export default class extends Controller {
     this.searchOptionsContainerTarget.classList.add("hidden");
   }
 
+  focusOption(event) {
+    event.target.focus();
+  }
+
   buildDropdownEntry(option) {
     const optionLink = document.createElement("a");
     optionLink.classList.add("Search__option");
     optionLink.href = option.href;
     optionLink.innerText = option.name;
-    optionLink.dataset.action = "click->product-search#closeOverlay";
-
+    optionLink.dataset.action =
+      "click->search-component#closeOverlay mouseover->search-component#focusOption";
+    if (option.name === "See More Results...") {
+      optionLink.classList.add("see-more");
+    }
     return optionLink;
   }
 
   buildProductsList(products) {
     const target = this.searchOptionsContainerTarget;
-    target.classList.add("displaying-results", "w-50");
+    target.classList.add("displaying-results", "w-75");
     target.classList.remove("hidden");
     target.innerText = "";
     this.overlayTarget.classList.remove("hidden");
@@ -97,9 +100,30 @@ export default class extends Controller {
       query: this.searchInputTarget.value,
     }).toString();
     const searchUrl = `${this.urlValue}.json?${queryString}`;
-    const response = await fetch(searchUrl);
-    const jsonResponse = await response.json();
-    this.products = jsonResponse.length === 0 ? this.noResults : jsonResponse;
+    try {
+      const response = await fetch(searchUrl);
+      const jsonResponse = await response.json();
+      this.handleSearchResponse(jsonResponse, queryString);
+    } catch (error) {
+      console.error(error);
+      this.handleSearchResponse(this.errorResponse, queryString);
+    }
+  }
+
+  handleSearchResponse(jsonResponse, queryString) {
+    if (jsonResponse.length === 0) {
+      this.products = this.noResults;
+    } else if (jsonResponse === this.errorResponse) {
+      this.products = jsonResponse;
+    } else {
+      this.products =
+        jsonResponse.length > 10
+          ? jsonResponse.slice(0, 10).concat(this.seeMore)
+          : jsonResponse;
+      if (jsonResponse.length > 10) {
+        this.seeMore[0].href = `${this.urlValue}?${queryString}`;
+      }
+    }
     this.buildProductsList(this.products);
   }
 }

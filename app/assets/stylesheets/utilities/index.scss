@@ -1,7 +1,32 @@
 @use "margin.scss";
 @use "padding.scss";
 @use "width.scss";
+@use "text.scss";
 
 .hidden {
   display: none;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.border-radius-4 {
+  border-radius: 4px;
+}
+
+.border-radius-8 {
+  border-radius: 8px;
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.inline {
+  display: inline;
 }

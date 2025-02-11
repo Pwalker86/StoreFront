@@ -1,4 +1,5 @@
 # README
+
 Storefront will be an e-commerce platform, focusing on small businesses that wish to create a community and a connection with their customers.
 
 Storefront includes:

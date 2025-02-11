@@ -5,9 +5,13 @@ class StoresController < ApplicationController
   end
 
   def show
-    @store = Store.find(params[:id])
-    @reviews = @store.reviews.ordered
-    @products = ProductDecorator.decorate_collection(@store.products.where(archived: false).order(:name))
+    begin
+      @store = Store.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_path, alert: "Store not found!" and return
+    end
+
+    @pagy, @reviews = pagy(@store.reviews.ordered, limt: 5, page_param: :reviews_page)
   end
 
   def new
