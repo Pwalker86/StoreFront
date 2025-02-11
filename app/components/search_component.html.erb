@@ -1,52 +1,52 @@
-<div class="flex-row" id="searchForm">
+<div
+  class="flex-row"
+  id="searchForm"
+  data-controller="search-component"
+  data-search-component-url-value="<%= @url %>"
+>
   <div
-    data-controller="search-component"
-    data-search-component-url-value="<%= @url %>"
+    id="overlay"
+    data-search-component-target="overlay"
+    data-action="click->search-component#closeOverlay"
+    class="hidden w-100"
+  ></div>
+  <form
+    class="Search__input--anchor"
+    action="<%= @url %>"
+    data-search-component-target="searchForm"
   >
-    <div
-      id="overlay"
-      data-search-component-target="overlay"
-      data-action="click->search-component#closeOverlay"
-      class="hidden w-100"
-    ></div>
-    <form
-      class="Search__input--anchor"
-      action="<%= @url %>"
-      data-search-component-target="searchForm"
+    <div class="form-input inline">
+      <%= text_field_tag :query,
+      nil,
+      placeholder: @input_placeholder,
+      type: "search",
+      aria: {
+        label: "Search",
+      },
+      autocomplete: "off",
+      id: "searchInput",
+      class: "Search__input",
+      data: {
+        search_component_target: "searchInput",
+        action:
+          "keyup->search-component#search keyup->search-component#updateLinkHref keydown.down->search-component#handleSearchKeydown keydown.tab->search-component#handleSearchKeydown keydown.up->search-component#handleSearchKeyup ",
+      } %>
+    </div>
+    <button
+      type="submit"
+      data-search-component-target="searchButton"
+      class="Search__button"
     >
-      <div class="form-input inline">
-        <%= text_field_tag :query,
-        nil,
-        placeholder: @input_placeholder,
-        type: "search",
-        aria: {
-          label: "Search",
-        },
-        autocomplete: "off",
-        id: "searchInput",
-        class: "Search__input",
-        data: {
-          search_component_target: "searchInput",
-          action:
-            "keyup->search-component#search keyup->search-component#updateLinkHref keydown.down->search-component#handleSearchKeydown keydown.tab->search-component#handleSearchKeydown keydown.up->search-component#handleSearchKeyup ",
-        } %>
-      </div>
-      <button
-        type="submit"
-        data-search-component-target="searchButton"
-        class="Search__button"
-      >
-        Search
-      </button>
-    </form>
-    <div
-      id="searchOptionsContainer"
-      class="Search__container"
-      data-search-component-target="searchOptionsContainer"
-      data-action="
-        keydown.up->search-component#handleNavigateUp
-        keydown.down->search-component#handleNavigateDown
-      "
-    ></div>
-  </div>
+      Search
+    </button>
+  </form>
+  <div
+    id="searchOptionsContainer"
+    class="Search__container"
+    data-search-component-target="searchOptionsContainer"
+    data-action="
+      keydown.up->search-component#handleNavigateUp
+      keydown.down->search-component#handleNavigateDown
+    "
+  ></div>
 </div>

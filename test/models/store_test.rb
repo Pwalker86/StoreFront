@@ -68,9 +68,10 @@ class StoreTest < ActiveSupport::TestCase
     assert_equal @store.reviews.first, reviews(:store_review)
   end
 
-  test "a spotlight is attached if there's not already one" do
-    assert_not @store.spotlight.attached?
-    @store.save
-    assert @store.spotlight.attached?
-  end
+  # NOTE: Not needed as I've removed the after save callback for now. Instead will implement a prompt notifying the user that their store cannot be featured if they don't attached a photo
+  # test "a spotlight is attached if there's not already one" do
+  #   assert_not @store.spotlight.attached?
+  #   @store.save
+  #   assert @store.spotlight.attached?
+  # end
 end
