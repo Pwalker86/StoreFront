@@ -4,7 +4,7 @@
                        reviews: @reviews,
                      } %>
 <%= turbo_stream.replace @product.reviews.new,
-                     partial: "product_reviews/add_review",
+                     partial: "product_reviews/add_review_button",
                      locals: {
                        product: @product,
                      } %>

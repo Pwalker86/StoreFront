@@ -11,7 +11,7 @@
     </ul>
   </div>
 <% end %>
-<div class="StoreReview__form container mx-center">
+<div class="StoreReview__form">
   <h2>New review for
     <%= store.name.capitalize %></h2>
   <%= form_with model: review, url: store_reviews_path, method: :post do |f| %>

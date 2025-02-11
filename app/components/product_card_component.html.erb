@@ -1,19 +1,21 @@
-<div class="ProductCard">
-  <%= link_to [@cardItem.store, @cardItem],  class: "ProductCard__link" do %>
+<div class="ProductCard border-radius-8">
+  <%= link_to [@product.store, @product],  class: "ProductCard__link", data: {turbo:  false} do %>
     <div class="ProductCard__content">
-      <% if @cardItem.images.any? %>
-        <%= image_tag @cardItem.images.first.variant(:thumb), class: "ProductCard__image" %>
+      <% if @product.images.any? %>
+        <%= image_tag @product.images.first.variant(:thumb),
+        class: "ProductCard__image border-radius-8" %>
       <% end %>
-      <h3 class="ProductCard__name"><%= @cardItem.name %></h3>
-      <p class="ProductCard__price"><%= number_to_currency(@cardItem.price) %></p>
+      <h3 class="ProductCard__name"><%= @product.name %></h3>
+      <p class="ProductCard__price"><%= number_to_currency(@product.price) %></p>
     </div>
   <% end %>
+
   <% if @active_user && !helpers.current_store_admin %>
     <%= button_to "Add To Cart",
     user_cart_path(@active_user),
     params: {
       user_entity: @active_user.class.name,
-      product_id: @cardItem.id,
+      product_id: @product.id,
       quantity: 1,
     },
     data: {
@@ -22,9 +24,9 @@
     method: :patch,
     class: "ProductCard__shop-button" %>
   <% end %>
-  <% if helpers.current_store_admin === @cardItem.store.store_admin %>
+  <% if helpers.current_store_admin === @product.store.store_admin %>
     <%= link_to "Edit",
-    edit_store_product_path(@cardItem.store, @cardItem),
+    edit_store_product_path(@product.store, @product),
     class: "ProductCard__shop-button" %>
   <% end %>
 </div>

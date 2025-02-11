@@ -1,8 +1,0 @@
-@use "variables";
-@use "mixins/media" as mixins;
-
-.StoreReviews__container {
-  @include mixins.tabletAndUp {
-    width: 50%;
-  }
-}

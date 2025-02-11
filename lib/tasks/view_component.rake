@@ -1,7 +1,6 @@
 namespace :view_component do
   desc "Generate a new view component"
   task :generate do
-    debugger
     options = {
       name: ENV["name"]
     }

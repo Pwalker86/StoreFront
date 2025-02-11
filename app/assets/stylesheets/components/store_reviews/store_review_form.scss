@@ -1,13 +1,12 @@
+@use "variables";
 @use "mixins/media" as mixins;
 
-.container {
+.StoreReview__form {
   margin-left: 50px;
   margin-right: 50px;
 
   @include mixins.tabletAndUp {
-    display: block;
-    width: initial;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 0;
+    margin-right: 0;
   }
 }

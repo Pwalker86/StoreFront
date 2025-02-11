@@ -11,10 +11,7 @@ class StoresController < ApplicationController
       redirect_to root_path, alert: "Store not found!" and return
     end
 
-    @pagy_stores, products = pagy(@store.products.where(archived: false).order(:name))
-    @products = ProductDecorator.decorate_collection(products)
-
-    @pagy, @reviews = pagy(@store.reviews.ordered)
+    @pagy, @reviews = pagy(@store.reviews.ordered, limt: 5, page_param: :reviews_page)
   end
 
   def new
