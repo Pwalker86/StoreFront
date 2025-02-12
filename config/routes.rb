@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     get "confirm", as: "confirm"
   end
 
-  resources :stores do
+  resources :stores, only: [ :index, :show ] do
     resources :store_reviews, as: "reviews"
     delete "remove_spotlight", as: "remove_spotlight"
     resources :products do
@@ -21,8 +21,9 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :store_admins do
+  resources :store_admin do
     resources :orders
+    resources :stores, controller: "store_admin/stores"
   end
 
   resources :user  do

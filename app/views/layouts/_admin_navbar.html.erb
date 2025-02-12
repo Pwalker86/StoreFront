@@ -5,7 +5,7 @@
       <%= link_to "StoreFront", root_path %>
     </div>
     <div class="Navbar__menu">
-      <%= render "shared/#{user_type}_links", path: "orders_index" %>
+      <%#= render "shared/#{user_type}_links", path: "orders_index" %>
       <%= render "shared/#{user_type}_links", path: "cart_show" %>
       <% if current_store_admin && current_store_admin.store.persisted? %>
         <%= render "shared/#{user_type}_links", path: "edit_store" %>

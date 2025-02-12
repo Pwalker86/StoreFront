@@ -1,0 +1,48 @@
+<%# if @store.spotlight.attached? %>
+<%#= turbo_frame_tag "store_#{@store_id}_spotlight" do %>
+<%#<div class="StoreEdit__spotlight-container"> %>
+<%#= image_tag @store.spotlight.variant(:thumb), class: "StoreEdit__spotlight-image" %>
+<%#= button_to "Remove Image", store_remove_spotlight_path(@store), method: :delete %>
+<%#</div> %>
+<%# end %>
+<%# end %>
+
+<div class="mx-center w-50" data-controller="js-submit">
+  <%= form_with model: [store.store_admin, store], data: {js_submit_target: 'form'} do |form| %>
+    <div class="form-input w-75">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div class="form-input w-75">
+      <%= form.label :phone_number %>
+      <%= form.telephone_field :phone_number %>
+    </div>
+
+    <div class="form-input w-75">
+      <%= form.label :location %>
+      <%= form.text_field :location %>
+    </div>
+
+    <div class="form-input w-75">
+      <%= form.label :email %>
+      <%= form.email_field :email %>
+    </div>
+
+    <div class="form-input w-75">
+      <%= form.label :mission_statement %>
+      <%= form.text_field :mission_statement %>
+    </div>
+
+    <div class="form-input">
+      <%= form.label :spotlight %>
+      <%= form.file_field :spotlight, data: { js_submit_target: "input" } %>
+    </div>
+
+    <div>
+      <%= form.button :submit, data: { action: "js-submit#jsSubmit" } %>
+    </div>
+
+    <%= link_to "Cancel", [store.store_admin, store], class: "btn btn--light" %>
+  <% end %>
+</div>

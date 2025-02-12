@@ -1,4 +1,4 @@
-module StoreAdmins
+module StoreAdmin
   class OrdersController < ApplicationController
     before_action :authenticate_store_admin!
 

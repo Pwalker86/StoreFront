@@ -1,0 +1,3 @@
+<% stores.each do |store| %>
+  <%= render(StoreCardComponent.new(store: store, wrapper_classes: "mt-1")) %>
+<% end %>
