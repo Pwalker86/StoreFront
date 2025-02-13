@@ -13,10 +13,16 @@ Rails.application.routes.draw do
 
   resources :stores, only: [ :index, :show ] do
     resources :store_reviews, as: "reviews"
+    # TODO: create new controller for creating/deleting spotlight to keep it RESTful
+    # TODO: move to store_admin namespace
     delete "remove_spotlight", as: "remove_spotlight"
+    # TODO: move to store_admin namespace
     resources :products do
+      # TODO: create new controller for creating/deleting product_images to keep it RESTful
+      # TODO: move to store_admin namespace
       delete "remove_image", as: "remove_image"
       resources :product_images
+      # TODO: move to store_admin namespace
       resources :product_reviews, as: "reviews"
     end
   end

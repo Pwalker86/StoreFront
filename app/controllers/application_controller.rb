@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   before_action :ensure_cart
   protect_from_forgery with: :exception, prepend: true
 
-
   protected
 
   def set_active_user

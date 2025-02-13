@@ -7,7 +7,7 @@
     <div class="Navbar__menu">
       <%#= render "shared/#{user_type}_links", path: "orders_index" %>
       <%= render "shared/#{user_type}_links", path: "cart_show" %>
-      <% if current_store_admin && current_store_admin.store.persisted? %>
+      <% if current_store_admin && current_store_admin.try(:store).try(:persisted?) %>
         <%= render "shared/#{user_type}_links", path: "edit_store" %>
       <% elsif current_store_admin && current_store_admin.store.nil? %>
         <%= render "shared/#{user_type}_links", path: "new_store" %>

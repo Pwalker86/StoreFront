@@ -7,5 +7,7 @@
   <div class="Store__product_container mb-05">
     <%= render(ProductCardComponent.with_collection(@products)) %>
   </div>
-  <%== pagy_nav(@pagy_products) %>
+  <% if @pagy_products.count > 0 %>
+    <%== pagy_nav(@pagy_products) %>
+  <% end %>
 <% end %>

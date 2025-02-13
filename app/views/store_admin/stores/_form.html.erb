@@ -8,7 +8,7 @@
 <%# end %>
 
 <div class="mx-center w-50" data-controller="js-submit">
-  <%= form_with model: [store.store_admin, store], data: {js_submit_target: 'form'} do |form| %>
+  <%= form_with model: [current_store_admin, store], data: {js_submit_target: 'form'} do |form| %>
     <div class="form-input w-75">
       <%= form.label :name %>
       <%= form.text_field :name %>
@@ -43,6 +43,6 @@
       <%= form.button :submit, data: { action: "js-submit#jsSubmit" } %>
     </div>
 
-    <%= link_to "Cancel", [store.store_admin, store], class: "btn btn--light" %>
+    <%= link_to "Cancel", [current_store_admin, store], class: "btn btn--light" %>
   <% end %>
 </div>
