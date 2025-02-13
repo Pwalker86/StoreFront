@@ -2,7 +2,9 @@
 <% if current_store_admin %>
   <div class="Navbar">
     <div class="Navbar__brand">
-      <%= link_to "StoreFront", root_path %>
+      <%= link_to store_admin_root_path do %>
+        <i class="fa-brands fa-forumbee" title="MarketHive"></i>
+      <% end %>
     </div>
     <div class="Navbar__menu">
       <%#= render "shared/#{user_type}_links", path: "orders_index" %>
@@ -17,8 +19,8 @@
       <% end %>
     </div>
     <div class="Navbar__menu account-icon">
-      <%= link_to root_path, class: "account-icon" do %>
-        <i class="fa-solid fa-user"></i>
+      <%= link_to store_admin_root_path, class: "account-icon" do %>
+        <i class="fa-solid fa-home"></i>
       <% end %>
     </div>
   </div>

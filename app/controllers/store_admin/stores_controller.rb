@@ -1,7 +1,10 @@
 class StoreAdmin::StoresController < ApplicationController
   before_action :authenticate_store_admin!
-  before_action :find_store, except: [ :new, :create ]
-  before_action :verify_store_admin, except: [ :new, :create ]
+  before_action :find_store, except: [ :new, :create, :index ]
+  before_action :verify_store_admin, except: [ :new, :create, :index ]
+
+  def index
+  end
 
   def show
     begin
