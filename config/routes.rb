@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
   resources :store_admin do
     resources :orders
-    resources :stores, controller: "store_admin/stores" do
+    resources :stores, controller: "store_admin/stores", except: [ :index ] do
       resources :products, controller: "store_admin/products"
     end
   end
@@ -44,7 +44,6 @@ Rails.application.routes.draw do
   resources :search, only: :index
 
   root to: "pages#home"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

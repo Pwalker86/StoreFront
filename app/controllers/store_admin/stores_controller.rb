@@ -1,32 +1,19 @@
 class StoreAdmin::StoresController < ApplicationController
   before_action :authenticate_store_admin!
-  before_action :find_store, except: [ :new, :create, :index ]
-  before_action :verify_store_admin, except: [ :new, :create, :index ]
-
-  def index
-    @store = current_store_admin.store
-  end
+  before_action :set_store, except: [ :new, :create ]
+  before_action { authorize @store, policy_class: Admin::StorePolicy }
 
   def show
-    begin
-      @store = Store.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to root_path, alert: "Store not found!" and return
-    end
-
-    @pagy, @reviews = pagy(@store.reviews.ordered, limt: 5, page_param: :reviews_page)
   end
 
   def edit
   end
 
   def new
-    check_existing_store
     @store = current_store_admin.build_store
   end
 
   def create
-    check_existing_store
     store = current_store_admin.build_store(store_params)
     if store.save
       redirect_to store_admin_store_path(current_store_admin, store), notice: "Your store has been created!"
@@ -49,15 +36,15 @@ class StoreAdmin::StoresController < ApplicationController
 
   private
 
-  def find_store
-    @store = Store.find(params[:id])
+  def pundit_user
+    current_store_admin
   end
 
-  def verify_store_admin
-    if current_store_admin != @store.store_admin
-      flash[:alert] = "You are not authorized to access this store. If you're an Admin that's trying to shop, please create a User account."
-      Rails.logger.warn "Unauthorized access attempt to store ##{params[:id]} by store admin ##{current_store_admin.id}"
-      redirect_to root_path and return
+  def set_store
+    begin
+      @store = Store.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_path, alert: "Store not found!" and return
     end
   end
 

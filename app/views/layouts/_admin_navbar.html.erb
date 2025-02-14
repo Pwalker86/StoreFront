@@ -2,7 +2,7 @@
 <% if current_store_admin %>
   <div class="Navbar">
     <div class="Navbar__brand">
-      <%= link_to store_admin_stores_path(current_store_admin) do %>
+      <%= link_to store_admin_store_path(current_store_admin, current_store_admin.store) do %>
         <i class="fa-brands fa-forumbee" title="MarketHive"></i>
       <% end %>
     </div>
@@ -19,7 +19,7 @@
       <% end %>
     </div>
     <div class="Navbar__menu account-icon">
-      <%= link_to store_admin_stores_path(current_store_admin), class: "account-icon" do %>
+      <%= link_to store_admin_store_path(current_store_admin, current_store_admin.store), class: "account-icon" do %>
         <i class="fa-solid fa-home"></i>
       <% end %>
     </div>

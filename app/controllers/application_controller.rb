@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   helper_method :active_user
   before_action :ensure_cart, unless: :current_store_admin
 
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   protected
 
   def active_user
@@ -27,9 +29,14 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if resource.is_a?(StoreAdmin)
-      store_admin_stores_path(resource)
+      store_admin_store_path(resource, resource.store)
     else
       super
     end
+  end
+
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_back_or_to(root_path)
   end
 end
