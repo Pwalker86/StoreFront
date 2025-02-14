@@ -10,26 +10,16 @@
     </div>
   <% end %>
 
-  <% if @active_user && !helpers.current_store_admin %>
-    <%= button_to "Add To Cart",
-    user_cart_path(@active_user),
-    params: {
-      user_entity: @active_user.class.name,
-      product_id: @product.id,
-      quantity: 1,
-    },
-    data: {
-      turbo: false,
-    },
-    method: :patch,
-    class: "ProductCard__shop-button" %>
-  <% end %>
-  <% if helpers.current_store_admin === @product.store.store_admin %>
-    <%= link_to "Edit",
-    edit_store_product_path(@product.store, @product),
-    data: {
-      turbo: false,
-    },
-    class: "ProductCard__shop-button" %>
-  <% end %>
+  <%= button_to "Add To Cart",
+  user_cart_path(helpers.active_user),
+  params: {
+    user_entity: helpers.active_user.class.name,
+    product_id: @product.id,
+    quantity: 1,
+  },
+  data: {
+    turbo: false,
+  },
+  method: :patch,
+  class: "ProductCard__shop-button" %>
 </div>

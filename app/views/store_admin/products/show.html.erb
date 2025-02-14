@@ -1,0 +1,15 @@
+<h1>
+  <%= @product.name %>
+</h1>
+
+<div class="Admin Product_container mb-05">
+  <ul>
+    <li>
+      <%= link_to "Edit",
+      edit_store_admin_store_product_path(current_store_admin, @store, @product) %>
+    </li>
+  </ul>
+</div>
+
+<%= link_to "Back to Products",
+store_admin_store_products_path(current_store_admin, @store) %>

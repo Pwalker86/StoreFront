@@ -1,6 +1,7 @@
 <% if current_store_admin %>
   <% if path === 'show_store' %>
-    <%= link_to "View Store", [current_store_admin, current_store_admin.store] %>
+    <%= link_to "View Store",
+    store_admin_store_products_path(current_store_admin, current_store_admin.store) %>
   <% end %>
 
   <% if path === 'new_store' %>

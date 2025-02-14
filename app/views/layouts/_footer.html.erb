@@ -1,7 +1,7 @@
 <div class="Footer__Container py-1 px-2">
   <div class="Footer__Links">
     <%= link_to "Home", root_path %>
-    <% if @active_user  && !current_store_admin && !@active_user.is_a?(Guest) %>
+    <% if active_user  && !current_store_admin && !active_user.is_a?(Guest) %>
       <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete } %>
     <% elsif store_admin_signed_in? %>
       <%= link_to "Log out",

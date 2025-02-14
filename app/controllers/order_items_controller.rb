@@ -1,3 +1,4 @@
+# TODO: check that this can be removed
 class OrderItemsController < ApplicationController
   def create
     @product = Product.find_by(id: params[:product_id])

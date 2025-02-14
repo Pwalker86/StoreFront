@@ -4,6 +4,7 @@ class StoreAdmin::StoresController < ApplicationController
   before_action :verify_store_admin, except: [ :new, :create, :index ]
 
   def index
+    @store = current_store_admin.store
   end
 
   def show

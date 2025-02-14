@@ -1,7 +1,0 @@
-<h1 class="ProductEdit__Header">
-  <%= @product.name %>
-</h1>
-
-<%= turbo_frame_tag "product_#{@product.id}" do %>
-  <%= render "form", product: @product, store: @store %>
-<% end %>

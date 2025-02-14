@@ -1,0 +1,32 @@
+<h1>Products</h1>
+<% if current_store_admin == @store.store_admin %>
+  <%= link_to "New Product",
+  new_store_admin_store_product_path(current_store_admin, @store) %>
+<% end %>
+
+<div class="Admin Product_container mb-05">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td>
+            <%= link_to product.name,
+            store_admin_store_product_path(current_store_admin, @store, product) %>
+          </td>
+          <td>
+            <% if current_store_admin == @store.store_admin %>
+              <%= link_to "Edit",
+              edit_store_admin_store_product_path(current_store_admin, @store, product) %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

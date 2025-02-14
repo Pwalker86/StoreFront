@@ -1,2 +1,6 @@
-<h1>Stores#index</h1>
-<p>Find me in app/views/stores/index.html.erb</p>
+<%= @store.name %>
+
+<div>
+  <%= link_to "Manage Products",
+  store_admin_store_products_path(current_store_admin, @store) %>
+</div>

@@ -1,0 +1,2 @@
+module StoreAdmin::ProductsHelper
+end

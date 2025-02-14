@@ -1,0 +1,8 @@
+<h1 class="ProductEdit__Header">
+  <%= @product.name %>
+</h1>
+
+<%= render "form", product: @product, store: @store %>
+
+<%= link_to "Back",
+store_admin_store_product_path(current_store_admin, @store, @product) %>

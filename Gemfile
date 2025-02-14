@@ -77,3 +77,5 @@ gem "pg_search"
 gem "acts-as-taggable-on"
 gem "view_component"
 gem "pagy", "~> 9.3"
+
+gem "pundit", "~> 2.4"

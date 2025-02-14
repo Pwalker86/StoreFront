@@ -13,10 +13,11 @@ HELLO
   <% end %>
 
   <% if current_store_admin == @store.store_admin %>
-    <%= link_to "New Product", new_store_product_path(@store) %>
+    <%= link_to "New Product",
+    new_store_admin_store_product_path(current_store_admin, @store) %>
   <% end %>
 
-  <%= turbo_frame_tag "store_products", src: store_products_path(@store) do %>
+  <%= turbo_frame_tag "store_products", src: store_admin_store_products_path(current_store_admin, @store) do %>
     <%#TODO: Extract into SkeletonCardComponent %>
     <div class="Store__product_container mb-05">
       <% 6.times do %>

@@ -16,7 +16,7 @@
     <div class="OrderSummary__total">Total:
       <%= number_to_currency @cart.total_price %></div>
     <%= link_to "Checkout",
-    checkout_user_cart_path(@active_user),
+    checkout_user_cart_path(active_user),
     class: "OrderSummary__checkout-button button-link" %>
   </div>
 </div>
