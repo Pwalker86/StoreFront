@@ -1,29 +1,26 @@
 class StoreAdmin::ProductsController < ApplicationController
   before_action :authenticate_store_admin!
+  before_action :set_store
+  before_action { authorize @store, policy_class: Admin::ProductPolicy }
 
   def index
-    @store = Store.find(params[:store_id])
     @products = ProductDecorator.decorate_collection(@store.products.order(:archived))
   end
 
   def show
-    @store = Store.find params[:store_id]
     @product = @store.products.find (params[:id])
     @pagy, @reviews = pagy(@product.reviews.ordered)
   end
 
   def new
-    @store = current_store_admin.store
     @new_product = @store.products.new
   end
 
   def edit
-    @store = current_store_admin.store
     @product = @store.products.find(params[:id])
   end
 
   def create
-    @store = Store.find(params[:store_id])
     @admin = @store.store_admin
     @product = @store.products.new(product_params)
 
@@ -39,13 +36,12 @@ class StoreAdmin::ProductsController < ApplicationController
   end
 
   def update
-    @store = Store.find(params[:store_id])
     @admin = @store.store_admin
     @product = @store.products.find(params[:id])
     respond_to do |format|
       # TODO: extract tag_list. The old method of tag_list= is not available anymore and it's blowing up the update.
       if @product.update!(product_params)
-        format.html { redirect_to store_admin_store_product_path(@admin, @store, @product) }
+        format.html { redirect_to store_admin_store_products_path(@admin, @store) }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -66,6 +62,18 @@ class StoreAdmin::ProductsController < ApplicationController
   # end
 
   private
+
+  def pundit_user
+    current_store_admin
+  end
+
+  def set_store
+    begin
+      @store = Store.find(params[:store_id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_path, alert: "Store not found!" and return
+    end
+  end
 
   def product_params
     params.require(:product).permit(:id, :name, :price, :description, :out_of_stock, :archived,  images: [])

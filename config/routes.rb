@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     end
   end
 
+  # TODO: change to a order_confirmation controller
   resources :orders, only: [ :index, :show, :create, :update ] do
     get "confirm", as: "confirm"
   end
@@ -16,21 +17,20 @@ Rails.application.routes.draw do
     # TODO: create new controller for creating/deleting spotlight to keep it RESTful
     # TODO: move to store_admin namespace
     delete "remove_spotlight", as: "remove_spotlight"
-    # TODO: move to store_admin namespace
     resources :products, only: [ :index, :show ] do
       # TODO: create new controller for creating/deleting product_images to keep it RESTful
       # TODO: move to store_admin namespace
       delete "remove_image", as: "remove_image"
-      resources :product_images
       # TODO: move to store_admin namespace
+      resources :product_images
       resources :product_reviews, as: "reviews"
     end
   end
 
   resources :store_admin do
-    resources :orders
     resources :stores, controller: "store_admin/stores", except: [ :index ] do
-      resources :products, controller: "store_admin/products"
+      resources :orders
+      resources :products, controller: "store_admin/products", except: [ :destroy ]
     end
   end
 
