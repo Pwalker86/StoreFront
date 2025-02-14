@@ -10,6 +10,7 @@
       <tr>
         <th>Name</th>
         <th>Actions</th>
+        <th>Archved?</th>
       </tr>
     </thead>
     <tbody>
@@ -24,6 +25,9 @@
               <%= link_to "Edit",
               edit_store_admin_store_product_path(current_store_admin, @store, product) %>
             <% end %>
+          </td>
+          <td>
+            <%= product.archived? ? "Yes" : "No" %>
           </td>
         </tr>
       <% end %>
