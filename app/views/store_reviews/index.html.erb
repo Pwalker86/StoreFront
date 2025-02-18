@@ -1,2 +1,3 @@
-<h1>StoreReviews#index</h1>
-<p>Find me in app/views/store_reviews/index.html.erb</p>
+<%= turbo_frame_tag "store_reviews" do %>
+  <%= render "store_reviews/reviews", reviews: @reviews %>
+<% end %>

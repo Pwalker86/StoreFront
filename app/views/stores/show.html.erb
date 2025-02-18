@@ -35,6 +35,6 @@
 
 <%= render "store_reviews/add_review_button", store: @store %>
 
-<%= turbo_frame_tag "store_reviews", data: {"turbo-action": "advance"} do %>
-  <%= render "store_reviews/reviews", reviews: @reviews %>
+<%= turbo_frame_tag "store_reviews", src: store_reviews_path(@store), data: {"turbo-action": "advance"} do %>
+  Loading...
 <% end %>

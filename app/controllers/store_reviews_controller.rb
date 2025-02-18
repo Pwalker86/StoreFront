@@ -1,7 +1,7 @@
 class StoreReviewsController < ApplicationController
   def index
     @store = Store.find params[:store_id]
-    @pagy, @reviews = pagy(@store.reviews.ordered)
+    @pagy, @reviews = pagy(@store.reviews.ordered, limt: 5, page_param: :reviews_page)
   end
 
   def show
