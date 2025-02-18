@@ -3,7 +3,6 @@ class StoresController < ApplicationController
   before_action { authorize @store, policy_class: StorePolicy }
 
   def show
-    @pagy, @reviews = pagy(@store.reviews.ordered, limt: 5, page_param: :reviews_page)
   end
 
   private
