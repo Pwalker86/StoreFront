@@ -3,6 +3,17 @@
   <h1 class="Store__name center-text"><%= @store.name %>
     Products</h1>
 
+  <div class="StoreImage_container mb-05">
+    <%= turbo_frame_tag "store_image", src: store_store_image_path(@store) do %>
+      <div class="card skeleton">
+        <div class="image shimmer"></div>
+        <div class="title shimmer"></div>
+        <div class="price shimmer"></div>
+        <div class="edit shimmer"></div>
+      </div>
+    <% end %>
+  </div>
+
   <% if current_store_admin == @store.store_admin %>
     <%= link_to "New Product", new_store_product_path(@store) %>
   <% end %>
