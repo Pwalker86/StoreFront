@@ -1,0 +1,16 @@
+<%= turbo_frame_tag "store_image_form" do %>
+  <div class="mx-center w-50" data-controller="js-submit">
+    <%= form_with model: [current_store_admin, @store], url: store_admin_store_store_image_path(id: 1), data: {js_submit_target: 'form'} do |form| %>
+      <div class="form-input">
+        <%= form.label :spotlight %>
+        <%# TODO: js_submit circumvents the `required` property %>
+        <%# TODO: without the js_submit, the form isn't submitted when empty, but would need to handle an invalid state %>
+        <%= form.file_field :spotlight, required: true, data: { js_submit_target: "input" } %>
+      </div>
+
+      <div>
+        <%= form.submit "Upload Image", data: { action: "js-submit#jsSubmit" } %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

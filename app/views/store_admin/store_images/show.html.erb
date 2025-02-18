@@ -1,0 +1,13 @@
+<%= turbo_frame_tag "store_image" do %>
+  <% if @store.spotlight.attached? %>
+    <div class="StoreImage_container mb-05">
+      <%= image_tag @spotlight.variant(:thumb), class: "StoreImage__image" %>
+      <%= button_to "Remove Image",
+      store_admin_store_store_image_path(current_store_admin, @store, 1),
+      data: {
+        turbo: false,
+      },
+      method: :delete %>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,6 @@
+Normal user view
+<%= turbo_frame_tag @spotlight do %>
+  <div class="Store__product_container mb-05">
+    <%= image_tag @spotlight.variant(:thumb), class: "StoreEdit__spotlight-image" %>
+  </div>
+<% end %>

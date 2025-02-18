@@ -1,46 +1,44 @@
-<%# if @store.spotlight.attached? %>
-<%#= turbo_frame_tag "store_#{@store_id}_spotlight" do %>
-<%#<div class="StoreEdit__spotlight-container"> %>
-<%#= image_tag @store.spotlight.variant(:thumb), class: "StoreEdit__spotlight-image" %>
-<%#= button_to "Remove Image", store_remove_spotlight_path(@store), method: :delete %>
-<%#</div> %>
-<%# end %>
-<%# end %>
+<%= turbo_frame_tag "store_image", src: store_admin_store_store_image_path(current_store_admin, store, 1) do %>
+  <%#TODO: Extract into SkeletonCardComponent %>
+  <div class="StoreEdit__spotlight-container mx-center">
+    <div class="card skeleton">
+      <div class="image shimmer"></div>
+      <div class="title shimmer"></div>
+      <div class="price shimmer"></div>
+      <div class="edit shimmer"></div>
+    </div>
+  </div>
+<% end %>
 
-<div class="mx-center w-50" data-controller="js-submit">
-  <%= form_with model: [current_store_admin, store], data: {js_submit_target: 'form'} do |form| %>
-    <div class="form-input w-75">
+<div class="mx-center w-40">
+  <%= form_with model: [current_store_admin, store] do |form| %>
+    <div class="form-input">
       <%= form.label :name %>
       <%= form.text_field :name %>
     </div>
 
-    <div class="form-input w-75">
+    <div class="form-input">
       <%= form.label :phone_number %>
       <%= form.telephone_field :phone_number %>
     </div>
 
-    <div class="form-input w-75">
+    <div class="form-input">
       <%= form.label :location %>
       <%= form.text_field :location %>
     </div>
 
-    <div class="form-input w-75">
+    <div class="form-input">
       <%= form.label :email %>
       <%= form.email_field :email %>
     </div>
 
-    <div class="form-input w-75">
+    <div class="form-input">
       <%= form.label :mission_statement %>
       <%= form.text_field :mission_statement %>
     </div>
 
-    <div class="form-input">
-      <%= form.label :spotlight %>
-      <%= form.file_field :spotlight, data: { js_submit_target: "input" } %>
-    </div>
-
     <div>
-      <%= form.button :submit, data: { action: "js-submit#jsSubmit" } %>
+      <%= form.button :submit %>
     </div>
 
     <%= link_to "Cancel", [current_store_admin, store], class: "btn btn--light" %>

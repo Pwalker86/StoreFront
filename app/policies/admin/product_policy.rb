@@ -8,11 +8,11 @@ class Admin::ProductPolicy < ApplicationPolicy
   end
 
   def new?
-    user.is_a?(StoreAdmin) && user.store.nil?
+    belongs_to_store_admin?
   end
 
   def create?
-    user.is_a?(StoreAdmin) && user.store.nil?
+    belongs_to_store_admin?
   end
 
   def edit?

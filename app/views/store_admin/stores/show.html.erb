@@ -2,6 +2,17 @@
   <h1>Managing
     <%= @store.name %>
   </h1>
+
+  <%= turbo_frame_tag "store_image", src: store_admin_store_store_image_path(current_store_admin, @store, 1), class: "mx-center" do %>
+    <%#TODO: Extract into SkeletonCardComponent %>
+    <div class="card skeleton">
+      <div class="image shimmer"></div>
+      <div class="title shimmer"></div>
+      <div class="price shimmer"></div>
+      <div class="edit shimmer"></div>
+    </div>
+  <% end %>
+
   <div>
     <%= link_to "Edit Store", edit_store_admin_store_path(current_store_admin, @store) %>
   </div>

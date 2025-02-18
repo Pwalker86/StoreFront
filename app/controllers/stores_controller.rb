@@ -6,14 +6,6 @@ class StoresController < ApplicationController
     @pagy, @reviews = pagy(@store.reviews.ordered, limt: 5, page_param: :reviews_page)
   end
 
-  def remove_spotlight
-    @store.spotlight.purge_later
-    respond_to do |format|
-        format.html { redirect_to edit_store_path(@store), notice: "Image removed!" }
-        format.turbo_stream
-    end
-  end
-
   private
 
   def set_store
