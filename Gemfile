@@ -73,9 +73,17 @@ gem "devise", "~> 4.9"
 gem "dartsass-rails", "~> 0.5.1"
 gem "draper"
 
+# full text search with PostgreSQL
 gem "pg_search"
+
+# adds tagging functionality to your models
 gem "acts-as-taggable-on"
+
+# More modern way to compose HTML views
 gem "view_component"
+
+# pagination
 gem "pagy", "~> 9.3"
 
+# permissions management
 gem "pundit", "~> 2.4"
