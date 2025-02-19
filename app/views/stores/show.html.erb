@@ -14,11 +14,7 @@
     <% end %>
   </div>
 
-  <% if current_store_admin == @store.store_admin %>
-    <%= link_to "New Product", new_store_product_path(@store) %>
-  <% end %>
-
-  <%= turbo_frame_tag "store_products", src: store_products_path(@store) do %>
+  <%= turbo_frame_tag "store_products",  src: store_products_path(@store) do %>
     <%#TODO: Extract into SkeletonCardComponent %>
     <div class="Store__product_container mb-05">
       <% 6.times do %>
@@ -35,6 +31,6 @@
 
 <%= render "store_reviews/add_review_button", store: @store %>
 
-<%= turbo_frame_tag "store_reviews", src: store_reviews_path(@store), data: {"turbo-action": "advance"} do %>
+<%= turbo_frame_tag "store_reviews", src: store_store_reviews_path(@store) do %>
   Loading...
 <% end %>

@@ -1,6 +1,0 @@
-<div class="StoreReviews__container container mt-1">
-  <%= render ReviewComponent.with_collection(@reviews) %>
-  <% if @pagy.count > 0 %>
-    <%== pagy_nav(@pagy) %>
-  <% end %>
-</div>

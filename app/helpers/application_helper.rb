@@ -1,8 +1,7 @@
 module ApplicationHelper
   include Pagy::Frontend
   GSUB_OPTIONS = {
-    product_reviews: "/product_reviews",
-    store_reviews: "/store_reviews"
+    product_reviews: "/product_reviews"
   }.freeze
 
   def pagy_url_for(pagy, page, absolute: false)
