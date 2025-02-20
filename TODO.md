@@ -24,4 +24,5 @@
   - [ ] Build StoreAdmin forum
   - [ ] Build StoreAdmin customer forum
 
-- [ ] Refactor store/product reviews into their own controller/views
+- [ ] Refactor store reviews into their own controller/views
+- [ ] Refactor product reviews into their own controller/views

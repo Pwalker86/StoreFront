@@ -20,7 +20,7 @@ puts "******* Creating Users *****"
 end
 
 puts "******* Creating Admins *****"
-3.times do |i|
+10.times do |i|
   a = StoreAdmin.new(email: "admin#{i}@email.com", password: "test123")
   begin
     a.save!
