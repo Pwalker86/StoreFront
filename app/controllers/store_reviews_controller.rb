@@ -15,7 +15,7 @@ class StoreReviewsController < ApplicationController
     @store = Store.find params[:store_id]
     @review = @store.reviews.new(review_params)
     if @review.save
-      @pagy_reviews, @reviews = pagy(@store.reviews.ordered)
+      @pagy_reviews, @reviews = pagy(@store.reviews.order(created_at: :desc), limt: 6, page_param: :reviews_page)
       respond_to do |format|
         format.html { redirect_to @store, notice: "Your review has been created!" }
         format.turbo_stream
