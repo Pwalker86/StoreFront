@@ -12,12 +12,13 @@ class StoreAdmin::StoreImagesController < ApplicationController
 
   def create
     respond_to do |format|
-      if @store.spotlight.attach(store_params[:spotlight])
-        format.html { redirect_to edit_store_admin_store_path(@store.store_admin, @store), notice: "Image was sucessfully uploaded!" }
-        format.json { render :show, status: :ok, location: store }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @store.errors, status: :unprocessable_entity }
+      begin
+        @store.spotlight.attach(store_params[:spotlight])
+        msg = "Image was sucessfully uploaded!"
+      rescue ActiveSupport::MessageVerifier::InvalidSignature
+        msg = "Something went wrong"
+      ensure
+        format.html { redirect_to edit_store_admin_store_path(@store.store_admin, @store), notice: msg }
       end
     end
   end
