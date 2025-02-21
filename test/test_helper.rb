@@ -1,16 +1,15 @@
 ENV["RAILS_ENV"] ||= "test"
 require "simplecov"
+SimpleCov.start "rails"
+
 require_relative "../config/environment"
 require "rails/test_help"
 require "minitest/reporters"
+require "minitest/rails"
 
-SimpleCov.start "rails"
-
-unless ENV["RM_INFO"]
-  reporter_options = { color: true }
-  # Minitest::Reporters.use! [Minitest::Reporters::SpecReporter.new(reporter_options)]
-  Minitest::Reporters.use! [ Minitest::Reporters::DefaultReporter.new(reporter_options) ]
-end
+reporter_options = { color: true }
+# Minitest::Reporters.use! [Minitest::Reporters::SpecReporter.new(reporter_options)]
+Minitest::Reporters.use! [ Minitest::Reporters::DefaultReporter.new(reporter_options) ]
 
 module ActiveSupport
   class TestCase
