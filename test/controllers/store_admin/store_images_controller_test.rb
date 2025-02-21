@@ -1,6 +1,6 @@
 require "test_helper"
 
-class StoreImagesControllerTest < ActionDispatch::IntegrationTest
+class StoreAdmin::StoreImagesControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   test "should redirect to root if store not found" do
