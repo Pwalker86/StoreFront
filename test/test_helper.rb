@@ -4,7 +4,7 @@ require_relative "../config/environment"
 require "rails/test_help"
 require "minitest/reporters"
 
-SimpleCov.start
+SimpleCov.start "rails"
 
 unless ENV["RM_INFO"]
   reporter_options = { color: true }
