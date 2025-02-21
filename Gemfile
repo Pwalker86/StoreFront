@@ -67,6 +67,7 @@ group :test do
   gem "selenium-webdriver"
   gem "mutex_m"
   gem "simplecov", require: false
+  gem "minitest-rails"
 end
 
 gem "devise", "~> 4.9"
@@ -87,3 +88,6 @@ gem "pagy", "~> 9.3"
 
 # permissions management
 gem "pundit", "~> 2.4"
+
+# active storage validations
+gem "activestorage-validator"

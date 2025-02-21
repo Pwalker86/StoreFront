@@ -1,3 +1,6 @@
+<% @store.errors.full_messages.each do |message| %>
+  <%= message %>
+<% end %>
 <% if !@store.spotlight.attached? %>
   <div class="mx-center w-50" data-controller="js-submit">
     <%= form_with model: [current_store_admin, @store], url: store_admin_store_store_images_path, method: :post, data: {js_submit_target: 'form'} do |form| %>
