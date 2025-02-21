@@ -4,26 +4,16 @@ class StoreAdmin::StoreImagesController < ApplicationController
   before_action { authorize @store, policy_class: Admin::StoreImagePolicy }
 
   def show
-    set_store
     @spotlight = Store.find(params[:store_id]).spotlight
   end
 
   def new
-    set_store
   end
 
   def create
-  end
-
-  def edit
-    set_store
-  end
-
-  def update
-    set_store
     respond_to do |format|
-      if @store.update(store_params)
-        format.html { redirect_to edit_store_admin_store_path(@store.store_admin, @store), notice: "Store was successfully updated." }
+      if @store.spotlight.attach(store_params[:spotlight])
+        format.html { redirect_to edit_store_admin_store_path(@store.store_admin, @store), notice: "Image was sucessfully uploaded!" }
         format.json { render :show, status: :ok, location: store }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -32,8 +22,10 @@ class StoreAdmin::StoreImagesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def destroy
-    set_store
     @store.spotlight.purge_later
     respond_to do |format|
         format.html { redirect_to edit_store_admin_store_path(@store.store_admin, @store), notice: "Image has been queued for deletion!" }

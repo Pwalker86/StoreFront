@@ -1,8 +1,6 @@
 <%= turbo_frame_tag "store_reviews" do %>
-  <div class="StoreReviews__container container mt-1">
-    <%= render ReviewComponent.with_collection(@reviews) %>
-    <% if @pagy_reviews.count > 0 %>
-      <%== pagy_nav(@pagy_reviews) %>
-    <% end %>
-  </div>
+  <%= render ReviewComponent.with_collection(@reviews) %>
+  <% if @pagy_reviews.count > 0 %>
+    <%== pagy_nav(@pagy_reviews) %>
+  <% end %>
 <% end %>

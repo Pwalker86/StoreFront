@@ -31,6 +31,8 @@
 
 <%= render "store_reviews/add_review_button", store: @store %>
 
-<%= turbo_frame_tag "store_reviews", src: store_store_reviews_path(@store) do %>
-  Loading...
-<% end %>
+<div class="StoreReviews__container container mt-1">
+  <%= turbo_frame_tag "store_reviews", src: store_store_reviews_path(@store) do %>
+    Loading...
+  <% end %>
+</div>

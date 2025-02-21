@@ -1,8 +1,6 @@
 <div class="StoreEdit__container">
-  <% if !@store.spotlight.attached? %>
-    <%= turbo_frame_tag "store_image_form", src: edit_store_admin_store_store_image_path(current_store_admin, @store, 1) do %>
-      loading...
-    <% end %>
+  <%= turbo_frame_tag "store_image_form", src: new_store_admin_store_store_image_path(current_store_admin, @store) do %>
+    loading...
   <% end %>
   <%= render "store_admin/stores/form", store: @store %>
 </div>

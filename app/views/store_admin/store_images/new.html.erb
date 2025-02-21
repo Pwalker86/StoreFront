@@ -1,2 +1,3 @@
-Admin form
-<%= render "form", locals: { store_admin: current_store_admin, store: @store } %>
+<%= turbo_frame_tag "store_image_form" do %>
+  <%= render "form", locals: { store_admin: current_store_admin, store: @store } %>
+<% end %>
