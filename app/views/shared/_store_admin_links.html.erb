@@ -1,5 +1,5 @@
 <% if current_store_admin %>
-  <% if path === 'show_store' %>
+  <% if path === 'show_store' && current_store_admin.store.persisted? %>
     <%= link_to "View Store",
     store_admin_store_path(current_store_admin, current_store_admin.store) %>
   <% end %>

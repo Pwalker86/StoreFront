@@ -22,3 +22,6 @@ store_admin_one:
 
 store_admin_two:
   email: admin2@email.com
+
+store_admin_none:
+  email: nostore@email.com

@@ -1,13 +1,15 @@
-<%= turbo_frame_tag "store_image", src: store_admin_store_store_image_path(current_store_admin, store, 1) do %>
-  <%#TODO: Extract into SkeletonCardComponent %>
-  <div class="StoreEdit__spotlight-container mx-center">
-    <div class="card skeleton">
-      <div class="image shimmer"></div>
-      <div class="title shimmer"></div>
-      <div class="price shimmer"></div>
-      <div class="edit shimmer"></div>
+<% if current_store_admin.store.persisted? %>
+  <%= turbo_frame_tag "store_image", src: store_admin_store_store_image_path(current_store_admin, store, 1) do %>
+    <%#TODO: Extract into SkeletonCardComponent %>
+    <div class="StoreEdit__spotlight-container mx-center">
+      <div class="card skeleton">
+        <div class="image shimmer"></div>
+        <div class="title shimmer"></div>
+        <div class="price shimmer"></div>
+        <div class="edit shimmer"></div>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
 
 <div class="mx-center w-40">
