@@ -37,11 +37,6 @@ class StoreAdmin::StoresController < ApplicationController
     current_store_admin
   end
 
-   def user_not_authorized
-     flash[:alert] = "You are not authorized to perform this action."
-     redirect_back_or_to(root_path)
-   end
-
   def set_store
     begin
       @store = Store.find(params[:id])
