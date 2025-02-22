@@ -27,10 +27,8 @@ class StoreAdmin::ProductsController < ApplicationController
     respond_to do |format|
       if @product.save
         format.html { redirect_to store_admin_store_product_path(@admin, @store, @product), notice: "Product was successfully created." }
-        format.json { render :show, status: :created, location: @product }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.html { redirect_to new_store_admin_store_product_path(@admin, @store), status: :unprocessable_entity }
       end
     end
   end
