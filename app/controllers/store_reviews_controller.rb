@@ -4,11 +4,9 @@ class StoreReviewsController < ApplicationController
     @pagy_reviews, @reviews = pagy(@store.reviews.order(created_at: :desc), limt: 6, page_param: :reviews_page)
   end
 
-  def show
-  end
-
   def new
     @store = Store.find params[:store_id]
+    @review = @store.reviews.new
   end
 
   def create
@@ -26,9 +24,22 @@ class StoreReviewsController < ApplicationController
   end
 
   def edit
+    @store = Store.find params[:store_id]
+    @review = @store.reviews.find params[:id]
   end
 
   def update
+    @store = Store.find params[:store_id]
+    @review = @store.reviews.find params[:id]
+    if @review.update(review_params)
+      @pagy_reviews, @reviews = pagy(@store.reviews.order(created_at: :desc), limt: 6, page_param: :reviews_page)
+      respond_to do |format|
+        format.html { redirect_to @store, notice: "Your review has been updated!" }
+        format.turbo_stream
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
