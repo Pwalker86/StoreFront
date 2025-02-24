@@ -2,29 +2,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, prepend: true
   include Pundit::Authorization
   include Pagy::Backend
+  include CartEnsurer
   helper_method :active_user
-  before_action :ensure_cart, unless: :current_store_admin
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   protected
 
   def active_user
-    session[:guest_id] = nil and return if current_store_admin
-    @active_user ||= if current_user
-                     current_user
-    elsif session[:guest_id]
-                     Guest.find_or_create_by(id: session[:guest_id])
-    else
-                     guest = Guest.create!
-                     session[:guest_id] = guest.id
-                     guest
-    end
-  end
-
-  # @return decorated [Cart]
-  def ensure_cart
-    @cart ||= CartDecorator.decorate(active_user.cart || active_user.create_cart!)
+    @active_user = ActiveUserService.new(session, current_user, current_store_admin).call
   end
 
   def after_sign_in_path_for(resource)
