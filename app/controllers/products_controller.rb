@@ -6,8 +6,12 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @store = Store.find params[:store_id]
-    @product = @store.products.find (params[:id])
-    @pagy, @reviews = pagy(@product.reviews.ordered)
+    begin
+      @store = Store.find params[:store_id]
+      @product = @store.products.find (params[:id])
+      @pagy, @reviews = pagy(@product.reviews.ordered)
+    rescue ActiveRecord::RecordNotFound
+      render "products/not_found", status: :not_found
+    end
   end
 end
