@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :stores, only: [ :index, :show ] do
     resources :store_images, only: [ :show ]
-    resources :store_reviews, except: [ :show ]
+    resources :store_reviews
     resources :products, only: [ :index, :show ] do
       # TODO: create new controller for creating/deleting product_images to keep it RESTful
       # TODO: move to store_admin namespace

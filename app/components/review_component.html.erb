@@ -1,8 +1,17 @@
-<div id="<%="review_#{@review.id}"%>" class="Review p-05 mb-05">
-  <div>Title:
-    <%= @review.title %></div>
+<%= tag.turbo_frame id:"review_#{@review.id}" do %>
+  <div class="Review p-05 mb-05">
+    <div>Title:
+      <%= @review.title %></div>
 
-  <div>
-    <%= @review.body %>
+    <div>
+      <%= @review.body %>
+    </div>
+
+    <%= link_to "Edit", edit_store_store_review_path(@review.reviewable, @review) %>
+    <%= link_to "Destroy",
+    store_store_review_path(@review.reviewable, @review),
+    data: {
+      turbo_method: :delete,
+    } %>
   </div>
-</div>
+<% end %>

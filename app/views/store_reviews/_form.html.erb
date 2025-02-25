@@ -13,7 +13,7 @@
 <div class="StoreReview__form">
   <h2>Review for
     <%= review.reviewable.name.capitalize %></h2>
-  <%= form_with model: review, url: store_store_reviews_path(review.reviewable), method: :post do |f| %>
+  <%= form_with model: [review.reviewable, review], url: review.new_record? ? store_store_reviews_path(review.reviewable) : store_store_review_path(review.reviewable, review) do |f| %>
     <div class="form-input">
       <%= f.label :title %>
       <%= f.text_field :title, required: true %>
@@ -24,8 +24,7 @@
     </div>
     <div class="mt-1">
       <%= f.submit class: "button-link" %>
-      <%= link_to "Cancel", review.reviewable %>
+      <%= link_to "Cancel", store_store_review_path(review.reviewable, review) %>
     </div>
-
   <% end %>
 </div>

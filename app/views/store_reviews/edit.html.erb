@@ -1,3 +1,5 @@
 <%= turbo_frame_tag @review do %>
-  <%= render "form", review: @review %>
+  <div class="Review p-05 mb-05">
+    <%= render "form", review: @review %>
+  </div>
 <% end %>
