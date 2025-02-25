@@ -1,3 +1,15 @@
 <%= turbo_frame_tag "review_#{@review.id}" do %>
-  <%= render ReviewComponent.new(review: @review) %>
+  <%= render ReviewComponent.new(review: @review) do |component| %>
+    <% component.with_link(
+      text: "Edit",
+      path: edit_store_store_review_path(@review.reviewable, @review),
+    ) %>
+    <% component.with_link(
+      text: "Delete",
+      path: store_store_review_path(@review.reviewable, @review),
+      dataset: {
+        turbo_method: :delete,
+      },
+    ) %>
+  <% end %>
 <% end %>

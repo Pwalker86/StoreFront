@@ -1,12 +1,14 @@
 class StoreReviewsController < ApplicationController
+  before_action :authenticate_user!, except: [ :index, :show ]
+  before_action :set_review, only: [ :show, :edit, :update, :destroy ]
+  before_action { authorize @review, policy_class: StoreReviewPolicy }
+
   def index
     @store = Store.find params[:store_id]
     @pagy_reviews, @reviews = pagy(@store.reviews.order(created_at: :desc), limt: 6, page_param: :reviews_page)
   end
 
   def show
-    @store = Store.find params[:store_id]
-    @review = @store.reviews.find params[:id]
   end
 
   def new
@@ -16,7 +18,7 @@ class StoreReviewsController < ApplicationController
 
   def create
     @store = Store.find params[:store_id]
-    @review = @store.reviews.new(review_params)
+    @review = @store.reviews.new(review_params.merge(user: current_user))
     if @review.save
       @pagy_reviews, @reviews = pagy(@store.reviews.order(created_at: :desc), limt: 6, page_param: :reviews_page)
       respond_to do |format|
@@ -29,16 +31,12 @@ class StoreReviewsController < ApplicationController
   end
 
   def edit
-    @store = Store.find params[:store_id]
-    @review = @store.reviews.find params[:id]
   end
 
   def update
-    @store = Store.find params[:store_id]
-    @review = @store.reviews.find params[:id]
     if @review.update(review_params)
       respond_to do |format|
-        format.html { redirect_to @store, notice: "Your review has been updated!" }
+        format.html { redirect_to @review.reviewable, notice: "Your review has been updated!" }
         format.turbo_stream
       end
     else
@@ -47,12 +45,9 @@ class StoreReviewsController < ApplicationController
   end
 
   def destroy
-    puts "****************** store_reviews_controller.rb ******************"
-    @store = Store.find params[:store_id]
-    @review = @store.reviews.find params[:id]
     if @review.destroy
       respond_to do |format|
-        format.html { redirect_to @store, notice: "Your review has been updated!" }
+        format.html { redirect_to @review.reviewable, notice: "Your review has been updated!" }
         format.turbo_stream
       end
     else
@@ -63,6 +58,10 @@ class StoreReviewsController < ApplicationController
   private
 
   def review_params
-     params.expect(review: [ :title, :body ])
+    params.expect(review: [ :title, :body ])
+  end
+
+  def set_review
+    @review = Review.find params[:id]
   end
 end

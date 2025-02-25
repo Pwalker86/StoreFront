@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_13_163726) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_25_034417) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -120,7 +120,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_13_163726) do
     t.datetime "updated_at", null: false
     t.string "reviewable_type"
     t.bigint "reviewable_id"
+    t.bigint "user_id", null: false
     t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "store_admins", force: :cascade do |t|
@@ -211,6 +213,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_13_163726) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "products", "stores"
+  add_foreign_key "reviews", "users"
   add_foreign_key "stores", "store_admins"
   add_foreign_key "taggings", "tags"
 end

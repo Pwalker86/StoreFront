@@ -1,3 +1,11 @@
+<% back_path =
+  (
+    if review.new_record?
+      store_path(review.reviewable)
+    else
+      store_store_review_path(review.reviewable, review)
+    end
+  ) %>
 <% if review.errors.any? %>
   <div id="error_explanation">
     <h6><%= pluralize(review.errors.count, "error") %>
@@ -24,7 +32,7 @@
     </div>
     <div class="mt-1">
       <%= f.submit class: "button-link" %>
-      <%= link_to "Cancel", store_store_review_path(review.reviewable, review) %>
+      <%= link_to "Cancel", back_path %>
     </div>
   <% end %>
 </div>

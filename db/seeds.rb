@@ -51,7 +51,7 @@ puts "******* Creating Admins *****"
     puts "******* Creating #{store.name} Reviews *****"
     begin
       (10..30).to_a.sample.times do
-        store.reviews.new(title: Faker::Lorem.sentence(word_count: 5), body: Faker::Lorem.paragraphs(number: (1..2).to_a.sample).join(" "))
+        store.reviews.new(title: Faker::Lorem.sentence(word_count: 5), body: Faker::Lorem.paragraphs(number: (1..2).to_a.sample).join(" "), user_id: User.all.sample.id)
       end
       store.save!
     puts "*********** Reviews created **********"
@@ -64,7 +64,7 @@ puts "******* Creating Admins *****"
     puts "******* Creating #{product.name} Reviews *****"
     begin
       (10..30).to_a.sample.times do
-        product.reviews.new(title: Faker::Lorem.sentence(word_count: 5), body: Faker::Lorem.paragraphs(number: (1..2).to_a.sample).join(" "))
+        product.reviews.new(title: Faker::Lorem.sentence(word_count: 5), body: Faker::Lorem.paragraphs(number: (1..2).to_a.sample).join(" "), user_id: User.all.sample.id)
       end
       product.save!
     puts "*********** Reviews created **********"

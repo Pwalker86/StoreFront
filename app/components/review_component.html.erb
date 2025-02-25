@@ -7,11 +7,11 @@
       <%= @review.body %>
     </div>
 
-    <%= link_to "Edit", edit_store_store_review_path(@review.reviewable, @review) %>
-    <%= link_to "Destroy",
-    store_store_review_path(@review.reviewable, @review),
-    data: {
-      turbo_method: :delete,
-    } %>
+    <% if links? %>
+      <% links.each do |link| %>
+        <%= link %>
+      <% end %>
+    <% end %>
+
   </div>
 <% end %>
