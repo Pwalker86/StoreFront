@@ -1,4 +1,5 @@
-<%= turbo_frame_tag @product.reviews.new do %>
-  <%= render "form", product: @product %>
-  <%= link_to "Cancel", store_product_path(@product.store, @product) %>
+<%= turbo_frame_tag @review do %>
+  <%= render "form", review: @review %>
+  <%= link_to "Cancel",
+  store_product_path(@review.reviewable.store, @review.reviewable) %>
 <% end %>

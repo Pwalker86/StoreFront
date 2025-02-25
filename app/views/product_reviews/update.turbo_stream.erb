@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "review_#{@review.id}" do %>
+<%= turbo_stream.replace "review_#{@review.id}" do %>
   <%= render ReviewComponent.new(review: @review) do |component| %>
     <% if current_user == component.review.user %>
       <% component.with_links(

@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       delete "remove_image", as: "remove_image"
       # TODO: move to store_admin namespace
       resources :product_images
-      resources :product_reviews, as: "reviews"
+      resources :product_reviews
     end
   end
 

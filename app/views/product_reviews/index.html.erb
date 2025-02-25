@@ -1,0 +1,34 @@
+<%= turbo_frame_tag "product_reviews" do %>
+  <%= render ReviewComponent.with_collection(@reviews) do |component| %>
+    <% if current_user == component.review.user %>
+      <% component.with_links(
+        [
+          {
+            text: "Edit",
+            path:
+              edit_store_product_product_review_path(
+                component.review.reviewable.store,
+                component.review.reviewable,
+                component.review,
+              ),
+          },
+          {
+            text: "Delete",
+            path:
+              store_product_product_review_path(
+                component.review.reviewable.store,
+                component.review.reviewable,
+                component.review,
+              ),
+            dataset: {
+              turbo_method: :delete,
+            },
+          },
+        ],
+      ) %>
+    <% end %>
+  <% end %>
+  <% if @pagy_reviews.count > 0 %>
+    <%== pagy_nav(@pagy_reviews) %>
+  <% end %>
+<% end %>

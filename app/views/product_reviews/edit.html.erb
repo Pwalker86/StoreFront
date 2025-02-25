@@ -1,2 +1,5 @@
-<h1>StoreReviews#edit</h1>
-<p>Find me in app/views/store_reviews/edit.html.erb</p>
+<%= turbo_frame_tag @review do %>
+  <div class="Review p-05 mb-05">
+    <%= render "form", review: @review %>
+  </div>
+<% end %>
