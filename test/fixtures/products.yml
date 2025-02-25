@@ -23,7 +23,7 @@
 #  fk_rails_...  (store_id => stores.id)
 #
 product_one:
-  name: MyString
+  name: The Lord of the Ring
   price: 9.99
   description: MyText
   out_of_stock: false
@@ -31,7 +31,7 @@ product_one:
   store: store_one
 
 product_two:
-  name: MyString
+  name: Harry Potter
   price: 4.99
   description: MyText
   out_of_stock: false
@@ -39,7 +39,7 @@ product_two:
   store: store_one
 
 product_three:
-  name: MyString
+  name: The Wheel of Time
   price: 4.99
   description: MyText
   out_of_stock: false

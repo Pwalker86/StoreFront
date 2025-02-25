@@ -62,7 +62,7 @@ class StoreAdmin::StoreImagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
   end
 
-  test "should redirectif not store admin - SHOW" do
+  test "should redirect if not store admin - SHOW" do
     user = users(:user_one)
     sign_in user
     store = stores(:store_one)

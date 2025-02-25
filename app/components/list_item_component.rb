@@ -3,9 +3,8 @@
 class ListItemComponent < ViewComponent::Base
   with_collection_parameter :product
 
-  def initialize(product:, link:)
+  def initialize(product:)
     @name = product[:name]
     @href = product[:href]
-    @link = link
   end
 end
