@@ -1,0 +1,32 @@
+.Accordian__header {
+  background-color: lightgrey;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding-left: 4px;
+  height: 2rem;
+  align-content: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.Accordian__details {
+  background-color: lightgrey;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s;
+}
+
+.Accordian__details--open {
+  max-height: 1000px;
+}
+
+.Accordian__openIndicator {
+  float: right;
+  margin-right: 12px;
+  transition: transform 0.5s;
+}
+
+.Accordian__openIndicator--rotated {
+  transform: rotate(180deg);
+  transition: transform 0.5s;
+}
