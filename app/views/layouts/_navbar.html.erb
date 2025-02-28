@@ -6,7 +6,17 @@
   </div>
 
   <%= render(
-    SearchComponent.new(url: "/search", input_placeholder: "Search Products..."),
+    SearchComponent.new(
+      url: "/search",
+      input_placeholder: "Search Products...",
+      key_events: %w[
+        keyup->search-component#search
+        keyup->search-component#updateLinkHref
+        keydown.down->search-component#handleSearchKeydown
+        keydown.tab->search-component#handleSearchKeydown
+        keydown.up->search-component#handleSearchKeyup
+      ],
+    ),
   ) %>
 
   <div class="Navbar__menu">
