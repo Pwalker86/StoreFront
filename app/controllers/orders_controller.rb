@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    user = order_params[:user_entity].constantize.find(order_params[:user_entity_id])
+    user = EntityLookup.find_entity(order_params[:user_entity], order_params[:user_entity_id])
     cart = user.cart
     begin
       ConvertCartToOrderService.new(cart, order_params, user).process
