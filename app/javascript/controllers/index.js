@@ -2,22 +2,24 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
-
-import CarouselController from "./carousel_controller"
-application.register("carousel", CarouselController)
-
-import FileController from "./file_controller"
-application.register("file", FileController)
-
-import InputController from "./input_controller"
-application.register("input", InputController)
-
-import JsSubmitController from "./js_submit_controller"
-application.register("js-submit", JsSubmitController)
-
-import SearchComponentController from "./search_component_controller"
-application.register("search-component", SearchComponentController)
-
-import TooltipController from "./tooltip_controller"
-application.register("tooltip", TooltipController)
+import { application } from "controllers/application";
+import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading";
+eagerLoadControllersFrom("controllers", application);
+//
+// import CarouselController from "./carousel_controller.js";
+// application.register("carousel", CarouselController);
+//
+// import FileController from "./file_controller.js";
+// application.register("file", FileController);
+//
+// import InputController from "./input_controller.js";
+// application.register("input", InputController);
+//
+// import JsSubmitController from "./js_submit_controller.js";
+// application.register("js-submit", JsSubmitController);
+//
+// import SearchComponentController from "./search_component_controller.js";
+// application.register("search-component", SearchComponentController);
+//
+// import TooltipController from "./tooltip_controller.js";
+// application.register("tooltip", TooltipController);
