@@ -1,17 +1,12 @@
 class CartUpdateService
   def initialize(user_entity_param, user_id, product_id, quantity)
-    safe_constants = {
-      "Guest": Guest,
-      "User": User
-    }
-    @user_entity_class = safe_constants[user_entity_param.to_sym]
-    @user_id = user_id
+    @user_entity = EntityLookup.find_entity(user_entity_param, user_id)
     @product_id = product_id
     @quantity = quantity
   end
 
   def call
-    cart = @user_entity_class.find(@user_id).cart
+    cart = @user_entity.cart
     product = Product.find(@product_id)
 
     cart_item = cart.cart_items.find_or_initialize_by(product: product)
