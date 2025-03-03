@@ -1,12 +1,14 @@
 class CartUpdateService
   def initialize(user_entity_param, user_id, product_id, quantity)
-    @user_entity = EntityLookup.find_entity(user_entity_param, user_id)
+    @user_entity_param = user_entity_param
+    @user_id = user_id
     @product_id = product_id
     @quantity = quantity
   end
 
   def call
     begin
+      @user_entity = EntityLookup.find_entity(@user_entity_param, @user_id)
       cart = @user_entity.cart
       product = Product.find(@product_id)
 
