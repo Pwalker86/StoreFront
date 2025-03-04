@@ -1,6 +1,5 @@
 <div class="OrderSummary">
-  <h3 class="OrderSummary__title">My Cart:
-    <%= @cart.id %></h3>
+  <h3 class="OrderSummary__title"><%= display_username %>'s Cart</h3>
   <div class="OrderSummary__items">
     <ul class="OrderSummary__items-list">
       <% @cart.sorted_cart_items.each do |item| %>

@@ -24,6 +24,26 @@ class Order < ApplicationRecord
   ORDER_OPEN = "open"
   ORDER_PENDING = "pending"
 
+  def scoped_order_items(store_id)
+    order_items.find_all { |item| item.product.store_id === store_id }
+  end
+
+  def sorted_order_items
+    order_items.includes(:product).order("products.name")
+  end
+
+  # def total_price
+  #   order_items.includes(:product).sum { |item| item.product.price * item.quantity }
+  # end
+  #
+  # def order_item_totals
+  #   order_items.sum(:quantity)
+  # end
+  #
+  # def is_ready_for_checkout
+  #   object.status == Order::ORDER_OPEN && object.order_items.any?
+  # end
+
   def open?
     status == ORDER_OPEN
   end

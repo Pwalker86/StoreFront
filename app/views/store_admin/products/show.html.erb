@@ -11,5 +11,10 @@
   </ul>
 </div>
 
+<%= render ProductShowComponent.new(product: @product) do |component| %>
+  <%= component.with_image_carousel(images: @product.images) %>
+  <%= component.with_product_details(product: @product) %>
+<% end %>
+
 <%= link_to "Back to Products",
 store_admin_store_products_path(current_store_admin, @store) %>

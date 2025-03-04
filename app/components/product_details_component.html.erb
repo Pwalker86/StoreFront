@@ -28,11 +28,18 @@
     <% end %>
   </div>
   <p class="secondary-text mt-1">Tags:</p>
-  <div class="ProductDetails__tags flex flex-wrap flex-gap-05 mt-025">
-    <%= render(
-      ProductTagComponent.with_collection(@product.tag_list, product: @product),
-    ) %>
-  </div>
+  <%= tag.turbo_frame id: "product_tags", class:"ProductDetails__tags flex flex-wrap flex-gap-05 mt-025" do %>
+    <%= render ProductTagComponent.with_collection(@product.tag_list, product: @product) %>
+  <% end %>
+  <% if helpers.current_store_admin %>
+    <%= tag.turbo_frame id: "new_product_tag",
+                    src:
+                      new_store_admin_store_product_tag_path(
+                        helpers.current_store_admin,
+                        @product.store,
+                        @product,
+                      ) %>
+  <% end %>
   <div class="ProductDetails__review-count">
     <%= @product.reviews.count %>
     reviews

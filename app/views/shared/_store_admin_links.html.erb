@@ -13,8 +13,9 @@
     edit_store_admin_store_path(current_store_admin, current_store_admin.store.id) %>
   <% end %>
 
-  <% if path === 'orders_index' %>
-    <%= link_to "View All Orders", store_admins_orders_path %>
+  <% if path === 'orders_index' && current_store_admin.store.persisted? %>
+    <%= link_to "View All Orders",
+    store_admin_store_orders_path(current_store_admin, current_store_admin.store) %>
   <% end %>
 
   <% if path === 'log_out' %>

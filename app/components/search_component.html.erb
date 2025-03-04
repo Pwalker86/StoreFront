@@ -28,8 +28,7 @@
       class: "Search__input",
       data: {
         search_component_target: "searchInput",
-        action:
-          "keyup->search-component#search keyup->search-component#updateLinkHref keydown.down->search-component#handleSearchKeydown keydown.tab->search-component#handleSearchKeydown keydown.up->search-component#handleSearchKeyup ",
+        action: @key_events,
       } %>
     </div>
     <button

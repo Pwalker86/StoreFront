@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   # TODO: change to a order_confirmation controller
-  resources :orders, only: [ :index, :show, :create, :update ] do
+  resources :orders, only: [ :index, :show, :create ] do
     get "confirm", as: "confirm"
   end
 
@@ -27,8 +27,10 @@ Rails.application.routes.draw do
 
   resources :store_admin do
     resources :stores, controller: "store_admin/stores", except: [ :index ] do
-      resources :orders
-      resources :products, controller: "store_admin/products", except: [ :destroy ]
+      resources :orders, controller: "store_admin/orders", only: [ :index, :show ]
+      resources :products, controller: "store_admin/products", except: [ :destroy ] do
+        resources :tags, controller: "store_admin/tags", only: [ :new, :create, :destroy ]
+      end
       resources :store_images, controller: "store_admin/store_images", except: [ :index, :update ]
     end
   end

@@ -18,6 +18,7 @@
       <% end %>
       <% if current_store_admin && current_store_admin.store.present? %>
         <%= render "shared/#{user_type}_links", path: "show_store" %>
+        <%= render "shared/#{user_type}_links", path: "orders_index" %>
       <% end %>
     </div>
     <div class="Navbar__menu account-icon">

@@ -1,3 +1,4 @@
+<h1>Admin Orders</h1>
 <table class="orders-table">
   <tr class="orders-table__header">
     <th class="orders-table__header-cell">Order ID</th>
@@ -10,7 +11,13 @@
       <td class="orders-table__cell"><%= order.id %></td>
       <td class="orders-table__cell"><%= order.orderable.email %></td>
       <td class="orders-table__cell"><%= order.status %></td>
-      <td class="orders-table__cell"><%= link_to "View", store_admins_order_path(order), class: "orders-table__link" %></td>
+      <td class="orders-table__cell"><%= link_to "View",
+        store_admin_store_order_path(
+          current_store_admin,
+          current_store_admin.store,
+          order,
+        ),
+        class: "orders-table__link" %></td>
     </tr>
   <% end %>
 </table>

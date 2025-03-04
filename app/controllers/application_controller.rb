@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def active_user
-    @active_user = ActiveUserService.new(session, current_user, current_store_admin).call
+    @active_user ||= ActiveUserService.new(session, current_user, current_store_admin).call
   end
 
   def after_sign_in_path_for(resource)
