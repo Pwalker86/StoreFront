@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   # TODO: change to a order_confirmation controller
-  resources :orders, only: [ :index, :show, :create, :update ] do
+  resources :orders, only: [ :index, :show, :create ] do
     get "confirm", as: "confirm"
   end
 
