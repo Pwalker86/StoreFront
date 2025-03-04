@@ -24,7 +24,7 @@ class ConvertCartToOrderService
 
   def convert_cart_items
     @cart.cart_items.each do |item|
-      @order.order_items.new(price: item.price, quantity: item.quantity, product_id: item.product_id)
+      @order.order_items.new(price: item.price * item.quantity, quantity: item.quantity, product_id: item.product_id)
     end
   end
 
