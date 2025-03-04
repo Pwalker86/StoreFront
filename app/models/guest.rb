@@ -12,7 +12,7 @@ class Guest < ApplicationRecord
   has_one :cart, dependent: :destroy
 
   def email
-    ""
+    "Guest - No Email"
   end
 
   def display_name

@@ -13,8 +13,8 @@ class ConvertCartToOrderService
     convert_cart_items
     set_guest_email
     update_status
-    # set_sales_prices
     set_order_address
+    # in the future, this is where payment processing would be invoked
     if @order.save!
       @cart.cart_items.destroy_all
     end
@@ -24,7 +24,7 @@ class ConvertCartToOrderService
 
   def convert_cart_items
     @cart.cart_items.each do |item|
-      @order.order_items.new(price: item.price, quantity: item.quantity, product_id: item.product_id)
+      @order.order_items.new(price: item.price * item.quantity, quantity: item.quantity, product_id: item.product_id)
     end
   end
 
@@ -32,14 +32,6 @@ class ConvertCartToOrderService
   def update_status
     @order.status = "pending"
   end
-
-  # TODO: This still needs to be re-implemented
-  # # Sets the price of each order item to the price of the product at the time of sale.
-  # def set_sales_prices
-  #   @order.order_items.each do |item|
-  #     item.price = item.product.price
-  #   end
-  # end
 
   # Sets the shipping address for the order.
   def set_order_address

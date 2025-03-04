@@ -1,14 +1,20 @@
-module StoreAdmin
-  class OrdersController < ApplicationController
+class StoreAdmin::OrdersController < ApplicationController
     before_action :authenticate_store_admin!
 
     def index
-      @orders = OrderDecorator.decorate_collection(current_store_admin.store_orders)
+      @orders = current_store_admin.store_orders
+      @store = Store.find(params[:store_id])
+      authorize @store, policy_class: Admin::StorePolicy
     end
 
     def show
-      @order = OrderDecorator.decorate(Order.find(params[:id]))
-      @scoped_order_items = @order.scoped_order_items(current_store_admin.store.id)
+      order = Order.find(params[:id])
+      @scoped_order_items = order.scoped_order_items(current_store_admin.store.id)
     end
-  end
+
+    private
+
+    def pundit_user
+      current_store_admin
+    end
 end
