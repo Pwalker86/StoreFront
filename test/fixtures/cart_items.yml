@@ -20,3 +20,15 @@
 #  fk_rails_...  (cart_id => carts.id)
 #  fk_rails_...  (product_id => products.id)
 #
+
+guest_cart_item_one:
+  cart: guest_cart
+  product: product_one
+  price: 10.00
+  quantity: 1
+
+user_cart_item_one:
+  cart: user_cart
+  product: product_one
+  price: 10.00
+  quantity: 1

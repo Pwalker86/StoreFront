@@ -2,6 +2,7 @@ class CartItemsController < ApplicationController
   def update
     user = EntityLookup.find_entity(cart_item_params[:user_entity], cart_item_params[:user_id])
     cart = user.cart
+    authorize cart
     product = Product.find(cart_item_params[:product_id])
 
     cart_item = cart.cart_items.find_or_initialize_by(product: product)

@@ -20,3 +20,6 @@
 #
 guest_cart:
   guest: guest_one
+
+user_cart:
+  user: user_one
