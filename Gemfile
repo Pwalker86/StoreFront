@@ -86,7 +86,7 @@ gem "view_component"
 gem "pagy", "~> 9.3"
 
 # permissions management
-gem "pundit", "~> 2.4"
+gem "pundit", "~> 2.5"
 
 # active storage validations
 gem "activestorage-validator"
