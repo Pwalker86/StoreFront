@@ -1,8 +1,13 @@
 class OrdersController < ApplicationController
   # @return decorated collection of [Orders]
   def index
+    if !@active_user
+      redirect_to root_path, alert: "You cannot access this page" and return
+    end
     @orders = @active_user.orders
-    authorize @orders.first
+    if @orders.any?
+      authorize @orders.first
+    end
   end
 
   # @return decorated [Order]
@@ -12,19 +17,18 @@ class OrdersController < ApplicationController
   end
 
   def create
-    user = EntityLookup.find_entity(order_params[:user_entity], order_params[:user_entity_id])
-    cart = user.cart
-    authorize cart
     begin
+      user = EntityLookup.find_entity(order_params[:user_entity], order_params[:user_entity_id])
+      cart = user.cart
+      authorize cart
       ConvertCartToOrderService.new(cart, order_params, user).process
       if @active_user.is_a? Guest
         redirect_to root_path
       elsif @active_user.is_a? User
         redirect_to orders_path
       end
-    rescue StandardError => e
-      Rails.logger.error e.message
-      redirect_to root_path, alert("something went wrong")
+    rescue StandardError
+      redirect_to root_path, alert: "something went wrong"
     end
   end
 
