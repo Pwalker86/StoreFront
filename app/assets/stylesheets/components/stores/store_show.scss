@@ -1,5 +1,4 @@
-@use "variables";
-@use "mixins/media" as mixins;
+@import "../../variables.scss";
 
 .Store__container {
   margin-bottom: 1.5rem;

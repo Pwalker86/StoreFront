@@ -18,6 +18,8 @@ gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
+gem "tailwindcss-rails"
+# Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 5.3"
@@ -70,7 +72,6 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
-gem "dartsass-rails", "~> 0.5.1"
 gem "draper"
 
 # full text search with PostgreSQL
