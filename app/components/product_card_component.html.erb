@@ -1,9 +1,9 @@
-<div class="ProductCard border-radius-8">
+<div class="ProductCard rounded-lg border-black border-solid border p-1.5">
   <%= link_to [@product.store, @product],  class: "ProductCard__link", data: {turbo:  false} do %>
     <div class="ProductCard__content">
       <% if @product.images.any? %>
         <%= image_tag @product.images.first.variant(:thumb),
-        class: "ProductCard__image border-radius-8" %>
+        class: "ProductCard__image rounded-lg" %>
       <% end %>
       <h3 class="ProductCard__name"><%= @product.name %></h3>
       <p class="ProductCard__price"><%= number_to_currency(@product.price) %></p>

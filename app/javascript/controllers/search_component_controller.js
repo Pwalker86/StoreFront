@@ -72,20 +72,31 @@ export default class extends Controller {
 
   buildDropdownEntry(option) {
     const optionLink = document.createElement("a");
-    optionLink.classList.add("Search__option");
+    optionLink.classList.add(
+      "block",
+      "pl-2",
+      "border-b",
+      "border-gray-400",
+      "bg-white",
+      "last:border-none",
+      "pb-1",
+      "hover:bg-gray-200",
+      "focus:bg-gray-200",
+      "first:pt-1",
+    );
     optionLink.href = option.href;
     optionLink.innerText = option.name;
     optionLink.dataset.action =
       "click->search-component#closeOverlay mouseover->search-component#focusOption";
     if (option.name === "See More Results...") {
-      optionLink.classList.add("see-more");
+      optionLink.classList.add("text-blue-500", "decoration-solid");
     }
     return optionLink;
   }
 
   buildProductsList(products) {
     const target = this.searchOptionsContainerTarget;
-    target.classList.add("displaying-results", "w-75");
+    target.classList.add("w-100");
     target.classList.remove("hidden");
     target.innerText = "";
     this.overlayTarget.classList.remove("hidden");

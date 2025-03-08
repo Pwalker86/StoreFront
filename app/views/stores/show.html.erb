@@ -1,18 +1,16 @@
-<div class="Store__container container">
+<div class="Store__container mx-auto container">
 
-  <h1 class="Store__name center-text"><%= @store.name %>
+  <h1 class="text-2xl text-center"><%= @store.name %>
     Products</h1>
 
-  <div class="StoreImage_container mb-05">
-    <%= turbo_frame_tag "store_image", src: store_store_image_path(@store, 1) do %>
-      <div class="card skeleton">
-        <div class="image shimmer"></div>
-        <div class="title shimmer"></div>
-        <div class="price shimmer"></div>
-        <div class="edit shimmer"></div>
-      </div>
-    <% end %>
-  </div>
+  <%= turbo_frame_tag "store_image", src: store_store_image_path(@store, 1) do %>
+    <div class="card skeleton">
+      <div class="image shimmer"></div>
+      <div class="title shimmer"></div>
+      <div class="price shimmer"></div>
+      <div class="edit shimmer"></div>
+    </div>
+  <% end %>
 
   <%= turbo_frame_tag "store_products",  src: store_products_path(@store) do %>
     <%#TODO: Extract into SkeletonCardComponent %>
@@ -31,6 +29,4 @@
 
 <%= render "store_reviews/add_review_button", store: @store %>
 
-<div class="StoreReviews__container container mt-1">
-  <%= render "store_reviews", reviews: @reviews, pagy_reviews: @pagy_reviews %>
-</div>
+<%= render "store_reviews", reviews: @reviews, pagy_reviews: @pagy_reviews %>
