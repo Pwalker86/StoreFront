@@ -1,4 +1,7 @@
+require "sidekiq/web"
+
 Rails.application.routes.draw do
+  mount Sidekiq::Web => "/sidekiq"# access it at http://localhost:3000/sidekiq
   devise_for :users
   devise_for :store_admins
   Rails.application.routes.draw do
