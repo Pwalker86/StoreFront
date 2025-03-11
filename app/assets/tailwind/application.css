@@ -7,6 +7,10 @@
   --font-family: "Nunito";
 }
 
+.button {
+  @apply bg-blue-500 px-2 py-1 rounded-sm cursor-pointer text-white;
+}
+
 body {
   font-family: var(--font-family);
 }

@@ -1,4 +1,4 @@
-<div class=" ProductCard rounded-lg p-1.5 shadow-lg bg-slate-100">
+<div class=" ProductCard rounded-lg p-1.5 shadow-lg bg-slate-200">
   <%= link_to [@product.store, @product],  class: "ProductCard__link", data: {turbo:  false} do %>
     <div class="ProductCard__content">
       <% if @product.images.any? %>
@@ -22,12 +22,12 @@
       turbo: false,
     },
     method: :patch,
-    class: "bg-blue-500 px-2 py-1 rounded-sm cursor-pointer text-white" %>
+    class: "button" %>
     <%= link_to "View More",
     [@product.store, @product],
     data: {
       turbo: false,
     },
-    class: "bg-blue-500 px-2 py-1 rounded-sm cursor-pointer text-white" %>
+    class: "button" %>
   </div>
 </div>

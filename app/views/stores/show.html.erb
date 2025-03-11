@@ -29,4 +29,6 @@
 
 <%= render "store_reviews/add_review_button", store: @store %>
 
-<%= render "store_reviews", reviews: @reviews, pagy_reviews: @pagy_reviews %>
+<%= turbo_frame_tag "store_reviews", src: store_store_reviews_path(@store) do %>
+  Loading...
+<% end %>

@@ -8,6 +8,6 @@ class LinkComponent < ViewComponent::Base
   end
 
   def call
-    tag.a(@text, href: @path, data: @dataset)
+    tag.a(@text, href: @path, data: @dataset, class: "button")
   end
 end
