@@ -2,7 +2,7 @@
 <%= turbo_frame_tag "store_products" do %>
   <div
     class="
-      Store__product_container flex flex-row flex-wrap justify-around gap-1.5
+      Store__product_container flex flex-row flex-wrap justify-around gap-1.5 mb-2
     "
   >
     <%= render(ProductCardComponent.with_collection(@products)) %>

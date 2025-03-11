@@ -14,7 +14,7 @@
 
   <%= turbo_frame_tag "store_products",  src: store_products_path(@store) do %>
     <%#TODO: Extract into SkeletonCardComponent %>
-    <div class="Store__product_container mb-05">
+    <div class=" flex flex-row flex-wrap justify-around gap-1.5 mb-2">
       <% 6.times do %>
         <div class="card skeleton">
           <div class="image shimmer"></div>
