@@ -27,7 +27,9 @@
   <% end %>
 </div>
 
-<%= render "store_reviews/add_review_button", store: @store %>
+<% if current_user %>
+  <%= render "store_reviews/add_review_button", store: @store %>
+<% end %>
 
 <%= turbo_frame_tag "store_reviews", src: store_store_reviews_path(@store) do %>
   Loading...

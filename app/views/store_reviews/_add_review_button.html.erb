@@ -1,3 +1,5 @@
-<%= turbo_frame_tag store.reviews.new, class: "container block ml-65" do %>
-  <%= link_to "Add Your Review", new_store_store_review_path(store), class: "button" %>
+<%= turbo_frame_tag store.reviews.new do %>
+  <%= link_to "Add Your Own Review",
+  new_store_store_review_path(store),
+  class: "button block mx-auto text-center w-fit mt-10" %>
 <% end %>
