@@ -90,3 +90,5 @@ gem "pundit", "~> 2.5"
 
 # active storage validations
 gem "activestorage-validator"
+
+gem "sidekiq", "~> 8.0"

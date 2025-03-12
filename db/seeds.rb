@@ -38,16 +38,6 @@ puts "******* Creating Admins *****"
   end
 
   Store.all.each do |store|
-    puts "******* Creating #{store.name} spotlight Images *****"
-    begin
-    image_uri = URI(Faker::LoremFlickr.image)
-    image = image_uri.open
-    s.spotlight.attach(io: image, filename: "#{store.name}_image.jpg")
-    puts "*********** Image created **********"
-    rescue StandardError => exception
-      puts "Something went wrong in Store ID: #{store.id} Image creation: #{exception}"
-    end
-
     puts "******* Creating #{store.name} Reviews *****"
     begin
       (10..30).to_a.sample.times do
@@ -82,17 +72,13 @@ puts "******* Creating Admins *****"
     rescue StandardError => exception
       puts "Something went wrong in Tag creation: #{exception}"
     end
+  end
 
-    puts "******* Creating #{product.name} Images *****"
-    begin
-      (2..6).to_a.sample.times do |i|
-        image_uri = URI(Faker::LoremFlickr.image)
-        image = image_uri.open
-        product.images.attach(io: image, filename: "#{product.name}_image_#{i}.jpg")
-        puts "*********** Image created **********"
-      end
-    rescue StandardError => exception
-      puts "Something went wrong in Image creation: #{exception}"
-    end
+  Store.all.each do |store|
+    SeedStoreImagesJob.perform_async(store.id)
+  end
+
+  Product.all.each do |product|
+    SeedProductImagesJob.perform_async(product.id)
   end
 end
