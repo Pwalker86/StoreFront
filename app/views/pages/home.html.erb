@@ -4,8 +4,8 @@
   </div>
   <div class="Home__featured__container container">
     <h2 class="Home__featured__title">Featured Stores</h2>
-    <div class="Home__featured__stores">
-      <%= render "stores/store_featured_cards", stores: @stores %>
+    <div class="flex flex-wrap justify-evenly gap-1.5">
+      <%= render StoreCardComponent.with_collection(@stores) %>
     </div>
   </div>
 </main>
