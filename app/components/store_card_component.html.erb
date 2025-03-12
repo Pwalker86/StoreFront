@@ -3,9 +3,11 @@
     <% if @store.spotlight.attached? %>
       <%= image_tag @store.spotlight.variant(:thumb), class: "w-70 rounded-full" %>
     <% end %>
-    <div class="text-center bg-slate-500 rounded-lg">
-      <h3 class="mt-1"><%= @store.name %></h3>
-      <%= button_to "Shop Now", store_path(@store), class: "mb-1", method: :get %>
+    <div class="text-center bg-slate-500 rounded-lg h-17">
+      <h3 class="mt-1 text-lg"><%= @store.name %></h3>
+      <%= link_to "Shop Now",
+      store_path(@store),
+      class: "mt-1 bg-gray-100 rounded-lg px-2 py-1 block w-1/2 mx-auto" %>
     </div>
   <% end %>
 <% end %>
