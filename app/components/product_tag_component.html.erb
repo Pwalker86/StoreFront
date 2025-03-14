@@ -1,15 +1,17 @@
 <% if helpers.current_store_admin %>
   <%= tag.turbo_frame id: "tag_#{@tag}" do %>
-    <%= tag.div class: "ProductTag" do %>
+    <%= tag.div class: "bg-gray-200 rounded-lg pl-4 pr-2 text-center inline-block ml-1 mr-1" do %>
       <%= form_with model: @product, url: store_admin_store_product_tag_path(helpers.current_store_admin, @product.store, @product, 1), data: { turbo_method: :delete }, method: :delete do |form| %>
         <%= @tag %>
         <%= form.hidden_field :tag, value: @tag %>
-        <%= form.submit "x", class: "ProductTag__delete-button" %>
+        <%= form.submit "x", class: "p-2 text-gray-500 cursor-pointer" %>
       <% end %>
     <% end %>
   <% end %>
 <% else %>
-  <div class="ProductTag">
+  <div
+    class="bg-gray-200 rounded-lg pl-4 pr-4 text-center inline-block ml-1 mr-1"
+  >
     <%= @tag %>
   </div>
 <% end %>

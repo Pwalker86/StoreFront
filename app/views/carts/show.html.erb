@@ -1,21 +1,26 @@
 <div class="OrderSummary">
   <h3 class="OrderSummary__title"><%= display_username %>'s Cart</h3>
-  <div class="OrderSummary__items">
-    <ul class="OrderSummary__items-list">
+  <table class="table-fixed w-full">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
       <% @cart.sorted_cart_items.each do |item| %>
-        <li class="OrderSummary__item">
-          <span class="OrderSummary__item-name"><%= item.product.name %></span>
-          <span class="OrderSummary__item-price"><%= number_to_currency(item.price) %></span>
-          <div class="OrderSummary__item-qty">
-            <%= render "qty_incrementor", item: item, cart: @cart %>
-          </div>
-        </li>
+        <tr>
+          <td class="w-1/3 text-xl"><%= item.product.name %></td>
+          <td class="w-1/3 text-center"><%= number_to_currency(item.price) %></td>
+          <td class="w-1/3"><%= render "qty_incrementor", item: item, cart: @cart %></td>
+        </tr>
       <% end %>
-    </ul>
+    </tbody>
+  </table>
+  <div>
     <div class="OrderSummary__total">Total:
       <%= number_to_currency @cart.total_price %></div>
-    <%= link_to "Checkout",
-    checkout_user_cart_path(active_user),
-    class: "OrderSummary__checkout-button button-link" %>
+    <%= link_to "Checkout", checkout_user_cart_path(active_user), class: "button" %>
   </div>
 </div>

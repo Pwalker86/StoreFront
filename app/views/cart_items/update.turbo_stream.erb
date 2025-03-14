@@ -1,0 +1,3 @@
+<%= turbo_stream.update "cart_#{@cart.id}" do %>
+  <%= render "layouts/cart_count", cart: @cart %>
+<% end %>

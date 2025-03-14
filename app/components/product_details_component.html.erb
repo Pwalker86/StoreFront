@@ -1,46 +1,40 @@
-<div class="ProductDetails__container">
-  <div class="ProductDetails__header">
-    <%= link_to @product.store.name.titleize,
-    store_path(@product.store),
-    data: {
-      turbo_frame: "_top",
-    } %>
-    <h1 class="text-2xl"><%= @product.name %></h1>
-  </div>
-  <div>
-    <%= tag.span number_to_currency(@product.price).split(".")[0], class: "text-xl" %>
-    <%= tag.span number_to_currency(@product.price).split(".")[1],
-             class: "align-super text-xs" %>
-  </div>
-  <div class="ProductDetails__description">
-    <%= @product.description %>
-  </div>
-  <div class="ProductDetails__status">
-    <% if @product.out_of_stock %>
-      <p>
-        <span class="text-red-100 font-bold">X</span>
-        Out of stock
-      </p>
-    <% end %>
-    <% if @product.archived %>
-      <span class="text-red-100 font-bold">Archived</span>
-    <% end %>
-  </div>
-  <p class="secondary-text mt-1">Tags:</p>
-  <%= tag.turbo_frame id: "product_tags", class:"ProductDetails__tags flex flex-wrap flex-gap-05 mt-025" do %>
-    <%= render ProductTagComponent.with_collection(@product.tag_list, product: @product) %>
+<div>
+  <%= link_to @product.store.name.titleize,
+  store_path(@product.store),
+  class: "underline" %>
+  <h1 class="text-2xl"><%= @product.name %></h1>
+</div>
+<div>
+  <%= tag.span number_to_currency(@product.price).split(".")[0], class: "text-xl" %>
+  <%= tag.span number_to_currency(@product.price).split(".")[1],
+           class: "align-super text-xs" %>
+</div>
+<%= tag.div @product.description, class: "bg-gray-100 p-5 rounded-lg" %>
+<%= tag.div do %>
+  <% if @product.out_of_stock %>
+    <p>
+      <span class="text-red-500 font-bold">X</span>
+      Out of stock
+    </p>
   <% end %>
-  <% if helpers.current_store_admin %>
-    <%= tag.turbo_frame id: "new_product_tag",
-                    src:
-                      new_store_admin_store_product_tag_path(
-                        helpers.current_store_admin,
-                        @product.store,
-                        @product,
-                      ) %>
+  <% if @product.archived %>
+    <span class="text-red-600 font-bold">Archived</span>
   <% end %>
-  <div class="ProductDetails__review-count">
-    <%= @product.reviews.count %>
-    reviews
-  </div>
+<% end %>
+<p class="mt-1 text-gray-400">Tags:</p>
+<%= tag.turbo_frame id: "product_tags", class:"flex flex-wrap gap-1 mt-1" do %>
+  <%= render ProductTagComponent.with_collection(@product.tag_list, product: @product) %>
+<% end %>
+<% if helpers.current_store_admin %>
+  <%= tag.turbo_frame id: "new_product_tag",
+                  src:
+                    new_store_admin_store_product_tag_path(
+                      helpers.current_store_admin,
+                      @product.store,
+                      @product,
+                    ) %>
+<% end %>
+<div class="text-gray-400 mt-1">
+  <%= @product.reviews.count %>
+  reviews
 </div>

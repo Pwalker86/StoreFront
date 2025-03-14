@@ -8,6 +8,6 @@ module CartEnsurer
   protected
 
   def ensure_cart
-    @cart ||= CartDecorator.decorate(active_user.cart || active_user.create_cart!)
+    @cart ||= active_user.cart || active_user.create_cart!
   end
 end

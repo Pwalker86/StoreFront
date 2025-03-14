@@ -10,11 +10,18 @@ class CartItemsController < ApplicationController
 
     if cart_item.quantity <= 0
       cart_item.destroy
-      redirect_to user_cart_path, notice: "Product was successfully removed from your order."
+      flash_msg = "Product was successfully removed from your order."
     elsif cart_item.save
-      redirect_to user_cart_path, notice: "Quantity was successfully updated."
+      flash_msg = "Quantity was successfully updated."
     else
-      redirect_to user_cart_path, alert: "There was an error updating the product quantity."
+      flash_msg = "There was an error updating the product quantity."
+    end
+
+    @cart.reload
+
+    respond_to do |format|
+      format.html { redirect_to user_cart_path, notice: flash_msg }
+      format.turbo_stream
     end
   end
 
