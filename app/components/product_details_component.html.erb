@@ -5,13 +5,12 @@
     data: {
       turbo_frame: "_top",
     } %>
-    <h1 class="ProductDetails__name"><%= @product.name %></h1>
+    <h1 class="text-2xl"><%= @product.name %></h1>
   </div>
-  <div class="ProductDetails__price">
-    <%= tag.span number_to_currency(@product.price).split(".")[0],
-             class: "ProductDetails__price--dollars" %>
+  <div>
+    <%= tag.span number_to_currency(@product.price).split(".")[0], class: "text-xl" %>
     <%= tag.span number_to_currency(@product.price).split(".")[1],
-             class: "ProductDetails__price--cents" %>
+             class: "align-super text-xs" %>
   </div>
   <div class="ProductDetails__description">
     <%= @product.description %>
@@ -19,12 +18,12 @@
   <div class="ProductDetails__status">
     <% if @product.out_of_stock %>
       <p>
-        <span class="ProductDetails__status--out-of-stock-x">X</span>
+        <span class="text-red-100 font-bold">X</span>
         Out of stock
       </p>
     <% end %>
     <% if @product.archived %>
-      <span class="ProductDetails__status--archived">Archived</span>
+      <span class="text-red-100 font-bold">Archived</span>
     <% end %>
   </div>
   <p class="secondary-text mt-1">Tags:</p>

@@ -1,6 +1,6 @@
-<div class="carousel" data-controller="carousel">
+<div class="carousel relative" data-controller="carousel">
   <% @images.each do |image| %>
-    <%= tag.div class: "carousel-item", data: { 'carousel-target': 'item' } do %>
+    <%= tag.div class: "carousel-item justify-self-center", data: { 'carousel-target': 'item' } do %>
       <%= image_tag image.variant(:thumb) %>
     <% end %>
   <% end %>
