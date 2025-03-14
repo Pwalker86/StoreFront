@@ -1,10 +1,6 @@
 <h1>Products</h1>
 <%= turbo_frame_tag "store_products" do %>
-  <div
-    class="
-      Store__product_container flex flex-row flex-wrap justify-around gap-1.5 mb-2
-    "
-  >
+  <div class=" flex flex-row flex-wrap justify-evenly gap-1.5 mb-2 ">
     <%= render(ProductCardComponent.with_collection(@products)) %>
   </div>
   <% if @pagy_products.count > 0 %>

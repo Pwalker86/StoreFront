@@ -1,5 +1,5 @@
 <%= link_to store_path(@store.id) do %>
-  <%= tag.div class:"StoreCard w-70 rounded-lg h-85 " do %>
+  <%= tag.div class:"StoreCard w-70 rounded-lg h-85 mb-5" do %>
     <% if @store.spotlight.attached? %>
       <%= image_tag @store.spotlight.variant(:thumb), class: "w-70 rounded-full" %>
     <% end %>
