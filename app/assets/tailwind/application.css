@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "../stylesheets/third_party/index.scss";
+@import "../stylesheets/components/carousel/index.scss";
 
 :root {
   --shimmer-color: #e0e0e0;
