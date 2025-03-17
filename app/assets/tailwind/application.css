@@ -13,6 +13,14 @@
   @apply bg-blue-500 px-2 py-1 rounded-sm cursor-pointer text-white hover:bg-blue-600;
 }
 
+.danger-button {
+  @apply bg-red-500 px-2 py-1 rounded-sm cursor-pointer text-white hover:bg-red-600;
+}
+
+.input {
+  @apply border border-solid border-gray-400 rounded-sm pl-2 pr-2;
+}
+
 body {
   font-family: var(--font-family);
 }
