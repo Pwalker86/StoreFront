@@ -25,7 +25,7 @@
 <div class="ProductReview__form">
   <h2>Review for
     <%= review.reviewable.name.capitalize %></h2>
-  <%= form_with model: [review.reviewable.store, review.reviewable, review], url: store_product_product_review_path do |f| %>
+  <%= form_with model: [review.reviewable.store, review.reviewable, review], url: store_product_product_reviews_path do |f| %>
     <div class="form-input">
       <%= f.label :title %>
       <%= f.text_field :title, required: true %>

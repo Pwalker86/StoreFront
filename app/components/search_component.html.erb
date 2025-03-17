@@ -8,40 +8,41 @@
     id="overlay"
     data-search-component-target="overlay"
     data-action="click->search-component#closeOverlay"
-    class="hidden w-100"
+    class="hidden absolute left-0 top-0 bg-black opacity-20 h-full w-full z-40"
   ></div>
   <form
     class="Search__input--anchor"
     action="<%= @url %>"
     data-search-component-target="searchForm"
   >
-    <div class="form-input inline">
-      <%= text_field_tag :query,
-      nil,
-      placeholder: @input_placeholder,
-      type: "search",
-      aria: {
-        label: "Search",
-      },
-      autocomplete: "off",
-      id: "searchInput",
-      class: "Search__input",
-      data: {
-        search_component_target: "searchInput",
-        action: @key_events,
-      } %>
-    </div>
+    <%= text_field_tag :query,
+    nil,
+    placeholder: @input_placeholder,
+    type: "search",
+    aria: {
+      label: "Search",
+    },
+    autocomplete: "off",
+    id: "searchInput",
+    class: " px-2 py-1 rounded-sm h-8 bg-white inline-block w-80",
+    data: {
+      search_component_target: "searchInput",
+      action: @key_events,
+    } %>
     <button
       type="submit"
       data-search-component-target="searchButton"
-      class="Search__button"
+      class="ml-2 h-8 button"
     >
       Search
     </button>
   </form>
   <div
     id="searchOptionsContainer"
-    class="Search__container"
+    class="
+      hidden absolute rounded-lg z-50 justify-self-center bg-white border
+      border-gray-200 shadow-md
+    "
     data-search-component-target="searchOptionsContainer"
     data-action="
       keydown.up->search-component#handleNavigateUp

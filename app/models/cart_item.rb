@@ -23,16 +23,13 @@
 class CartItem < ApplicationRecord
   belongs_to :product
   belongs_to :cart
-  # before_save :set_price_at_submission # if: :order_pending?
 
   # TODO: need to add check for if the product.price has changed while it's been in the user's cart
   def price
     product.price
   end
 
-  # private
-
-  # def set_price_at_submission
-  #   self.price ||= product.price
-  # end
+  def total_price
+    price * quantity
+  end
 end

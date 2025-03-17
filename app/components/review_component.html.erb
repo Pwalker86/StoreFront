@@ -1,5 +1,5 @@
 <%= tag.turbo_frame id:"review_#{@review.id}" do %>
-  <div class="Review p-05 mb-05">
+  <div class="bg-slate-200 p-4 my-4 rounded-lg shadow-lg">
     <div>Title:
       <%= @review.title %></div>
 
@@ -8,9 +8,11 @@
     </div>
 
     <% if links? %>
-      <% links.each do |link| %>
-        <%= link %>
-      <% end %>
+      <div class="mt-2">
+        <% links.each do |link| %>
+          <%= link %>
+        <% end %>
+      </div>
     <% end %>
 
   </div>

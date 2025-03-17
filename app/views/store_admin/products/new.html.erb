@@ -2,5 +2,7 @@
 <br>
 
 <div>
-  <%= link_to "Cancel", store_admin_store_products_path(current_store_admin, @store) %>
+  <%= link_to "Cancel",
+  store_admin_store_products_path(current_store_admin, @store),
+  class: "danger-button ml-2" %>
 </div>

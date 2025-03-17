@@ -1,21 +1,10 @@
-<div class="OrderSummary">
-  <h3 class="OrderSummary__title"><%= display_username %>'s Cart</h3>
-  <div class="OrderSummary__items">
-    <ul class="OrderSummary__items-list">
-      <% @cart.sorted_cart_items.each do |item| %>
-        <li class="OrderSummary__item">
-          <span class="OrderSummary__item-name"><%= item.product.name %></span>
-          <span class="OrderSummary__item-price"><%= number_to_currency(item.price) %></span>
-          <div class="OrderSummary__item-qty">
-            <%= render "qty_incrementor", item: item, cart: @cart %>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-    <div class="OrderSummary__total">Total:
-      <%= number_to_currency @cart.total_price %></div>
-    <%= link_to "Checkout",
-    checkout_user_cart_path(active_user),
-    class: "OrderSummary__checkout-button button-link" %>
+<div class="container mx-auto">
+  <h3 class="text-2xl"><%= display_username %>'s Cart</h3>
+  <hr class="my-4">
+  <%= tag.turbo_frame id: "cart_#{@cart.id}" do %>
+    <%= render "cart_table", cart: @cart %>
+  <% end %>
+  <div class="mt-4 flex justify-end">
+    <%= link_to "Checkout", checkout_user_cart_path(active_user), class: "button" %>
   </div>
 </div>

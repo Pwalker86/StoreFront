@@ -1,41 +1,54 @@
-<div class="Checkout__ShippingInfo__container">
-  <div class="Checkout__ShippingInfo__header">
-    <h1>Shipping Information</h1>
-    <%= form_for @order, url: orders_path(@order), method: :post do |form| %>
-      <%= form.hidden_field :user_entity, value: @active_user.class.name %>
-      <%= form.hidden_field :user_entity_id, value: @active_user.id %>
-      <div class="Checkout__ShippingInfo__container">
-        <div class="form-group">
-          <%= form.label :email, "Email" %>
-          <%= form.email_field :email, { required: true, value: @email } %>
-        </div>
-        <div class="form-group">
-          <%= form.label :address1, "Address 1" %>
-          <%= form.text_field :address1, required: true %>
-        </div>
-        <div class="form-group">
-          <%= form.label :address2, "Address 2" %>
-          <%= form.text_field :address2, required: false %>
-        </div>
-        <div class="form-group">
-          <%= form.label :city, "City" %>
-          <%= form.text_field :city, required: true %>
-        </div>
-        <div class="form-group">
-          <%= form.label :state, "State" %>
-          <%= form.select :state,
-                      US_STATES,
-                      required: true,
-                      include_blank: " Select your state" %>
-        </div>
-        <div class="form-group">
-          <%= form.label :postal_code, "Postal Code" %>
-          <%= form.number_field :postal_code, required: true %>
-        </div>
-        <div class="form-group">
-          <%= form.submit "Submit", class: "btn btn-primary" %>
-        </div>
+<div class="sm:container sm:mx-auto">
+  <h1 class="text-2xl mx-2">Shipping Information</h1>
+  <hr class="my-4 text-gray-400 mx-2"/>
+  <%= form_with model: @order do |form| %>
+    <%= form.hidden_field :user_entity, value: @active_user.class.name %>
+    <%= form.hidden_field :user_entity_id, value: @active_user.id %>
+    <div class="sm:w-1/2 mx-2">
+      <div class="my-2 flex flex-row justify-between">
+        <%= form.label :email, "Email" %>
+        <%= form.email_field :email,
+                         class: "border border-solid border-gray-400 rounded-sm",
+                         required: true,
+                         value: @email %>
       </div>
-    <% end %>
-  </div>
+      <div class="my-2 flex flex-row justify-between">
+        <%= form.label :address1, "Address 1" %>
+        <%= form.text_field :address1,
+                        class: "border border-solid border-gray-400 rounded-sm",
+                        required: true %>
+      </div>
+      <div class="my-2 flex flex-row justify-between">
+        <%= form.label :address2, "Address 2" %>
+        <%= form.text_field :address2,
+                        class: "border border-solid border-gray-400 rounded-sm",
+                        required: false %>
+      </div>
+      <div class="my-2 flex flex-row justify-between">
+        <%= form.label :city, "City" %>
+        <%= form.text_field :city,
+                        class: "border border-solid border-gray-400 rounded-sm",
+                        required: true %>
+      </div>
+      <div class="my-2 flex flex-row justify-between">
+        <%= form.label :state, "State", class: "basis-1/2" %>
+        <%= form.select :state,
+                    US_STATES,
+                    { required: true, include_blank: " Select your state" },
+                    {
+                      class:
+                        "rounded-sm border border-solid border-gray-400 border-gray-400 bg-gray-200 basis-1/2",
+                    } %>
+      </div>
+      <div class="flex flex-row justify-between">
+        <%= form.label :postal_code, "Postal Code" %>
+        <%= form.number_field :postal_code,
+                          class: "border border-solid border-gray-400 rounded-sm",
+                          required: true %>
+      </div>
+      <div>
+        <%= form.submit "Submit", class: "button" %>
+      </div>
+    </div>
+  <% end %>
 </div>

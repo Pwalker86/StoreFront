@@ -1,11 +1,12 @@
 <%= turbo_frame_tag "store_image" do %>
   <% if @store.spotlight.attached? %>
-    <%= image_tag @spotlight.variant(:thumb), class: "StoreImage__image" %>
+    <%= image_tag @spotlight.variant(:thumb), class: "mx-auto rounded-lg drop-shadow-lg" %>
     <%= button_to "Remove Image",
     store_admin_store_store_image_path(current_store_admin, @store, 1),
     data: {
       turbo: false,
     },
+    class: "danger-button mt-1 mx-auto block",
     method: :delete %>
   <% end %>
 <% end %>

@@ -1,6 +1,3 @@
-<div class="StoreEdit__container">
-  <%= turbo_frame_tag "store_image_form", src: new_store_admin_store_store_image_path(current_store_admin, @store) do %>
-    loading...
-  <% end %>
-  <%= render "store_admin/stores/form", store: @store %>
-</div>
+<%= turbo_frame_tag "store_image_form",
+src: new_store_admin_store_store_image_path(current_store_admin, @store) %>
+<%= render "store_admin/stores/form", store: @store %>

@@ -1,20 +1,18 @@
-<div
-  class="OrderShow__quantity-control"
-  data-product-id="<%= item.product.id %>"
->
-  <%= form_for [@active_user, @cart, item], url: user_cart_item_path(@active_user, item), method: :patch, html: { class: 'minus-form' } do |form| %>
+<div class="flex flex-row justify-center gap-2">
+  <%= form_for [@active_user, @cart, item], url: user_cart_item_path(@active_user, item), method: :patch do |form| %>
     <%= form.hidden_field :quantity, value: -1 %>
     <%= form.hidden_field :product_id, value: item.product.id %>
     <%= form.hidden_field :user_entity, value: @active_user.class.name %>
     <%= form.hidden_field :user_id, value: @active_user.id %>
-    <%= form.submit "-", class: "OrderShow__quantity-btn minus" %>
+    <%= form.submit "-", class: "button" %>
   <% end %>
-  <span class="OrderShow__quantity-display"><%= item.quantity %></span>
-  <%= form_for [@active_user, @cart, item], url: user_cart_item_path(@active_user, item), method: :patch, html: { class: 'minus-form' } do |form| %>
+  <%# TODO: wrap quantity in turbo_frame to update on cart_item#update %>
+  <span class="align-middle"><%= item.quantity %></span>
+  <%= form_for [@active_user, @cart, item], url: user_cart_item_path(@active_user, item), method: :patch do |form| %>
     <%= form.hidden_field :quantity, value: 1 %>
     <%= form.hidden_field :product_id, value: item.product.id %>
     <%= form.hidden_field :user_entity, value: @active_user.class.name %>
     <%= form.hidden_field :user_id, value: @active_user.id %>
-    <%= form.submit "+", class: "OrderShow__quantity-btn minus" %>
+    <%= form.submit "+", class: "button" %>
   <% end %>
 </div>

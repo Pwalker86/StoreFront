@@ -1,0 +1,90 @@
+@import "tailwindcss";
+@import "../stylesheets/third_party/index.scss";
+@import "../stylesheets/components/carousel/index.scss";
+@import "../stylesheets/components/toast.scss";
+@import "../stylesheets/actiontext.css";
+@import "../stylesheets/actiontext_custom.scss";
+
+:root {
+  --shimmer-color: #e0e0e0;
+  --shimmer-highlight: #f5f5f5;
+  --font-family: "Nunito";
+}
+
+.button {
+  @apply bg-blue-500 px-2 py-1 rounded-sm cursor-pointer text-white hover:bg-blue-600;
+}
+
+.danger-button {
+  @apply bg-red-500 px-2 py-1 rounded-sm cursor-pointer text-white hover:bg-red-600;
+}
+
+.input {
+  @apply border border-solid border-gray-400 rounded-sm pl-2 pr-2 py-1;
+}
+
+.input-group {
+  @apply my-2 flex flex-row justify-between;
+}
+
+body {
+  font-family: var(--font-family);
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 270px;
+}
+
+.skeleton {
+  .image {
+    width: 100%;
+    height: 150px;
+    border-radius: 8px;
+  }
+
+  .title {
+    width: 80%;
+    height: 20px;
+    border-radius: 4px;
+  }
+
+  .price {
+    width: 50%;
+    height: 20px;
+    border-radius: 4px;
+  }
+
+  .edit {
+    width: 30%;
+    height: 20px;
+    border-radius: 4px;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--shimmer-color) 25%,
+    var(--shimmer-highlight) 50%,
+    var(--shimmer-color) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

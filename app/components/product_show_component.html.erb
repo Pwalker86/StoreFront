@@ -1,8 +1,14 @@
-<div class="ProductShow container mt-1">
-  <div class="Images flex-5">
+<div
+  <%#TODO: need to figure out an alternative for tests instead of having css classes%>
+  class="
+    flex flex-col mt-1 mx-auto ml-5 mr-5 md:container md:mx-auto md:flex-row
+    ProductShow
+  "
+>
+  <div class="flex-5 md:flex-3">
     <%= image_carousel %>
   </div>
-  <div class="Details flex-3">
+  <div class="flex-3">
     <%= product_details %>
   </div>
   <%#<div class="ProductReviews"> %>

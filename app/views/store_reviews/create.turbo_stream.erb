@@ -1,9 +1,34 @@
-<%= turbo_stream.replace "store_reviews",
-                     partial: "stores/store_reviews",
-                     locals: {
-                       reviews: @reviews,
-                       pagy_reviews: @pagy_reviews,
-                     } %>
+<%= turbo_stream.update "store_reviews" do %>
+  <div class="container mx-auto">
+    <%= render ReviewComponent.with_collection(@reviews) do |component| %>
+      <% if current_user == component.review.user %>
+        <% component.with_links(
+          [
+            {
+              text: "Edit",
+              path:
+                edit_store_store_review_path(
+                  component.review.reviewable,
+                  component.review,
+                ),
+            },
+            {
+              text: "Delete",
+              path:
+                store_store_review_path(component.review.reviewable, component.review),
+              dataset: {
+                turbo_method: :delete,
+              },
+            },
+          ],
+        ) %>
+      <% end %>
+    <% end %>
+    <% if @pagy_reviews.count > 0 %>
+      <%== pagy_nav(@pagy_reviews) %>
+    <% end %>
+  </div>
+<% end %>
 <%= turbo_stream.replace @store.reviews.new,
                      partial: "store_reviews/add_review_button",
                      locals: {

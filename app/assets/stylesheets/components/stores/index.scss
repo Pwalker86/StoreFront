@@ -1,8 +1,8 @@
-@use "store_show.scss";
-@use "store_edit.scss";
+@import "./store_show.scss";
+@import "./store_edit.scss";
 
 .store-container {
-  margin-top:1rem;
+  margin-top: 1rem;
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
