@@ -28,4 +28,8 @@ class CartItem < ApplicationRecord
   def price
     product.price
   end
+
+  def total_price
+    price * quantity
+  end
 end
