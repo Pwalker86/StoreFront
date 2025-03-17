@@ -1,12 +1,10 @@
 <div class="container">
-  <h1><%= product.new_record? ? "New" : "Edit" %>
-    Product</h1>
-  <%= form_with model: [current_store_admin, store, product], data: {turbo: false}  do |form| %>
-    <div class="form-input w-50">
+  <%= form_with model: [current_store_admin, store, product], data: {turbo: false}, class: 'ml-2 mr-2'  do |form| %>
+    <div class="input-group">
       <%= form.label :name %>
-      <%= form.text_field :name %>
+      <%= form.text_field :name, class: "input" %>
     </div>
-    <div class="form-input w-50">
+    <div class="input-group">
       <%= form.label :price %>
       <%= form.number_field :price,
                         value:
@@ -15,16 +13,17 @@
                             delimiter: "",
                             unit: "",
                           ),
-                        step: :any %>
+                        step: :any,
+                        class: "input" %>
     </div>
-    <div class="form-input w-75">
+    <div>
       <%= form.label :description %>
       <%= form.rich_textarea :description %>
     </div>
-    <div class="form-input w-75">
-      <%= form.label :tag_list %>
-      <%= form.text_field :tag_list %>
-    </div>
+    <%#<div class="input-group"> %>
+    <%#  <%= form.label :tag_list %>
+    <%#  <%= form.text_field :tag_list, class: "input" %>
+    <%#</div> %>
     <div>
       <%= form.checkbox :archived %>
       <%= form.label :archived, "Archive" %>
@@ -39,7 +38,7 @@
       <div data-file-target="files"></div>
     </div>
     <div>
-      <%= form.submit %>
+      <%= form.button :submit, class: "button" %>
     </div>
   <% end %>
 </div>

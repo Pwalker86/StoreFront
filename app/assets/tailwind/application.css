@@ -2,6 +2,8 @@
 @import "../stylesheets/third_party/index.scss";
 @import "../stylesheets/components/carousel/index.scss";
 @import "../stylesheets/components/toast.scss";
+@import "../stylesheets/actiontext.css";
+@import "../stylesheets/actiontext_custom.scss";
 
 :root {
   --shimmer-color: #e0e0e0;
@@ -18,7 +20,11 @@
 }
 
 .input {
-  @apply border border-solid border-gray-400 rounded-sm pl-2 pr-2;
+  @apply border border-solid border-gray-400 rounded-sm pl-2 pr-2 py-1;
+}
+
+.input-group {
+  @apply my-2 flex flex-row justify-between;
 }
 
 body {
