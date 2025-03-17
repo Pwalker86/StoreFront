@@ -1,5 +1,5 @@
-<div class="Store__container container">
-  <h1>Managing
+<div class="ml-2 mr-2">
+  <h1 class="text-2xl">Managing
     <%= @store.name %>
   </h1>
 
@@ -16,11 +16,14 @@
   </div>
 
   <div>
-    <%= link_to "Edit Store", edit_store_admin_store_path(current_store_admin, @store) %>
+    <%= link_to "Edit Store",
+    edit_store_admin_store_path(current_store_admin, @store),
+    class: "button block w-fit mt-2" %>
   </div>
 
   <div>
     <%= link_to "Manage Products",
-    store_admin_store_products_path(current_store_admin, @store) %>
+    store_admin_store_products_path(current_store_admin, @store),
+    class: "button mt-2 block w-fit" %>
   </div>
 </div>

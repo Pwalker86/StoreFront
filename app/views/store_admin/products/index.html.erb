@@ -1,36 +1,40 @@
-<h1>Products</h1>
-<% if current_store_admin == @store.store_admin %>
-  <%= link_to "New Product",
-  new_store_admin_store_product_path(current_store_admin, @store) %>
-<% end %>
+<div class="ml-2 mr-2">
+  <h1 class="text-2xl"><%= @store.name %>
+    Products</h1>
+  <% if current_store_admin == @store.store_admin %>
+    <%= link_to "New Product",
+    new_store_admin_store_product_path(current_store_admin, @store),
+    class: "button block w-fit" %>
+  <% end %>
 
-<div class="Admin Product_container mb-05">
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Actions</th>
-        <th>Archved?</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @products.each do |product| %>
+  <div class="mt-2">
+    <table>
+      <thead>
         <tr>
-          <td>
-            <%= link_to product.name,
-            store_admin_store_product_path(current_store_admin, @store, product) %>
-          </td>
-          <td>
-            <% if current_store_admin == @store.store_admin %>
-              <%= link_to "Edit",
-              edit_store_admin_store_product_path(current_store_admin, @store, product) %>
-            <% end %>
-          </td>
-          <td>
-            <%= product.archived? ? "Yes" : "No" %>
-          </td>
+          <th>Name</th>
+          <th>Actions</th>
+          <th>Archived?</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td>
+              <%= link_to product.name,
+              store_admin_store_product_path(current_store_admin, @store, product) %>
+            </td>
+            <td>
+              <% if current_store_admin == @store.store_admin %>
+                <%= link_to "Edit",
+                edit_store_admin_store_product_path(current_store_admin, @store, product) %>
+              <% end %>
+            </td>
+            <td>
+              <%= product.archived? ? "Yes" : "No" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

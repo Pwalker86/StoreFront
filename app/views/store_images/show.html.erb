@@ -1,6 +1,5 @@
 <%= turbo_frame_tag "store_image" do %>
   <% if @spotlight.attached? %>
-    <%= image_tag @spotlight.variant(:thumb),
-    class: "StoreEdit__spotlight-image mx-auto mb-4 mt-4 rounded-lg" %>
+    <%= image_tag @spotlight.variant(:thumb), class: "mx-auto mb-4 mt-4 rounded-lg" %>
   <% end %>
 <% end %>

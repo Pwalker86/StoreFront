@@ -4,7 +4,7 @@
     Products</h1>
   <hr class="mb-10 text-slate-300 w-19/20 mx-auto">
 
-  <%= turbo_frame_tag "store_image", src: store_store_image_path(@store, 1) do %>
+  <%= turbo_frame_tag "store_image", src: store_store_image_path(@store, 1), class: "mx-auto" do %>
     <div class="card skeleton">
       <div class="image shimmer"></div>
       <div class="title shimmer"></div>

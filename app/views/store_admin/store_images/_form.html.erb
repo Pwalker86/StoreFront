@@ -2,17 +2,26 @@
   <%= message %>
 <% end %>
 <% if !@store.spotlight.attached? %>
-  <div class="mx-center w-50" data-controller="js-submit">
+  <div class="ml-2 mr-2" data-controller="js-submit">
     <%= form_with model: [current_store_admin, @store], url: store_admin_store_store_images_path, method: :post, data: {js_submit_target: 'form'} do |form| %>
-      <div class="form-input">
-        <%= form.label :spotlight %>
+      <div class="my-2 flex flex-row justify-between">
+        <%= form.label :spotlight, class: "w-1/2" %>
         <%# TODO: js_submit circumvents the `required` property %>
         <%# TODO: without the js_submit, the form isn't submitted when empty, but would need to handle an invalid state %>
-        <%= form.file_field :spotlight, required: true, data: { js_submit_target: "input" } %>
+        <%= form.file_field :spotlight,
+                        class: "border border-solid border-gray-400 rounded-sm w-2/3",
+                        required: true,
+                        data: {
+                          js_submit_target: "input",
+                        } %>
       </div>
 
       <div>
-        <%= form.submit "Upload Image", data: { action: "js-submit#jsSubmit" } %>
+        <%= form.submit "Upload Image",
+                    class: "button",
+                    data: {
+                      action: "js-submit#jsSubmit",
+                    } %>
       </div>
     <% end %>
   </div>
