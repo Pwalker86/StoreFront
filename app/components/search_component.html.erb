@@ -8,7 +8,7 @@
     id="overlay"
     data-search-component-target="overlay"
     data-action="click->search-component#closeOverlay"
-    class="hidden absolute left-0 top-0 bg-black opacity-20 h-full w-full z-40"
+    class="hidden fixed left-0 top-0 bg-black opacity-20 h-full w-full z-50"
   ></div>
   <form
     class="Search__input--anchor"
@@ -24,7 +24,7 @@
     },
     autocomplete: "off",
     id: "searchInput",
-    class: " px-2 py-1 rounded-sm h-8 bg-white inline-block w-80",
+    class: "px-2 py-1 rounded-sm h-8 bg-white inline-block sm:w-80",
     data: {
       search_component_target: "searchInput",
       action: @key_events,

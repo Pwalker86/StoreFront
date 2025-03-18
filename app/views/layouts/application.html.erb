@@ -32,9 +32,7 @@
     <% end %>
     <%= render "layouts/toast" %>
     <p style="color: red" class="alert"><%= alert %></p>
-    <div class="mb-100">
-      <%= yield %>
-    </div>
+    <%= yield %>
     <%= render "layouts/footer" %>
   </body>
 </html>

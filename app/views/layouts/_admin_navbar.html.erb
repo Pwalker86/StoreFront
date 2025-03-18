@@ -1,14 +1,19 @@
 <%# TODO: need to give this a responsive menu or a redesign. Looks ugly on mobile, but i don't care right now as it's admin display %>
 <% if current_store_admin %>
-  <div class="Navbar">
-    <div class="Navbar__brand">
+  <div
+    class="
+      flex flex-row justify-between pl-4 pr-4 bg-amber-200 min-h-14 items-center
+      shadow-md mb-2
+    "
+  >
+    <div class="font-black text-2xl">
       <% if current_store_admin.store.persisted? %>
         <%= link_to store_admin_store_path(current_store_admin, current_store_admin.store) do %>
           <i class="fa-brands fa-forumbee" title="MarketHive"></i>
         <% end %>
       <% end %>
     </div>
-    <div class="Navbar__menu">
+    <div class="flex gap-5">
       <%#= render "shared/#{user_type}_links", path: "orders_index" %>
       <%= render "shared/#{user_type}_links", path: "cart_show" %>
       <% if current_store_admin && current_store_admin.try(:store).try(:persisted?) %>
