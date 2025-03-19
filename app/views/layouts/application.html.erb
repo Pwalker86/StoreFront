@@ -23,8 +23,9 @@
     <%#= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
-  <body>
+  <!-- move optimistic-updates to wrap each cart item qty incrementor, then add
+  outlet to cart_count -->
+  <body data-controller="optimistic-updates">
     <% if current_store_admin %>
       <%= render "layouts/admin_navbar" %>
     <% else %>

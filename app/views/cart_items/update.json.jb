@@ -1,0 +1,4 @@
+json = {
+    cart_items: @cart.cart_items
+  }
+

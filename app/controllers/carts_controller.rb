@@ -1,15 +1,15 @@
 class CartsController < ApplicationController
   def show
-    authorize @cart
+    authorize active_user.cart
   end
 
   def checkout
-    @order = @active_user.orders.new
-    @email = @active_user.is_a?(User) ? @active_user.email : ""
+    @order = active_user.orders.new
+    @email = active_user.is_a?(User) ? active_user.email : ""
   end
 
   def update
-    authorize @cart
+    authorize active_user.cart
     service = CartUpdateService.new(params[:user_entity], params[:user_id], params[:product_id], params[:quantity])
     result = service.call
 

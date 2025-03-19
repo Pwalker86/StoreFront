@@ -10,7 +10,9 @@
     <% cart.sorted_cart_items.each do |item| %>
       <tr class="h-12 border border-solid border-gray-300">
         <td class="w-1/3 text-xl pl-2"><%= item.product.name %></td>
-        <td class="w-1/3 border border-solid border-gray-300"><%= render "carts/qty_incrementor", item: item, cart: cart %></td>
+        <td class="w-1/3 border border-solid border-gray-300">
+          <%= render "carts/qty_incrementor", item: item, cart: cart %>
+        </td>
         <td class="w-1/3 text-center"><%= number_to_currency(item.total_price) %></td>
       </tr>
     <% end %>
