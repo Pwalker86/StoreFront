@@ -1,11 +1,11 @@
 class CartItemsController < ApplicationController
   def update
     user = EntityLookup.find_entity(cart_item_params[:user_entity], cart_item_params[:user_id])
-    cart = user.cart
-    authorize cart
+    @cart = user.cart
+    authorize @cart
     product = Product.find(cart_item_params[:product_id])
 
-    cart_item = cart.cart_items.find_or_initialize_by(product: product)
+    cart_item = @cart.cart_items.find_or_initialize_by(product: product)
     cart_item.increment(:quantity, cart_item_params[:quantity].to_i)
 
     if cart_item.quantity <= 0
@@ -17,10 +17,8 @@ class CartItemsController < ApplicationController
       flash_msg = "There was an error updating the product quantity."
     end
 
-    @cart.reload
-
     respond_to do |format|
-      format.html { redirect_to user_cart_path, notice: flash_msg }
+      format.json
       format.turbo_stream
     end
   end

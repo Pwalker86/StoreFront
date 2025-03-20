@@ -2,8 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, prepend: true
   include Pundit::Authorization
   include Pagy::Backend
-  include CartEnsurer
   helper_method :active_user
+  before_action :active_user
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 

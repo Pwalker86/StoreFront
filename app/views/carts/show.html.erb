@@ -1,8 +1,8 @@
-<div class="container mx-auto">
+<div class="container mt-5 mx-auto sm:h-screen h-dvh">
   <h3 class="text-2xl"><%= display_username %>'s Cart</h3>
   <hr class="my-4">
-  <%= tag.turbo_frame id: "cart_#{@cart.id}" do %>
-    <%= render "cart_table", cart: @cart %>
+  <%= tag.turbo_frame id: "cart_#{@active_user.cart.id}" do %>
+    <%= render "cart_table", cart: @active_user.cart %>
   <% end %>
   <div class="mt-4 flex justify-end">
     <%= link_to "Checkout", checkout_user_cart_path(active_user), class: "button" %>
