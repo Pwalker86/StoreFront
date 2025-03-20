@@ -1,33 +1,25 @@
-<div
-  class="flex flex-row justify-center gap-2"
->
-  <%= form_for [@active_user, @active_user.cart, item], url: user_cart_item_path(@active_user, item), method: :patch do |form| %>
-    <%= form.hidden_field :quantity, value: -1 %>
-    <%= form.hidden_field :product_id, value: item.product.id %>
-    <%= form.hidden_field :user_entity, value: @active_user.class.name %>
-    <%= form.hidden_field :user_id, value: @active_user.id %>
-    <%= form.submit "-", class: "button" %>
-  <% end %>
-  <span class="align-middle" data-optimistic-updates-target="toBeUpdated"><%= item.quantity %></span>
-  <button class='button'
-          data-optimistic-updates-url-param=<%="/user/#{@active_user.id}/cart/cart_items/#{item.id}"%>
-          data-optimistic-updates-user-id-param=<%= @active_user.id %>
-          data-optimistic-updates-user-entity-param=<%= @active_user.class.name %>
-          data-optimistic-updates-item-id-param=<%= item.product.id %>
-          data-optimistic-updates-update-val-param=1
-          data-action="click->optimistic-updates#update click->optimistic-updates#call" >
-          +
+<div class="flex flex-row justify-center gap-2" data-controller="cart">
+  <button
+    class='button'
+    data-cart-url-param="<%="/user/#{@active_user.id}/cart/cart_items/#{item.id}"%>"
+    data-cart-user-id-param="<%= @active_user.id %>"
+    data-cart-user-entity-param="<%= @active_user.class.name %>"
+    data-cart-item-id-param="<%= item.product.id %>"
+    data-cart-update-val-param="-1"
+    data-action="click->cart#update"
+  >
+    -
   </button>
-  <%#= form_for [@active_user, @cart, item], url: user_cart_item_path(@active_user, item), method: :patch do |form| %>
-  <%#= form.hidden_field :quantity, value: 1 %>
-  <%#= form.hidden_field :product_id, value: item.product.id %>
-  <%#= form.hidden_field :user_entity, value: @active_user.class.name %>
-  <%#= form.hidden_field :user_id, value: @active_user.id %>
-  <%#= form.submit "+",
-              class: "button",
-              data: {
-                "optimistic-updates-update-val-param": "1",
-                action: "click->optimistic-updates#update",
-              } %>
-  <%# end %>
+  <span class="align-middle" data-cart-target="toBeUpdated"><%= item.quantity %></span>
+  <button
+    class='button'
+    data-cart-url-param="<%="/user/#{@active_user.id}/cart/cart_items/#{item.id}"%>"
+    data-cart-user-id-param="<%= @active_user.id %>"
+    data-cart-user-entity-param="<%= @active_user.class.name %>"
+    data-cart-item-id-param="<%= item.product.id %>"
+    data-cart-update-val-param="1"
+    data-action="click->cart#update"
+  >
+    +
+  </button>
 </div>
