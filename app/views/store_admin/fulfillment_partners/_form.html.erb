@@ -1,0 +1,23 @@
+<div class="container">
+  <%= form_with model: [current_store_admin, current_store_admin.store, fulfillment_partner], data: {turbo: false}, class: 'ml-2 mr-2'  do |form| %>
+    <div class="input-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "input" %>
+    </div>
+    <div class="input-group">
+      <%= form.label :location %>
+      <%= form.text_field :location, class: "input" %>
+    </div>
+    <div class="input-group">
+      <%= form.label :file_format %>
+      <%= form.select :file_format, { options: %w[csv json] }, class: "input" %>
+    </div>
+    <div>
+      <%= form.label :file_structure %>
+      <%= form.rich_textarea :file_structure %>
+    </div>
+    <div class="mt-4">
+      <%= form.button :submit, class: "button" %>
+    </div>
+  <% end %>
+</div>

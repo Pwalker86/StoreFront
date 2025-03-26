@@ -23,6 +23,7 @@
 #
 class FulfillmentPartner < ApplicationRecord
   belongs_to :store
+  has_rich_text :file_structure
 
   validates :store, presence: true
 

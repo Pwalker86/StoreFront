@@ -14,7 +14,7 @@
       <% end %>
     </div>
     <div class="flex gap-5">
-      <%#= render "shared/#{user_type}_links", path: "orders_index" %>
+      <%= render "shared/#{user_type}_links", path: "fulfillment_partner" %>
       <%= render "shared/#{user_type}_links", path: "cart_show" %>
       <% if current_store_admin && current_store_admin.try(:store).try(:persisted?) %>
         <%= render "shared/#{user_type}_links", path: "edit_store" %>

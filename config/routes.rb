@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   resources :store_admin do
     resources :stores, controller: "store_admin/stores", except: [ :index ] do
+      resources :fulfillment_partners, controller: "store_admin/fulfillment_partners", except: [ :index ]
       resources :orders, controller: "store_admin/orders", only: [ :index, :show ]
       resources :products, controller: "store_admin/products", except: [ :destroy ] do
         resources :tags, controller: "store_admin/tags", only: [ :new, :create, :destroy ]
