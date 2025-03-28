@@ -1,8 +1,10 @@
-<%= render "form", product: @new_product, store: @store %>
-<br>
+<div class="container mt-5 mx-auto sm:h-screen h-dvh">
+  <%= render "form", product: @new_product, store: @store %>
+  <br>
 
-<div>
-  <%= link_to "Cancel",
-  store_admin_store_products_path(current_store_admin, @store),
-  class: "danger-button ml-2" %>
+  <div>
+    <%= link_to "Cancel",
+    store_admin_store_products_path(current_store_admin, @store),
+    class: "danger-button ml-2" %>
+  </div>
 </div>
