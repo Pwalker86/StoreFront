@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container w-1/2 mx-auto">
   <%= form_with model: [current_store_admin, current_store_admin.store, fulfillment_partner], data: {turbo: false}, class: 'ml-2 mr-2'  do |form| %>
     <div class="input-group">
       <%= form.label :name %>
@@ -10,14 +10,27 @@
     </div>
     <div class="input-group">
       <%= form.label :file_format %>
-      <%= form.select :file_format, { options: %w[csv json] }, class: "input" %>
+      <%= form.select :file_format,
+                  { options: %w[csv json] },
+                  { required: true, include_blank: "Select file format" },
+                  class:
+                    "rounded-sm border border-solid border-gray-400 border-gray-400" %>
+
     </div>
-    <div>
-      <%= form.label :file_structure %>
-      <%= form.rich_textarea :file_structure %>
+    <div class="input-group">
+      <%= form.label :file_schema %>
+      <%= form.file_field :file_schema,
+                      class: "border border-solid border-gray-400 rounded-sm pl-2" %>
     </div>
     <div class="mt-4">
       <%= form.button :submit, class: "button" %>
     </div>
+    <%= link_to "Cancel",
+    store_admin_store_fulfillment_partner_path(
+      current_store_admin,
+      current_store_admin.store,
+      @fulfillment_partner,
+    ),
+    class: "danger-button mt-2 block w-fit" %>
   <% end %>
 </div>

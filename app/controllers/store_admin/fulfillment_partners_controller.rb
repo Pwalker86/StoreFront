@@ -28,7 +28,8 @@ class StoreAdmin::FulfillmentPartnersController < ApplicationController
     store = Store.find(params[:store_id])
     @fulfillment_partner = store.fulfillment_partner
     if @fulfillment_partner.update(fulfillment_partner_params)
-      redirect_to store_admin_store_fulfillment_partner_path(current_store_admin, store, @fulfillment_partner), notice: "Fulfillment partner created!"
+      FulfillmentPartner::WriteSchemaJob.perform_async(@fulfillment_partner.id)
+      redirect_to store_admin_store_fulfillment_partner_path(current_store_admin, store, @fulfillment_partner), notice: "Fulfillment partner updated!"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -44,6 +45,6 @@ class StoreAdmin::FulfillmentPartnersController < ApplicationController
   private
 
   def fulfillment_partner_params
-    params.expect(fulfillment_partner: [ :name, :email, :phone, :location, :file_format, :file_structure ])
+    params.expect(fulfillment_partner: [ :name, :email, :phone, :location, :file_format, :file_structure, :file_schema ])
   end
 end
