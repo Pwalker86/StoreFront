@@ -93,3 +93,5 @@ gem "pundit", "~> 2.5"
 gem "activestorage-validator"
 
 gem "sidekiq", "~> 8.0"
+
+gem "json-schema"

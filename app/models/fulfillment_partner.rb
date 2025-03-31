@@ -1,17 +1,18 @@
+require "json-schema"
 # == Schema Information
 #
 # Table name: fulfillment_partners
 #
-#  id             :bigint           not null, primary key
-#  email          :string
-#  file_format    :string           not null
-#  file_structure :jsonb            not null
-#  location       :string
-#  name           :string           not null
-#  phone          :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  store_id       :bigint
+#  id          :bigint           not null, primary key
+#  email       :string
+#  file_format :string           not null
+#  file_schema :jsonb
+#  location    :string
+#  name        :string           not null
+#  phone       :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  store_id    :bigint
 #
 # Indexes
 #
@@ -23,30 +24,29 @@
 #
 class FulfillmentPartner < ApplicationRecord
   belongs_to :store
-  has_one_attached :file_schema
+  has_one_attached :file_schema_json
 
   validates :store, presence: true
 
-  def validate_file(file)
-    case file_format
-    when "csv"
-      validate_csv(file)
-    when "json"
-      validate_json(file)
-    else
-      errors.add(:file_format, "is not supported")
+  after_create_commit :write_schema
+  before_update do
+    if attachment_changes["file_schema_json"].present?
+      write_schema_to_model
     end
   end
 
-  def validate_csv(file)
-    # Implement CSV validation logic here
+  # TODO: something like this in a separate file validation service
+  def validate_file(file)
+    JSON::Validator.validate!(file_schema, { "a" => 2 })
   end
 
-  def validate_json(file)
-    # Implement JSON validation logic here
-  end
+  private
 
-  def validate_xml(file)
-    # Implement XML validation logic here
+  def write_schema_to_model
+    if file_schema_json.attached?
+      FulfillmentPartner::WriteSchemaJob.perform_async(id)
+    else
+      Rails.logger.error("No file schema JSON attached for partner #{id}")
+    end
   end
 end

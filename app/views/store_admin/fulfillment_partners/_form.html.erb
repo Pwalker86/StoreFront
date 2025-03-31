@@ -18,19 +18,12 @@
 
     </div>
     <div class="input-group">
-      <%= form.label :file_schema %>
-      <%= form.file_field :file_schema,
+      <%= form.label :file_schema_json %>
+      <%= form.file_field :file_schema_json,
                       class: "border border-solid border-gray-400 rounded-sm pl-2" %>
     </div>
     <div class="mt-4">
       <%= form.button :submit, class: "button" %>
     </div>
-    <%= link_to "Cancel",
-    store_admin_store_fulfillment_partner_path(
-      current_store_admin,
-      current_store_admin.store,
-      @fulfillment_partner,
-    ),
-    class: "danger-button mt-2 block w-fit" %>
   <% end %>
 </div>
