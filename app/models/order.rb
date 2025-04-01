@@ -18,6 +18,7 @@
 class Order < ApplicationRecord
   before_destroy :do_not_destroy
   belongs_to :orderable, polymorphic: true
+  has_and_belongs_to_many :order_exports
   has_many :order_items
   has_many :products, through: :order_items
 

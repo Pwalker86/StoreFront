@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# == Schema Information
+#
+# Table name: order_exports
+#
+#  id               :bigint           not null, primary key
+#  date_exported_at :datetime
+#  order_count      :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+one:
+  date_exported_at: 2025-04-01 11:29:48
+  orders: one
+
+two:
+  date_exported_at: 2025-04-01 11:29:48
+  orders: two
