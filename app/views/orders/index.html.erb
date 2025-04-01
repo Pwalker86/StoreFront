@@ -1,16 +1,18 @@
-<table class="orders-table">
-  <tr class="orders-table__header">
-    <th class="orders-table__header-cell">Order ID</th>
-    <th class="orders-table__header-cell">User</th>
-    <th class="orders-table__header-cell">Status</th>
-    <th class="orders-table__header-cell">Actions</th>
-  </tr>
-  <% @orders.each do |order| %>
-    <tr class="orders-table__row">
-      <td class="orders-table__cell"><%= order.id %></td>
-      <td class="orders-table__cell"><%= order.orderable.email %></td>
-      <td class="orders-table__cell"><%= order.status %></td>
-      <td class="orders-table__cell"><%= link_to "View", order, class: "orders-table__link" %></td>
+<div class="container mt-5 mx-auto sm:h-screen h-dvh">
+  <table class="orders-table">
+    <tr class="orders-table__header">
+      <th class="orders-table__header-cell">Order ID</th>
+      <th class="orders-table__header-cell">User</th>
+      <th class="orders-table__header-cell">Status</th>
+      <th class="orders-table__header-cell">Actions</th>
     </tr>
-  <% end %>
-</table>
+    <% @orders.each do |order| %>
+      <tr class="orders-table__row">
+        <td class="orders-table__cell"><%= order.id %></td>
+        <td class="orders-table__cell"><%= order.orderable.email %></td>
+        <td class="orders-table__cell"><%= order.status %></td>
+        <td class="orders-table__cell"><%= link_to "View", order, class: "orders-table__link" %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
