@@ -3,8 +3,8 @@ class StoreAdmin::OrdersController < ApplicationController
 
     def index
       @orders = current_store_admin.store_orders
-      @store = Store.find(params[:store_id])
-      authorize @store, policy_class: Admin::StorePolicy
+      store = Store.find(params[:store_id])
+      authorize store, policy_class: Admin::StorePolicy
     end
 
     def show

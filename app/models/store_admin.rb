@@ -24,6 +24,6 @@ class StoreAdmin < ApplicationRecord
   has_one :store
 
   def store_orders
-    Order.joins(order_items: { product: :store }).where(stores: { store_admin_id: id }).distinct
+    Order.includes([ :order_exports ]).joins(order_items: { product: :store }).where(stores: { store_admin_id: id }).distinct
   end
 end

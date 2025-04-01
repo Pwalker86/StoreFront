@@ -25,6 +25,10 @@ class Order < ApplicationRecord
   ORDER_OPEN = "open"
   ORDER_PENDING = "pending"
 
+  def last_export
+    order_exports.last
+  end
+
   def scoped_order_items(store_id)
     order_items.find_all { |item| item.product.store_id === store_id }
   end

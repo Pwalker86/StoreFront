@@ -1,55 +1,62 @@
 <div class="container mt-5 mx-auto sm:h-screen h-dvh">
-  <table class="w-full">
-    <thead>
-      <tr class="border border-gray-400 bg-gray-200">
-        <th class="w-10 border border-gray-400">Order ID</th>
-        <th class="w-40 border border-gray-400">User</th>
-        <th class="w-20 border border-gray-400">Status</th>
-        <th class="w-20 border border-gray-400">Order Date</th>
-        <th class="w-20 border border-gray-400">Actions</th>
-        <th class="w-20 border border-gray-400">Export</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @orders.each do |order| %>
-        <tr class="border border-gray-400">
-          <td class="border border-gray-400">
-            <p class="mx-auto block w-fit">
-              <%= order.id %>
-            </p>
-          </td>
-          <td class="border border-gray-400">
-            <p class="mx-auto block w-fit">
-              <%= order.orderable.email %>
-            </p>
-          </td>
-          <td class="border border-gray-400">
-            <p class="mx-auto block w-fit">
-              <%= order.status %>
-            </p>
-          </td>
-          <td>
-            <p class="mx-auto block w-fit">
-              <%= order.created_at.strftime("%m-%d-%Y") %>
-            </p>
-          </td>
-          <td class="border border-gray-400">
-            <%= link_to "View",
-            store_admin_store_order_path(
-              current_store_admin,
-              current_store_admin.store,
-              order,
-            ),
-            class: "mx-auto block underline text-blue-500 w-fit" %>
-          </td>
-          <td>
-            <%= check_box_tag "order_ids[]", order.id, false, class: "block mx-auto" %>
-          </td>
+  <%= form_with model: [current_store_admin, OrderExport.new], method: :post do |form | %>
+    <table class="w-full">
+      <thead>
+        <tr class="border border-gray-400 bg-gray-200">
+          <th class="w-10 border border-gray-400">Order ID</th>
+          <th class="w-40 border border-gray-400">User</th>
+          <th class="w-20 border border-gray-400">Status</th>
+          <th class="w-20 border border-gray-400">Order Date</th>
+          <th class="w-20 border border-gray-400">Export</th>
+          <th class="w-20 border border-gray-400">Last Export Date</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <div class="flex justify-end mt-4">
-    <%= button_to "Export Selected Orders", root_path, method: :post, class: "button" %>
-  </div>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr class="border border-gray-400">
+            <td class="border border-gray-400">
+              <p class="mx-auto block w-fit">
+                <%= link_to order.id,
+                store_admin_store_order_path(
+                  current_store_admin,
+                  current_store_admin.store,
+                  order,
+                ),
+                class: "mx-auto block underline text-blue-500 w-fit" %>
+              </p>
+            </td>
+            <td class="border border-gray-400">
+              <p class="mx-auto block w-fit">
+                <%= order.orderable.email %>
+              </p>
+            </td>
+            <td class="border border-gray-400">
+              <p class="mx-auto block w-fit">
+                <%= order.status %>
+              </p>
+            </td>
+            <td class="border border-gray-400">
+              <p class="mx-auto block w-fit">
+                <%= order.created_at.strftime("%m-%d-%Y") %>
+              </p>
+            </td>
+            <td class="border border-gray-400">
+              <%= form.checkbox :order_ids,
+                            { multiple: true, class: "mx-auto block w-fit" },
+                            order.id,
+                            nil %>
+            </td>
+            <td>
+              <p class="mx-auto block w-fit">
+                <%= if order.last_export.present?
+                  order.last_export.date_exported_at.strftime("%m-%d-%Y")
+                end %>
+              </p>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= form.submit "Export Selected Orders", class: "button mt-4 block mr-0 ml-auto" %>
+  <% end %>
 </div>
