@@ -1,7 +1,7 @@
 class ProductReviewsController < ApplicationController
   def index
-    @product = Product.find params[:product_id]
-    @pagy_reviews, @reviews = pagy(@product.reviews.ordered, page_param: :reviews_page)
+    @reviews = Review.includes([ :user ]).where(reviewable_id: params[:product_id]).ordered
+    @pagy_reviews, @reviews = pagy(@reviews, page_param: :reviews_page)
   end
 
   def show
