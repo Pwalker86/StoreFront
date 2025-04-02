@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   resources :store_admin do
     resources :order_exports, only: [ :index, :show, :create ]
+    resources :shipping_details, only: [ :new, :create ]
     resources :stores, controller: "store_admin/stores", except: [ :index ] do
       resources :fulfillment_partners, controller: "store_admin/fulfillment_partners", except: [ :index ]
       resources :orders, controller: "store_admin/orders", only: [ :index, :show ]

@@ -21,6 +21,7 @@ class Order < ApplicationRecord
   has_and_belongs_to_many :order_exports
   has_many :order_items
   has_many :products, through: :order_items
+  has_many :shipping_details
 
   ORDER_OPEN = "open"
   ORDER_PENDING = "pending"
