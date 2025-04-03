@@ -22,8 +22,9 @@ class StoreAdmin < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable
   has_one :store
+  has_many :shipping_details_imports, dependent: :destroy
 
   def store_orders
-    Order.includes([ :order_exports ]).joins(order_items: { product: :store }).where(stores: { store_admin_id: id }).distinct
+    Order.includes([ :order_exports ]).joins(order_items: { product: :store }).where(stores: { store_admin_id: id }).distinct.order("created_at DESC")
   end
 end

@@ -26,6 +26,11 @@
     } %>
   <% end %>
 
+  <% if path === 'shipping_details' %>
+    <%= link_to "Import Shipping Details",
+    new_store_admin_shipping_detail_path(current_store_admin) %>
+  <% end %>
+
   <% if path === 'fulfillment_partner' && current_store_admin.store.fulfillment_partner.present? %>
     <%= link_to "Fulfillment Partners",
     store_admin_store_fulfillment_partner_path(
