@@ -1,5 +1,5 @@
-<div class="container mt-5 mx-auto sm:h-screen h-dvh">
-  <%= form_with model: [current_store_admin, OrderExport.new], method: :post do |form | %>
+<div class="mt-5 ml-5 mr-5 sm:h-screen h-dvh">
+  <%= form_with model: [current_store_admin, OrderExport.new], method: :post, data: {turbo: false} do |form | %>
     <table class="w-full">
       <thead>
         <tr class="border border-gray-400 bg-gray-200">
@@ -53,7 +53,7 @@
             <td>
               <p class="mx-auto block w-fit">
                 <%= if order.last_export.present?
-                  order.last_export.date_exported_at.strftime("%m-%d-%Y")
+                  order.last_export.date_exported_at.strftime("%Y-%m-%d %H:%M:%S")
                 end %>
               </p>
             </td>

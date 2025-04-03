@@ -7,11 +7,13 @@ class OrderExportsController < ApplicationController
 
   def create
     orders = Order.where(id: order_export_params[:order_ids])
-    @order_export = OrderExport.new
-    @order_export.date_exported_at = Time.current
-    @order_export.orders = orders
-    @order_export.save
-    redirect_to store_admin_store_orders_path(current_store_admin, current_store_admin.store), notice: "Order export created!"
+    @order_export = OrderExport.new(date_exported_at: Time.current, orders: orders)
+    if @order_export.save!
+      csv_data = GenerateOrderExportFileService.new(@order_export.id).call
+      send_data csv_data, filename: "orders_export_#{Time.current.strftime('%Y-%m-%d_%H:%M:%S')}.csv"
+    else
+      redirect_to store_admin_store_orders_path(current_store_admin, current_store_admin.store), alert: "Failed to export orders"
+    end
   end
 
   private

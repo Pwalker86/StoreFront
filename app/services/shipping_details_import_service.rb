@@ -22,7 +22,6 @@ class ShippingDetailsImportService
   def parse_file
     file = @details_import.import_file.download
     CSV.parse(file, headers: true) do |row|
-      debugger
       shipping_detail = ShippingDetail.new(row.to_hash)
       @shipping_details << shipping_detail
     end
