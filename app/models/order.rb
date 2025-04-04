@@ -31,7 +31,7 @@ class Order < ApplicationRecord
   end
 
   def scoped_order_items(store_id)
-    order_items.find_all { |item| item.product.store_id === store_id }
+    order_items.includes(:product).find_all { |item| item.product.store_id === store_id }
   end
 
   def sorted_order_items

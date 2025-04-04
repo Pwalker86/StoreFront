@@ -35,8 +35,6 @@ class ConvertCartToOrderService
 
   # Sets the shipping address for the order.
   def set_order_address
-    # TODO: Need to refactor order model to use normal string columns for each address value.
-    # That's how it's been accessed anyway and would reduce reliance on a jsonb datatype being available in the DB.
     @order.shipping_address = {
       address1: @order_params[:address1],
       address2: @order_params[:address2],
@@ -47,7 +45,7 @@ class ConvertCartToOrderService
   end
 
   # If the order has a guest user, it updates the guest's email
-  # with the provided email from the address parameters and saves the guest user.
+  # with the provided email from the checkout parameters and saves the guest user.
   def set_guest_email
     if @order.orderable.is_a? Guest
       @order.orderable.email = @order_params[:email]
