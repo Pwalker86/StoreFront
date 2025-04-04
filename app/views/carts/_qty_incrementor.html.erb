@@ -5,6 +5,7 @@
     data-cart-user-id-param="<%= @active_user.id %>"
     data-cart-user-entity-param="<%= @active_user.class.name %>"
     data-cart-item-id-param="<%= item.product.id %>"
+    data-cart-item-price-param="-<%= item.product.price %>"
     data-cart-update-val-param="-1"
     data-action="click->cart#update"
   >
@@ -17,6 +18,7 @@
     data-cart-user-id-param="<%= @active_user.id %>"
     data-cart-user-entity-param="<%= @active_user.class.name %>"
     data-cart-item-id-param="<%= item.product.id %>"
+    data-cart-item-price-param="<%= item.product.price %>"
     data-cart-update-val-param="1"
     data-action="click->cart#update"
   >
