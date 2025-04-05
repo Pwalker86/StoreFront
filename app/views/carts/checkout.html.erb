@@ -1,4 +1,4 @@
-<div class="sm:container sm:mx-auto">
+<div class="container mt-5 mx-auto sm:h-screen h-dvh">
   <h1 class="text-2xl mx-2">Shipping Information</h1>
   <hr class="my-4 text-gray-400 mx-2"/>
   <%= form_with model: @order do |form| %>
@@ -11,6 +11,12 @@
                          class: "border border-solid border-gray-400 rounded-sm",
                          required: true,
                          value: @email %>
+      </div>
+      <div class="my-2 flex flex-row justify-between">
+        <%= form.label :full_name, "Full Name" %>
+        <%= form.text_field :full_name,
+                        class: "border border-solid border-gray-400 rounded-sm",
+                        required: true %>
       </div>
       <div class="my-2 flex flex-row justify-between">
         <%= form.label :address1, "Address 1" %>

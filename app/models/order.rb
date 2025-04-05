@@ -2,14 +2,20 @@
 #
 # Table name: orders
 #
-#  id               :bigint           not null, primary key
-#  email            :string
-#  orderable_type   :string
-#  shipping_address :jsonb
-#  status           :string           default("pending")
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  orderable_id     :bigint
+#  id             :bigint           not null, primary key
+#  address1       :string
+#  address2       :string
+#  city           :string
+#  email          :string
+#  full_name      :string
+#  instructions   :text
+#  orderable_type :string
+#  postal_code    :string
+#  state          :string
+#  status         :string           default("pending")
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  orderable_id   :bigint
 #
 # Indexes
 #
@@ -52,26 +58,6 @@ class Order < ApplicationRecord
 
   def open?
     status == ORDER_OPEN
-  end
-
-  def address1
-    shipping_address["address1"]
-  end
-
-  def address2
-    shipping_address["address2"]
-  end
-
-  def city
-    shipping_address["city"]
-  end
-
-  def state
-    shipping_address["state"]
-  end
-
-  def postal_code
-    shipping_address["postal_code"]
   end
 
   private
