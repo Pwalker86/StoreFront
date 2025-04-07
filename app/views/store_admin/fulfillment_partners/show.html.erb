@@ -1,10 +1,10 @@
 <%= turbo_stream_from "fulfillment_partner" %>
 <div class="container mt-5 mx-auto sm:h-screen h-dvh">
   <h1 class="font-bold text-4xl">Storeadmin::FulfillmentPartners#show</h1>
-  <%= tag.turbo_frame id:"fulfillment_partner" do %>
-    <%= render "fulfillment_partner", fulfillment_partner: @fulfillment_partner %>
-  <% end %>
   <% if @fulfillment_partner.present? %>
+    <%= tag.turbo_frame id:"fulfillment_partner" do %>
+      <%= render "fulfillment_partner", fulfillment_partner: @fulfillment_partner %>
+    <% end %>
     <%= link_to "Edit Fulfillment Partner",
     edit_store_admin_store_fulfillment_partner_path(
       current_store_admin,
@@ -12,5 +12,17 @@
       @fulfillment_partner,
     ),
     class: "button block w-fit mt-2" %>
+    <%= button_to "Delete Fulfillment Partner",
+    store_admin_store_fulfillment_partner_path(
+      current_store_admin,
+      current_store_admin.store,
+      @fulfillment_partner,
+    ),
+    method: :delete,
+    data: {
+      turbo: false,
+      confirm: "Are you sure?",
+    },
+    class: "danger-button block w-fit mt-2" %>
   <% end %>
 </div>
