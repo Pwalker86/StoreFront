@@ -5,12 +5,11 @@
 #  id          :bigint           not null, primary key
 #  csv_headers :string           default([]), is an Array
 #  email       :string
-#  file_format :string           not null
 #  file_schema :jsonb
 #  location    :string
 #  name        :string           not null
 #  phone       :string
-#  type        :string           not null
+#  type        :string           default("CsvPartner"), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  store_id    :bigint
@@ -23,10 +22,23 @@
 #
 #  fk_rails_...  (store_id => stores.id)
 #
-require "test_helper"
+class JsonPartner < FulfillmentPartner
+  def generate_export(orders)
+    puts "Generating JSON export for #{orders.count} orders"
+    orders.to_json
+  end
 
-class FulfillmentPartnerTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def validate_file(file)
+    JSON::Validator.validate!(file_schema, file)
+  end
+
+  private
+
+  def write_schema_to_model
+    if file_schema_json.attached?
+      FulfillmentPartner::WriteSchemaJob.perform_async(id)
+    else
+      Rails.logger.error("No file schema JSON attached for partner #{id}")
+    end
+  end
 end

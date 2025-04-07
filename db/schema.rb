@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_04_202140) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_05_170910) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -78,10 +78,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_04_202140) do
     t.string "location"
     t.string "phone"
     t.string "email"
-    t.string "file_format", null: false
     t.jsonb "file_schema"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "csv_headers", default: [], array: true
+    t.string "type", default: "CsvPartner", null: false
     t.index ["store_id"], name: "index_fulfillment_partners_on_store_id"
   end
 
@@ -160,8 +161,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_04_202140) do
 
   create_table "shipping_details", force: :cascade do |t|
     t.string "tracking_number"
-    t.string "carrier"
-    t.datetime "shipped_at"
     t.bigint "order_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

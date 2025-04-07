@@ -6,14 +6,13 @@ class StoreAdmin::FulfillmentPartnersController < ApplicationController
 
   def new
     store = Store.find(params[:store_id])
-    @fulfillment_partner = store.build_fulfillment_partner
-    @csv_header_options = FulfillmentPartner::CSV_HEADER_OPTIONS
+    @fulfillment_partner = CsvPartner.new(store: store)
+    @csv_header_options = CsvPartner::CSV_HEADER_OPTIONS
   end
 
   def create
-    debugger
     store = Store.find(params[:store_id])
-    @fulfillment_partner = store.build_fulfillment_partner(fulfillment_partner_params)
+    @fulfillment_partner = FulfillmentPartnerFactory.create_fulfillment_partner(fulfillment_partner_params[:type], fulfillment_partner_params.merge(store_id: store.id))
     if @fulfillment_partner.save
       redirect_to store_admin_store_fulfillment_partner_path(current_store_admin, store, @fulfillment_partner), notice: "Fulfillment partner created!"
     else
@@ -46,6 +45,6 @@ class StoreAdmin::FulfillmentPartnersController < ApplicationController
   private
 
   def fulfillment_partner_params
-    params.expect(fulfillment_partner: [ :name, :email, :phone, :location, :file_format, :file_schema, :file_schema_json, csv_headers: FulfillmentPartner::CSV_HEADER_OPTIONS.map(&:to_sym) ])
+    params.expect(fulfillment_partner: [ :name, :email, :phone, :location, :type, :file_schema, :file_schema_json, csv_headers: CsvPartner::CSV_HEADER_OPTIONS.map(&:to_sym) ])
   end
 end

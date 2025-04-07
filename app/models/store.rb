@@ -29,6 +29,7 @@ class Store < ApplicationRecord
     attachable.variant :thumb, resize_to_limit: [ 250, nil ], preprocessed: true
   end
 
+  validates :store_admin, presence: true
   validates :spotlight, blob: { content_type: :image } # supported options: :web_image, :image, :audio, :video, :text
   validates :name, :phone_number, :location, :email, presence: true
   validates :email,

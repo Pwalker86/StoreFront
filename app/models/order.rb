@@ -29,6 +29,11 @@ class Order < ApplicationRecord
   has_many :products, through: :order_items
   has_many :shipping_details
 
+  validates :full_name, :address1, :city, :postal_code, :state, presence: true
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :status, inclusion: { in: %w[pending open shipped delivered] }
+  validates :orderable, presence: true
+
   ORDER_OPEN = "open"
   ORDER_PENDING = "pending"
 

@@ -1,5 +1,5 @@
 <div class="container w-1/2 mx-auto" data-controller="file-format">
-  <%= form_with model: [current_store_admin, current_store_admin.store, fulfillment_partner], data: {turbo: false}, class: 'ml-2 mr-2'  do |form| %>
+  <%= form_with model: [current_store_admin, current_store_admin.store, fulfillment_partner.becomes(FulfillmentPartner)], data: {turbo: false}, class: 'ml-2 mr-2'  do |form| %>
     <div class="input-group">
       <%= form.label :name %>
       <%= form.text_field :name, class: "input" %>
@@ -9,9 +9,9 @@
       <%= form.text_field :location, class: "input" %>
     </div>
     <div class="input-group">
-      <%= form.label :file_format %>
-      <%= form.select :file_format,
-                  { options: %w[csv json] },
+      <%= form.label :type %>
+      <%= form.select :type,
+                  { options: [%w[CSV CsvPartner], %w[JSON JsonPartner]] },
                   { required: true, include_blank: "Select file format" },
                   data: {
                     action: "change->file-format#update",
@@ -22,7 +22,7 @@
     </div>
     <div class="hidden" data-file-format-target="csvHeaders">
       <%= form.fields_for :csv_headers do |csv_form| %>
-        <% FulfillmentPartner::CSV_HEADER_OPTIONS.each do |header_option| %>
+        <% CsvPartner::CSV_HEADER_OPTIONS.each do |header_option| %>
           <%= csv_form.label header_option %>
           <%= csv_form.check_box header_option,
                              { class: "rounded-sm border border-solid border-gray-400" },
