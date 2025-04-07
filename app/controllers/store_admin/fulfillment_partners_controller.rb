@@ -7,9 +7,11 @@ class StoreAdmin::FulfillmentPartnersController < ApplicationController
   def new
     store = Store.find(params[:store_id])
     @fulfillment_partner = store.build_fulfillment_partner
+    @csv_header_options = FulfillmentPartner::CSV_HEADER_OPTIONS
   end
 
   def create
+    debugger
     store = Store.find(params[:store_id])
     @fulfillment_partner = store.build_fulfillment_partner(fulfillment_partner_params)
     if @fulfillment_partner.save
@@ -44,6 +46,6 @@ class StoreAdmin::FulfillmentPartnersController < ApplicationController
   private
 
   def fulfillment_partner_params
-    params.expect(fulfillment_partner: [ :name, :email, :phone, :location, :file_format, :file_schema, :file_schema_json ])
+    params.expect(fulfillment_partner: [ :name, :email, :phone, :location, :file_format, :file_schema, :file_schema_json, csv_headers: FulfillmentPartner::CSV_HEADER_OPTIONS.map(&:to_sym) ])
   end
 end
