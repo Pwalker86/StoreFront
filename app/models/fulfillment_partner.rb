@@ -28,17 +28,12 @@ class FulfillmentPartner < ApplicationRecord
   self.abstract_class = true
   self.table_name = "fulfillment_partners"
 
+  after_update_commit -> { broadcast_update_later_to "fulfillment_partner", partial: "store_admin/fulfillment_partners/fulfillment_partner", locals: { fulfillment_partner: self }, target: "fulfillment_partner" }
+  after_create_commit -> { broadcast_update_later_to "fulfillment_partner", partial: "store_admin/fulfillment_partners/fulfillment_partner", locals: { fulfillment_partner: self }, target: "fulfillment_partner" }
+
   belongs_to :store
-  has_one_attached :file_schema_json
 
   validates :store, presence: true
-
-  after_create_commit :write_schema_to_model
-  before_update do
-    if attachment_changes["file_schema_json"].present?
-      write_schema_to_model
-    end
-  end
 
   def generate_export(orders)
     raise NotImplementedError, "Subclasses must implement this method"
@@ -47,15 +42,5 @@ class FulfillmentPartner < ApplicationRecord
   # TODO: something like this in a separate file validation service
   def validate_file(file)
     raise NotImplementedError, "Subclasses must implement this method"
-  end
-
-  private
-
-  def write_schema_to_model
-    if file_schema_json.attached?
-      FulfillmentPartner::WriteSchemaJob.perform_async(id)
-    else
-      Rails.logger.error("No file schema JSON attached for partner #{id}")
-    end
   end
 end

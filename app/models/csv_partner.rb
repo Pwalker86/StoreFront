@@ -23,6 +23,7 @@
 #  fk_rails_...  (store_id => stores.id)
 #
 class CsvPartner < FulfillmentPartner
+  validates :type, inclusion: { in: [ "CsvPartner" ] }
   CSV_HEADER_OPTIONS = [ "email", "full_name", "address1", "address2", "city", "state", "postal_code", "instructions" ].freeze
 
   def generate_export(orders)

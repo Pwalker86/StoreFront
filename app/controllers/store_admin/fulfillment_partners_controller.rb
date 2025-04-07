@@ -1,18 +1,16 @@
 class StoreAdmin::FulfillmentPartnersController < ApplicationController
   def show
-    store = Store.find(params[:store_id])
-    @fulfillment_partner = store.fulfillment_partner
+    @fulfillment_partner = FulfillmentPartner.find_by(store_id: params[:store_id])
   end
 
   def new
-    store = Store.find(params[:store_id])
-    @fulfillment_partner = CsvPartner.new(store: store)
+    @fulfillment_partner = CsvPartner.new(store_id: params[:store_id])
     @csv_header_options = CsvPartner::CSV_HEADER_OPTIONS
   end
 
   def create
     store = Store.find(params[:store_id])
-    @fulfillment_partner = FulfillmentPartnerFactory.create_fulfillment_partner(fulfillment_partner_params[:type], fulfillment_partner_params.merge(store_id: store.id))
+    @fulfillment_partner = FulfillmentPartnerFactory.create_fulfillment_partner(fulfillment_partner_params[:type], fulfillment_partner_params.merge(store_id: params[:store_id]))
     if @fulfillment_partner.save
       redirect_to store_admin_store_fulfillment_partner_path(current_store_admin, store, @fulfillment_partner), notice: "Fulfillment partner created!"
     else
@@ -21,14 +19,13 @@ class StoreAdmin::FulfillmentPartnersController < ApplicationController
   end
 
   def edit
-    store = Store.find(params[:store_id])
-    @fulfillment_partner = store.fulfillment_partner
+    @fulfillment_partner = FulfillmentPartner.find_by(store_id: params[:store_id])
   end
 
   def update
     store = Store.find(params[:store_id])
-    @fulfillment_partner = store.fulfillment_partner
-    if @fulfillment_partner.update(fulfillment_partner_params)
+    @fulfillment_partner = FulfillmentPartnerFactory.update_fulfillment_partner(store.fulfillment_partner, fulfillment_partner_params[:type], fulfillment_partner_params)
+    if @fulfillment_partner.save
       redirect_to store_admin_store_fulfillment_partner_path(current_store_admin, store, @fulfillment_partner), notice: "Fulfillment partner updated!"
     else
       render :edit, status: :unprocessable_entity

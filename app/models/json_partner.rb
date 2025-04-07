@@ -23,6 +23,15 @@
 #  fk_rails_...  (store_id => stores.id)
 #
 class JsonPartner < FulfillmentPartner
+  validates :type, inclusion: { in: [ "JsonPartner" ] }
+  has_one_attached :file_schema_json
+  after_create_commit :write_schema_to_model
+  after_update do
+    if attachment_changes["file_schema_json"].present?
+      write_schema_to_model
+    end
+  end
+
   def generate_export(orders)
     puts "Generating JSON export for #{orders.count} orders"
     orders.to_json
