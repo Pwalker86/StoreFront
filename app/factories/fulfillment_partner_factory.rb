@@ -1,5 +1,6 @@
 class FulfillmentPartnerFactory
   class UnknownFulfillmentPartnerTypeError < StandardError; end
+  class NilHeadersError < StandardError; end
 
   def self.create_fulfillment_partner(type, partner_params)
     case type
@@ -27,13 +28,17 @@ class FulfillmentPartnerFactory
       new_instance.assign_attributes(partner_params)
       new_instance.csv_headers = []
     else
-      raise UnknownFulfillmentPartnerTypeError, "Unknown fulfillment partner type: #{type}"
+      raise UnknownFulfillmentPartnerTypeError, "Unknown fulfillment partner type: #{new_type}"
     end
     new_instance
   end
 
   def self.filter_csv_headers(csv_headers)
-    csv_headers.select { |k, v| v == "true" }.keys
+    begin
+      csv_headers.select { |k, v| v == "true" }.keys
+    rescue NoMethodError => e
+      raise NilHeadersError, "Error filtering CSV headers: #{e.message}"
+    end
   end
 end
 

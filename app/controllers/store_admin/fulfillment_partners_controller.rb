@@ -18,7 +18,7 @@ class StoreAdmin::FulfillmentPartnersController < ApplicationController
       else
         render :new, status: :unprocessable_entity
       end
-    rescue FulfillmentPartnerFactory::UnknownFulfillmentPartnerTypeError => e
+    rescue FulfillmentPartnerFactory::UnknownFulfillmentPartnerTypeError, FulfillmentPartnerFactory::NilHeadersError => e
       Rails.logger.error("Error creating fulfillment partner: #{e.message}")
       redirect_to new_store_admin_store_fulfillment_partner_path(current_store_admin, store), alert: "An error occurred while creating the fulfillment partner. Please try again."
     rescue ActiveRecord::RecordNotFound => e
@@ -44,7 +44,7 @@ class StoreAdmin::FulfillmentPartnersController < ApplicationController
       else
         render :edit, status: :unprocessable_entity
       end
-    rescue FulfillmentPartnerFactory::UnknownFulfillmentPartnerTypeError => e
+    rescue FulfillmentPartnerFactory::UnknownFulfillmentPartnerTypeError, FulfillmentPartnerFactory::NilHeadersError => e
       Rails.logger.error("Error creating fulfillment partner: #{e.message}")
       redirect_to new_store_admin_store_fulfillment_partner_path(current_store_admin, store), alert: "Fulfillment partner creation failed!"
     rescue ActiveRecord::RecordNotFound => e
