@@ -1,5 +1,3 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 # == Schema Information
 #
 # Table name: fulfillment_partners
@@ -24,18 +22,27 @@
 #
 #  fk_rails_...  (store_id => stores.id)
 #
-csv_partner:
-  name: MyString
-  location: MyString
-  phone: MyString
-  email: MyString
-  store: store_one
-  type: "CsvPartner"
+class JsonPartner < FulfillmentPartner
+  validates :type, inclusion: { in: [ "JsonPartner" ] }
+  has_one_attached :file_schema_json
+  after_create_commit :write_schema_to_model
+  after_update do
+    if attachment_changes["file_schema_json"].present?
+      write_schema_to_model
+    end
+  end
 
-json_partner:
-  name: MyString
-  location: MyString
-  phone: MyString
-  email: MyString
-  store: store_two
-  type: "JsonPartner"
+  def validate_file(file)
+    JSON::Validator.validate!(file_schema, file)
+  end
+
+  private
+
+  def write_schema_to_model
+    if file_schema_json.attached?
+      FulfillmentPartner::WriteSchemaJob.perform_async(id)
+    else
+      Rails.logger.error("No file schema JSON attached for partner #{id}")
+    end
+  end
+end

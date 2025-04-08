@@ -18,7 +18,7 @@
 #  fk_rails_...  (store_admin_id => store_admins.id)
 #
 one:
-  store_admin: one
+  store_admin: store_admin_one
 
 two:
-  store_admin: two
+  store_admin: store_admin_two

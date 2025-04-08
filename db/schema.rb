@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_03_165943) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_05_170910) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -78,10 +78,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_03_165943) do
     t.string "location"
     t.string "phone"
     t.string "email"
-    t.string "file_format", null: false
     t.jsonb "file_schema"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "csv_headers", default: [], array: true
+    t.string "type", default: "CsvPartner", null: false
     t.index ["store_id"], name: "index_fulfillment_partners_on_store_id"
   end
 
@@ -120,10 +121,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_03_165943) do
     t.string "status", default: "pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.jsonb "shipping_address", default: {}
     t.string "orderable_type"
     t.bigint "orderable_id"
     t.string "email"
+    t.string "full_name"
+    t.string "address1"
+    t.string "address2"
+    t.string "city"
+    t.string "state"
+    t.string "postal_code"
+    t.text "instructions"
     t.index ["orderable_type", "orderable_id"], name: "index_orders_on_orderable"
   end
 

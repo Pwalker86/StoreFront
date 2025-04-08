@@ -1,0 +1,69 @@
+<div class="divide-y divide-gray-200">
+  <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-6 p-6">
+    <div class="col-span-1">
+      <dt class="text-sm font-medium text-gray-500">Partner Type</dt>
+      <dd class="mt-1 text-lg font-semibold text-gray-900">
+        <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium <%= fulfillment_partner.type == 'CsvPartner' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800' %>">
+          <%= fulfillment_partner.type == 'CsvPartner' ? 'CSV Format' : 'JSON Format' %>
+        </span>
+      </dd>
+    </div>
+    
+    <div class="col-span-1">
+      <dt class="text-sm font-medium text-gray-500">Location</dt>
+      <dd class="mt-1 text-lg text-gray-900"><%= fulfillment_partner.location || "Not specified" %></dd>
+    </div>
+    
+    <div class="col-span-1">
+      <dt class="text-sm font-medium text-gray-500">Email</dt>
+      <dd class="mt-1 text-lg text-gray-900">
+        <% if fulfillment_partner.email.present? %>
+          <a href="mailto:<%= fulfillment_partner.email %>" class="text-indigo-600 hover:text-indigo-900">
+            <%= fulfillment_partner.email %>
+          </a>
+        <% else %>
+          Not specified
+        <% end %>
+      </dd>
+    </div>
+    
+    <div class="col-span-1">
+      <dt class="text-sm font-medium text-gray-500">Phone</dt>
+      <dd class="mt-1 text-lg text-gray-900">
+        <% if fulfillment_partner.phone.present? %>
+          <a href="tel:<%= fulfillment_partner.phone %>" class="text-indigo-600 hover:text-indigo-900">
+            <%= fulfillment_partner.phone %>
+          </a>
+        <% else %>
+          Not specified
+        <% end %>
+      </dd>
+    </div>
+  </dl>
+  
+  <div class="px-6 py-5 bg-gray-50">
+    <% if fulfillment_partner.type == 'CsvPartner' && fulfillment_partner.csv_headers.present? %>
+      <div>
+        <h3 class="text-lg font-medium text-gray-900 mb-3">Required CSV Headers</h3>
+        <div class="flex flex-wrap gap-2">
+          <% fulfillment_partner.csv_headers.each do |header| %>
+            <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+              <%= header %>
+            </span>
+          <% end %>
+        </div>
+      </div>
+    <% elsif fulfillment_partner.type == 'JsonPartner' %>
+      <div>
+        <h3 class="text-lg font-medium text-gray-900 mb-3">JSON Schema</h3>
+        <% if fulfillment_partner.file_schema.present? %>
+          <div class="mt-2 bg-gray-100 p-3 rounded-md overflow-x-auto">
+            <pre class="text-xs text-gray-800"><%= JSON.pretty_generate(fulfillment_partner.file_schema) rescue "Invalid JSON schema" %></pre>
+          </div>
+        <% else %>
+          <p class="text-gray-500 italic">No JSON schema defined</p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

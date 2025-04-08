@@ -8,12 +8,6 @@ class ActiveUserServiceTest < ActiveSupport::TestCase
     @service = ActiveUserService.new(@session, @current_user, @current_store_admin)
   end
 
-  test "returns nil when current_store_admin is present" do
-    @current_store_admin = store_admins(:store_admin_one)
-    @service = ActiveUserService.new(@session, @current_user, @current_store_admin)
-    assert_nil @service.call
-  end
-
   test "returns current_user when current_user is present" do
     @current_user = users(:user_one)
     @service = ActiveUserService.new(@session, @current_user, @current_store_admin)

@@ -7,7 +7,7 @@
     "
   >
     <div class="font-black text-2xl">
-      <% if current_store_admin.store.persisted? %>
+      <% if current_store_admin.store&.persisted? %>
         <%= link_to store_admin_store_path(current_store_admin, current_store_admin.store) do %>
           <i class="fa-brands fa-forumbee" title="MarketHive"></i>
         <% end %>
@@ -19,16 +19,16 @@
       <%= render "shared/#{user_type}_links", path: "cart_show" %>
       <% if current_store_admin && current_store_admin.try(:store).try(:persisted?) %>
         <%= render "shared/#{user_type}_links", path: "edit_store" %>
-      <% elsif current_store_admin && current_store_admin.store.nil? %>
+      <% elsif current_store_admin && current_store_admin&.store.nil? %>
         <%= render "shared/#{user_type}_links", path: "new_store" %>
       <% end %>
-      <% if current_store_admin && current_store_admin.store.present? %>
+      <% if current_store_admin && current_store_admin.store&.present? %>
         <%= render "shared/#{user_type}_links", path: "show_store" %>
         <%= render "shared/#{user_type}_links", path: "orders_index" %>
       <% end %>
     </div>
     <div class="Navbar__menu account-icon">
-      <% if current_store_admin.store.persisted? %>
+      <% if current_store_admin.store&.persisted? %>
         <%= link_to store_admin_store_path(current_store_admin, current_store_admin.store), class: "account-icon" do %>
           <i class="fa-solid fa-home"></i>
         <% end %>

@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
 
   def active_user
     @active_user ||= ActiveUserService.new(session, current_user, current_store_admin).call
+    if @active_user
+      @active_user.create_cart! if !@active_user.cart
+    end
+    @active_user
   end
 
   def after_sign_in_path_for(resource)
