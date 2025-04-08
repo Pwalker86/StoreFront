@@ -1,9 +1,41 @@
-<h1>Search Results!</h1>
-<ul>
-  <%= render(
-    ListItemComponent.with_collection(
-      @products,
-      spacer_component: SpacerComponent.new,
-    ),
-  ) %>
-</ul>
+<div class="container max-w-4xl mx-auto px-4 py-8">
+  <div class="mb-6 flex flex-col items-center">
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">Search Results</h1>
+    <div class="h-1 w-24 bg-indigo-600 rounded"></div>
+  </div>
+
+  <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 py-4 px-6">
+      <h2 class="text-xl font-semibold text-white">
+        <span><%= @products.count %> <%= 'Product'.pluralize(@products.count) %> Found</span>
+        <% if params[:query].present? %>
+          <span class="text-sm font-normal opacity-80"> for "<%= params[:query] %>"</span>
+        <% end %>
+      </h2>
+    </div>
+
+    <div class="p-6">
+      <% if @products.any? %>
+        <ul class="divide-y divide-gray-200">
+          <%= render(
+            ListItemComponent.with_collection(
+              @products,
+              spacer_component: SpacerComponent.new,
+            ),
+          ) %>
+        </ul>
+      <% else %>
+        <div class="text-center py-10">
+          <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <h3 class="mt-2 text-lg font-medium text-gray-900">No products found</h3>
+          <p class="mt-1 text-sm text-gray-500">Try adjusting your search or filter to find what you're looking for.</p>
+          <div class="mt-6">
+            <%= link_to "Back to Home", root_path, class: "inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
