@@ -10,9 +10,10 @@ class ApplicationController < ActionController::Base
   protected
 
   def active_user
-    return nil if @current_store_admin
     @active_user ||= ActiveUserService.new(session, current_user, current_store_admin).call
-    @active_user.create_cart! if !@active_user.cart
+    if @active_user
+      @active_user.create_cart! if !@active_user.cart
+    end
     @active_user
   end
 

@@ -21,19 +21,19 @@ class CartUpdateServiceTest < ActiveSupport::TestCase
 
   test "returns {:error, :message} with bad args" do
     @service = CartUpdateService.new("User", users(:user_one).id, "wefijoj", -1)
-    obj = { status: :error, message: "There was an error updating the product quantity." }
+    obj = { status: :error, message: "There was an error updating the product quantity: Couldn't find Product with 'id'=wefijoj" }
     assert_equal obj, @service.call
   end
 
   test "returns {:error, :message} with bad args two" do
     @service = CartUpdateService.new("User", "oijojoj", products(:product_one), -1)
-    obj = { status: :error, message: "There was an error updating the product quantity." }
+    obj = { status: :error, message: "There was an error updating the product quantity: Couldn't find User with 'id'=oijojoj" }
     assert_equal obj, @service.call
   end
 
   test "returns {:error, :message} with bad args three" do
     @service = CartUpdateService.new("User", users(:user_one).id, "IJOIJIOJ", -1)
-    obj = { status: :error, message: "There was an error updating the product quantity." }
+    obj = { status: :error, message: "There was an error updating the product quantity: Couldn't find Product with 'id'=IJOIJIOJ" }
     assert_equal obj, @service.call
   end
 end

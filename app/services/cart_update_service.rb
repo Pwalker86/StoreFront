@@ -21,8 +21,8 @@ class CartUpdateService
       elsif cart_item.save
         { status: :updated, message: "Quantity was successfully updated." }
       end
-    rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved
-      { status: :error, message: "There was an error updating the product quantity." }
+    rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved, EntityLookup::EntityLookupError => e
+      { status: :error, message: "There was an error updating the product quantity: #{e.message}" }
     end
   end
 end

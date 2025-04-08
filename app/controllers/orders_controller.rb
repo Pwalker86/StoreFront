@@ -27,8 +27,8 @@ class OrdersController < ApplicationController
       elsif @active_user.is_a? User
         redirect_to orders_path
       end
-    rescue StandardError
-      redirect_to root_path, alert: "something went wrong"
+    rescue ConvertCartToOrderService::ConvertCartToOrderError, EntityLookup::EntityLookupError => e
+      redirect_to root_path, alert: "something went wrong: #{e.message}"
     end
   end
 
@@ -39,6 +39,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:user_entity, :user_entity_id, :address1, :address2, :city, :state, :postal_code, :email)
+    params.require(:order).permit(:user_entity, :user_entity_id, :full_name, :address1, :address2, :city, :state, :postal_code, :email)
   end
 end

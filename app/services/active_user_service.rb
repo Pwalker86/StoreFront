@@ -6,6 +6,8 @@ class ActiveUserService
   end
 
   def call
+    return nil if @current_store_admin
+
     if @current_user
       @current_user
     elsif @session[:guest_id]

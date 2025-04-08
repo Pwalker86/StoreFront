@@ -31,18 +31,20 @@
     new_store_admin_shipping_detail_path(current_store_admin) %>
   <% end %>
 
-  <% if path === 'fulfillment_partner' && current_store_admin.store.fulfillment_partner.present? %>
-    <%= link_to "Fulfillment Partners",
-    store_admin_store_fulfillment_partner_path(
-      current_store_admin,
-      current_store_admin.store,
-      current_store_admin.store.fulfillment_partner,
-    ) %>
-  <% elsif path ==='fulfillment_partner' %>
-    <%= link_to "Create Fulfillment Partner",
-    new_store_admin_store_fulfillment_partner_path(
-      current_store_admin,
-      current_store_admin.store,
-    ) %>
+  <% if current_store_admin.store&.persisted? %>
+    <% if path === 'fulfillment_partner' && current_store_admin.store.fulfillment_partner.present? %>
+      <%= link_to "Fulfillment Partners",
+      store_admin_store_fulfillment_partner_path(
+        current_store_admin,
+        current_store_admin.store,
+        current_store_admin.store.fulfillment_partner,
+      ) %>
+    <% elsif path ==='fulfillment_partner' %>
+      <%= link_to "Create Fulfillment Partner",
+      new_store_admin_store_fulfillment_partner_path(
+        current_store_admin,
+        current_store_admin.store,
+      ) %>
+    <% end %>
   <% end %>
 <% end %>

@@ -24,16 +24,18 @@
 #
 #  fk_rails_...  (store_id => stores.id)
 #
-one:
+csv_partner:
   name: MyString
   location: MyString
   phone: MyString
   email: MyString
-  file_structure: MyString
+  store: store_one
+  type: "CsvPartner"
 
-two:
+json_partner:
   name: MyString
   location: MyString
   phone: MyString
   email: MyString
-  file_structure: MyString
+  store: store_two
+  type: "JsonPartner"

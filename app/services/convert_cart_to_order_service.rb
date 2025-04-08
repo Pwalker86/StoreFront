@@ -3,6 +3,8 @@
 # payment processing would be invoked here in the future.
 #
 class ConvertCartToOrderService
+  class ConvertCartToOrderError < StandardError; end
+
   def initialize(cart, order_params, user)
     @cart = cart
     @order_params = order_params
@@ -10,13 +12,18 @@ class ConvertCartToOrderService
   end
 
   def process
-    convert_cart_items
-    set_guest_email
-    update_status
-    set_order_address
-    # in the future, this is where payment processing would be invoked
-    if @order.save!
-      @cart.cart_items.destroy_all
+    begin
+      convert_cart_items
+      set_guest_email
+      update_status
+      set_order_address
+      # in the future, this is where payment processing would be invoked
+      if @order.save!
+        @cart.cart_items.destroy_all
+      end
+    rescue ActiveRecord::RecordInvalid => e
+      Rails.logger.error "Error processing order: #{e.message}"
+      raise ConvertCartToOrderError, "Failed to convert cart to order: #{e.message}"
     end
   end
 
@@ -35,13 +42,14 @@ class ConvertCartToOrderService
 
   # Sets the shipping address for the order.
   def set_order_address
-    @order.shipping_address = {
+    @order.assign_attributes(
+      full_name: @order_params[:full_name],
       address1: @order_params[:address1],
       address2: @order_params[:address2],
       city: @order_params[:city],
       state: @order_params[:state],
       postal_code: @order_params[:postal_code]
-    }
+    )
   end
 
   # If the order has a guest user, it updates the guest's email
