@@ -32,11 +32,6 @@ class JsonPartner < FulfillmentPartner
     end
   end
 
-  def generate_export(orders)
-    puts "Generating JSON export for #{orders.count} orders"
-    orders.to_json
-  end
-
   def validate_file(file)
     JSON::Validator.validate!(file_schema, file)
   end
