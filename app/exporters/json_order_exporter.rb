@@ -30,17 +30,6 @@ class JsonOrderExporter < BaseOrderExporter
       end
     end
 
-    # Add shipping details if available
-    if order.respond_to?(:shipping_details) && order.shipping_details.present?
-      data[:shipping] = order.shipping_details.map do |shipping|
-        {
-          carrier: shipping.carrier,
-          tracking_number: shipping.tracking_number,
-          shipped_at: shipping.shipped_at
-        }
-      end
-    end
-
     # Apply any schema transformations from the fulfillment partner
     apply_schema_transformations(data)
   end
