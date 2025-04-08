@@ -1,0 +1,2 @@
+module StoreAdmin::FulfillmentPartnersHelper
+end
