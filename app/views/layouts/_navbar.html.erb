@@ -1,33 +1,35 @@
 <div
   class="
-    Search__anchor flex flex-row justify-between pl-4 pr-4 bg-amber-200 min-h-14
-    items-center shadow-md sticky top-0 z-50
+    Search__anchor flex flex-row justify-between px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 min-h-14
+    items-center shadow-lg sticky top-0 z-50
   "
 >
   <div class="font-black text-2xl">
-    <%= link_to root_path do %>
+    <%= link_to root_path, class: "text-white hover:text-gray-200 transition-all duration-150 hover:scale-110" do %>
       <i class="fa-brands fa-forumbee" title="MarketHive"></i>
     <% end %>
   </div>
 
-  <%= render(
-    SearchComponent.new(
-      url: "/search",
-      input_placeholder: "Search Products...",
-      key_events: %w[
-        keyup->search-component#search
-        keyup->search-component#updateLinkHref
-        keydown.down->search-component#handleSearchKeydown
-        keydown.tab->search-component#handleSearchKeydown
-        keydown.up->search-component#handleSearchKeyup
-      ],
-    ),
-  ) %>
+  <div class="flex-grow mx-4 max-w-md">
+    <%= render(
+      SearchComponent.new(
+        url: "/search",
+        input_placeholder: "Search Products...",
+        key_events: %w[
+          keyup->search-component#search
+          keyup->search-component#updateLinkHref
+          keydown.down->search-component#handleSearchKeydown
+          keydown.tab->search-component#handleSearchKeydown
+          keydown.up->search-component#handleSearchKeyup
+        ],
+      ),
+    ) %>
+  </div>
 
-  <div class="Navbar__menu">
+  <div class="Navbar__menu flex items-center gap-4">
     <% if current_user || current_store_admin %>
-      <%= render "shared/#{user_type}_links", path: "orders_index" %>
+      <%= render "shared/#{user_type}_links", path: "orders_index", class: "text-white hover:text-gray-200 transition-all duration-150" %>
     <% end %>
-    <%= render "shared/#{user_type}_links", path: "cart_show" %>
+    <%= render "shared/#{user_type}_links", path: "cart_show", class: "text-white hover:text-gray-200 transition-all duration-150" %>
   </div>
 </div>

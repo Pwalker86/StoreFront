@@ -1,22 +1,22 @@
 <% if current_store_admin %>
 <div data-controller="mobile-menu">
   <div 
-        class="
-      flex flex-row justify-between pl-4 pr-4 bg-amber-200 min-h-14 items-center
-      shadow-md mb-2
+    class="
+      flex flex-row justify-between px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 min-h-14 items-center
+      shadow-lg mb-4
     "
   >
     <!-- Mobile menu button -->
     <div class="flex items-center md:hidden">
-      <button data-action="mobile-menu#toggle" class="text-gray-800 hover:text-gray-600">
+      <button data-action="mobile-menu#toggle" class="text-white hover:text-gray-200 transition duration-150">
         <i class="fa-solid fa-bars text-xl"></i>
       </button>
     </div>
 
     <!-- Desktop navigation links -->
-    <div class="hidden md:flex gap-5">
+    <div class="hidden md:flex gap-6">
       <% admin_navigation_links.each do |link| %>
-        <%= link_to link[:name], link[:path] %>
+        <%= link_to link[:name], link[:path], class: "text-white hover:text-gray-200 font-medium transition-all duration-150 hover:scale-105" %>
       <% end %>
     </div>
 
@@ -24,14 +24,14 @@
     <div class="md:hidden">
       <% orders_link = admin_navigation_links.find { |link| link[:name] == "View All Orders" } %>
       <% if orders_link %>
-        <%= link_to orders_link[:name], orders_link[:path], class: "text-gray-800 font-medium" %>
+        <%= link_to orders_link[:name], orders_link[:path], class: "text-white font-semibold hover:text-gray-200 transition-all duration-150" %>
       <% end %>
     </div>
     
     <!-- Home icon -->
     <div class="Navbar__menu account-icon">
-      <%= link_to home_link[:path], class: "account-icon" do %>
-        <i class="fa-solid fa-home"></i>
+      <%= link_to home_link[:path], class: "account-icon text-white hover:text-gray-200 transition-all duration-150 hover:scale-110" do %>
+        <i class="fa-solid fa-home text-xl"></i>
       <% end %>
     </div>
   </div>
@@ -40,24 +40,26 @@
   <div data-mobile-menu-target="overlay" class="fixed inset-0 bg-black opacity-50 z-40 hidden md:hidden" data-action="click->mobile-menu#close"></div>
 
   <!-- Mobile slide-out menu -->
-  <div data-mobile-menu-target="menu" class="fixed top-0 left-0 w-64 h-full bg-amber-100 shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-50 md:hidden">
-      <div class="p-4">
-        <div class="flex justify-between items-center mb-5">
-          <h3 class="font-semibold text-lg">Menu</h3>
-          <button id="close-menu-button" data-action="click->mobile-menu#close" class="text-gray-800">
-            <i class="fa-solid fa-times text-xl"></i>
-          </button>
-        </div>
-        <div class="space-y-3">
-          <% admin_navigation_links.each do |link| %>
-            <% unless link[:name] == "View All Orders" %>
-              <div>
-                <%= link_to link[:name], link[:path], class: "block py-2 text-gray-800 hover:text-gray-600" %>
-              </div>
-            <% end %>
+  <div data-mobile-menu-target="menu" class="fixed top-0 left-0 w-72 h-full bg-white shadow-xl transform -translate-x-full transition-transform duration-300 ease-in-out z-50 md:hidden rounded-r-xl">
+    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-4 rounded-tr-xl">
+      <div class="flex justify-between items-center">
+        <h3 class="font-semibold text-lg text-white">Admin Menu</h3>
+        <button data-action="click->mobile-menu#close" class="text-white hover:text-gray-200 transition duration-150">
+          <i class="fa-solid fa-times text-xl"></i>
+        </button>
+      </div>
+    </div>
+    <div class="p-4">
+      <div class="space-y-3">
+        <% admin_navigation_links.each do |link| %>
+          <% unless link[:name] == "View All Orders" %>
+            <div>
+              <%= link_to link[:name], link[:path], class: "block py-2 px-3 text-gray-800 hover:bg-indigo-50 hover:text-indigo-700 rounded-md transition-colors duration-200" %>
+            </div>
           <% end %>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
+</div>
 <% end %>
