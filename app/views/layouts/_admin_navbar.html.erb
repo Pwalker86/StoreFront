@@ -1,20 +1,63 @@
 <% if current_store_admin %>
-  <div
-    class="
+<div data-controller="mobile-menu">
+  <div 
+        class="
       flex flex-row justify-between pl-4 pr-4 bg-amber-200 min-h-14 items-center
       shadow-md mb-2
     "
   >
-    <div class="flex gap-5">
+    <!-- Mobile menu button -->
+    <div class="flex items-center md:hidden">
+      <button data-action="mobile-menu#toggle" class="text-gray-800 hover:text-gray-600">
+        <i class="fa-solid fa-bars text-xl"></i>
+      </button>
+    </div>
+
+    <!-- Desktop navigation links -->
+    <div class="hidden md:flex gap-5">
       <% admin_navigation_links.each do |link| %>
         <%= link_to link[:name], link[:path] %>
       <% end %>
     </div>
+
+    <!-- Mobile navigation - always show "View All Orders" -->
+    <div class="md:hidden">
+      <% orders_link = admin_navigation_links.find { |link| link[:name] == "View All Orders" } %>
+      <% if orders_link %>
+        <%= link_to orders_link[:name], orders_link[:path], class: "text-gray-800 font-medium" %>
+      <% end %>
+    </div>
     
+    <!-- Home icon -->
     <div class="Navbar__menu account-icon">
-        <%= link_to home_link[:path], class: "account-icon" do %>
-          <i class="fa-solid fa-home"></i>
-        <% end %>
+      <%= link_to home_link[:path], class: "account-icon" do %>
+        <i class="fa-solid fa-home"></i>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Mobile slide-out menu overlay -->
+  <div data-mobile-menu-target="overlay" class="fixed inset-0 bg-black opacity-50 z-40 hidden md:hidden" data-action="click->mobile-menu#close"></div>
+
+  <!-- Mobile slide-out menu -->
+  <div data-mobile-menu-target="menu" class="fixed top-0 left-0 w-64 h-full bg-amber-100 shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-50 md:hidden">
+      <div class="p-4">
+        <div class="flex justify-between items-center mb-5">
+          <h3 class="font-semibold text-lg">Menu</h3>
+          <button id="close-menu-button" data-action="click->mobile-menu#close" class="text-gray-800">
+            <i class="fa-solid fa-times text-xl"></i>
+          </button>
+        </div>
+        <div class="space-y-3">
+          <% admin_navigation_links.each do |link| %>
+            <% unless link[:name] == "View All Orders" %>
+              <div>
+                <%= link_to link[:name], link[:path], class: "block py-2 text-gray-800 hover:text-gray-600" %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 <% end %>
