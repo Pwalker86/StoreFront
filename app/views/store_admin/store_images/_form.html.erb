@@ -1,24 +1,32 @@
-<% @store.errors.full_messages.each do |message| %>
-  <%= message %>
+<% if @store.errors.any? %>
+  <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 rounded-md">
+    <% @store.errors.full_messages.each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  </div>
 <% end %>
+
 <% if !@store.spotlight.attached? %>
-  <div class="ml-2 mr-2" data-controller="js-submit">
-    <%= form_with model: [current_store_admin, @store], url: store_admin_store_store_images_path, method: :post, data: {js_submit_target: 'form'} do |form| %>
-      <div class="my-2 flex flex-row justify-between">
-        <%= form.label :spotlight, class: "w-1/2" %>
-        <%# TODO: js_submit circumvents the `required` property %>
-        <%# TODO: without the js_submit, the form isn't submitted when empty, but would need to handle an invalid state %>
+  <div class="bg-white p-6 rounded-xl shadow-md" data-controller="js-submit">
+    <%= form_with model: [current_store_admin, @store], 
+                url: store_admin_store_store_images_path, 
+                method: :post, 
+                data: {js_submit_target: 'form'} do |form| %>
+      <div class="space-y-2">
+        <%= form.label :spotlight, "Store Spotlight Image", class: "block text-sm font-medium text-gray-700" %>
         <%= form.file_field :spotlight,
-                        class: "border border-solid border-gray-400 rounded-sm w-2/3",
-                        required: true,
-                        data: {
-                          js_submit_target: "input",
-                        } %>
+                       class: "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1",
+                       required: true,
+                       accept: "image/*",
+                       data: {
+                         js_submit_target: "input",
+                       } %>
+        <p class="text-xs text-gray-500 mt-1">Upload a high-quality image for your store spotlight</p>
       </div>
 
-      <div>
+      <div class="mt-4">
         <%= form.submit "Upload Image",
-                    class: "button",
+                    class: "w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
                     data: {
                       action: "js-submit#jsSubmit",
                     } %>
