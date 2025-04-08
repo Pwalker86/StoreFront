@@ -1,29 +1,44 @@
-<div class="container mt-5 mx-auto sm:h-screen h-dvh">
-  <h1 class="text-2xl">Managing
-    <%= @store.name %>
-  </h1>
+<div class="container max-w-4xl mx-auto px-4 py-8">
+  <div class="mb-6 flex flex-col items-center">
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">Managing <%= @store.name %></h1>
+    <div class="h-1 w-24 bg-indigo-600 rounded"></div>
+  </div>
 
-  <div class="StoreImage_container mb-05">
-    <%= turbo_frame_tag "store_image", src: store_admin_store_store_image_path(current_store_admin, @store, 1), class: "mx-center" do %>
-      <%#TODO: Extract into SkeletonCardComponent %>
-      <div class="card skeleton">
-        <div class="image shimmer"></div>
-        <div class="title shimmer"></div>
-        <div class="price shimmer"></div>
-        <div class="edit shimmer"></div>
+  <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-6">
+    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 py-4 px-6">
+      <h2 class="text-2xl font-semibold text-white">Store Information</h2>
+    </div>
+
+    <div class="p-6">
+      <div class="StoreImage_container mb-6">
+        <%= turbo_frame_tag "store_image", src: store_admin_store_store_image_path(current_store_admin, @store, 1), class: "flex justify-center" do %>
+          <%#TODO: Extract into SkeletonCardComponent %>
+          <div class="card skeleton">
+            <div class="image shimmer"></div>
+            <div class="title shimmer"></div>
+            <div class="price shimmer"></div>
+            <div class="edit shimmer"></div>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
 
-  <div>
-    <%= link_to "Edit Store",
-    edit_store_admin_store_path(current_store_admin, @store),
-    class: "button block w-fit mt-2" %>
-  </div>
+      <div class="flex flex-wrap gap-3">
+        <%= link_to edit_store_admin_store_path(current_store_admin, @store),
+          class: "inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition ease-in-out duration-150" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+          </svg>
+          Edit Store
+        <% end %>
 
-  <div>
-    <%= link_to "Manage Products",
-    store_admin_store_products_path(current_store_admin, @store),
-    class: "button mt-2 block w-fit" %>
+        <%= link_to store_admin_store_products_path(current_store_admin, @store),
+          class: "inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition ease-in-out duration-150" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" />
+          </svg>
+          Manage Products
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
