@@ -11,7 +11,5 @@ class BaseOrderExporter
     raise NotImplementedError, "Subclasses must implement the generate method"
   end
 
-  protected
-
   attr_reader :export, :fulfillment_partner, :orders
 end

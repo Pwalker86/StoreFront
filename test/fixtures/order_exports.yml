@@ -10,10 +10,13 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
-one:
-  date_exported_at: 2025-04-01 11:29:48
-  orders: one
 
-two:
-  date_exported_at: 2025-04-01 11:29:48
-  orders: two
+export_one:
+  date_exported_at: <%= Time.current %>
+  order_count: 2
+  orders: order_one, order_two
+
+export_two:
+  date_exported_at: <%= Time.current - 1.day %>
+  order_count: 1
+  orders: order_one
