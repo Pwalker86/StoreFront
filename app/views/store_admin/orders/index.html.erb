@@ -5,6 +5,7 @@
   </div>
 
   <%= form_with model: [current_store_admin, OrderExport.new], method: :post, data: {turbo: false} do |form | %>
+  <%= form.hidden_field :store_id, value: current_store_admin.store.id %>
     <div class="bg-white rounded-lg shadow overflow-hidden mb-6">
       <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-200">

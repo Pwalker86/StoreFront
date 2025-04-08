@@ -28,7 +28,6 @@ class Order < ApplicationRecord
   has_many :order_items
   has_many :products, through: :order_items
   has_many :shipping_details
-  has_one :customer
 
   validates :full_name, :address1, :city, :postal_code, :state, presence: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
