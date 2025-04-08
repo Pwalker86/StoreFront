@@ -1,44 +1,65 @@
-<div class="container">
-  <%= form_with model: [current_store_admin, store, product], data: {turbo: false}, class: 'ml-2 mr-2'  do |form| %>
-    <div class="input-group">
-      <%= form.label :name %>
-      <%= form.text_field :name, class: "input" %>
+<div class="max-w-lg mx-auto bg-white p-8 rounded-xl shadow-md">
+  <%= form_with model: [current_store_admin, store, product], data: {turbo: false}, class: 'space-y-6' do |form| %>
+    <div class="space-y-2">
+      <%= form.label :name, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :name, class: "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1" %>
     </div>
-    <div class="input-group">
-      <%= form.label :price %>
+    
+    <div class="space-y-2">
+      <%= form.label :price, class: "block text-sm font-medium text-gray-700" %>
       <%= form.number_field :price,
-                        value:
-                          number_to_currency(
-                            form.object.price.to_f,
-                            delimiter: "",
-                            unit: "",
-                          ),
+                        value: number_to_currency(form.object.price.to_f, delimiter: "", unit: ""),
                         step: :any,
-                        class: "input" %>
+                        class: "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1" %>
     </div>
-    <div>
-      <%= form.label :description %>
-      <%= form.rich_textarea :description %>
+    
+    <div class="space-y-2">
+      <%= form.label :description, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.rich_textarea :description, class: "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" %>
     </div>
-    <%#<div class="input-group"> %>
-    <%#  <%= form.label :tag_list %>
-    <%#  <%= form.text_field :tag_list, class: "input" %>
-    <%#</div> %>
-    <div>
-      <%= form.checkbox :archived %>
-      <%= form.label :archived, "Archive" %>
-      <%= form.checkbox :out_of_stock, class: "ml-05" %>
-      <%= form.label :out_of_stock %>
+    
+    <div class="flex items-center space-x-6 pt-2">
+      <div class="flex items-center">
+        <%= form.check_box :archived, class: "h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" %>
+        <%= form.label :archived, "Archive", class: "ml-2 block text-sm text-gray-700" %>
+      </div>
+      <div class="flex items-center">
+        <%= form.check_box :out_of_stock, class: "h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" %>
+        <%= form.label :out_of_stock, class: "ml-2 block text-sm text-gray-700" %>
+      </div>
     </div>
-    <% product.images.each do |image| %>
-      <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
-    <% end %>
-    <div data-controller="file">
-      <%= form.file_field :images, multiple: true, data: { action: "file#addFile" } %>
-      <div data-file-target="files"></div>
+    
+    <div class="pt-4 space-y-4">
+      <label class="block text-sm font-medium text-gray-700">Product Images</label>
+      <% product.images.each do |image| %>
+        <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
+      <% end %>
+      
+      <div data-controller="file" class="mt-1">
+        <div class="p-4 border-2 border-gray-400 border-dashed rounded-md">
+          <div class="text-center">
+            <svg class="mx-auto h-10 w-10 text-gray-400 mb-3" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4h-12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <div class="flex flex-col items-center justify-center">
+              <%= form.file_field :images,
+                              multiple: true,
+                              class: "hidden", 
+                              id: "file-upload",
+                              data: { action: "file#addFile" } %>
+              <label for="file-upload" class="px-4 py-2 bg-white border-2 border-gray-400 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer">
+                Select Images
+              </label>
+              <p class="mt-2 text-xs text-gray-500">PNG, JPG, GIF up to 5MB</p>
+            </div>
+          </div>
+        </div>
+        <div data-file-target="files" class="mt-3 grid grid-cols-2 sm:grid-cols-3 gap-2"></div>
+      </div>
     </div>
-    <div>
-      <%= form.button :submit, class: "button" %>
+    
+    <div class="pt-4">
+      <%= form.submit class: "w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
     </div>
   <% end %>
 </div>
