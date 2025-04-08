@@ -8,9 +8,10 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get show" do
-    get store_product_url(stores(:store_one), products(:product_one))
+    product = products(:product_one)
+    get store_product_url(stores(:store_one), product)
     assert_response :success
-    assert_select ".ProductShow", { count: 1 }
+    assert_select "h1", {text:product.name,  count: 1 }
   end
 
   test "handles invalid product id" do
