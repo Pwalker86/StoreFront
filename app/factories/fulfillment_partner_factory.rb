@@ -2,7 +2,6 @@ class FulfillmentPartnerFactory
   class UnknownFulfillmentPartnerTypeError < StandardError; end
 
   def self.create_fulfillment_partner(type, partner_params)
-      raise UnknownFulfillmentPartnerTypeError, "Unknown fulfillment partner type: #{type}"
     case type
     when "CsvPartner"
       partner_params[:csv_headers] = filter_csv_headers(partner_params[:csv_headers])
