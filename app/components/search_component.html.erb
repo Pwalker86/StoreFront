@@ -1,5 +1,5 @@
 <div
-  class="flex-row"
+  class="flex-row relative"
   id="searchForm"
   data-controller="search-component"
   data-search-component-url-value="<%= @url %>"
@@ -11,7 +11,7 @@
     class="hidden fixed left-0 top-0 bg-black opacity-20 h-full w-full z-50"
   ></div>
   <form
-    class="Search__input--anchor"
+    class="Search__input--anchor flex items-center"
     action="<%= @url %>"
     data-search-component-target="searchForm"
   >
@@ -24,7 +24,7 @@
     },
     autocomplete: "off",
     id: "searchInput",
-    class: "px-2 py-1 rounded-sm h-8 bg-white inline-block sm:w-80",
+    class: "px-3 py-2 rounded-md border-2 border-gray-400 h-10 bg-white inline-block sm:w-80 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 shadow-sm",
     data: {
       search_component_target: "searchInput",
       action: @key_events,
@@ -32,16 +32,19 @@
     <button
       type="submit"
       data-search-component-target="searchButton"
-      class="ml-2 h-8 button"
+      class="ml-2 h-10 px-4 py-2 inline-flex items-center border border-transparent rounded-md font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition"
     >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
       Search
     </button>
   </form>
   <div
     id="searchOptionsContainer"
     class="
-      hidden absolute rounded-lg z-50 justify-self-center bg-white border
-      border-gray-200 shadow-md
+      hidden absolute mt-1 w-full sm:w-80 rounded-md z-50 bg-white border-2
+      border-gray-200 shadow-lg overflow-hidden
     "
     data-search-component-target="searchOptionsContainer"
     data-action="
