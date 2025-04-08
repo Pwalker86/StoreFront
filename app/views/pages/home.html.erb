@@ -1,10 +1,33 @@
-<main>
-  <div class="Home__hero__container">
-    <%= image_tag "concept_landing_hero.jpg", class: "Home__hero__image mx-auto" %>
-  </div>
-  <h2 class="text-2xl text-center mt-10">Featured Stores</h2>
-  <hr class="mb-10 text-slate-300 w-19/20 mx-auto">
-  <div class="flex flex-wrap justify-evenly gap-1.5 ml-5 mr-5">
-    <%= render StoreCardComponent.with_collection(@stores) %>
-  </div>
+<main class="min-h-screen bg-gray-50">
+  <!-- Hero Section -->
+  <section class="relative w-full overflow-hidden">
+    <div class="max-h-96 overflow-hidden">
+      <%= image_tag "concept_landing_hero.jpg", class: "w-full object-cover h-64 md:h-96" %>
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-r from-indigo-900/70 to-purple-900/70 flex items-center justify-center">
+      <div class="text-center text-white px-4">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Discover Amazing Stores</h1>
+        <p class="text-lg md:text-xl max-w-lg mx-auto">Find unique products from independent retailers</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Stores Section -->
+  <section class="py-10">
+    <div class="mb-8 flex flex-col items-center">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Featured Stores</h2>
+      <div class="h-1 w-24 bg-indigo-600 rounded mt-2"></div>
+    </div>
+    
+    <!-- Responsive and Centered Store Grid -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap justify-center gap-6">
+        <% @stores.each do |store| %>
+          <div class="w-full sm:w-80 md:w-72 lg:w-64">
+            <%= render StoreCardComponent.new(store: store) %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
 </main>

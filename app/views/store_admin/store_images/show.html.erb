@@ -1,7 +1,9 @@
 <%= turbo_frame_tag "store_image" do %>
   <% if @store.spotlight.attached? %>
-    <div class="bg-white p-4 rounded-xl shadow-md relative overflow-hidden">
-      <%= image_tag @spotlight.variant(:thumb), class: "w-full h-auto rounded-lg" %>
+    <div class="bg-white p-4 rounded-xl shadow-md relative">
+      <div class="w-full h-48 overflow-hidden rounded-lg">
+        <%= image_tag @spotlight.variant(:thumb), class: "w-full h-full object-cover object-center" %>
+      </div>
       <%= button_to store_admin_store_store_image_path(current_store_admin, @store, 1),
         method: :delete,
         data: { turbo: false },
