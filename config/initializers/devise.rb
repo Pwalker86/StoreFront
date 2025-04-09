@@ -1,3 +1,4 @@
+# rubocop:disable Lint/Syntax
 # frozen_string_literal: true
 
 # Assuming you have not yet modified this file, each configuration option below
@@ -14,7 +15,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'f739bfc9b810b206d015c281d36415a17d667696307a5350fb9042d12638c8e10562485bdeec2e526c4bad0c197d8bec3399d28e20da3da804ad5afdd991c475'
+  config.secret_key = "<%= #{Rails.application.credentials.dig(:secret_key_base_) }%>"
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -311,3 +312,5 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
 end
+
+# rubocop:enable Lint/Syntax
