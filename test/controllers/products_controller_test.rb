@@ -2,9 +2,12 @@ require "test_helper"
 
 class ProductsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get store_products_url(stores(:store_one))
+    store = stores(:store_one)
+    get store_products_url(store)
     assert_response :success
-    assert_select ".ProductCard", { count: 2 }
+    store.products.each do | product|
+      assert_select "h3", { count: 1, text: product.name  }
+    end
   end
 
   test "should get show" do

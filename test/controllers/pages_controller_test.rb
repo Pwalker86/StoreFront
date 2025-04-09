@@ -10,6 +10,6 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
   test "should get root_url" do
     get root_url
     assert_response :success
-    assert_select ".Home__hero__container", { count: 1 }
+    assert_select "h1", { count: 1, text:"Discover Amazing Stores"  }
   end
 end
