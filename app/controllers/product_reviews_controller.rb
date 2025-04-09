@@ -46,7 +46,7 @@ class ProductReviewsController < ApplicationController
     @review = Review.find params[:id]
     if @review.destroy
       respond_to do |format|
-        format.html { redirect_to @review.reviewable, notice: "Your review has been updated!" }
+        format.html { redirect_to @review.reviewable, notice: "Your review has been deleted" }
         format.turbo_stream
       end
     else
