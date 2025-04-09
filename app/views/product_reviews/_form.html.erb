@@ -1,7 +1,7 @@
 <% back_path =
   (
     if review.new_record?
-      store_path(review.reviewable)
+      store_product_path(review.reviewable.store, review.reviewable) 
     else
       store_product_product_reviews_path(
         review.reviewable.store,
@@ -10,33 +10,46 @@
       )
     end
   ) %>
-<% if review.errors.any? %>
-  <div id="error_explanation">
-    <h6><%= pluralize(review.errors.count, "error") %>
-      prohibited this review from being saved:</h6>
 
-    <ul>
-      <% review.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
+<div class="max-w-lg mx-auto bg-white p-8 rounded-xl shadow-md">
+  <% if review.errors.any? %>
+    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded-md">
+      <h6 class="font-medium"><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h6>
+      <ul class="mt-2 list-disc list-inside">
+        <% review.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="mb-6 flex flex-col items-center">
+    <h2 class="text-2xl font-bold text-gray-800 mb-2">Review for <%= review.reviewable.name.capitalize %></h2>
+    <div class="h-1 w-24 bg-indigo-600 rounded"></div>
   </div>
-<% end %>
-<div class="ProductReview__form">
-  <h2>Review for
-    <%= review.reviewable.name.capitalize %></h2>
-  <%= form_with model: [review.reviewable.store, review.reviewable, review], url: store_product_product_reviews_path do |f| %>
-    <div class="form-input">
-      <%= f.label :title %>
-      <%= f.text_field :title, required: true %>
+
+  <%= form_with model: [review.reviewable.store, review.reviewable, review], 
+      url: store_product_product_reviews_path,
+      class: "space-y-6" do |f| %>
+      
+    <div class="space-y-2">
+      <%= f.label :title, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :title, 
+          required: true, 
+          class: "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1" %>
     </div>
-    <div class="form-input">
-      <%= f.label :body %>
-      <%= f.text_area :body, required: true %>
+    
+    <div class="space-y-2">
+      <%= f.label :body, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_area :body, 
+          required: true,
+          rows: 4, 
+          class: "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1" %>
     </div>
-    <div class="mt-1">
-      <%= f.submit "Submit Review", class: "button-link" %>
-      <%= link_to "Cancel", back_path %>
+    
+    <div class="flex flex-col sm:flex-row gap-3 pt-4">
+      <%= f.submit "Submit Review", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+      <%= link_to "Cancel", back_path, class: "inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
     </div>
   <% end %>
 </div>

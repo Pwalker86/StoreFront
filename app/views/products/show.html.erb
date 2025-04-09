@@ -3,7 +3,7 @@
   <%= component.with_product_details(product: @product) %>
 <% end %>
 
-<div class="ml-5 mr-5 md:container md:mx-auto">
+<div class="ml-5 mr-5 md:container md:mx-auto mt-5">
   <%= render "product_reviews/add_review_button", product: @product %>
 
   <%= render "product_reviews", reviews: @reviews, pagy_reviews: @pagy_reviews %>
