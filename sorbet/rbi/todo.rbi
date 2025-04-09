@@ -4,11 +4,6 @@
 
 # typed: false
 
-module Draper::TestCase; end
-module OrderExport::PrivateCollectionProxy; end
-module OrderItem::PrivateCollectionProxy; end
-module Product::PrivateCollectionProxy; end
-module ShippingDetail::PrivateCollectionProxy; end
 module Sidekiq::Process; end
 module Sidekiq::SortedEntry; end
 module Sidekiq::Web; end
