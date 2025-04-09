@@ -150,7 +150,6 @@ export default class extends Controller {
   }
 
   handleSearchResponse(jsonResponse, queryString) {
-    debugger
     if (jsonResponse.length === 0) {
       this.products = this.noResults;
     } else if (jsonResponse === this.errorResponse) {
