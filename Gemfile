@@ -72,7 +72,6 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
-gem "draper"
 
 # full text search with PostgreSQL
 gem "pg_search"
