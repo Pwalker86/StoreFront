@@ -6,7 +6,7 @@
 
   <% if path === 'cart_show' %>
     <%= link_to user_cart_path(@active_user), params: { user_entity: @active_user.class.name } do %>
-      <i class="fa-solid fa-cart-shopping cart-icon"></i>
+      <i class="fa-solid fa-cart-shopping cart-icon text-white"></i>
       <%= tag.turbo_frame id: "cart_count_#{@active_user.cart.id}" do %>
         <%= render "layouts/cart_count", cart: @active_user.cart %>
       <% end %>
