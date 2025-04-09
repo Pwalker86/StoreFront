@@ -8,7 +8,7 @@ module UserNavigationHelper
 
     # Add links for logged-in users
     if current_user && !current_user.is_a?(Guest)
-      links << {name: "My Orders", path: user_orders_path(current_user)}
+      links << {name: "My Orders", path: orders_path(current_user)}
       links << {name: "Profile", path: edit_user_registration_path}
       links << {name: "Log Out", path: destroy_user_session_path, method: :delete}
     else

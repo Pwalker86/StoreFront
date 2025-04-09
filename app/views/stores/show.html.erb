@@ -1,37 +1,62 @@
-<div class="container mt-5 mx-auto">
-
-  <h1 class="text-2xl text-center"><%= @store.name %>
-    Products</h1>
-  <hr class="mb-10 text-slate-300 w-19/20 mx-auto">
-
-  <%= turbo_frame_tag "store_image", src: store_store_image_path(@store, 1), class: "mx-auto" do %>
-    <div class="card skeleton">
-      <div class="image shimmer"></div>
-      <div class="title shimmer"></div>
-      <div class="price shimmer"></div>
-      <div class="edit shimmer"></div>
+<div class="min-h-screen bg-gray-50 pb-12">
+  <!-- Store Header Section -->
+  <div class="bg-gradient-to-r from-indigo-600 to-purple-600 py-8">
+    <div class="container mx-auto px-4">
+      <h1 class="text-3xl font-bold text-white text-center"><%= @store.name %></h1>
+      <div class="h-1 w-24 bg-white rounded mt-2 mx-auto"></div>
     </div>
-  <% end %>
+  </div>
 
-  <%= turbo_frame_tag "store_products",  src: store_products_path(@store) do %>
-    <%#TODO: Extract into SkeletonCardComponent %>
-    <div class="flex flex-row flex-wrap justify-evenly gap-1.5 mb-2">
-      <% 6.times do %>
-        <div class="card skeleton">
-          <div class="image shimmer"></div>
-          <div class="title shimmer"></div>
-          <div class="price shimmer"></div>
-          <div class="edit shimmer"></div>
+  <!-- Store Image Section -->
+  <div class="container mx-auto px-4 -mt-8 mb-8">
+    <div class="max-w-md mx-auto">
+      <%= turbo_frame_tag "store_image", src: store_store_image_path(@store, 1), class: "block" do %>
+        <div class="bg-white p-4 rounded-xl shadow-md">
+          <div class="card skeleton">
+            <div class="image shimmer h-48 rounded-lg"></div>
+            <div class="title shimmer h-6 w-3/4 mt-4"></div>
+            <div class="price shimmer h-4 w-1/2 mt-2"></div>
+            <div class="edit shimmer h-10 w-full mt-4"></div>
+          </div>
         </div>
       <% end %>
     </div>
+  </div>
+
+  <!-- Products Section -->
+  <div class="container mx-auto px-4 mb-12">
+    <div class="mb-8 flex flex-col items-center">
+      <h2 class="text-2xl font-bold text-gray-800 mb-2">Featured Products</h2>
+      <div class="h-1 w-24 bg-indigo-600 rounded"></div>
+    </div>
+
+    <%= turbo_frame_tag "store_products", src: store_products_path(@store) do %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
+        <% 6.times do %>
+          <div class="bg-white rounded-xl shadow-md overflow-hidden w-full max-w-sm">
+            <div class="h-48 w-full bg-gray-200 shimmer"></div>
+            <div class="p-4 space-y-4">
+              <div class="h-6 w-3/4 bg-gray-200 shimmer rounded"></div>
+              <div class="h-4 w-1/2 bg-gray-200 shimmer rounded"></div>
+              <div class="h-10 w-full bg-gray-200 shimmer rounded"></div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Reviews Section -->
+  <% if current_user %>
+    <%= render "store_reviews/add_review_button", store: @store %>
+  <% end %>
+
+  <%= turbo_frame_tag "store_reviews", src: store_store_reviews_path(@store) do %>
+    <div class="container mx-auto px-4">
+      <div class="flex justify-center items-center py-8">
+        <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
+        <span class="ml-3 text-gray-600">Loading reviews...</span>
+      </div>
+    </div>
   <% end %>
 </div>
-
-<% if current_user %>
-  <%= render "store_reviews/add_review_button", store: @store %>
-<% end %>
-
-<%= turbo_frame_tag "store_reviews", src: store_store_reviews_path(@store) do %>
-  Loading...
-<% end %>
