@@ -1,60 +1,72 @@
-<div class="container mt-5 mx-auto sm:h-screen h-dvh">
-  <h1 class="text-2xl mx-2">Shipping Information</h1>
-  <hr class="my-4 text-gray-400 mx-2"/>
-  <%= form_with model: @order do |form| %>
-    <%= form.hidden_field :user_entity, value: @active_user.class.name %>
-    <%= form.hidden_field :user_entity_id, value: @active_user.id %>
-    <div class="sm:w-1/2 mx-2">
-      <div class="my-2 flex flex-row justify-between">
-        <%= form.label :email, "Email" %>
-        <%= form.email_field :email,
-                         class: "border border-solid border-gray-400 rounded-sm",
-                         required: true,
-                         value: @email %>
-      </div>
-      <div class="my-2 flex flex-row justify-between">
-        <%= form.label :full_name, "Full Name" %>
-        <%= form.text_field :full_name,
-                        class: "border border-solid border-gray-400 rounded-sm",
-                        required: true %>
-      </div>
-      <div class="my-2 flex flex-row justify-between">
-        <%= form.label :address1, "Address 1" %>
-        <%= form.text_field :address1,
-                        class: "border border-solid border-gray-400 rounded-sm",
-                        required: true %>
-      </div>
-      <div class="my-2 flex flex-row justify-between">
-        <%= form.label :address2, "Address 2" %>
-        <%= form.text_field :address2,
-                        class: "border border-solid border-gray-400 rounded-sm",
-                        required: false %>
-      </div>
-      <div class="my-2 flex flex-row justify-between">
-        <%= form.label :city, "City" %>
-        <%= form.text_field :city,
-                        class: "border border-solid border-gray-400 rounded-sm",
-                        required: true %>
-      </div>
-      <div class="my-2 flex flex-row justify-between">
-        <%= form.label :state, "State", class: "basis-1/2" %>
-        <%= form.select :state,
-                    US_STATES,
-                    { required: true, include_blank: " Select your state" },
-                    {
-                      class:
-                        "rounded-sm border border-solid border-gray-400 border-gray-400 bg-gray-200 basis-1/2",
-                    } %>
-      </div>
-      <div class="flex flex-row justify-between">
-        <%= form.label :postal_code, "Postal Code" %>
-        <%= form.number_field :postal_code,
-                          class: "border border-solid border-gray-400 rounded-sm",
-                          required: true %>
-      </div>
-      <div>
-        <%= form.submit "Submit", class: "button" %>
-      </div>
+<div class="min-h-screen bg-gray-50 py-8">
+  <div class="container max-w-4xl mx-auto px-4">
+    <div class="mb-6 flex flex-col items-center">
+      <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Shipping Information</h1>
+      <div class="h-1 w-24 bg-indigo-600 rounded"></div>
     </div>
-  <% end %>
+  
+    <div class="max-w-lg mx-auto bg-white p-8 rounded-xl shadow-md">
+      <%= form_with model: @order, class: "space-y-6" do |form| %>
+        <%= form.hidden_field :user_entity, value: @active_user.class.name %>
+        <%= form.hidden_field :user_entity_id, value: @active_user.id %>
+        
+        <div class="space-y-2">
+          <%= form.label :email, "Email", class: "block text-sm font-medium text-gray-700" %>
+          <%= form.email_field :email,
+                           class: "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1",
+                           required: true,
+                           value: @email %>
+        </div>
+        
+        <div class="space-y-2">
+          <%= form.label :full_name, "Full Name", class: "block text-sm font-medium text-gray-700" %>
+          <%= form.text_field :full_name,
+                          class: "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1",
+                          required: true %>
+        </div>
+        
+        <div class="space-y-2">
+          <%= form.label :address1, "Address 1", class: "block text-sm font-medium text-gray-700" %>
+          <%= form.text_field :address1,
+                          class: "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1",
+                          required: true %>
+        </div>
+        
+        <div class="space-y-2">
+          <%= form.label :address2, "Address 2", class: "block text-sm font-medium text-gray-700" %>
+          <%= form.text_field :address2,
+                          class: "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1",
+                          required: false %>
+        </div>
+        
+        <div class="space-y-2">
+          <%= form.label :city, "City", class: "block text-sm font-medium text-gray-700" %>
+          <%= form.text_field :city,
+                          class: "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1",
+                          required: true %>
+        </div>
+        
+        <div class="space-y-2">
+          <%= form.label :state, "State", class: "block text-sm font-medium text-gray-700" %>
+          <%= form.select :state,
+                      US_STATES,
+                      { required: true, include_blank: " Select your state" },
+                      {
+                        class: "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
+                      } %>
+        </div>
+        
+        <div class="space-y-2">
+          <%= form.label :postal_code, "Postal Code", class: "block text-sm font-medium text-gray-700" %>
+          <%= form.number_field :postal_code,
+                            class: "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1",
+                            required: true %>
+        </div>
+        
+        <div class="pt-4">
+          <%= form.submit "Submit", class: "w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
