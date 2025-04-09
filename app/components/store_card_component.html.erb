@@ -1,13 +1,21 @@
 <%= link_to store_path(@store.id) do %>
-  <%= tag.div class:"StoreCard w-70 rounded-lg h-85 mb-5" do %>
-    <% if @store.spotlight.attached? %>
-      <%= image_tag @store.spotlight.variant(:thumb), class: "w-70 rounded-full" %>
-    <% end %>
-    <div class="text-center bg-slate-500 rounded-lg h-17">
-      <h3 class="mt-1 text-lg"><%= @store.name %></h3>
+  <%= tag.div class:"bg-white shadow-md rounded-xl overflow-hidden transition-transform hover:scale-105 hover:shadow-lg" do %>
+    <div class="relative w-full h-48 overflow-hidden">
+      <% if @store.spotlight.attached? %>
+        <%= image_tag @store.spotlight.variant(:thumb), class: "w-full h-full object-cover object-center" %>
+      <% else %>
+        <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+        </div>
+      <% end %>
+    </div>
+    <div class="p-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+      <h3 class="text-lg font-semibold mb-2 truncate"><%= @store.name %></h3>
       <%= link_to "Shop Now",
       store_path(@store),
-      class: "mt-1 bg-gray-100 rounded-lg px-2 py-1 block w-1/2 mx-auto" %>
+      class: "mt-1 bg-white text-indigo-700 rounded-md px-4 py-1.5 inline-block font-medium hover:bg-gray-100 transition-colors focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600 focus:outline-none" %>
     </div>
   <% end %>
 <% end %>

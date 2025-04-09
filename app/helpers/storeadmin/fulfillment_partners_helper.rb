@@ -1,2 +1,0 @@
-module Storeadmin::FulfillmentPartnersHelper
-end

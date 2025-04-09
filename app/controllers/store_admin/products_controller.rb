@@ -4,7 +4,7 @@ class StoreAdmin::ProductsController < ApplicationController
   before_action { authorize @store, policy_class: Admin::ProductPolicy }
 
   def index
-    @products = ProductDecorator.decorate_collection(@store.products.order(:archived))
+    @products = @store.products.order(:archived)
   end
 
   def show

@@ -12,20 +12,20 @@ class CartsControllerTest < ActionDispatch::IntegrationTest
    test "should get show as a user" do
      get user_cart_path(@user)
      assert_response :success
-     assert_select "h3", { text: "#{@user.email}'s Cart", count: 1 }
+     assert_select "h1", { text: "#{@user.email}'s Cart", count: 1 }
    end
 
    test "should get show as a guest" do
      sign_out @user
      get user_cart_path(@guest)
      assert_response :success
-     assert_select "h3", { text: "Guest's Cart", count: 1 }
+     assert_select "h1", { text: "Guest's Cart", count: 1 }
    end
 
    test "should get the right cart, even when passing the wrong user id" do
      get user_cart_path(users(:user_two))
      assert_response :success
-     assert_select "h3", { text: "#{@user.email}'s Cart", count: 1 }
+     assert_select "h1", { text: "#{@user.email}'s Cart", count: 1 }
    end
 
    test "should update the cart" do

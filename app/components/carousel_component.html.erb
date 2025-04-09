@@ -1,30 +1,40 @@
-<div class="carousel relative" data-controller="carousel">
-  <% @images.each do |image| %>
-    <%= tag.div class: "carousel-item justify-self-center", data: { 'carousel-target': 'item' } do %>
-      <%= image_tag image.variant(:thumb) %>
+<div class="carousel relative rounded-lg overflow-hidden border border-gray-200" data-controller="carousel">
+  <div class="carousel-items flex items-center justify-center min-h-[250px] bg-gray-50">
+    <% @images.each do |image| %>
+      <%= tag.div class: "carousel-item w-full", data: { 'carousel-target': 'item' } do %>
+        <%= image_tag image.variant(:thumb), class: "mx-auto max-h-[250px] object-contain" %>
+      <% end %>
     <% end %>
-  <% end %>
-  <div class="carousel-actions">
+  </div>
+  
+  <div class="carousel-actions absolute top-1/2 transform -translate-y-1/2 w-full flex justify-between px-2">
     <button
       id="carousel-button-prev"
       data-carousel-target='prevButton'
       data-action="carousel#handleMoveToPrevSlide"
       aria-label="Previous"
+      class="bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition"
     >
-      <i class="fa-solid fa-arrow-left"></i>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+      </svg>
     </button>
     <button
       id="carousel-button-next"
       data-carousel-target="nextButton"
       data-action="carousel#handleMoveToNextSlide"
       aria-label="Next"
+      class="bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition"
     >
-      <i class="fa-solid fa-arrow-right"></i>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+      </svg>
     </button>
   </div>
-  <div class="carousel-dots" data-carousel-target="dots">
+  
+  <div class="carousel-dots flex justify-center p-2 bg-white border-t border-gray-200" data-carousel-target="dots">
     <% @images.each_with_index do |_image, index| %>
-      <%= tag.input class: "dot",
+      <%= tag.input class: "dot appearance-none mx-1 h-2 w-2 rounded-full bg-gray-300 cursor-pointer checked:bg-indigo-600 focus:outline-none transition",
                 type: "radio",
                 name: "dot",
                 data: {

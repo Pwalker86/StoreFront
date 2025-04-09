@@ -1,6 +1,6 @@
-<div class="flex flex-row justify-center gap-2" data-controller="cart">
+<div class="flex flex-row items-center justify-center gap-2" data-controller="cart">
   <button
-    class='button'
+    class="w-8 h-8 flex items-center justify-center text-white bg-indigo-600 hover:bg-indigo-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
     data-cart-url-param="<%="/user/#{@active_user.id}/cart/cart_items/#{item.id}"%>"
     data-cart-user-id-param="<%= @active_user.id %>"
     data-cart-user-entity-param="<%= @active_user.class.name %>"
@@ -11,9 +11,9 @@
   >
     -
   </button>
-  <span class="align-middle" data-cart-target="toBeUpdated"><%= item.quantity %></span>
+  <span class="text-gray-700 font-medium text-lg min-w-[20px] text-center" data-cart-target="toBeUpdated"><%= item.quantity %></span>
   <button
-    class='button'
+    class="w-8 h-8 flex items-center justify-center text-white bg-indigo-600 hover:bg-indigo-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
     data-cart-url-param="<%="/user/#{@active_user.id}/cart/cart_items/#{item.id}"%>"
     data-cart-user-id-param="<%= @active_user.id %>"
     data-cart-user-entity-param="<%= @active_user.class.name %>"

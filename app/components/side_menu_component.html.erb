@@ -1,0 +1,37 @@
+<div data-controller="side-menu" class="side-menu">
+  <!-- Menu Button Slot -->
+    <%= content %>
+
+  <!-- Mobile slide-out menu overlay -->
+  <div 
+    data-side-menu-target="overlay" 
+    class="fixed inset-0 bg-black opacity-50 z-40 hidden" 
+    data-action="click->side-menu#close"
+  ></div>
+
+  <!-- Mobile slide-out menu -->
+  <div 
+    data-side-menu-target="menu" 
+    class="fixed top-0 left-0 w-72 h-full bg-white shadow-xl transform -translate-x-full transition-transform duration-300 ease-in-out z-50 rounded-r-xl"
+  >
+    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-4 rounded-tr-xl">
+      <div class="flex justify-between items-center">
+        <h3 class="font-semibold text-lg text-white"><%= title %></h3>
+        <button data-action="click->side-menu#close" class="text-white hover:text-gray-200 transition duration-150">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="p-4">
+      <div class="space-y-3">
+        <% links.each do |link| %>
+          <div>
+            <%= link_to link[:name], link[:path], class: "block py-2 px-3 text-gray-800 hover:bg-indigo-50 hover:text-indigo-700 rounded-md transition-colors duration-200" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

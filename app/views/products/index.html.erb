@@ -1,9 +1,18 @@
-<h1>Products</h1>
-<%= turbo_frame_tag "store_products" do %>
-  <div class=" flex flex-row flex-wrap justify-evenly gap-1.5 mb-2 ">
-    <%= render(ProductCardComponent.with_collection(@products)) %>
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-6 flex flex-col items-center">
+    <h1 class="text-2xl font-bold text-gray-800 mb-2">Products</h1>
+    <div class="h-1 w-24 bg-indigo-600 rounded"></div>
   </div>
-  <% if @pagy_products.count > 0 %>
-    <%== pagy_nav(@pagy_products) %>
+  
+  <%= turbo_frame_tag "store_products" do %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <%= render(ProductCardComponent.with_collection(@products)) %>
+    </div>
+    
+    <% if @pagy_products.count > 0 %>
+      <div class="mt-8 flex justify-center">
+        <%== pagy_nav(@pagy_products) %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>

@@ -1,33 +1,45 @@
 <div
   class="
-    Search__anchor flex flex-row justify-between pl-4 pr-4 bg-amber-200 min-h-14
-    items-center shadow-md sticky top-0 z-50
+    Search__anchor flex flex-row justify-between px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 min-h-14
+    items-center shadow-lg sticky top-0 z-50
   "
 >
-  <div class="font-black text-2xl">
-    <%= link_to root_path do %>
-      <i class="fa-brands fa-forumbee" title="MarketHive"></i>
+  <div class="font-black flex items-center gap-3 text-2xl">
+    <!-- Side Menu Component for mobile users -->
+    <div class="md:hidden">
+      <%= render(SideMenuComponent.new(links: user_navigation_links, title: "Menu")) do %>
+        <button data-action="side-menu#toggle" class="text-white hover:text-gray-200 transition duration-150">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Desktop navigation links -->
+  <div class="hidden md:flex items-center gap-4">
+    <% user_navigation_links.reject { |link| link[:name] == "Sign In" || link[:name] == "Sign Up" || link[:name] == "Log Out" }.each do |link| %>
+      <%= link_to link[:name], link[:path], class: "text-white hover:text-gray-200 font-medium transition-all duration-150" %>
     <% end %>
   </div>
 
-  <%= render(
-    SearchComponent.new(
-      url: "/search",
-      input_placeholder: "Search Products...",
-      key_events: %w[
-        keyup->search-component#search
-        keyup->search-component#updateLinkHref
-        keydown.down->search-component#handleSearchKeydown
-        keydown.tab->search-component#handleSearchKeydown
-        keydown.up->search-component#handleSearchKeyup
-      ],
-    ),
-  ) %>
+  <div class="hidden md:flex flex-grow mx-4 max-w-md">
+    <%= render(
+      SearchComponent.new(
+        url: "/search",
+        input_placeholder: "Search Products...",
+        key_events: %w[
+          keyup->search-component#search
+          keyup->search-component#updateLinkHref
+          keydown.down->search-component#handleSearchKeydown
+          keydown.tab->search-component#handleSearchKeydown
+          keydown.up->search-component#handleSearchKeyup
+        ],
+      ),
+    ) %>
+  </div>
 
-  <div class="Navbar__menu">
-    <% if current_user || current_store_admin %>
-      <%= render "shared/#{user_type}_links", path: "orders_index" %>
-    <% end %>
-    <%= render "shared/#{user_type}_links", path: "cart_show" %>
+
+  <div class="Navbar__menu flex items-center gap-4">
+    <%= render "shared/#{user_type}_links", path: "cart_show", class: "text-white hover:text-gray-200 transition-all duration-150" %>
   </div>
 </div>
