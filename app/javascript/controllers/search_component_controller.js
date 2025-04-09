@@ -88,9 +88,30 @@ export default class extends Controller {
       "text-gray-700",
     );
     optionLink.href = option.href;
-    optionLink.innerText = option.name;
+    
+    // Create a container for product name and store name
+    const contentContainer = document.createElement("div");
+    
+    // Create and style product name element
+    const productName = document.createElement("div");
+    productName.classList.add("text-gray-800");
+    productName.innerText = option.name;
+    contentContainer.appendChild(productName);
+    
+    // Create and style store name element if it exists
+    if (option.store_name) {
+      const storeName = document.createElement("div");
+      storeName.classList.add("text-xs", "text-gray-500", "mt-1");
+      storeName.innerText = option.store_name;
+      contentContainer.appendChild(storeName);
+    }
+    
+    // Add the content container to the link
+    optionLink.appendChild(contentContainer);
+    
     optionLink.dataset.action =
       "click->search-component#closeOverlay mouseover->search-component#focusOption";
+    
     if (option.name === "See More Results...") {
       optionLink.classList.add("text-indigo-600", "font-medium");
     } else if (option.name === "No Results") {
@@ -103,7 +124,7 @@ export default class extends Controller {
 
   buildProductsList(products) {
     const target = this.searchOptionsContainerTarget;
-    target.classList.add("w-100");
+    target.classList.add("w-full", "md:w-96", "lg:w-120"); // Add responsive width classes
     target.classList.remove("hidden");
     target.innerText = "";
     this.overlayTarget.classList.remove("hidden");
@@ -129,6 +150,7 @@ export default class extends Controller {
   }
 
   handleSearchResponse(jsonResponse, queryString) {
+    debugger
     if (jsonResponse.length === 0) {
       this.products = this.noResults;
     } else if (jsonResponse === this.errorResponse) {

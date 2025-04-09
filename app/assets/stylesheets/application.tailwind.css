@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .lg\:w-120 {
+    width: 30rem; /* 480px */
+  }
+}
