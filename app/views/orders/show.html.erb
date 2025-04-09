@@ -46,7 +46,7 @@
             <p class="text-gray-900 font-medium"><%= @order.full_name %></p>
             <p class="text-gray-700"><%= @order.address1 %></p>
             <% if @order.address2.present? %>
-              <p class="text-gray-700"><%= @order.address2 %></p>
+            <p class="text-gray-700"><%= @order.address2 %></p>
             <% end %>
             <p class="text-gray-700"><%= "#{@order.city}, #{@order.state} #{@order.postal_code}" %></p>
             <p class="text-gray-700"><%= @order.email %></p>
@@ -75,14 +75,16 @@
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="flex items-center">
                         <% if item.product.images.any? %>
-                          <div class="flex-shrink-0 h-10 w-10">
-                            <%= image_tag item.product.images.first.variant(:thumb), class: "h-10 w-10 rounded-md object-cover" %>
-                          </div>
+                        <div class="flex-shrink-0 h-10 w-10">
+                          <%= image_tag item.product.images.first.variant(:thumb), class: "h-10 w-10 rounded-md object-cover" %>
+                        </div>
                         <% end %>
+                        <%= link_to [ item.product.store, item.product ], data:{turbo: false} do %>
                         <div class="ml-4">
                           <div class="text-sm font-medium text-gray-900"><%= item.product.name %></div>
                           <div class="text-xs text-gray-500">Store: <%= item.product.store.name %></div>
                         </div>
+                        <% end %>
                       </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
@@ -104,7 +106,7 @@
             </table>
           </div>
         </div>
-        
+
         <div class="mt-6 flex justify-center md:justify-end">
           <%= link_to "Back to Orders", orders_path, class: "inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
         </div>
