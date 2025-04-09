@@ -95,3 +95,7 @@ gem "activestorage-validator"
 gem "sidekiq", "~> 8.0"
 
 gem "json-schema"
+
+gem "sorbet", :group => :development
+gem "sorbet-runtime"
+gem "tapioca", require: false, :group => [:development, :test]
