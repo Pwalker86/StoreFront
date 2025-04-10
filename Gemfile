@@ -2,6 +2,7 @@ def next?
   File.basename(__FILE__) == "Gemfile.next"
 end
 source "https://rubygems.org"
+ruby "3.3.6"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.0"
@@ -95,8 +96,8 @@ gem "sidekiq", "~> 8.0"
 
 gem "json-schema"
 
-gem "sorbet", :group => :development
+gem "sorbet", group: :development
 gem "sorbet-runtime"
-gem "tapioca", require: false, :group => [:development, :test]
+gem "tapioca", require: false, group: [ :development, :test ]
 
 gem "csv", "~> 3.3"
