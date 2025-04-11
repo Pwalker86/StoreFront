@@ -2,12 +2,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, prepend: true
   include Pundit::Authorization
   include Pagy::Backend
+  before_action :set_auto_login_users
   helper_method :active_user
   before_action :active_user
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   protected
+
+  def set_auto_login_users
+    @auto_login_user = User.first if User.first.present?
+    @auto_login_admin = StoreAdmin.first if StoreAdmin.first.present?
+  end
 
   def active_user
     @active_user ||= ActiveUserService.new(session, current_user, current_store_admin).call

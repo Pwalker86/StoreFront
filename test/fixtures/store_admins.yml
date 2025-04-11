@@ -19,9 +19,12 @@
 
 store_admin_one:
   email: admin1@email.com
+  encrypted_password: <%= Devise::Encryptor.digest(StoreAdmin,'password123') %>
 
 store_admin_two:
   email: admin2@email.com
+  encrypted_password: <%= Devise::Encryptor.digest(StoreAdmin,'password123') %>
 
 store_admin_none:
   email: nostore@email.com
+  encrypted_password: <%= Devise::Encryptor.digest(StoreAdmin,'password123') %>
