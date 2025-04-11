@@ -10,20 +10,22 @@ export default class extends Controller {
     
     // Event listeners for showing/hiding tooltip
     if (this.hasTriggerTarget) {
-      this.triggerTarget.addEventListener("mouseenter", this.show.bind(this));
+      this.triggerTarget.addEventListener("click", this.show.bind(this));
+      // this.triggerTarget.addEventListener("mouseenter", this.show.bind(this));
       this.triggerTarget.addEventListener("mouseleave", this.hide.bind(this));
-      this.triggerTarget.addEventListener("focus", this.show.bind(this));
-      this.triggerTarget.addEventListener("blur", this.hide.bind(this));
+      // this.triggerTarget.addEventListener("focus", this.show.bind(this));
+      // this.triggerTarget.addEventListener("blur", this.hide.bind(this));
     }
   }
 
   disconnect() {
     // Clean up event listeners and remove tooltip element
     if (this.hasTriggerTarget) {
-      this.triggerTarget.removeEventListener("mouseenter", this.show.bind(this));
+      this.triggerTarget.removeEventListener("click", this.show.bind(this));
+      // this.triggerTarget.removeEventListener("mouseenter", this.show.bind(this));
       this.triggerTarget.removeEventListener("mouseleave", this.hide.bind(this));
-      this.triggerTarget.removeEventListener("focus", this.show.bind(this));
-      this.triggerTarget.removeEventListener("blur", this.hide.bind(this));
+      // this.triggerTarget.removeEventListener("focus", this.show.bind(this));
+      // this.triggerTarget.removeEventListener("blur", this.hide.bind(this));
     }
     
     if (this.tooltipElement) {

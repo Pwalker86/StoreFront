@@ -1,0 +1,8 @@
+<%= tag.div(class: "flex", data: { controller: "tooltip", tooltip_text_value: tooltip_text }) do %>
+  <%= tag.span(class: "info-icon cursor-pointer", data: { tooltip_target: "trigger" }) do %>
+    ⓘ
+  <% end %>
+  <%= tag.div(class: "d-inline-block ms-2", data: { tooltip_target: "anchor" }) do %>
+    <%= content %>
+  <% end %>
+<% end %>
