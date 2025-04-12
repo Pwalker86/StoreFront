@@ -1,6 +1,6 @@
 <div class="py-1 px-2 bg-amber-100 sticky bottom-0">
   <div class="flex flex-row justify-center gap-5">
-    <% if !current_store_admin %>
+    <% if !current_store_admin && @auto_login_admin.present? %>
     <%= render TooltipComponent.new(tooltip_text: "Automatic login for ease of use for demo purposes") do %>
       <%= 
         link_to 'Login As Admin', 
@@ -10,7 +10,7 @@
       %> 
       <% end %>
     <% end %>
-    <% if !current_user %>
+    <% if !current_user && @auto_login_user.present? %>
     <%= render TooltipComponent.new(tooltip_text: "Automatic login for ease of use for demo purposes") do %>
       <%= 
         link_to 'Login As User', 

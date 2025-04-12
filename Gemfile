@@ -96,8 +96,5 @@ gem "sidekiq", "~> 8.0"
 
 gem "json-schema"
 
-gem "sorbet", group: :development
-gem "sorbet-runtime"
-gem "tapioca", require: false, group: [ :development, :test ]
-
 gem "csv", "~> 3.3"
+gem "aws-sdk-s3", "~> 1.122", require: false
