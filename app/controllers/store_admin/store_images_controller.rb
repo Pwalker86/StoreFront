@@ -13,7 +13,7 @@ class StoreAdmin::StoreImagesController < ApplicationController
   def create
     respond_to do |format|
       begin
-        @store.spotlight.attach(store_params[:spotlight])
+        @store.update!(store_params)
         msg = "Image was sucessfully uploaded!"
       rescue ActiveSupport::MessageVerifier::InvalidSignature
         msg = "Something went wrong"
@@ -49,6 +49,6 @@ class StoreAdmin::StoreImagesController < ApplicationController
   end
 
   def store_params
-    params.expect(store: [ :spotlight ])
+    params.require(:store).permit(:spotlight)
   end
 end

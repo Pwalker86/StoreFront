@@ -97,4 +97,5 @@ gem "sidekiq", "~> 8.0"
 gem "json-schema"
 
 gem "csv", "~> 3.3"
-gem "aws-sdk-s3", "~> 1.122", require: false
+gem "aws-sdk-s3", "1.170", require: false
+gem "aws-sdk-core", "3.211"
