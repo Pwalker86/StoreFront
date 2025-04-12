@@ -24,7 +24,7 @@
 #
 user_one: 
   email: 'test_user1@email.com'
-  encrypted_password: <%= Devise::Encryptor.digest(StoreAdmin,'password123') %>
+  encrypted_password: <%= Devise::Encryptor.digest(User,'password123') %>
 user_two: 
   email: 'test_user2@email.com'
-  encrypted_password: <%= Devise::Encryptor.digest(StoreAdmin,'password123') %>
+  encrypted_password: <%= Devise::Encryptor.digest(User,'password123') %>
