@@ -81,4 +81,24 @@ puts "******* Creating Admins *****"
   Product.all.each do |product|
     SeedProductImagesJob.perform_async(product.id)
   end
+
+  # dir = Rails.root+"./lib/assets"
+  # image_paths = []
+  # dir.children.each do | child |
+  #   if child.extname == ".jpg"
+  #     image_paths << child
+  #   end
+  # end
+
+  # Store.all.each do |store|
+  #   store.spotlight.attach(image_paths.sample)
+  # end
+
+  # Product.all.each do |product|
+  #   unless product.images.attached?
+  #     (2..6).to_a.sample.times do |i|
+  #       product.images.attach(image_paths.sample)
+  #     end
+  #   end
+  # end
 end

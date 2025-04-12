@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => "/sidekiq"# access it at http://localhost:3000/sidekiq
   devise_for :users
   devise_for :store_admins
+
+  # Custom auto_login routes with resource_type parameter
+  post 'auto_logins/:resource_type', to: 'auto_logins#create', as: 'auto_logins'
+  delete 'auto_logins/:resource_type/:id', to: 'auto_logins#destroy', as: 'auto_login'
+
   Rails.application.routes.draw do
     if Rails.env.development?
       mount Lookbook::Engine, at: "/lookbook"

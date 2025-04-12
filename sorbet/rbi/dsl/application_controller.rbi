@@ -29,6 +29,7 @@ class ApplicationController
     include ::Pagy::Frontend
     include ::ApplicationHelper
     include ::AdminNavigationHelper
+    include ::AutoLoginsHelper
     include ::CartItemsHelper
     include ::CartsHelper
     include ::OrderExportsHelper

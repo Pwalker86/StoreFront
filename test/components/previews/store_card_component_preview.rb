@@ -2,6 +2,6 @@
 
 class StoreCardComponentPreview < ViewComponent::Preview
   def default
-    render(StoreCardComponent.new(store: Store.first, wrapper_classes: "mt-1 mx-2"))
+    render(StoreCardComponent.new(store: Store.first))
   end
 end

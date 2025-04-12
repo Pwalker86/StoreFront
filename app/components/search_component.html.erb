@@ -10,6 +10,7 @@
     data-action="click->search-component#closeOverlay"
     class="hidden fixed left-0 top-0 bg-black opacity-20 h-full w-full z-50"
   ></div>
+  <%= render TooltipComponent.new(tooltip_text: "Simulus and ViewComponent. Search is done via pg_search gem for full text search") do %>
   <form
     class="Search__input--anchor flex items-center"
     action="<%= @url %>"
@@ -40,6 +41,7 @@
       Search
     </button>
   </form>
+  <% end %>
   <div
     id="searchOptionsContainer"
     class="

@@ -10,6 +10,141 @@ module GeneratedUrlHelpersModule
   include ::ActionDispatch::Routing::PolymorphicRoutes
 
   sig { params(args: T.untyped).returns(String) }
+  def auto_login_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def auto_logins_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def cancel_store_admin_registration_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def cancel_user_registration_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def checkout_user_cart_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def destroy_store_admin_session_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def destroy_user_session_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def edit_store_admin_password_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def edit_store_admin_registration_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def edit_store_admin_store_fulfillment_partner_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def edit_store_admin_store_product_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def edit_store_admin_store_store_image_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def edit_store_admin_store_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def edit_store_admin_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def edit_store_product_product_image_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def edit_store_product_product_review_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def edit_store_store_review_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def edit_user_cart_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def edit_user_password_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def edit_user_registration_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def edit_user_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def home_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def lookbook_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_rails_conductor_inbound_email_source_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_rails_conductor_inbound_email_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_store_admin_password_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_store_admin_registration_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_store_admin_session_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_store_admin_shipping_detail_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_store_admin_store_fulfillment_partner_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_store_admin_store_product_tag_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_store_admin_store_product_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_store_admin_store_store_image_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_store_admin_store_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_store_admin_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_store_product_product_image_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_store_product_product_review_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_store_store_review_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_user_password_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_user_registration_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_user_session_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def new_user_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def order_confirm_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def order_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def orders_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def preview_view_component_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -25,10 +160,28 @@ module GeneratedUrlHelpersModule
   def rails_blob_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def rails_conductor_inbound_email_incinerate_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def rails_conductor_inbound_email_reroute_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def rails_conductor_inbound_email_sources_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def rails_conductor_inbound_email_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def rails_conductor_inbound_emails_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def rails_direct_uploads_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def rails_disk_service_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def rails_health_check_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def rails_info_notes_url(*args); end
@@ -46,7 +199,25 @@ module GeneratedUrlHelpersModule
   def rails_mailers_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def rails_mailgun_inbound_emails_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def rails_mandrill_inbound_emails_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def rails_mandrill_inbound_health_check_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def rails_postmark_inbound_emails_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def rails_relay_inbound_emails_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def rails_representation_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def rails_sendgrid_inbound_emails_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def rails_service_blob_proxy_url(*args); end
@@ -61,5 +232,140 @@ module GeneratedUrlHelpersModule
   def rails_storage_redirect_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def root_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def search_index_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def sidekiq_web_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_admin_index_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_admin_order_export_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_admin_order_exports_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_admin_password_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_admin_registration_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_admin_session_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_admin_shipping_details_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_admin_store_fulfillment_partner_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_admin_store_fulfillment_partners_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_admin_store_order_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_admin_store_orders_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_admin_store_product_tag_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_admin_store_product_tags_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_admin_store_product_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_admin_store_products_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_admin_store_store_image_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_admin_store_store_images_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_admin_store_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_admin_stores_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_admin_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_product_product_image_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_product_product_images_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_product_product_review_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_product_product_reviews_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_product_remove_image_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_product_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_products_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_store_image_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_store_review_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_store_reviews_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def store_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def stores_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def turbo_recede_historical_location_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def turbo_refresh_historical_location_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def turbo_resume_historical_location_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def update_rails_disk_service_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def user_cart_item_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def user_cart_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def user_index_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def user_password_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def user_registration_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def user_session_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def user_url(*args); end
 end
