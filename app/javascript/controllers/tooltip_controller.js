@@ -28,9 +28,10 @@ export default class extends Controller {
       // this.triggerTarget.removeEventListener("blur", this.hide.bind(this));
     }
     
-    if (this.tooltipElement) {
-      document.body.removeChild(this.tooltipElement);
-    }
+    // if (this.tooltipElement) {
+    //   debugger
+    //   document.body.removeChild(this.tooltipElement);
+    // }
   }
 
   generateElement() {

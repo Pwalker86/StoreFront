@@ -1,20 +1,24 @@
 <div class="py-1 px-2 bg-amber-100 sticky bottom-0">
   <div class="flex flex-row justify-center gap-5">
     <% if !current_store_admin %>
+    <%= render TooltipComponent.new(tooltip_text: "Automatic login for ease of use for demo purposes") do %>
       <%= 
         link_to 'Login As Admin', 
           auto_logins_path("store_admin", email: @auto_login_admin.email), 
           method: :post, 
           data: {turbo_method: :post} 
       %> 
+      <% end %>
     <% end %>
     <% if !current_user %>
+    <%= render TooltipComponent.new(tooltip_text: "Automatic login for ease of use for demo purposes") do %>
       <%= 
         link_to 'Login As User', 
           auto_logins_path("user", email: @auto_login_user.email), 
           method: :post, 
           data: {turbo_method: :post} 
       %> 
+      <% end %>
     <% end %>
     <%= link_to "Home", root_path %>
     <% if active_user  && !current_store_admin && !active_user.is_a?(Guest) %>
