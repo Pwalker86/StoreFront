@@ -29,7 +29,7 @@ module AdminNavigationHelper
     current_store_admin&.store&.persisted?
   end
 
-  def home_link
+  def admin_home_link
     return unless store_exists?
     {
       path: store_admin_store_path(current_store_admin, current_store_admin.store),
