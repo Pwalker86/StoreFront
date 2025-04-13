@@ -1,3 +1,4 @@
+  <%= render TooltipComponent.new(tooltip_text: "All updates handled via stimulus for optimistic updates. Also updates the cart total and the cart count in the navbar") do %>
 <div class="flex flex-row items-center justify-center gap-2" data-controller="cart">
   <button
     class="w-8 h-8 flex items-center justify-center text-white bg-indigo-600 hover:bg-indigo-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -25,3 +26,4 @@
     +
   </button>
 </div>
+<% end %>
