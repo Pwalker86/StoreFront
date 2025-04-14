@@ -60,5 +60,5 @@ class PopulateOrdersService
 end
 
 # Usage:
-# service = PopulateOrdersService.new(user_id)
+# service = PopulateOrdersService.new()
 # service.call
