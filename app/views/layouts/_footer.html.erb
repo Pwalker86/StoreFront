@@ -1,43 +1,42 @@
 <div class="py-1 px-2 bg-amber-100 sticky bottom-0">
-  <div class="flex flex-row justify-center gap-5">
+  <div class="flex flex-row justify-center gap-5 align-middle">
     <% if !current_store_admin && @auto_login_admin.present? %>
-    <%= render TooltipComponent.new(tooltip_text: "Automatic login for ease of use for demo purposes") do %>
-      <%= 
-        link_to 'Login As Admin', 
-          auto_logins_path("store_admin", email: @auto_login_admin.email), 
-          method: :post, 
-          data: {turbo_method: :post} 
-      %> 
+      <%= render TooltipComponent.new(tooltip_text: "Automatic login for ease of use for demo purposes") do %>
+        <%= link_to "Login As Admin",
+        auto_logins_path("store_admin", email: @auto_login_admin.email),
+        method: :post,
+        data: {
+          turbo_method: :post,
+        } %>
+      <% end %>
+    <% end %>
+    <% if !current_store_admin %>
+      <%= render BottomSearchComponent.new(url: '/search', ) do %>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
+        </svg>
       <% end %>
     <% end %>
     <% if !current_user && @auto_login_user.present? %>
       <%= render TooltipComponent.new(tooltip_text: "Automatic login for ease of use for demo purposes") do %>
-        <%= 
-          link_to 'Login As User', 
-            auto_logins_path("user", email: @auto_login_user.email), 
-            method: :post, 
-            data: {turbo_method: :post} 
-        %> 
+        <%= link_to "Login As User",
+        auto_logins_path("user", email: @auto_login_user.email),
+        method: :post,
+        data: {
+          turbo_method: :post,
+        } %>
       <% end %>
-    <% end %>
-    <% if active_user  && !current_store_admin && !active_user.is_a?(Guest) %>
-      <%= link_to "Home", root_path %>
-      <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete } %>
-    <% elsif store_admin_signed_in? && current_store_admin.store&.persisted? %>
-      <%= link_to "Log out",
-        destroy_store_admin_session_path,
-        data: { turbo_method: :delete } 
-      %>
-      <%= link_to "Home", store_admin_store_path(current_store_admin, current_store_admin.store) %>
-    <% elsif store_admin_signed_in? %>
-      <%= link_to "Log out",
-      destroy_store_admin_session_path,
-      data: {
-        turbo_method: :delete,
-      } %>
-    <% else %>
-      <%= link_to "User Log in", new_user_session_path %>
-      <%= link_to "Admin Sign In", new_store_admin_session_path %>
     <% end %>
   </div>
 </div>

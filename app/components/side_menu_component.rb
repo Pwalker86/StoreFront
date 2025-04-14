@@ -5,4 +5,13 @@ class SideMenuComponent < ViewComponent::Base
     @links = links
     @title = title
   end
+
+  # helper method to if it's a :delete, :patch, etc.
+  def method(link)
+    if link[:method]
+      link[:method]
+    else
+      :get
+    end
+  end
 end

@@ -22,6 +22,8 @@ module AdminNavigationHelper
       links << {name: "Create Store", path: new_store_admin_store_path(current_store_admin)}
     end
 
+
+    links << {name: "Log Out", path: destroy_store_admin_session_path, method: :delete}
     links
   end
 
