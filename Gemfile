@@ -47,7 +47,6 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop", require: false
   gem "rubocop-rails-omakase", require: false
-  gem "faker"
   gem "minitest-reporters"
 end
 
@@ -99,3 +98,4 @@ gem "json-schema"
 gem "csv", "~> 3.3"
 gem "aws-sdk-s3", "1.170", require: false
 gem "aws-sdk-core", "3.211"
+gem "faker"
