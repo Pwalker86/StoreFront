@@ -19,7 +19,7 @@
       <% end %>
       <!-- Desktop navigation links -->
       <div class="hidden md:flex gap-6">
-        <% admin_navigation_links.each do |link| %>
+        <% admin_navigation_links.select {|link| link[:name] != 'Log Out'}.each do |link| %>
           <%= link_to link[:name],
           link[:path],
           class:
@@ -48,4 +48,3 @@
     </div>
   </div>
 <% end %>
-
