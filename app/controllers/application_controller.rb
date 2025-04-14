@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     is_store_admin = current_store_admin.present?
 
     # Skip enforcement for devise routes to prevent login issues
-    return if path.start_with?("/users/sign_") || path.start_with?("/store_admins/sign_")
+    return if path.start_with?("/users/sign_") || path.start_with?("/store_admins/sign_") || path.start_with?("/auto_logins")
 
     if is_store_admin && !is_store_admin_route && !request.xhr?
       # Redirect StoreAdmin to their store page if trying to access non-admin routes

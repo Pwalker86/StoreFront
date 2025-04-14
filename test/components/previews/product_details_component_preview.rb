@@ -2,7 +2,7 @@
 
 class ProductDetailsComponentPreview < ViewComponent::Preview
   def default
-    p = Product.find 3
+    p = Product.last
     render(ProductDetailsComponent.new(product: p))
   end
 end
