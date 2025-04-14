@@ -21,6 +21,7 @@ export default class extends Controller {
     this.updateCartCount(updateValInt);
     this.updateCartItemPrice(itemPrice, itemId);
     this.updateCartTotalPrice(itemPrice);
+    this.disableCheckoutButton();
 
     // Remove from the cart if the new value will be 0
     if (updatedValue === 0) {
@@ -53,6 +54,11 @@ export default class extends Controller {
   updateCartCount(updateValInt) {
     let cartCount = document.getElementById("cart_count");
     cartCount.textContent = parseInt(cartCount.textContent) + updateValInt;
+  }
+
+  disableCheckoutButton() {
+    let checkoutButton = document.getElementById("checkout_button");
+    checkoutButton.disabled = true;
   }
 
   updateCartItemPrice(itemPrice, itemId) {
