@@ -1,0 +1,18 @@
+<%= render DialogueComponent.new(title: "Confirm Action") do |component| %>
+  <% component.with_trigger do %>
+    <button class="px-4 py-2 bg-blue-500 text-white rounded">Open Dialogue</button>
+  <% end %>
+  
+  <div class="space-y-4">
+    <p>Are you sure you want to proceed with this action?</p>
+    
+    <div class="flex justify-end space-x-3">
+      <button data-action="click->dialogue#close" class="px-4 py-2 border border-gray-300 rounded text-gray-700">
+        Cancel
+      </button>
+      <button class="px-4 py-2 bg-blue-500 text-white rounded">
+        Confirm
+      </button>
+    </div>
+  </div>
+<% end %>
