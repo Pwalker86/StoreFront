@@ -16,11 +16,11 @@ class ApplicationController < ActionController::Base
   # - If user is NOT a StoreAdmin, they cannot access /store_admin routes
   def enforce_route_authorization
     path = request.path
-    is_store_admin_route = path.start_with?('/store_admin')
+    is_store_admin_route = path.start_with?("/store_admin")
     is_store_admin = current_store_admin.present?
 
     # Skip enforcement for devise routes to prevent login issues
-    return if path.start_with?('/users/sign_') || path.start_with?('/store_admins/sign_')
+    return if path.start_with?("/users/sign_") || path.start_with?("/store_admins/sign_")
 
     if is_store_admin && !is_store_admin_route && !request.xhr?
       # Redirect StoreAdmin to their store page if trying to access non-admin routes
@@ -40,10 +40,6 @@ class ApplicationController < ActionController::Base
 
   def active_user
     @active_user ||= ActiveUserService.new(session, current_user, current_store_admin).call
-    if @active_user
-      @active_user.create_cart! if !@active_user.cart
-    end
-    @active_user
   end
 
   def after_sign_in_path_for(resource)
