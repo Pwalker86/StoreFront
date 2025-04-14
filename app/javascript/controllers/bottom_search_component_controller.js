@@ -7,7 +7,8 @@ export default class extends Controller {
     "searchOptionsContainer",
     "searchButton",
     "searchContainer",
-    "trigger"
+    "trigger",
+    "overlay"
   ];
 
   noResults = [{ href: "#", name: "No Results" }];
@@ -22,10 +23,11 @@ export default class extends Controller {
   }
 
   toggleSearch() {
-    this.searchContainerTarget.classList.toggle("translate-y-full");
+    const isOpening = this.searchContainerTarget.classList.toggle("translate-y-full");
+    this.overlayTarget.classList.toggle("hidden", isOpening);
     
     // Focus the search input when opened
-    if (!this.searchContainerTarget.classList.contains("translate-y-full")) {
+    if (!isOpening) {
       setTimeout(() => {
         this.searchInputTarget.focus();
       }, 300); // Delay to allow animation to complete
@@ -75,6 +77,7 @@ export default class extends Controller {
 
   closeSearch() {
     this.searchContainerTarget.classList.add("translate-y-full");
+    this.overlayTarget.classList.add("hidden");
   }
 
   focusOption(event) {
