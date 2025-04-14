@@ -1,52 +1,67 @@
-<div data-controller="dialogue"
-     <%= "data-dialogue-cookie-name-value=\"#{cookie_name}\"" if cookie_name.present? %>
-     <%= "data-dialogue-auto-open-value=\"true\"" if auto_open %>>
-  <div data-dialogue-target="trigger">
+<%= tag.div(
+  data: {
+    controller: "dialogue",
+    dialogue_cookie_name_value: cookie_name.presence,
+    dialogue_auto_open_value: auto_open ? true : nil
+  }
+) do %>
+  <%= tag.div(data: { dialogue_target: "trigger" }) do %>
     <%= trigger %>
-  </div>
+  <% end %>
 
-  <div 
-    data-dialogue-target="container"
-    class="hidden fixed inset-0 z-50 overflow-y-auto" 
-    aria-modal="true" 
-    role="dialog"
-  >
+  <%= tag.div(
+    data: { dialogue_target: "container" },
+    class: "hidden fixed inset-0 z-50 overflow-y-auto",
+    aria: { modal: true },
+    role: "dialog"
+  ) do %>
     <!-- Semi-opaque overlay -->
-    <div 
-      data-dialogue-target="overlay"
-      data-action="click->dialogue#close"
-      class="fixed inset-0 bg-black opacity-50 transition-opacity"
-    ></div>
+    <%= tag.div(
+      data: { 
+        dialogue_target: "overlay",
+        action: "click->dialogue#close"
+      },
+      class: "fixed inset-0 bg-black opacity-50 transition-opacity"
+    ) %>
 
     <!-- Dialogue positioning container -->
-    <div class="fixed inset-0 z-10 flex items-center justify-center p-4">
+    <%= tag.div(class: "fixed inset-0 z-10 flex items-center justify-center p-4") do %>
       <!-- Actual dialogue panel -->
-      <div 
-        data-dialogue-target="panel" 
-        class="bg-white rounded-lg shadow-xl <%= width_class %> w-full overflow-hidden"
-      >
+      <%= tag.div(
+        data: { dialogue_target: "panel" },
+        class: "bg-white rounded-lg shadow-xl #{width_class} w-full overflow-hidden"
+      ) do %>
         <!-- Header with title and close button -->
-        <div class="px-4 py-3 sm:px-6 border-b border-gray-200 flex justify-between items-center">
-          <h3 class="text-lg font-medium text-gray-900">
-            <%= title || "Dialogue" %>
-          </h3>
-          <button 
-            type="button" 
-            class="text-gray-400 hover:text-gray-500" 
-            data-action="click->dialogue#close"
-          >
-            <span class="sr-only">Close</span>
-            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
+        <%= tag.div(class: "px-4 py-3 sm:px-6 border-b border-gray-200 flex justify-between items-center") do %>
+          <%= tag.h3(title || "Dialogue", class: "text-lg font-medium text-gray-900") %>
+          <%= tag.button(
+            type: "button",
+            class: "text-gray-400 hover:text-gray-500",
+            data: { action: "click->dialogue#close" }
+          ) do %>
+            <%= tag.span("Close", class: "sr-only") %>
+            <%= tag.svg(
+              xmlns: "http://www.w3.org/2000/svg",
+              fill: "none", 
+              viewBox: "0 0 24 24", 
+              stroke: "currentColor",
+              class: "h-6 w-6"
+            ) do %>
+              <%= tag.path(
+                stroke_linecap: "round",
+                stroke_linejoin: "round",
+                stroke_width: "2",
+                d: "M6 18L18 6M6 6l12 12"
+              ) %>
+            <% end %>
+          <% end %>
+        <% end %>
         
         <!-- Content area -->
-        <div class="px-4 py-5 sm:p-6">
+        <%= tag.div(class: "px-4 py-5 sm:p-6") do %>
           <%= content %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
