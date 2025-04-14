@@ -28,7 +28,7 @@
       <div class="space-y-3">
         <% links.each do |link| %>
           <div>
-            <%= link_to link[:name], link[:path], class: "block py-2 px-3 text-gray-800 hover:bg-indigo-50 hover:text-indigo-700 rounded-md transition-colors duration-200" %>
+            <%= link_to link[:name], link[:path], class: "block py-2 px-3 text-gray-800 hover:bg-indigo-50 hover:text-indigo-700 rounded-md transition-colors duration-200", method: method(link), data: {turbo_method: method(link)} %>
           </div>
         <% end %>
       </div>

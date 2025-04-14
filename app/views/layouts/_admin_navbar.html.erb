@@ -1,41 +1,51 @@
 <% if current_store_admin %>
-<div>
-  <div 
-    class="
-      flex flex-row justify-between px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 min-h-14 items-center
-      shadow-lg mb-4
-    "
-  >
-    <!-- Mobile menu using the side menu component -->
-    <%= render(SideMenuComponent.new(links: admin_navigation_links, title: "Admin Menu")) do %>
-      <button data-action="side-menu#toggle" class="md:hidden text-white hover:text-gray-200 transition duration-150">
-        <i class="fa-solid fa-bars text-xl"></i>
-      </button>
-    <% end %>
-
-    <!-- Desktop navigation links -->
-    <div class="hidden md:flex gap-6">
-      <% admin_navigation_links.each do |link| %>
-        <%= link_to link[:name], link[:path], class: "text-white hover:text-gray-200 font-medium transition-all duration-150 hover:scale-105" %>
+  <div class="sticky top-0 z-50">
+    <div
+      class="
+        flex flex-row justify-between px-6 py-3 bg-gradient-to-r from-indigo-600
+        to-purple-600 min-h-14 items-center shadow-lg mb-4
+      "
+    >
+      <!-- Mobile menu using the side menu component -->
+      <%= render(SideMenuComponent.new(links: admin_navigation_links, title: "Admin Menu")) do %>
+        <button
+          data-action="side-menu#toggle"
+          class="
+            md:hidden text-white hover:text-gray-200 transition duration-150
+          "
+        >
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
       <% end %>
-    </div>
-
-    <!-- Mobile navigation - always show "View All Orders" -->
-    <div class="md:hidden">
-      <% orders_link = admin_navigation_links.find { |link| link[:name] == "View All Orders" } %>
-      <% if orders_link %>
-        <%= link_to orders_link[:name], orders_link[:path], class: "text-white font-semibold hover:text-gray-200 transition-all duration-150" %>
-      <% end %>
-    </div>
-    
-    <!-- Home icon -->
-    <div class="Navbar__menu account-icon">
-      <% if admin_home_link.present? %>
-        <%= link_to admin_home_link[:path], class: "account-icon text-white hover:text-gray-200 transition-all duration-150 hover:scale-110" do %>
-          <i class="fa-solid fa-home text-xl"></i>
+      <!-- Desktop navigation links -->
+      <div class="hidden md:flex gap-6">
+        <% admin_navigation_links.each do |link| %>
+          <%= link_to link[:name],
+          link[:path],
+          class:
+            "text-white hover:text-gray-200 font-medium transition-all duration-150 hover:scale-105" %>
         <% end %>
-      <% end %>
+      </div>
+      <!-- Mobile navigation - always show "View All Orders" -->
+      <div class="md:hidden">
+        <% orders_link =
+          admin_navigation_links.find { |link| link[:name] == "View All Orders" } %>
+        <% if orders_link %>
+          <%= link_to orders_link[:name],
+          orders_link[:path],
+          class:
+            "text-white font-semibold hover:text-gray-200 transition-all duration-150" %>
+        <% end %>
+      </div>
+      <!-- Home icon -->
+      <div class="Navbar__menu account-icon">
+        <% if admin_home_link.present? %>
+          <%= link_to admin_home_link[:path], class: "account-icon text-white hover:text-gray-200 transition-all duration-150 hover:scale-110" do %>
+            <i class="fa-solid fa-home text-xl"></i>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
 <% end %>
+
