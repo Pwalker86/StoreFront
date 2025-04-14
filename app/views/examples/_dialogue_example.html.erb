@@ -1,0 +1,42 @@
+<!-- Standard dialogue with trigger button -->
+<%= render DialogueComponent.new(title: "Confirm Action") do |component| %>
+  <% component.with_trigger do %>
+    <button class="px-4 py-2 bg-blue-500 text-white rounded">Open Dialogue</button>
+  <% end %>
+  
+  <div class="space-y-4">
+    <p>Are you sure you want to proceed with this action?</p>
+    
+    <div class="flex justify-end space-x-3">
+      <button data-action="click->dialogue#close" class="px-4 py-2 border border-gray-300 rounded text-gray-700">
+        Cancel
+      </button>
+      <button class="px-4 py-2 bg-blue-500 text-white rounded">
+        Confirm
+      </button>
+    </div>
+  </div>
+<% end %>
+
+<!-- Auto-opening dialogue example -->
+<div class="mt-8 p-4 border border-gray-300 rounded">
+  <h3 class="text-lg font-medium mb-2">Auto-opening Dialogue Example</h3>
+  <p class="mb-4">This dialogue will automatically open if the cookie 'example_dialogue_seen' doesn't exist.</p>
+
+  <%= render DialogueComponent.new(
+    title: "Welcome Message", 
+    cookie_name: "example_dialogue_seen", 
+    auto_open: true
+  ) do %>
+    <div class="space-y-4">
+      <p>This dialogue opens automatically on first visit.</p>
+      <p>After closing, it won't appear again because a cookie is set.</p>
+      
+      <div class="flex justify-end space-x-3">
+        <button data-action="click->dialogue#close" class="px-4 py-2 bg-green-500 text-white rounded">
+          Got it!
+        </button>
+      </div>
+    </div>
+  <% end %>
+</div>

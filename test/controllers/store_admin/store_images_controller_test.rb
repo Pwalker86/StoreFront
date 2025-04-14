@@ -68,7 +68,7 @@ class StoreAdmin::StoreImagesControllerTest < ActionDispatch::IntegrationTest
     store = stores(:store_one)
     get store_admin_store_store_image_url(user, store, 1)
     assert_response :redirect
-    assert_equal flash[:alert], "You need to sign in or sign up before continuing."
+    assert_equal flash[:alert], "You don't have permission to access that page."
   end
 
   test "should redirect if not store admin - NEW" do

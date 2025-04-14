@@ -23,7 +23,15 @@ class User < ApplicationRecord
   has_one :cart, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
+  after_create_commit :create_user_cart
+
   def display_name
     email
+  end
+
+  def create_user_cart
+    if cart.nil?
+      create_cart!
+    end
   end
 end

@@ -11,11 +11,19 @@ class Guest < ApplicationRecord
   has_many :orders, as: :orderable
   has_one :cart, dependent: :destroy
 
+  after_create_commit :create_guest_cart
+
   def email
     "Guest - No Email"
   end
 
   def display_name
     "Guest - Not Logged In"
+  end
+
+  def create_guest_cart
+    if cart.nil?
+      create_cart!
+    end
   end
 end

@@ -30,8 +30,8 @@
     
     <!-- Home icon -->
     <div class="Navbar__menu account-icon">
-      <% if home_link.present? %>
-        <%= link_to home_link[:path], class: "account-icon text-white hover:text-gray-200 transition-all duration-150 hover:scale-110" do %>
+      <% if admin_home_link.present? %>
+        <%= link_to admin_home_link[:path], class: "account-icon text-white hover:text-gray-200 transition-all duration-150 hover:scale-110" do %>
           <i class="fa-solid fa-home text-xl"></i>
         <% end %>
       <% end %>

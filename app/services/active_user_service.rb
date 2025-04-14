@@ -14,7 +14,6 @@ class ActiveUserService
       Guest.find_or_create_by(id: @session[:guest_id])
     else
       guest = Guest.create!
-      guest.create_cart!
       @session[:guest_id] = guest.id
       guest
     end
