@@ -1,4 +1,6 @@
-<div data-controller="dialogue">
+<div data-controller="dialogue"
+     <%= "data-dialogue-cookie-name-value=\"#{cookie_name}\"" if cookie_name.present? %>
+     <%= "data-dialogue-auto-open-value=\"true\"" if auto_open %>>
   <div data-dialogue-target="trigger">
     <%= trigger %>
   </div>
