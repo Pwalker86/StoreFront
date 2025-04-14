@@ -1,42 +1,44 @@
-<main class="min-h-screen bg-gray-50">
-  <!-- Auto-opening Welcome Dialogue -->
-  <%= render "welcome_dialogue" %>
+<%= content_for :title, "MarketHive - Online Shopping Marketplace" %>
 
-  <!-- Hero Section -->
-  <section class="relative w-full overflow-hidden">
-    <div class="max-h-96 overflow-hidden">
-      <%= image_tag "concept_landing_hero.jpg", class: "w-full object-cover h-64 md:h-96" %>
-    </div>
-    <div class="absolute inset-0 bg-gradient-to-r from-indigo-900/70 to-purple-900/70 flex items-center justify-center">
-      <div class="text-center text-white px-4">
-        <!-- Tooltip controller in the correct structure -->
-        <%= render TooltipComponent.new(tooltip_text:"Discover stores from around the world" ) do %>
-          <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Discover Amazing Stores</h1>
-        <% end %>
-        <p class="text-lg md:text-xl max-w-lg mx-auto">Find unique products from independent retailers</p>
-      </div>
-    </div>
-  </section>
+<!-- Auto-opening Welcome Dialogue -->
+<%= render "welcome_dialogue" %>
 
-  <!-- Featured Stores Section -->
-  <section class="py-10">
-    <!-- Fixed structure with tooltip controller and its values in the same element -->
-    <div class="mb-8 flex flex-col items-center">
-      <%= render TooltipComponent.new(tooltip_text:"This tooltip will adjust its position when near the edge of the screen" ) do %>
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Featured Stores</h2>
+<!-- Hero Section -->
+<section class="relative w-full overflow-hidden">
+  <div class="max-h-96 overflow-hidden">
+    <%= image_tag "concept_landing_hero.jpg", class: "w-full object-cover h-64 md:h-96" %>
+  </div>
+  <div class="absolute inset-0 bg-gradient-to-r from-indigo-900/70 to-purple-900/70 flex items-center justify-center">
+    <div class="text-center text-white px-4">
+      <!-- Tooltip controller in the correct structure -->
+      <%= render TooltipComponent.new(tooltip_text:"Discover stores from around the world" ) do %>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Discover Amazing Stores</h1>
       <% end %>
-      <div class="h-1 w-24 bg-indigo-600 rounded mt-2"></div>
+      <p class="text-lg md:text-xl max-w-lg mx-auto">Find unique products from independent retailers</p>
     </div>
-    
-    <!-- Responsive and Centered Store Grid -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-wrap justify-center gap-6">
-        <% @stores.each do |store| %>
-          <div class="w-full sm:w-80 md:w-72 lg:w-64">
-            <%= render StoreCardComponent.new(store: store) %>
-          </div>
-        <% end %>
-      </div>
+  </div>
+</section>
+
+<!-- Featured Stores Section -->
+<section class="py-10">
+  <!-- Fixed structure with tooltip controller and its values in the same element -->
+  <div class="mb-8 flex flex-col items-center">
+    <%= render TooltipComponent.new(tooltip_text:"This tooltip will adjust its position when near the edge of the screen" ) do %>
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Featured Stores</h2>
+    <% end %>
+    <div class="h-1 w-24 bg-indigo-600 rounded mt-2"></div>
+  </div>
+  
+  <!-- Responsive and Centered Store Grid -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-wrap justify-center gap-6">
+      <% @stores.each do |store| %>
+        <div class="w-full sm:w-80 md:w-72 lg:w-64">
+          <%= render StoreCardComponent.new(store: store) %>
+        </div>
+      <% end %>
     </div>
-  </section>
-</main>
+  </div>
+</section>
+
+<%= yield %>
