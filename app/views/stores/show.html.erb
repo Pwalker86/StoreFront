@@ -6,7 +6,6 @@
       <div class="h-1 w-24 bg-white rounded mt-2 mx-auto"></div>
     </div>
   </div>
-
   <!-- Store Image Section -->
   <div class="container mx-auto px-4 -mt-8 mb-8">
     <div class="max-w-md mx-auto">
@@ -22,16 +21,24 @@
       <% end %>
     </div>
   </div>
-
   <!-- Products Section -->
   <div class="container mx-auto px-4 mb-12">
-    <div class="mb-8 flex flex-col items-center">
-      <h2 class="text-2xl font-bold text-gray-800 mb-2">Featured Products</h2>
-      <div class="h-1 w-24 bg-indigo-600 rounded"></div>
+    <div class="flex justify-center items-center" %>
+      <%= render TooltipComponent.new(tooltip_text: "Products all loaded via turbo_frames, enabling easy loading visuals and encapsulation of logic") do %>
+        <div class="mb-8 flex flex-col items-center">
+          <h2 class="text-2xl font-bold text-gray-800 mb-2">Featured Products</h2>
+          <div class="h-1 w-24 bg-indigo-600 rounded"></div>
+        </div>
+      <% end %>
     </div>
 
     <%= turbo_frame_tag "store_products", src: store_products_path(@store) do %>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
+      <div
+        class="
+          grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6
+          justify-items-center
+        "
+      >
         <% 6.times do %>
           <div class="bg-white rounded-xl shadow-md overflow-hidden w-full max-w-sm">
             <div class="h-48 w-full bg-gray-200 shimmer"></div>
@@ -45,16 +52,27 @@
       </div>
     <% end %>
   </div>
-
   <!-- Reviews Section -->
   <% if current_user %>
     <%= render "store_reviews/add_review_button", store: @store %>
   <% end %>
 
+  <div class="container mx-auto px-4">
+    <div class="mb-6 flex flex-col items-center">
+      <%= render TooltipComponent.new(tooltip_text: "Reviews are loaded via turbo_frames, enabling easy loading visuals and encapsulation of logic") do %>
+        <h1 class="text-xl font-bold text-gray-800 mb-2">Store Reviews</h1>
+        <div class="h-1 w-24 bg-indigo-600 rounded"></div>
+      <% end %>
+    </div>
+  </div>
   <%= turbo_frame_tag "store_reviews", src: store_store_reviews_path(@store) do %>
     <div class="container mx-auto px-4">
       <div class="flex justify-center items-center py-8">
-        <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
+        <div
+          class="
+            animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600
+          "
+        ></div>
         <span class="ml-3 text-gray-600">Loading reviews...</span>
       </div>
     </div>
