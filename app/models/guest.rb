@@ -13,10 +13,6 @@ class Guest < ApplicationRecord
 
   after_create_commit :create_guest_cart
 
-  def email
-    "Guest - No Email"
-  end
-
   def display_name
     "Guest - Not Logged In"
   end

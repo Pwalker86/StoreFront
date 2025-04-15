@@ -8,7 +8,7 @@ export default class extends Controller {
     "searchButton",
     "searchContainer",
     "trigger",
-    "overlay"
+    "overlay",
   ];
 
   noResults = [{ href: "#", name: "No Results" }];
@@ -23,9 +23,10 @@ export default class extends Controller {
   }
 
   toggleSearch() {
-    const isOpening = this.searchContainerTarget.classList.toggle("translate-y-full");
+    const isOpening =
+      this.searchContainerTarget.classList.toggle("translate-y-full");
     this.overlayTarget.classList.toggle("hidden", isOpening);
-    
+
     // Focus the search input when opened
     if (!isOpening) {
       setTimeout(() => {
@@ -102,16 +103,16 @@ export default class extends Controller {
       "text-gray-700",
     );
     optionLink.href = option.href;
-    
+
     // Create a container for product name and store name
     const contentContainer = document.createElement("div");
-    
+
     // Create and style product name element
     const productName = document.createElement("div");
     productName.classList.add("text-gray-800");
     productName.innerText = option.name;
     contentContainer.appendChild(productName);
-    
+
     // Create and style store name element if it exists
     if (option.store_name) {
       const storeName = document.createElement("div");
@@ -119,13 +120,13 @@ export default class extends Controller {
       storeName.innerText = option.store_name;
       contentContainer.appendChild(storeName);
     }
-    
+
     // Add the content container to the link
     optionLink.appendChild(contentContainer);
-    
+
     optionLink.dataset.action =
       "click->bottom-search-component#closeSearch mouseover->bottom-search-component#focusOption";
-    
+
     if (option.name === "See More Results...") {
       optionLink.classList.add("text-indigo-600", "font-medium");
     } else if (option.name === "No Results") {
@@ -151,13 +152,6 @@ export default class extends Controller {
       query: this.searchInputTarget.value,
     }).toString();
     const searchUrl = `${this.urlValue}.json?${queryString}`;
-    
-    // Only perform search if query has content
-    if (this.searchInputTarget.value.trim().length === 0) {
-      this.searchOptionsContainerTarget.innerText = "";
-      return;
-    }
-    
     try {
       const response = await fetch(searchUrl);
       const jsonResponse = await response.json();
@@ -185,3 +179,4 @@ export default class extends Controller {
     this.buildProductsList(this.products);
   }
 }
+

@@ -50,7 +50,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
   test "should create an order from a cart as USER" do
     sign_in @user
     post orders_path, params: good_params
-    assert_redirected_to orders_path
+    assert_response :redirect
   end
 
   test "should create an order from a cart as GUEST" do

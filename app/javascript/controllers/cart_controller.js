@@ -21,11 +21,11 @@ export default class extends Controller {
     this.updateCartCount(updateValInt);
     this.updateCartItemPrice(itemPrice, itemId);
     this.updateCartTotalPrice(itemPrice);
-    this.disableCheckoutButton();
 
     // Remove from the cart if the new value will be 0
     if (updatedValue === 0) {
       this.toBeUpdatedTarget.closest(".cart-item").remove();
+      this.disableCheckoutButton();
     }
 
     // update the value on the server

@@ -13,9 +13,6 @@ class GuestTest < ActiveSupport::TestCase
   def setup
     @guest = guests(:guest_one)
   end
-  test "email returns an empty string" do
-    assert_equal "Guest - No Email", @guest.email
-  end
 
   test "display_name" do
     assert "Guest - Not Logged In", @guest.display_name
