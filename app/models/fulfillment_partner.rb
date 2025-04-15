@@ -28,9 +28,6 @@ class FulfillmentPartner < ApplicationRecord
   self.abstract_class = true
   self.table_name = "fulfillment_partners"
 
-  after_update_commit -> { broadcast_update_later_to "fulfillment_partner", partial: "store_admin/fulfillment_partners/fulfillment_partner", locals: { fulfillment_partner: self }, target: "fulfillment_partner" }
-  after_create_commit -> { broadcast_update_later_to "fulfillment_partner", partial: "store_admin/fulfillment_partners/fulfillment_partner", locals: { fulfillment_partner: self }, target: "fulfillment_partner" }
-
   belongs_to :store
 
   validates :store, presence: true

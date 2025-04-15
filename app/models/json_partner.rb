@@ -32,6 +32,8 @@ class JsonPartner < FulfillmentPartner
     end
   end
 
+  after_commit -> { broadcast_update_later_to "fulfillment_partner", partial: "store_admin/fulfillment_partners/fulfillment_partner", locals: { fulfillment_partner: self }, target: "fulfillment_partner" }, on: [:update, :create]
+
   def validate_file(file)
     JSON::Validator.validate!(file_schema, file)
   end
