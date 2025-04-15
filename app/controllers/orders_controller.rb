@@ -21,12 +21,8 @@ class OrdersController < ApplicationController
       user = EntityLookup.find_entity(order_params[:user_entity], order_params[:user_entity_id])
       cart = user.cart
       authorize cart
-      ConvertCartToOrderService.new(cart, order_params, user).process
-      if @active_user.is_a? Guest
-        redirect_to root_path
-      elsif @active_user.is_a? User
-        redirect_to orders_path
-      end
+      order = ConvertCartToOrderService.new(cart, order_params, user).call
+      redirect_to order
     rescue ConvertCartToOrderService::ConvertCartToOrderError, EntityLookup::EntityLookupError => e
       redirect_to root_path, alert: "something went wrong: #{e.message}"
     end
@@ -37,6 +33,10 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def pundit_user
+    @active_user
+  end
 
   def order_params
     params.require(:order).permit(:user_entity, :user_entity_id, :full_name, :address1, :address2, :city, :state, :postal_code, :email)

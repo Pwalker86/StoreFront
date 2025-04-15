@@ -3,7 +3,6 @@ module UserNavigationHelper
     links = []
 
     # Add links available to all users
-    links << { name: "Home", path: root_path }
     links << { name: "Browse Products", path: root_path }
 
     # Add links for logged-in users

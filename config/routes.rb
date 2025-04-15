@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   devise_for :store_admins
 
   # Custom auto_login routes with resource_type parameter
-  post 'auto_logins/:resource_type', to: 'auto_logins#create', as: 'auto_logins'
-  delete 'auto_logins/:resource_type/:id', to: 'auto_logins#destroy', as: 'auto_login'
+  post "auto_logins/:resource_type", to: "auto_logins#create", as: "auto_logins"
+  delete "auto_logins/:resource_type/:id", to: "auto_logins#destroy", as: "auto_login"
 
   Rails.application.routes.draw do
     if Rails.env.development?

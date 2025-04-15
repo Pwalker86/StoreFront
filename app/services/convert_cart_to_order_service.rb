@@ -11,16 +11,16 @@ class ConvertCartToOrderService
     @order = user.orders.new(email: @order_params[:email])
   end
 
-  def process
+  def call
     begin
       convert_cart_items
       update_status
       set_order_address
       set_guest_email
-      # in the future, this is where payment processing would be invoked
       if @order.save!
         @cart.cart_items.destroy_all
       end
+      @order
     rescue ActiveRecord::RecordInvalid => e
       Rails.logger.error "Error processing order: #{e.message}"
       raise ConvertCartToOrderError, "Failed to convert cart to order: #{e.message}"
@@ -55,7 +55,7 @@ class ConvertCartToOrderService
   # If the order has a guest user, it updates the guest's email
   # with the provided email from the checkout parameters and saves the guest user.
   def set_guest_email
-    #TODO: check how to do this better.
+    # TODO: check how to do this better.
     if @order.orderable.is_a? Guest
       @order.orderable.email = @order_params[:email]
       @order.orderable.save!
