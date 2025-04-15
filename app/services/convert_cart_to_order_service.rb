@@ -1,6 +1,6 @@
 # Handles the user submitting ("checking out") an order.
 # sets status to 'pending' and saves the order_items' prices as they were at time of sale.
-# payment processing would be invoked here in the future.
+# sets the email given in the checkout form to the orderable, if orderable.is_a? Guest. Guests don't start with an email.
 #
 class ConvertCartToOrderService
   class ConvertCartToOrderError < StandardError; end
