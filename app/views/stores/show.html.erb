@@ -10,14 +10,7 @@
   <div class="container mx-auto px-4 -mt-8 mb-8">
     <div class="max-w-md mx-auto">
       <%= turbo_frame_tag "store_image", src: store_store_image_path(@store, 1), class: "block" do %>
-        <div class="bg-white p-4 rounded-xl shadow-md">
-          <div class="card skeleton">
-            <div class="image shimmer h-48 rounded-lg"></div>
-            <div class="title shimmer h-6 w-3/4 mt-4"></div>
-            <div class="price shimmer h-4 w-1/2 mt-2"></div>
-            <div class="edit shimmer h-10 w-full mt-4"></div>
-          </div>
-        </div>
+        <%= render SkeletonLoaderComponent.new(count: 1, variant: "card") %>
       <% end %>
     </div>
   </div>
@@ -39,16 +32,7 @@
           justify-items-center
         "
       >
-        <% 6.times do %>
-          <div class="bg-white rounded-xl shadow-md overflow-hidden w-full max-w-sm">
-            <div class="h-48 w-full bg-gray-200 shimmer"></div>
-            <div class="p-4 space-y-4">
-              <div class="h-6 w-3/4 bg-gray-200 shimmer rounded"></div>
-              <div class="h-4 w-1/2 bg-gray-200 shimmer rounded"></div>
-              <div class="h-10 w-full bg-gray-200 shimmer rounded"></div>
-            </div>
-          </div>
-        <% end %>
+        <%= render SkeletonLoaderComponent.new(count: 6, variant: "card") %>
       </div>
     <% end %>
   </div>
