@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   def index
     @store = Store.find(params[:store_id])
-    @pagy_products, @products = pagy(@store.products.includes(:images_attachments).where(archived: false).order(:name), limit: 6, page_param: :products_page)
+    @pagy_products, @products = pagy(@store.products.includes(:images_attachments).where(archived: false).order(:name), limit: 8, page_param: :products_page)
   end
 
   def show

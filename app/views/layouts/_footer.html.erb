@@ -39,6 +39,8 @@
       <% end %>
     <% end %>
     <% if current_store_admin %>
+      <%= link_to "Services",
+      store_admin_store_services_path(current_store_admin, current_store_admin.store) %>
       <%= render TooltipComponent.new(tooltip_text: "Logout") do %>
         <%= link_to "Log Out",
         destroy_store_admin_session_path,

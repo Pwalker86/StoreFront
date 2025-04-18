@@ -1,0 +1,29 @@
+<%= form_with model: [current_store_admin, current_store_admin.store, service.becomes(Service)] do |f| %>
+  <div class="mb-4">
+    <%= f.label :name, "Service Name" %>
+    <%= f.text_field :name, class: "input" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :description, "Description" %>
+    <%= f.text_area :description, class: "input" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :rate_per_hour, "Rate" %>
+    <%= f.text_field :rate_per_hour, pattern: "\d*", class: "input" %>
+  </div>
+
+  <div class="flex items-center space-x-6 pt-2 mb-4">
+    <div class="flex items-center">
+      <%= f.check_box :is_quote_needed %>
+      <%= f.label :is_quote_needed, "Is Quote Needed?", class: "ml-2" %>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <%= f.submit service.persisted? ? "Update Service" : "Create Service",
+             class: "button" %>
+  </div>
+
+<% end %>
