@@ -271,6 +271,11 @@ GEM
     pg_search (2.3.7)
       activerecord (>= 6.1)
       activesupport (>= 6.1)
+    phlex (2.2.1)
+      zeitwerk (~> 2.7)
+    phlex-rails (2.2.0)
+      phlex (~> 2.2.1)
+      railties (>= 7.1, < 9)
     pp (0.6.2)
       prettyprint
     prettier_print (1.2.1)
@@ -489,6 +494,8 @@ DEPENDENCIES
   pagy (~> 9.3)
   pg (~> 1.1)
   pg_search
+  phlex (~> 2.0)
+  phlex-rails (~> 2.0)
   propshaft
   puma (>= 5.0)
   pundit (~> 2.5)

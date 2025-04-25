@@ -101,3 +101,5 @@ gem "aws-sdk-core", "3.211"
 gem "faker"
 
 gem "honeybadger", "~> 5.27"
+
+gem "phlex-rails", "~> 2.2"

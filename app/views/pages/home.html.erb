@@ -2,6 +2,7 @@
 <%= render "welcome_dialogue" %>
 
 <!-- Hero Section -->
+<% cache "hero_#{SecureRandom.uuid}", expires_in: 12.hours do %>
 <section class="relative w-full overflow-hidden">
   <div class="max-h-96 overflow-hidden">
     <%= image_tag "concept_landing_hero.jpg", class: "w-full object-cover h-64 md:h-96" %>
@@ -16,6 +17,7 @@
     </div>
   </div>
 </section>
+<% end %>
 
 <!-- Featured Stores Section -->
 <section class="py-10">
@@ -32,7 +34,7 @@
     <div class="flex flex-wrap justify-center gap-6">
       <% @stores.each do |store| %>
         <div class="w-full sm:w-80 md:w-72 lg:w-64">
-          <%= render StoreCardComponent.new(store: store) %>
+          <%= render Components::StoreCardComponent.new(store: store)%>
         </div>
       <% end %>
     </div>
