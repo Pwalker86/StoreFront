@@ -4,21 +4,22 @@ class ServicesFactory
   def self.create_service(type, service_params)
     case type
     when "StaticService"
-      StaticService.new(service_params)
+      service = StaticService.new(service_params)
     when "DynamicService"
-      DynamicService.new(service_params)
+      service = DynamicService.new(service_params)
     else
       raise UnknownServiceTypeError, "Unknown service type: #{type}"
     end
+    service
   end
 
   def self.update_service(current_service, new_type, service_params)
     case new_type
     when "StaticService"
-      service_params[:csv_headers] = filter_csv_headers(service_params[:csv_headers])
       new_instance = current_service.becomes!(StaticService)
       new_instance.type = "StaticService"
       new_instance.assign_attributes(service_params)
+      new_instance.is_quote_needed = false
     when "DynamicService"
       new_instance = current_service.becomes!(DynamicService)
       new_instance.type = "DynamicService"

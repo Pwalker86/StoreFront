@@ -1,4 +1,8 @@
-<div>
-  <h1 class="font-bold text-4xl">StoreAdmin::Services#edit</h1>
-  <p>Find me in app/views/store_admin/services/edit.html.erb</p>
+<div class="container mt-5 mx-auto sm:h-screen h-dvh">
+  <div class="mb-6 flex flex-col items-center">
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">Edit
+      <%= @service.name %></h1>
+    <div class="h-1 w-24 bg-indigo-600 rounded"></div>
+  </div>
+  <%= render "form", service: @service %>
 </div>
