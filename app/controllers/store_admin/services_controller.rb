@@ -8,10 +8,12 @@ class StoreAdmin::ServicesController < ApplicationController
 
   def show
     @service = current_store_admin.store.services.find(params[:id])
+    authorize @service, policy_class: Admin::ServicePolicy
   end
 
   def new
     @service = StaticService.new(store_id: params[:store_id])
+    authorize @service, policy_class: Admin::ServicePolicy
   end
 
   def create
@@ -20,6 +22,7 @@ class StoreAdmin::ServicesController < ApplicationController
       Rails.logger.error("Store not found for store_id: #{params[:store_id]}")
       redirect_to store_admin_stores_path(current_store_admin), alert: "Store not found." and return
     end
+    authorize store, policy_class: Admin::ServicePolicy
 
     begin
       @service = ServicesFactory.create_service(services_params[:type], services_params.merge(store_id: params[:store_id]))
@@ -39,6 +42,7 @@ class StoreAdmin::ServicesController < ApplicationController
 
   def edit
     @service = current_store_admin.store.services.find(params[:id])
+    authorize @service, policy_class: Admin::ServicePolicy
   end
 
   def update
@@ -50,6 +54,8 @@ class StoreAdmin::ServicesController < ApplicationController
 
     begin
       @service = store.services.find(params[:id])
+      authorize @service, policy_class: Admin::ServicePolicy
+
       @service = ServicesFactory.update_service(@service, services_params[:type], services_params.merge(store_id: params[:store_id]))
       if @service.save
         redirect_to store_admin_store_service_path(current_store_admin, store, @service), notice: "Service updated!"
@@ -67,6 +73,7 @@ class StoreAdmin::ServicesController < ApplicationController
 
   def destroy
     @service = current_store_admin.store.services.find(params[:id])
+    authorize @service, policy_class: Admin::ServicePolicy
     if @service.destroy
       redirect_to store_admin_store_services_path(current_store_admin, current_store_admin.store), notice: "Service deleted!"
     else
@@ -85,5 +92,9 @@ class StoreAdmin::ServicesController < ApplicationController
       Rails.logger.error("Invalid service type: #{services_params[:type]}, params: #{params.inspect}")
         redirect_to store_admin_stores_path(current_store_admin), alert: "Invalid service type." and return
     end
+  end
+
+  def pundit_user
+    current_store_admin
   end
 end

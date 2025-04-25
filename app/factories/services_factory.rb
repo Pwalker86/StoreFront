@@ -33,8 +33,10 @@ class ServicesFactory
 end
 
 # Example usage:
-# partner = FulfillmentPartnerFactory.create_fulfillment_partner('CsvPartner', {attributes_hash})
-# puts partner.class # => CsvPartner
+# service_params = { name: "Example Service", description: "An example service", duration_in_hours: 2, rate_per_hour: 50, type: "StaticService", is_quote_needed: false }
+# service = ServicesFactory.create_service(service_params[:type], service_params)
+# puts service.inspect
+# service = Service.find...
+# service = service.update_service(service, service_params[:type], service_params)
+# puts service.inspect
 #
-# partner = FulfillmentPartnerFactory.update_fulfillment_partner(existing_partner, 'JsonPartner', {attributes_hash})
-# puts partner.class # => JsonPartner
