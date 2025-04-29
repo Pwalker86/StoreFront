@@ -103,3 +103,5 @@ gem "faker"
 gem "honeybadger", "~> 5.27"
 
 gem "phlex-rails", "~> 2.2"
+
+gem "solid_cache", "~> 1.0"

@@ -29,13 +29,13 @@ Rails.application.configure do
   config.server_timing = true
   # Change to :null_store to avoid any caching.
 
-  config.cache_store = :memory_store
+  # Run rails dev:cache to toggle Action Controller caching.
+  config.action_controller.perform_caching = true
+  config.action_controller.enable_fragment_cache_logging = true
+  config.public_file_server.headers = { "cache-control" => "public, max-age=#{2.days.to_i}" }
 
-    # Enable/disable Action Controller caching. By default Action Controller caching is disabled.
-    # Run rails dev:cache to toggle Action Controller caching.
-    config.action_controller.perform_caching = true
-    config.action_controller.enable_fragment_cache_logging = true
-    config.public_file_server.headers = { "cache-control" => "public, max-age=#{2.days.to_i}" }
+  # Change to :null_store to avoid any caching.
+  config.cache_store = :solid_cache_store
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
