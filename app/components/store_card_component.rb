@@ -12,10 +12,12 @@ module Components
 
     # The main template method that renders the component
     def view_template
-      a(href: store_path(@store.id)) do
-        div(class: "bg-white shadow-md rounded-xl overflow-hidden transition-transform hover:scale-105 hover:shadow-lg") do
-          render_image_section
-          render_info_section
+      cache(@store) do
+        a(href: store_path(@store.id)) do
+          div(class: "bg-white shadow-md rounded-xl overflow-hidden transition-transform hover:scale-105 hover:shadow-lg") do
+            render_image_section
+            render_info_section
+          end
         end
       end
     end
