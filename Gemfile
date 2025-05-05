@@ -100,6 +100,6 @@ gem "aws-sdk-s3", "1.170", require: false
 gem "aws-sdk-core", "3.211"
 gem "faker"
 
-gem "honeybadger", "~> 5.27"
+gem "honeybadger", "~> 5.28"
 
 gem "solid_cache", "~> 1.0"
