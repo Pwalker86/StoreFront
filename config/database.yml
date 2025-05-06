@@ -24,8 +24,12 @@ default: &default
 
 
 development:
-  <<: *default
-  database: store_development
+  primary:
+    <<: *default
+    database: store_development
+  cache:
+    <<: *default
+    database: store_development_cache
   #database: <%#= Rails.application.credentials.dig(:database, :db_name) %>
 
   # The specified database role being used to connect to PostgreSQL.
@@ -84,7 +88,11 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: storefront_production
-  username: <%= Rails.application.credentials.dig(:database, :username) %>
-  password: <%= Rails.application.credentials.dig(:database, :password) %>
+  primary:
+    <<: *default
+    database: storefront_production
+    username: <%= Rails.application.credentials.dig(:database, :username) %>
+    password: <%= Rails.application.credentials.dig(:database, :password) %>
+  cache:
+    <<: *default
+    database: store_production_cache
