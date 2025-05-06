@@ -161,8 +161,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_170910) do
 
   create_table "shipping_details", force: :cascade do |t|
     t.string "tracking_number"
-    t.string "carrier"
-    t.datetime "shipped_at"
     t.bigint "order_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

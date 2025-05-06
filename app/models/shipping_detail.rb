@@ -3,8 +3,6 @@
 # Table name: shipping_details
 #
 #  id              :bigint           not null, primary key
-#  carrier         :string
-#  shipped_at      :datetime
 #  tracking_number :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
