@@ -41,4 +41,10 @@ class Store < ApplicationRecord
       includes([ :spotlight_attachment ]).where.not(spotlight_attachment: { id: nil }).limit(6)
     end
   end
+
+  def cached_store_products
+    Rails.cache.fetch([ "store_products", self.id ], expires_in: 12.hours) do
+      products.includes(:images_attachments).where(archived: false).order(:name)
+    end
+  end
 end

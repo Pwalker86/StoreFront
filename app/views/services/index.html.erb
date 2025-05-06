@@ -1,34 +1,53 @@
-<div>
-  <h1 class="font-bold text-4xl">Services#index</h1>
-  <% @services.each do |service| %>
-    <div class="p-5 border-2 border-gray-400 rounded-md bg-gray-50">
-      <h2 class="font-bold text-2xl"><%= service.name %></h2>
-      <p><strong>Description:</strong>
-        <%= service.description %></p>
-      <p><strong>Type:</strong>
-        <%= service.type %></p>
-      <% if service.is_static? %>
-        <p><strong>Rate per hour:</strong>
-          <%= service.rate_per_hour %></p>
-        <p><strong>Duration in hours:</strong>
-          <%= service.duration_in_hours %></p>
-      <% else %>
-        <p><strong>Rate per hour:</strong>
-          <%= service.rate_per_hour %></p>
-        <p><strong>Duration in hours:</strong>
-          <%= service.duration_in_hours %></p>
-      <% end %>
-    </div>
-    <div class="mt-4">
-      <%= link_to "Edit", edit_service_path(service), class: "text-blue-500" %>
-      <%= link_to "Delete",
-      service,
-      method: :delete,
-      data: {
-        turbo_method: :delete,
-        confirm: "Are you sure?",
-      },
-      class: "text-red-500" %>
-    </div>
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-6 flex flex-col items-center">
+    <h1 class="text-2xl font-bold text-gray-800 mb-2">Services</h1>
+    <div class="h-1 w-24 bg-indigo-600 rounded"></div>
+  </div>
+  
+  <%= turbo_frame_tag 'store_services' do %>
+    <% if @services.any? %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% @services.each do |service| %>
+        <%= link_to store_service_path(service.store, service), data: {turbo: false} do %>
+          <div class="cursor-pointer bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200 hover:shadow-md transition duration-150">
+            <div class="p-5">
+              <h2 class="font-bold text-xl text-gray-800 mb-2"><%= service.name %></h2>
+              
+              <div class="mb-3 text-sm text-gray-600">
+                <%= service.description %>
+              </div>
+              
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="px-2 py-1 text-xs font-medium rounded-full bg-indigo-100 text-indigo-800">
+                  <%= service.type %>
+                </span>
+                
+                <% unless service.is_quote_needed %>
+                  <span class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">
+                    $<%= service.rate_per_hour %>/hr
+                  </span>
+                  
+                  <span class="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">
+                    <%= service.duration_in_hours %> hours
+                  </span>
+                <% else %>
+                  <span class="px-2 py-1 text-xs font-medium rounded-full bg-amber-100 text-amber-800">
+                    Quote needed
+                  </span>
+                <% end %>
+              </div>
+            </div>
+        <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="text-center py-10">
+        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        <h3 class="mt-2 text-lg font-medium text-gray-900">No services available</h3>
+        <p class="mt-1 text-sm text-gray-500">No services are currently offered by this store.</p>
+      </div>
+    <% end %>
   <% end %>
 </div>

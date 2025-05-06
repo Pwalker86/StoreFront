@@ -159,6 +159,31 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_06_050403) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
+  create_table "service_quotes", force: :cascade do |t|
+    t.bigint "services_id", null: false
+    t.string "customer_name"
+    t.string "contact_number"
+    t.string "contact_email"
+    t.text "details"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["services_id"], name: "index_service_quotes_on_services_id"
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.float "duration_in_hours"
+    t.boolean "is_quote_needed", default: false
+    t.float "rate_per_hour"
+    t.bigint "store_id", null: false
+    t.string "type", default: "StaticService", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_services_on_store_id"
+  end
+
   create_table "shipping_details", force: :cascade do |t|
     t.string "tracking_number"
     t.string "carrier"
@@ -265,6 +290,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_06_050403) do
   add_foreign_key "order_items", "products"
   add_foreign_key "products", "stores"
   add_foreign_key "reviews", "users"
+  add_foreign_key "service_quotes", "services", column: "services_id"
+  add_foreign_key "services", "stores"
   add_foreign_key "shipping_details", "orders"
   add_foreign_key "shipping_details_imports", "store_admins"
   add_foreign_key "stores", "store_admins"
