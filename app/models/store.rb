@@ -34,4 +34,10 @@ class Store < ApplicationRecord
   validates :name, :phone_number, :location, :email, presence: true
   validates :email,
     format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  def self.cached_featured_stores
+    Rails.cache.fetch("featured_stores", expires_in: 12.hours) do
+      includes([ :spotlight_attachment ]).where.not(spotlight_attachment: { id: nil }).limit(6)
+    end
+  end
 end
