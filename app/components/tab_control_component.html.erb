@@ -1,0 +1,13 @@
+<div class="container mx-auto px-4 mb-12" data-controller="tabs">
+  <% if tabs? %>
+    <div class="border-b border-gray-200 mb-6">
+      <nav class="-mb-px flex justify-center space-x-8" aria-label="Tabs">
+        <div class="mt-3 flex flex-wrap gap-2">
+          <% tabs.each do |tab| %>
+            <%= tab %>
+          <% end %>
+        </div>
+      </nav>
+    </div>
+  <% end %>
+</div>
