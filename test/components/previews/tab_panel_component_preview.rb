@@ -1,19 +1,9 @@
 # frozen_string_literal: true
 
 class TabPanelComponentPreview < ViewComponent::Preview
+  # This should only be used within a TabControlComponent in a slot("tab_panel")
   def default
-    render(TabPanelComponent.new(has_content: true)) do
-      tag.ul do
-        safe_join(5.times.map { |i| tag.li("content#{i}") })
-      end
-    end
-  end
-
-  def has_no_content
-    render(TabPanelComponent.new(has_content: false)) do
-      tag.ul do
-        safe_join(5.times.map { |i| tag.li("content#{i}") })
-      end
-    end
+    @store = Store.find 1
+    render TabPanelComponent.new(turbo_target: "store_products", turbo_path: store_products_path(@store), hidden_on_load: false)
   end
 end
