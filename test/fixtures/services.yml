@@ -28,11 +28,11 @@ one:
   description: MyText
   rate_per_hour: 1.5
   is_quote_needed: false
-  service_date: 2025-04-18 09:16:47
+  store: store_one
 
 two:
   name: MyString
   description: MyText
   rate_per_hour: 1.5
   is_quote_needed: false
-  service_date: 2025-04-18 09:16:47
+  store: store_one
