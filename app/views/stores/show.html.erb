@@ -15,63 +15,23 @@
     </div>
   </div>
   <!-- Tab Control -->
-  <div class="container mx-auto px-4 mb-12" data-controller="tabs">
-    <!-- Tab Navigation -->
-    <div class="border-b border-gray-200 mb-6">
-      <nav class="-mb-px flex justify-center space-x-8" aria-label="Tabs">
-        <%= render TooltipComponent.new(tooltip_text: "Products and services are loaded via turbo_frames, enabling easy loading visuals and encapsulation of logic. Tabbing behavior controlled via Stimulus") do %>
-          <button
-            data-tabs-target="tab"
-            data-action="tabs#change"
-            class="
-              cursor-pointer border-transparent text-gray-500 hover:text-gray-700
-              hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg
-            "
-            aria-selected="false"
-          >
-            Products
-          </button>
-          <button
-            data-tabs-target="tab"
-            data-action="tabs#change"
-            class="
-              cursor-pointer border-transparent text-gray-500 hover:text-gray-700
-              hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg
-            "
-            aria-selected="false"
-          >
-            Services
-          </button>
-        <% end %>
-      </nav>
-    </div>
+  <%= render TabControlComponent.new(tab_names: %w[Products Services]) do |component| %>
     <!-- Tab Panels -->
-    <div data-tabs-target="panel">
-      <%= turbo_frame_tag "store_products", src: store_products_path(@store) do %>
-        <div
-          class="
-            grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6
-            justify-items-center
-          "
-        >
-          <%= render SkeletonLoaderComponent.new(count: 6, variant: "card") %>
-        </div>
-      <% end %>
-    </div>
-
-    <div data-tabs-target="panel" class="hidden">
-      <%= turbo_frame_tag "store_services", src: store_services_path(@store) do %>
-        <div
-          class="
-            grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6
-            justify-items-center
-          "
-        >
-          <%= render SkeletonLoaderComponent.new(count: 6, variant: "card") %>
-        </div>
-      <% end %>
-    </div>
-  </div>
+    <% component.with_tab_panels(
+      [
+        {
+          turbo_target: "store_products",
+          turbo_path: store_products_path(@store),
+          hidden_on_load: false,
+        },
+        {
+          turbo_target: "store_services",
+          turbo_path: store_services_path(@store),
+          hidden_on_load: true,
+        },
+      ],
+    ) %>
+  <% end %>
   <!-- Reviews Section -->
   <% if current_user %>
     <%= render "store_reviews/add_review_button", store: @store %>
