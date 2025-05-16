@@ -25,7 +25,7 @@ class Service < ApplicationRecord
   self.abstract_class = true
   self.table_name = "services"
   belongs_to :store
-  has_many :service_quotes
+  has_many :service_quotes, dependent: :destroy
 
   scope :static, -> { where(type: "StaticService") }
   scope :dynamic, -> { where(type: "DynamicService") }

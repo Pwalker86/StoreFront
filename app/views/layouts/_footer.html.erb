@@ -1,4 +1,9 @@
-<div class="py-3 px-6 bg-gradient-to-r from-indigo-600 to-purple-600 sticky bottom-0 shadow-lg">
+<div
+  class="
+    py-3 px-6 bg-gradient-to-r from-indigo-600 to-purple-600 sticky bottom-0
+    shadow-lg
+  "
+>
   <div class="flex flex-row justify-center gap-5 items-center">
     <% if !current_store_admin && @auto_login_admin.present? %>
       <%= render TooltipComponent.new(tooltip_text: "Automatic login for ease of use for demo purposes") do %>
@@ -15,7 +20,9 @@
       <%= render BottomSearchComponent.new(url: '/search', ) do %>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6 text-white hover:text-gray-200 transition-all duration-150"
+          class="
+            h-6 w-6 text-white hover:text-gray-200 transition-all duration-150
+          "
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -40,7 +47,7 @@
         class: "text-white hover:text-gray-200 transition-all duration-150" %>
       <% end %>
     <% end %>
-    <% if current_store_admin %>
+    <% if current_store_admin && current_store_admin.store.persisted? %>
       <%= link_to "Services",
       store_admin_store_services_path(current_store_admin, current_store_admin.store),
       class: "text-white hover:text-gray-200 font-medium transition-all duration-150" %>
