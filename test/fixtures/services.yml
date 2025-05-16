@@ -23,14 +23,14 @@
 #
 #  fk_rails_...  (store_id => stores.id)
 #
-one:
+service_one:
   name: MyString
   description: MyText
   rate_per_hour: 1.5
   is_quote_needed: false
   store: store_one
 
-two:
+service_two:
   name: MyString
   description: MyText
   rate_per_hour: 1.5

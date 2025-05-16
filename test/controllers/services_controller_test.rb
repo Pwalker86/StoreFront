@@ -2,12 +2,15 @@ require "test_helper"
 
 class ServicesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get services_index_url
+    store = stores(:store_one)
+    get store_services_path(store)
     assert_response :success
   end
 
   test "should get show" do
-    get services_show_url
+    store = stores(:store_one)
+    service = services(:service_one)
+    get store_service_path(store, service)
     assert_response :success
   end
 end
