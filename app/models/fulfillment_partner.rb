@@ -28,6 +28,9 @@ class FulfillmentPartner < ApplicationRecord
   self.abstract_class = true
   self.table_name = "fulfillment_partners"
 
+  scope :json, -> { where(type: "json") }
+  scope :csv, -> { where(type: "csv") }
+
   belongs_to :store
 
   validates :store, presence: true

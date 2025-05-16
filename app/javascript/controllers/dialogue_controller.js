@@ -60,7 +60,7 @@ export default class extends Controller {
   }
 
   handleEscapeKey(event) {
-    if (event.key === "Escape" && !this.containerTarget.classList.contains("hidden")) {
+    if ((event.key === "Escape" || event.key == 27) && !this.containerTarget.classList.contains("hidden")) {
       this.close();
     }
   }

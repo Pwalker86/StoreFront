@@ -1,12 +1,8 @@
 <% if current_store_admin.store.persisted? %>
   <%= turbo_frame_tag "store_image", src: store_admin_store_store_image_path(current_store_admin, store, 1) do %>
-    <%#TODO: Extract into SkeletonCardComponent %>
-    <div class="mx-auto w-fit">
-      <div class="card skeleton">
-        <div class="image shimmer"></div>
-        <div class="title shimmer"></div>
-        <div class="price shimmer"></div>
-        <div class="edit shimmer"></div>
+    <div class="container mx-auto px-4 -mt-8 mb-8">
+      <div class="max-w-md mx-auto">
+        <%= render SkeletonLoaderComponent.new(count: 1, variant: "card") %>
       </div>
     </div>
   <% end %>
@@ -16,37 +12,52 @@
   <%= form_with model: [current_store_admin, store], class: "space-y-6" do |form| %>
     <div class="space-y-2">
       <%= form.label :name, class: "block text-sm font-medium text-gray-700" %>
-      <%= form.text_field :name, class: "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1" %>
+      <%= form.text_field :name,
+                      class:
+                        "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1" %>
     </div>
 
     <div class="space-y-2">
       <%= form.label :email, class: "block text-sm font-medium text-gray-700" %>
-      <%= form.email_field :email, class: "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1" %>
+      <%= form.email_field :email,
+                       class:
+                         "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1" %>
     </div>
 
     <div class="space-y-2">
       <%= form.label :phone_number, class: "block text-sm font-medium text-gray-700" %>
-      <%= form.telephone_field :phone_number, class: "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1" %>
+      <%= form.telephone_field :phone_number,
+                           class:
+                             "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1" %>
     </div>
 
     <div class="space-y-2">
       <%= form.label :location, class: "block text-sm font-medium text-gray-700" %>
-      <%= form.text_field :location, class: "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1" %>
+      <%= form.text_field :location,
+                      class:
+                        "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1" %>
     </div>
 
     <div class="space-y-2">
       <%= form.label :mission_statement, class: "block text-sm font-medium text-gray-700" %>
-      <%= form.text_area :mission_statement, rows: 3, class: "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1" %>
+      <%= form.text_area :mission_statement,
+                     rows: 3,
+                     class:
+                       "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1" %>
     </div>
 
     <div class="pt-4">
-      <%= form.submit class: "w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+      <%= form.submit class:
+                    "w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
     </div>
   <% end %>
-  
+
   <% if current_store_admin.store.nil? %>
     <div class="mt-4">
-      <%= link_to "Cancel", [current_store_admin, store], class: "w-full inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+      <%= link_to "Cancel",
+      [current_store_admin, store],
+      class:
+        "w-full inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
     </div>
   <% end %>
 </div>

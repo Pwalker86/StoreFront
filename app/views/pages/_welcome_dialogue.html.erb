@@ -1,18 +1,32 @@
 <%= render DialogueComponent.new(title: "Welcome to StoreFront!", cookie_name: "welcome_dialogue_seen", auto_open: true) do %>
   <div class="space-y-4">
-    <p>Welcome to my site! This is a work in progress Rails 8 project using StimulusJS, ViewComponents and anything else I think might be interesting.</p>
+    <p>Welcome to my site! This is a work in progress Rails 8 project using
+      StimulusJS, ViewComponents and anything else I think might be
+      interesting.</p>
 
-    <p>Eventually this site will be home to my whole portfolio, but enjoy this for now.</p>
+    <p>Eventually this site will be home to my whole portfolio, but enjoy this
+      for now.</p>
 
-    <p>There are tooltips around the site detailing some of the features and implementaion behind them, but any other details can be found
-    at the github repo: <a href='https://www.github.com/pwalker86/storefront' target="_blank" class="text-indigo-600 hover:text-indigo-700">github.com/pwalker86/storefront</a></p>
+    <p>There are tooltips around the site detailing some of the features and
+      implementaion behind them, but any other details can be found at the
+      github repo:
+      <a
+        href='https://www.github.com/pwalker86/storefront'
+        target="_blank"
+        class="text-indigo-600 hover:text-indigo-700"
+      >github.com/pwalker86/storefront</a></p>
 
-    <p>Feel free to reach out with any questions or comments, and I hope you enjoy your time here!</p>
+    <p>Feel free to reach out with any questions or comments, and I hope you
+      enjoy your time here!</p>
 
     <div class="flex justify-end space-x-3">
-        <button data-action="click->dialogue#close" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded">
-            Get Started
-        </button>
+      <button
+        data-action="click->dialogue#close"
+        class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded"
+      >
+        Get Started
+      </button>
     </div>
   </div>
 <% end %>
+

@@ -1,0 +1,28 @@
+<div class="max-w-lg mx-auto bg-white p-8 rounded-xl shadow-md">
+  <%= form_with model: [current_store_admin, current_store_admin.store, @service.becomes(Service)], builder: UniformFormBuilder do |f| %>
+    <%= f.uniform_fields(
+      fields: %i[
+        description
+        duration_in_hours
+        is_quote_needed
+        name
+        rate_per_hour
+        type
+      ],
+      overrides: {
+        type: {
+          as: :select,
+          options: {
+            StaticService: "StaticService",
+            DynamicService: "DynamicService",
+          },
+        },
+      },
+    ) %>
+
+    <div class="form-group">
+      <%= f.submit class:
+                 "w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+    </div>
+  <% end %>
+</div>

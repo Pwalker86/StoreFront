@@ -5,7 +5,7 @@ class StoreReviewsController < ApplicationController
 
   def index
     @store = Store.find params[:store_id]
-    @pagy_reviews, @reviews = pagy(@store.reviews.order(created_at: :desc), limt: 6, page_param: :reviews_page)
+    @pagy_reviews, @reviews = pagy(@store.reviews.includes([ :user ]).order(created_at: :desc), limt: 6, page_param: :reviews_page)
   end
 
   def show

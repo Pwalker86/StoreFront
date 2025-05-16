@@ -1,0 +1,2 @@
+module StoreAdmin::ServicesHelper
+end

@@ -10,22 +10,27 @@ class StoreAdmin::FulfillmentPartnersController < ApplicationController
   end
 
   def create
+    store = Store.find_by(id: params[:store_id])
+    unless store
+      Rails.logger.error("Store not found for store_id: #{params[:store_id]}")
+      redirect_to store_admin_stores_path(current_store_admin), alert: "Store not found." and return
+    end
+
     begin
-      store = Store.find(params[:store_id])
       @fulfillment_partner = FulfillmentPartnerFactory.create_fulfillment_partner(fulfillment_partner_params[:type], fulfillment_partner_params.merge(store_id: params[:store_id]))
-      if @fulfillment_partner.save!
+      if @fulfillment_partner.save
         redirect_to store_admin_store_fulfillment_partner_path(current_store_admin, store, @fulfillment_partner), notice: "Fulfillment partner created!"
       else
         render :new, status: :unprocessable_entity
       end
     rescue FulfillmentPartnerFactory::UnknownFulfillmentPartnerTypeError, FulfillmentPartnerFactory::NilHeadersError => e
-      Rails.logger.error("Error creating fulfillment partner: #{e.message}")
+      Rails.logger.error("Error creating fulfillment partner: #{e.message}, params: #{params.inspect}")
       redirect_to new_store_admin_store_fulfillment_partner_path(current_store_admin, store), alert: "An error occurred while creating the fulfillment partner. Please try again."
     rescue ActiveRecord::RecordNotFound => e
-      Rails.logger.error("Store not found: #{e.message}")
+      Rails.logger.error("Store not found: #{e.message}, params: #{params.inspect}")
       redirect_to store_admin_stores_path(current_store_admin), alert: "Store not found."
     rescue StandardError => e
-      Rails.logger.error("Unexpected error: #{e.message}")
+      Rails.logger.error("Unexpected error: #{e.message}, params: #{params.inspect}")
       redirect_to new_store_admin_store_fulfillment_partner_path(current_store_admin, store), alert: "An unexpected error occurred. Please try again."
     end
   end
@@ -35,8 +40,13 @@ class StoreAdmin::FulfillmentPartnersController < ApplicationController
   end
 
   def update
+    store = Store.find_by(id: params[:store_id])
+    unless store
+      Rails.logger.error("Store not found for store_id: #{params[:store_id]}")
+      redirect_to store_admin_stores_path(current_store_admin), alert: "Store not found." and return
+    end
+
     begin
-      store = Store.find(params[:store_id])
       @fulfillment_partner = store.fulfillment_partner
       @fulfillment_partner = FulfillmentPartnerFactory.update_fulfillment_partner(@fulfillment_partner, fulfillment_partner_params[:type], fulfillment_partner_params)
       if @fulfillment_partner.save
@@ -45,13 +55,13 @@ class StoreAdmin::FulfillmentPartnersController < ApplicationController
         render :edit, status: :unprocessable_entity
       end
     rescue FulfillmentPartnerFactory::UnknownFulfillmentPartnerTypeError, FulfillmentPartnerFactory::NilHeadersError => e
-      Rails.logger.error("Error updating fulfillment partner: #{e.message}")
+      Rails.logger.error("Error updating fulfillment partner: #{e.message}, params: #{params.inspect}")
       redirect_to new_store_admin_store_fulfillment_partner_path(current_store_admin, store), alert: "Fulfillment partner update failed!"
     rescue ActiveRecord::RecordNotFound => e
-      Rails.logger.error("Store not found: #{e.message}")
+      Rails.logger.error("Store not found: #{e.message}, params: #{params.inspect}")
       redirect_to store_admin_stores_path(current_store_admin), alert: "Store not found."
     rescue StandardError => e
-      Rails.logger.error("Unexpected error: #{e.message}")
+      Rails.logger.error("Unexpected error: #{e.message}, params: #{params.inspect}")
       render :new, status: :internal_server_error, alert: "An unexpected error occurred. Please try again."
     end
   end

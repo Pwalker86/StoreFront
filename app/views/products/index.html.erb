@@ -5,12 +5,17 @@
   </div>
   
   <%= turbo_frame_tag "store_products" do %>
+    <% if @pagy_products.count > 0 %>
+      <div class="mb-4 flex justify-center">
+        <%== pagy_nav(@pagy_products) %>
+      </div>
+    <% end %>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       <%= render(ProductCardComponent.with_collection(@products)) %>
     </div>
     
     <% if @pagy_products.count > 0 %>
-      <div class="mt-8 flex justify-center">
+      <div class="mt-4 flex justify-center">
         <%== pagy_nav(@pagy_products) %>
       </div>
     <% end %>

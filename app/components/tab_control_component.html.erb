@@ -1,0 +1,30 @@
+<div class="container mx-auto px-4 mb-12" data-controller="tabs">
+  <% if @tab_names %>
+    <div class="border-b border-gray-200 mb-6">
+      <nav class="-mb-px flex justify-center space-x-8" aria-label="Tabs">
+        <%= render TooltipComponent.new(tooltip_text: "Products and services are loaded via turbo_frames, enabling easy loading visuals and encapsulation of logic. Tabbing behavior controlled via Stimulus") do %>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <% @tab_names.each do |tab| %>
+              <button
+                data-tabs-target="tab"
+                data-action="tabs#change"
+                class="
+                  cursor-pointer border-transparent text-gray-500 hover:text-gray-700
+                  hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg
+                "
+                aria-selected="false"
+              >
+                <%= tab %>
+              </button>
+            <% end %>
+          </div>
+        <% end %>
+      </nav>
+    </div>
+  <% end %>
+  <% if tab_panels? %>
+    <% tab_panels.each do |panel| %>
+      <%= panel %>
+    <% end %>
+  <% end %>
+</div>
