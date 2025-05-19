@@ -43,11 +43,13 @@
     <div class="space-y-2" data-service-form-target="staticFields">
       <div class="space-y-2">
         <%= form.label :rate_per_hour,
-                   "Rate per hour",
+                   "Rate per hour (in dollars)",
                    class: "block text-sm font-medium text-gray-700" %>
-        <%= form.text_field :rate_per_hour,
-                        class:
-                          "mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1" %>
+        <div class="flex">
+          <span class="content-center">$</span><%= form.text_field :rate_per_hour,
+                          class:
+                            "ml-1 mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 px-2 py-1" %>
+        </div>
       </div>
 
       <div class="space-y-2">
