@@ -6,6 +6,8 @@
         <%= button_to "Add To Cart",
         user_cart_path(helpers.active_user),
         params: {
+          store_id: @product.store.id,
+          item_entity: @product.class.name,
           user_entity: helpers.active_user.class.name,
           product_id: @product.id,
           quantity: 1,
@@ -14,7 +16,8 @@
           turbo: false,
         },
         method: :patch,
-        class: "px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-center text-sm mt-6 mx-auto block" %>
+        class:
+          "px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-center text-sm mt-6 mx-auto block" %>
       <% end %>
     </div>
     <div class="w-full md:w-1/2 p-6">

@@ -30,5 +30,5 @@ class Service < ApplicationRecord
   scope :static, -> { where(type: "StaticService") }
   scope :dynamic, -> { where(type: "DynamicService") }
 
-  validates :store, presence: true
+  validates :name, :store, presence: true
 end

@@ -10,7 +10,7 @@
 #  is_quote_needed   :boolean          default(FALSE)
 #  name              :string           not null
 #  rate_per_hour     :float
-#  type              :string           default("StaticService"), not null
+#  type              :string           not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  store_id          :bigint           not null

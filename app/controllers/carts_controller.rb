@@ -10,8 +10,12 @@ class CartsController < ApplicationController
 
   def update
     authorize active_user.cart
-    service = CartUpdateService.new(params[:user_entity], params[:user_id], params[:product_id], params[:quantity])
-    result = service.call
+    begin
+      result = AddProductOrServiceFactory.add(active_user.cart, { item_entity: params[:item_entity], user_entity: params[:user_entity], user_id: params[:user_id], product_id: params[:product_id], quantity: params[:quantity] })
+    rescue AddProductOrServiceFactory::UnknownProductOrServiceError => e
+      Rails.logger.error("Unexpected error: #{e.message}, params: #{params.inspect}")
+      redirect_back(fallback_location: root_path) and return
+    end
 
     case result[:status]
     when :error
