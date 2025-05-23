@@ -103,3 +103,6 @@ gem "faker"
 gem "honeybadger", "~> 5.28"
 
 gem "solid_cache", "~> 1.0"
+
+gem "amazing_print"
+gem "rails_semantic_logger"

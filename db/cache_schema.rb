@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_05_170910) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_19_211139) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -61,6 +61,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_170910) do
     t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_cart_items_on_cart_id"
     t.index ["product_id"], name: "index_cart_items_on_product_id"
+  end
+
+  create_table "cart_service_items", force: :cascade do |t|
+    t.bigint "service_id", null: false
+    t.bigint "cart_id", null: false
+    t.decimal "price", precision: 10, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_cart_service_items_on_cart_id"
+    t.index ["service_id"], name: "index_cart_service_items_on_service_id"
   end
 
   create_table "carts", force: :cascade do |t|
@@ -159,6 +169,31 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_170910) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
+  create_table "service_quotes", force: :cascade do |t|
+    t.bigint "services_id", null: false
+    t.string "customer_name"
+    t.string "contact_number"
+    t.string "contact_email"
+    t.text "details"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["services_id"], name: "index_service_quotes_on_services_id"
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.float "duration_in_hours"
+    t.boolean "is_quote_needed", default: false
+    t.float "rate_per_hour"
+    t.bigint "store_id", null: false
+    t.string "type", default: "StaticService", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_services_on_store_id"
+  end
+
   create_table "shipping_details", force: :cascade do |t|
     t.string "tracking_number"
     t.string "carrier"
@@ -174,6 +209,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_170910) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["store_admin_id"], name: "index_shipping_details_imports_on_store_admin_id"
+  end
+
+  create_table "solid_cache_entries", force: :cascade do |t|
+    t.binary "key", null: false
+    t.binary "value", null: false
+    t.datetime "created_at", null: false
+    t.bigint "key_hash", null: false
+    t.integer "byte_size", null: false
+    t.index ["byte_size"], name: "index_solid_cache_entries_on_byte_size"
+    t.index ["key_hash", "byte_size"], name: "index_solid_cache_entries_on_key_hash_and_byte_size"
+    t.index ["key_hash"], name: "index_solid_cache_entries_on_key_hash", unique: true
   end
 
   create_table "store_admins", force: :cascade do |t|
@@ -247,6 +293,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_170910) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "products"
+  add_foreign_key "cart_service_items", "carts"
+  add_foreign_key "cart_service_items", "services"
   add_foreign_key "carts", "guests"
   add_foreign_key "carts", "users"
   add_foreign_key "fulfillment_partners", "stores"
@@ -254,6 +302,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_170910) do
   add_foreign_key "order_items", "products"
   add_foreign_key "products", "stores"
   add_foreign_key "reviews", "users"
+  add_foreign_key "service_quotes", "services", column: "services_id"
+  add_foreign_key "services", "stores"
   add_foreign_key "shipping_details", "orders"
   add_foreign_key "shipping_details_imports", "store_admins"
   add_foreign_key "stores", "store_admins"

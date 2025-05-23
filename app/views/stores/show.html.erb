@@ -10,48 +10,28 @@
   <div class="container mx-auto px-4 -mt-8 mb-8">
     <div class="max-w-md mx-auto">
       <%= turbo_frame_tag "store_image", src: store_store_image_path(@store, 1), class: "block" do %>
-        <div class="bg-white p-4 rounded-xl shadow-md">
-          <div class="card skeleton">
-            <div class="image shimmer h-48 rounded-lg"></div>
-            <div class="title shimmer h-6 w-3/4 mt-4"></div>
-            <div class="price shimmer h-4 w-1/2 mt-2"></div>
-            <div class="edit shimmer h-10 w-full mt-4"></div>
-          </div>
-        </div>
+        <%= render SkeletonLoaderComponent.new(count: 1, variant: "card") %>
       <% end %>
     </div>
   </div>
-  <!-- Products Section -->
-  <div class="container mx-auto px-4 mb-12">
-    <div class="flex justify-center items-center" %>
-      <%= render TooltipComponent.new(tooltip_text: "Products all loaded via turbo_frames, enabling easy loading visuals and encapsulation of logic") do %>
-        <div class="mb-8 flex flex-col items-center">
-          <h2 class="text-2xl font-bold text-gray-800 mb-2">Featured Products</h2>
-          <div class="h-1 w-24 bg-indigo-600 rounded"></div>
-        </div>
-      <% end %>
-    </div>
-
-    <%= turbo_frame_tag "store_products", src: store_products_path(@store) do %>
-      <div
-        class="
-          grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6
-          justify-items-center
-        "
-      >
-        <% 6.times do %>
-          <div class="bg-white rounded-xl shadow-md overflow-hidden w-full max-w-sm">
-            <div class="h-48 w-full bg-gray-200 shimmer"></div>
-            <div class="p-4 space-y-4">
-              <div class="h-6 w-3/4 bg-gray-200 shimmer rounded"></div>
-              <div class="h-4 w-1/2 bg-gray-200 shimmer rounded"></div>
-              <div class="h-10 w-full bg-gray-200 shimmer rounded"></div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+  <!-- Tab Control -->
+  <%= render TabControlComponent.new(tab_names: %w[Products Services]) do |component| %>
+    <!-- Tab Panels -->
+    <% component.with_tab_panels(
+      [
+        {
+          turbo_target: "store_products",
+          turbo_path: store_products_path(@store),
+          hidden_on_load: false,
+        },
+        {
+          turbo_target: "store_services",
+          turbo_path: store_services_path(@store),
+          hidden_on_load: true,
+        },
+      ],
+    ) %>
+  <% end %>
   <!-- Reviews Section -->
   <% if current_user %>
     <%= render "store_reviews/add_review_button", store: @store %>

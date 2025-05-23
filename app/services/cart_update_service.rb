@@ -6,7 +6,7 @@ class CartUpdateService
     @quantity = quantity
   end
 
-  def call
+  def add_product
     begin
       @user_entity = EntityLookup.find_entity(@user_entity_param, @user_id)
       cart = @user_entity.cart
@@ -24,5 +24,8 @@ class CartUpdateService
     rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved, EntityLookup::EntityLookupError => e
       { status: :error, message: "There was an error updating the product quantity: #{e.message}" }
     end
+  end
+
+  def add_service
   end
 end

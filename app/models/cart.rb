@@ -23,6 +23,8 @@ class Cart < ApplicationRecord
   belongs_to :guest, optional: true
   has_many :cart_items, dependent: :destroy
   has_many :products, through: :cart_items
+  has_many :cart_service_items, dependent: :destroy
+  has_many :services, through: :cart_service_items
 
   def cart_item_totals
     cart_items.sum(:quantity)

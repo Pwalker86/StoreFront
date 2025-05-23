@@ -18,6 +18,9 @@ module StoreFront
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
+    config.rails_semantic_logger.console_logger = false
+    config.rails_semantic_logger.quiet_assets = true
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

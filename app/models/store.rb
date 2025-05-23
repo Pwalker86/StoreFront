@@ -24,6 +24,7 @@ class Store < ApplicationRecord
   belongs_to :store_admin
   has_many :reviews, as: :reviewable
   has_many :products
+  has_many :services
   has_one :fulfillment_partner
   has_one_attached :spotlight do |attachable|
     attachable.variant :thumb, resize_to_limit: [ 250, nil ], preprocessed: true
@@ -34,4 +35,16 @@ class Store < ApplicationRecord
   validates :name, :phone_number, :location, :email, presence: true
   validates :email,
     format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  def self.cached_featured_stores
+    Rails.cache.fetch("featured_stores", expires_in: 12.hours) do
+      includes([ :spotlight_attachment ]).where.not(spotlight_attachment: { id: nil }).limit(6)
+    end
+  end
+
+  def cached_store_products
+    Rails.cache.fetch([ "store_products", self.id ], expires_in: 12.hours) do
+      products.includes(:images_attachments).where(archived: false).order(:name)
+    end
+  end
 end
